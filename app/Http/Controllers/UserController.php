@@ -24,11 +24,11 @@ class UserController extends Controller
         if ($user->user_type_id == 1) {
             return view('admin.index', compact('users', 'user'))->with('admin.users', $users);
         } else if ($user->user_type_id == 2) {
-            $transactions = Transaction::where('sender_contact', $user->email)
+            /*$transactions = Transaction::where('sender_contact', $user->email)
                                         ->orWhere('recipient_contact', $user->email)
                                         ->orderBy('dateTime_transaction', 'desc')
-                                        ->get();
-            return view('student.studentdashboard', compact('user', 'transactions'));
+                                        ->get();*/
+            return view('student.studentdashboard', compact('user'));
         }
     }
     public function studentProfile()

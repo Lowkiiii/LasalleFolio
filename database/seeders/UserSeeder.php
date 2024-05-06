@@ -7,7 +7,8 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class UserTypesTableSeeder extends Seeder
+
+class UserSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,9 +16,8 @@ class UserTypesTableSeeder extends Seeder
     public function run(): void
     {
         //
-        DB::table('tbl_user_types')->insert([
-            ['id' => 1, 'user_type' => 'admin'],
-            ['id' => 2, 'user_type' => 'student'],
+        DB::table('users')->insert([
+            ['id' => 1, 'first_name' => 'admin', 'email' => 'admin', 'password' => Hash::make('admin123'), 'birthdate' => now(),'user_type_id' => 1, 'sex' => 'male']
         ]);
     }
 }
