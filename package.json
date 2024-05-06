@@ -14,6 +14,8 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "@midudev/tailwind-animations": "^0.0.7",
+        "@preline/toggle-password": "^2.1.0",
         "tw-elements": "^1.1.0"
     }
 }

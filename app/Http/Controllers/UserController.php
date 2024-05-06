@@ -57,7 +57,6 @@ class UserController extends Controller
         $validated = $request->validate([
             'first_name' => 'required',
             'middle_name' => 'nullable',
-            'last_name' => 'nullable',
             'email' => 'required',
             'password' => 'required',
             'birthdate' => 'nullable',
@@ -72,7 +71,6 @@ class UserController extends Controller
             // Your code that may throw an exception
             $user = new User;
             $user->first_name = $request->first_name;
-            $user->middle_name = $request->middle_name;
             $user->last_name = $request->last_name;
             $user->birthdate = $request->birthdate;
             $user->full_address = $request->full_address;
@@ -140,7 +138,6 @@ class UserController extends Controller
             $user = User::findOrFail($request->id);
             $user->update([
                 'first_name' => $request->first_name,
-                'middle_name' => $request->middle_name,
                 'last_name' => $request->last_name,
                 'birthdate' => $request->birthdate,
                 'full_address' => $request->full_address,
