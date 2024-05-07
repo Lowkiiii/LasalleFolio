@@ -28,7 +28,7 @@ class UserController extends Controller
                                         ->orWhere('recipient_contact', $user->email)
                                         ->orderBy('dateTime_transaction', 'desc')
                                         ->get();*/
-            return view('student.studentdashboard', compact('user'));
+            return view('student.studentProfile', compact('user'));
         }
     }
     public function studentProfile()
@@ -54,6 +54,7 @@ class UserController extends Controller
 
     public function store(Request $request): RedirectResponse|JsonResponse
     {
+        toastr()->success('');
         $validated = $request->validate([
             'first_name' => 'required',
             'middle_name' => 'nullable',
@@ -93,7 +94,8 @@ class UserController extends Controller
             // Handle other types of exceptions
             // Log the exception or return a generic error response
             Log::error($e->getMessage());
-            return response()->json(['error' => 'Something went wrong'], 500);
+            toastr()->error('An error has occurred please try again later.');
+            return back();
         }
     }
 

@@ -29,7 +29,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/student', function () {
-        return view('student/studentdashboard');
+        return view('student/studentProfile');
     });
     Route::get('/student', [UserController::class, 'index'])->name('student.studentdashboard');
 

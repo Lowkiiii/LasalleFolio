@@ -15,14 +15,13 @@ export default {
                 TextGray: "444444",
             },
             animation: {
-                fadeIn: "fadeInOut .5s ease-in-out",
+                fadeout: "fadeInOut 1s forwards",
             },
 
             keyframes: {
                 fadeInOut: {
-                    from: { opacity: 0 },
-                    to: { opacity: 1 },
-                    from: { opacity: 0 },
+                    from: { opacity: 1 },
+                    to: { opacity: 0 },
                 },
             },
         },

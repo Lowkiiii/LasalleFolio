@@ -1,9 +1,11 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
 @tailwind base;
 
 @layer base {
     html {
         @apply text-[#4f4f4f];
+    }
+    body {
+        font-family: "Inter", sans-serif;
     }
 
     html.dark {

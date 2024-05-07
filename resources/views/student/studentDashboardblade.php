@@ -12,12 +12,12 @@
     @vite('resources/js/app.js')
 </head>
 
-<body class="text-white bg-[#3d4159]">
-        <div class="bg-gray-900 px-52 flex flex-row items-center py-7 justify-between">
+<body class="text-white bg-white">
+        <div class="bg-white px-52 flex flex-row items-center py-7 justify-between">
         <div class="flex flex-row items-center">
                 <img src='/image/mtlogo.png' class="size-20 mr-24" />
                 <div class="flex flex-row">
-                    <a href="/studentprofile" class="text-xl px-5 py-2 rounded-full mr-5 bg-[#28797c]">Profile</a>
+                    <a href="/studentdashboard" class="text-xl px-5 py-2 rounded-full mr-5 bg-[#28797c]">Home</a>
                     </div>
             </div>
             <form method="POST" action="{{ route('logout') }}">
@@ -28,6 +28,12 @@
                     </button>
             </form>
         </div>
+        <div class="container">
+            <h1>{{ $user->first_name }} {{ $user->last_name }}</h1>
+        </div>
 </body>
 
 </html>
+
+       
+@endsection
