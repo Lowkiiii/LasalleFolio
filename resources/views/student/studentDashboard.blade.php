@@ -29,11 +29,10 @@
             </form>
         </div>
         <div class="container">
-            <h1>{{ $user->first_name }} {{ $user->last_name }}</h1>
+            {{-- <h1>{{ $user->first_name }} {{ $user->last_name }}</h1> --}}
         </div>
 </body>
 
 </html>
 
        
-@endsection

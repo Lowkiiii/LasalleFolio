@@ -14,8 +14,6 @@ Route::middleware('guest')->group(function () {
     Route::post('register', [RegisterController::class, 'register'])->name('register.account');
 });
 
-
-
 Route::middleware('auth')->group(function () {
     Route::get('/admin', function () {
         return view('admin/index');
@@ -31,17 +29,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/student', function () {
         return view('student/studentProfile');
     });
-    Route::get('/student', [UserController::class, 'index'])->name('student.studentdashboard');
+    Route::get('/student', [UserController::class, 'index'])->name('student.studentDashboard');
 
-    Route::get('studentprofile', function () {
-        return view('student.studentprofile');
+    Route::get('studentProfile', function () {
+        return view('student.studentProfile');
     });
     
-    Route::get('studentdashboard', function () {
-        return view('student.studentdashboard');
+    Route::get('studentDashboard', function () {
+        return view('student.studentDashboard');
     });
 
-    Route::get('/studentprofile', [UserController::class, 'studentProfile'])->name('student.studentprofile');
+    Route::get('/studentProfile', [UserController::class, 'studentProfile'])->name('student.studentProfile');
 });
 
 
