@@ -14,6 +14,7 @@
     @include('modal/modalProjects')
     @include('modal/modalProfilePicture')
     @include('modal/modalAboutMe')
+    @include('modal/modalPostText')
     @include('layouts.header')
         @yield('content')
         
@@ -25,6 +26,9 @@
           document.getElementById(modalID).classList.toggle("flex");
           document.getElementById(modalID + "-backdrop").classList.toggle("flex");
         }
+        function toggleColor(element) {
+    element.querySelector('.heart-path').classList.toggle('react-heart');
+}
       </script>
 </body>
 </html>

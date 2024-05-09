@@ -1,5 +1,5 @@
 <div class="hidden overflow-x-hidden overflow-y-auto fixed  inset-0 z-50 outline-none  focus:outline-none justify-center items-center"
-    id="modal-idAboutMe">
+    id="modal-idPostText">
     <div class="relative w-1/2  px-4my-auto mx-auto max-w-xl">
 
         <div
@@ -7,13 +7,13 @@
             <!--header-->
             <div class="flex items-start w-full justify-between pt-4 rounded-t">
                 <h3 class="text-lg text-black font-semibold ">
-                    About Me
+                    Post Text
                 </h3>
              
             </div>
             <!--body-->
             <div class="relative pb-5 items-center justify-center flex-auto py-2">
-                <textarea class="appearance-none resize-none outline-none overflow-hidden w-full h-[10rem]" placeholder="Tell us about yourself..."></textarea>
+                <textarea class="appearance-none resize-none outline-none overflow-hidden w-full h-[20rem]" placeholder="Share your thoughts"></textarea>
 
                   
             </input>
@@ -24,16 +24,16 @@
             <div class="flex items-center justify-end p-4" >
                 <button
                     class="text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button" onclick="toggleModal('modal-idAboutMe')">
+                    type="button" onclick="toggleModal('modal-idPostText')">
                     Close
                 </button>
                 <button
                     class="bg-[#006634] text-white  font-semibold uppercase text-xs px-2 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                    type="button" onclick="toggleModal('modal-idAboutMe')">
-                    Update 
+                    type="button" onclick="toggleModal('modal-idPostText')">
+                    Post 
                 </button>
             </div>
         </div>
     </div>
 </div>
-<div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-idAboutMe-backdrop"></div>
+<div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-idPostText-backdrop"></div>

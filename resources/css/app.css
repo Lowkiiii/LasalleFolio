@@ -23,6 +23,9 @@
     -webkit-backdrop-filter: blur(4.7px);
     border: 1px solid rgba(255, 255, 255, 0.92);
 }
+.react-heart {
+    fill: red;
+}
 
 @tailwind components;
 @tailwind utilities;
