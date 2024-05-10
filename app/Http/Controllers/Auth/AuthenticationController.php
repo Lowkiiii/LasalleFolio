@@ -39,7 +39,7 @@ class AuthenticationController extends Controller
             if($user->user_type_id == 1){
                 return redirect()->intended('/admin');
             }else if($user->user_type_id == 2){
-                return redirect()->intended('/student');
+                return redirect()->intended('/studentDashboard');
             }
         }
 

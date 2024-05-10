@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('webtitle')
-    studentProfile
+    Profile
 @endsection
 
 @section('content')
@@ -165,7 +165,7 @@
                                     <div class="text-xl font-bold  opacity-70">
                                         <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
                                             onclick="toggleModal('modal-idProjects')">
-                                            <?xml version="1.0" ?>
+                                            
                                             <!DOCTYPE svg
                                                 PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
                                             <svg enable-background="new 0 0 512 512" height="18px" id="Layer_1"
@@ -202,8 +202,7 @@
                         <div class="absolute right-0 top-0 z-20">
                             <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
                                 onclick="toggleModal('modal-idPanels')">
-
-                                <?xml version="1.0" ?>
+                                
                                 <!DOCTYPE svg
                                     PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
                                     enable-background="new 0 0 512 512" height="18px" id="Layer_1" version="1.1"
@@ -230,7 +229,9 @@
                                     </div>
                                     <div class="ml-3 py-3 text-xs font-medium text-black">
 
-                                        <div class="font-bold text-sm">CONTENT HERE <button class="px-1"
+                                        <div class="font-bold text-sm">
+                                            CONTENT HERE 
+                                            <button class="px-1"
                                                 onclick="toggleModal('modal-idProjects')">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12"
                                                     viewBox="0 0 24 24"
@@ -255,9 +256,9 @@
 
                         <div class="absolute right-0 top-0 z-20">
                             <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
-                                onclick="toggleModal('modal-idPanels')">
+                                onclick="toggleModal('modal-idSkills')">
 
-                                <?xml version="1.0" ?>
+                                
                                 <!DOCTYPE svg
                                     PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
                                     enable-background="new 0 0 512 512" height="18px" id="Layer_1" version="1.1"
@@ -311,9 +312,9 @@
 
                         <div class="absolute right-0 top-0">
                             <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
-                                onclick="toggleModal('modal-idPanels')">
+                                onclick="toggleModal('modal-idExperience')">
 
-                                <?xml version="1.0" ?>
+                                
                                 <!DOCTYPE svg
                                     PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
                                     enable-background="new 0 0 512 512" height="18px" id="Layer_1" version="1.1"
@@ -409,10 +410,10 @@
 
                         <div class="absolute right-0 top-0 z-20">
                             <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
-                                onclick="toggleModal('modal-idPanels')">
+                                onclick="toggleModal('modal-idAwards')">
 
                                 
-                                <?xml version="1.0" ?>
+                              
                                 <!DOCTYPE svg
                                     PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'><svg
                                     enable-background="new 0 0 512 512" height="18px" id="Layer_1" version="1.1"
@@ -478,5 +479,5 @@
                 </div>
 
             </div>
-            
+            @include('modal.modalPanels')
         @endsection

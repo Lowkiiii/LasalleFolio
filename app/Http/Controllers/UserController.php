@@ -24,17 +24,15 @@ class UserController extends Controller
         if ($user->user_type_id == 1) {
             return view('admin.index', compact('users', 'user'))->with('admin.users', $users);
         } else if ($user->user_type_id == 2) {
-            /*$transactions = Transaction::where('sender_contact', $user->email)
-                                        ->orWhere('recipient_contact', $user->email)
-                                        ->orderBy('dateTime_transaction', 'desc')
-                                        ->get();*/
-            return view('student.studentProfile', compact('user'));
+
+            return view('student.studentDashboard', compact('user'));
         }
+        
     }
     public function studentProfile()
     {
         $user = Auth::user();
-        return view('student.studentprofile', compact('user'));
+        return view('student.studentProf', compact('user'));
     }
 
     public function adminusers(){
@@ -43,13 +41,6 @@ class UserController extends Controller
         $user = Auth::user();
 
         return view('admin.users', compact('users', 'user'));
-    }
-
-    public function getTellers(){
-        $user = Auth::user();
-        $tellers = User::where('user_type_id', 2)->whereNotIn('id', [$user->id])->get();  // Get all users with user_type_id = 2
-
-        return view('teller.contacts', compact('tellers', 'user'));
     }
 
     public function store(Request $request): RedirectResponse|JsonResponse
@@ -158,4 +149,5 @@ class UserController extends Controller
             return response()->json(['error' => 'Something went wrong'], 500);
         }
     }
+
 }

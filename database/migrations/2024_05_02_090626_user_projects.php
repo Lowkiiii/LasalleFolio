@@ -20,14 +20,12 @@ return new class extends Migration
             $table->date('date_started');
             $table->date('date_ended');
             
-            
-
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Reverse the migrations.  
      */
     public function down(): void
     {
