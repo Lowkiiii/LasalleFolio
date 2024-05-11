@@ -22,12 +22,19 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    
+
     Route::get('studentDashboard', function () {
         return view('student.studentDashboard');
     });
 
     Route::get('/studentProf', [UserController::class, 'studentProfile'])->name('student.studentProf');
+
+    
+    
+
+});
+
+Route::middleware('auth')->group(function () {
 
     Route::post('/projects', [UserProjectController::class, 'store'])->name('projects.store');
 
@@ -35,5 +42,4 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/studentProf', [UserProjectController::class, 'index'])->name('student.studentProf');
     
-
 });
