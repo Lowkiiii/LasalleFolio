@@ -32,10 +32,6 @@ Route::middleware('auth')->group(function () {
     Route::middleware('auth')->group(function () {
         // ...
         Route::get('/projects', [UserProjectController::class, 'index'])->name('projects.index');
-    });
-
-    Route::middleware('auth')->group(function () {
-        // ...
         Route::get('/studentProf', [UserProjectController::class, 'index'])->name('student.studentProf');
     });
 
