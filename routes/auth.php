@@ -22,17 +22,18 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    
     Route::get('studentDashboard', function () {
         return view('student.studentDashboard');
     });
+
     Route::get('/studentProf', [UserController::class, 'studentProfile'])->name('student.studentProf');
 
     Route::post('/projects', [UserProjectController::class, 'store'])->name('projects.store');
 
-    Route::middleware('auth')->group(function () {
-        // ...
-        Route::get('/projects', [UserProjectController::class, 'index'])->name('projects.index');
-        Route::get('/studentProf', [UserProjectController::class, 'index'])->name('student.studentProf');
-    });
+    Route::get('/projects', [UserProjectController::class, 'index'])->name('projects.index');
+
+    Route::get('/studentProf', [UserProjectController::class, 'index'])->name('student.studentProf');
+    
 
 });
