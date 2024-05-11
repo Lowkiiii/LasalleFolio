@@ -18,11 +18,13 @@
     @include('modal/modalAwardsandHonorsPanel')
     @include('modal/modalAcademicsPanel')
     @include('modal/modalSkillsPanel')
+    @include('modal/modalEditPanel')
+    @include('modal/modalAddShowcase')
     @include('layouts.header')
 
         @yield('content')
         
-    @include('layouts.footer')
+   
     <script type="text/javascript">
         function toggleModal(modalID){
           document.getElementById(modalID).classList.toggle("hidden");
@@ -34,5 +36,6 @@
     element.querySelector('.heart-path').classList.toggle('react-heart');
 }
       </script>
+       @include('layouts.footer')
 </body>
 </html>

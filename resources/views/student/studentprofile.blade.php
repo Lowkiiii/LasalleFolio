@@ -43,10 +43,10 @@
 
                     </div>
                     <h1 class="text-center text-lg pt-2 font-bold text-black">
-                        Paulo John C. Jimenea
+                        
                     </h1>
                     <p class="text-xs font-d mx-auto max-y-md max-w-lg flex items-center justify-center">
-                        < School Id> · Bacolod City · PH
+                        {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
                     </p>
 
 
