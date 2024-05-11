@@ -15,7 +15,11 @@
     @include('modal/modalProfilePicture')
     @include('modal/modalAboutMe')
     @include('modal/modalPostText')
+    @include('modal/modalAwardsandHonorsPanel')
+    @include('modal/modalExperiencePanel')
+    @include('modal/modalSkillsPanel')
     @include('layouts.header')
+
         @yield('content')
         
     @include('layouts.footer')
