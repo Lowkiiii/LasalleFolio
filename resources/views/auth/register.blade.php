@@ -371,7 +371,7 @@
 
 <div class="absolute z-[-1] ">
     <div class="mx-auto max-y-sm max-w-2xl flex items-center justify-center">
-        <img src='/image/LOGOFULL.png' class="opacity-10 size-fit" />
+        <img src='/image/LOGOFULL.png' class="opacity-5 size-fit" />
     </div>
 </div>
 
