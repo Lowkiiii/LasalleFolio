@@ -36,5 +36,12 @@ class UserProjectController extends Controller
             return Redirect::back()->withErrors(['error' => 'An error occurred while saving the project.']);
         }
     }
-    
+
+
+    public function index()
+    {
+        $userProjects = Auth::user()->userProjects;
+        return view('student.studentProf', compact('userProjects'));
+    }
+        
 }

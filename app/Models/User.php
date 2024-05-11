@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Relations\HasMany; 
 
 class User extends Authenticatable
 {
@@ -51,6 +52,11 @@ class User extends Authenticatable
 
     public function userType(){
         return $this->belongsTo(UserType::class, 'user_type_id', 'id');
+    }
+    
+    public function userProjects(): HasMany
+    {
+        return $this->hasMany(UserProject::class);
     }
 
 }

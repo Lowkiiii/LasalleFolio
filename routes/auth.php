@@ -29,4 +29,14 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/projects', [UserProjectController::class, 'store'])->name('projects.store');
 
+    Route::middleware('auth')->group(function () {
+        // ...
+        Route::get('/projects', [UserProjectController::class, 'index'])->name('projects.index');
+    });
+
+    Route::middleware('auth')->group(function () {
+        // ...
+        Route::get('/studentProf', [UserProjectController::class, 'index'])->name('student.studentProf');
+    });
+
 });

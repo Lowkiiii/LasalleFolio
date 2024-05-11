@@ -31,4 +31,9 @@ class UserProject extends Model
     protected $fillable = [
         'project', 'description', 'date_started', 'date_ended', 'user_id'
     ];
+
+    protected $casts = [
+        'date_started' => 'datetime',
+        'date_ended' => 'datetime',
+    ];
 }
