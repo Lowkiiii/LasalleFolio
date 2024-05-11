@@ -3,11 +3,11 @@
     <div class="relative w-1/2 px-4 my-auto mx-auto max-w-xl">
         <div
             class="border border-[#D9D9D9] rounded-lg shadow-lg relative flex flex-col px-4 w-full bg-white outline-none focus:outline-none">
-            <form action="{{ route('projects.store') }}" method="POST">
+            <form action="{{ route('skills.store') }}" method="POST">
                 @csrf
                 <!--header-->
                 <div class="flex items-start w-full justify-between pt-4 rounded-t">
-                    <h3 class="text-md text-black font-bold "> MODAL PANEL SKILLS TITLE </h3>
+                    <h3 class="text-md text-black font-bold "> ADD SKILLS </h3>
                 </div>
                 <!--body-->
                 <div class="relative pb-5 flex-auto">
@@ -15,8 +15,8 @@
                     <div class="text-sm text-black pb-2 pt-5">Edit Title</div>
                     <input type="text"
                         class="text-black text-xs rounded-md shadow-md peer block min-h-[auto] w-full bg-white px-3 py-[0.01rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('project') border-2 border-red-500 @enderror"
-                        name="project" placeholder="Enter title" value="{{ old('project') }}" />
-                    @error('project')
+                        name="skills" placeholder="Enter title" value="{{ old('skills') }}" />
+                    @error('skills')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                     </p>
@@ -29,23 +29,6 @@
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                     </p>
-                    <p class="mx-2 leading-relaxed">
-                    <div class="text-sm text-black pb-2 pt-5">Start Date</div>
-                    <input type="date"
-                        class="text-black text-xs rounded-md shadow-md border-InputGray border peer block min-h-[auto] w-full bg-white px-3 py-[0.01rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_started') border-2 border-red-500 @enderror"
-                        id="" name="date_started" placeholder="Start Date" />
-                    @error('date_started')
-                        <span class="text-red-500">{{ $message }}</span>
-                    @enderror
-                    </p>
-                    <p class="mx-2 leading-relaxed">
-                    <div class="text-sm text-black pb-2 pt-5">End Date</div>
-                    <input type="date"
-                        class="text-black text-xs rounded-md shadow-md border-InputGray border peer block min-h-[auto] w-full bg-white px-3 py-[0.01rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_ended') border-2 border-red-500 @enderror"
-                        id="" name="date_ended" placeholder="End Date" />
-                    @error('date_ended')
-                        <span class="text-red-500">{{ $message }}</span>
-                    @enderror
                    <script>
            
                    </script>

@@ -16,7 +16,7 @@
     @include('modal/modalAboutMe')
     @include('modal/modalPostText')
     @include('modal/modalAwardsandHonorsPanel')
-    @include('modal/modalExperiencePanel')
+    @include('modal/modalAcademicsPanel')
     @include('modal/modalSkillsPanel')
     @include('layouts.header')
 

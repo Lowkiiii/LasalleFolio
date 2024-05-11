@@ -7,7 +7,7 @@
                 @csrf
                 <!--header-->
                 <div class="flex items-start w-full justify-between pt-4 rounded-t">
-                    <h3 class="text-md text-black font-bold "> MODAL PANEL TITLE </h3>
+                    <h3 class="text-md text-black font-bold "> ADD PROJECT </h3>
                 </div>
                 <!--body-->
                 <div class="relative pb-5 flex-auto">

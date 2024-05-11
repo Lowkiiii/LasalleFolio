@@ -32,7 +32,12 @@ class UserController extends Controller
     public function studentProfile()
     {
         $user = Auth::user();
-        return view('student.studentProf', compact('user'));
+        $userProjects = $user->userProjects;
+        $userSkills = $user->userSkills;
+        $userAcademics = $user->userAcademics;
+        $userHonorsAndAwards = $user->userHonorsAndAwards;
+
+        return view('student.studentProf', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards'));
     }
 
     public function adminusers(){

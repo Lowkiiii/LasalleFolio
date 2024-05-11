@@ -59,4 +59,19 @@ class User extends Authenticatable
         return $this->hasMany(UserProject::class);
     }
 
+    public function userSkills(): HasMany
+    {
+        return $this->hasMany(UserSkills::class);
+    }
+
+    public function userAcademics(): HasMany
+    {
+        return $this->hasMany(UserAcademics::class);
+    }
+
+    public function userHonorsAndAwards(): HasMany
+    {
+        return $this->hasMany(UserHonorsAndAwards::class);
+    }
+
 }

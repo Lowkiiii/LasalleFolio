@@ -3,29 +3,38 @@
     <div class="relative w-1/2 px-4 my-auto mx-auto max-w-xl">
         <div
             class="border border-[#D9D9D9] rounded-lg shadow-lg relative flex flex-col px-4 w-full bg-white outline-none focus:outline-none">
-            <form action="{{ route('projects.store') }}" method="POST">
+            <form action="{{ route('academics.store') }}" method="POST">
                 @csrf
                 <!--header-->
                 <div class="flex items-start w-full justify-between pt-4 rounded-t">
-                    <h3 class="text-md text-black font-bold "> MODAL PANEL EXPERIENCE TITLE </h3>
+                    <h3 class="text-md text-black font-bold "> ADD ACADEMICS </h3>
                 </div>
                 <!--body-->
                 <div class="relative pb-5 flex-auto">
                     <p class=" mx-2 leading-relaxed">
-                    <div class="text-sm text-black pb-2 pt-5">Edit Title</div>
+                    <div class="text-sm text-black pb-2 pt-5">School</div>
                     <input type="text"
-                        class="text-black text-xs rounded-md shadow-md peer block min-h-[auto] w-full bg-white px-3 py-[0.01rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('project') border-2 border-red-500 @enderror"
-                        name="project" placeholder="Enter title" value="{{ old('project') }}" />
-                    @error('project')
+                        class="text-black text-xs rounded-md shadow-md peer block min-h-[auto] w-full bg-white px-3 py-[0.01rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('education_insitution') border-2 border-red-500 @enderror"
+                        name="education_insitution" placeholder="Enter title" value="{{ old('education_insitution') }}" />
+                    @error('education_insitution')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                     </p>
                     <p class=" mx-2 leading-relaxed">
-                    <div class="text-sm text-black pb-2 pt-5">Content</div>
-                    <textarea
-                        class="appearance-none resize-none outline-none overflow-hidden w-full h-[10rem] @error('description') border-2 border-red-500 @enderror"
-                        name="description" placeholder="Enter content">{{ old('description') }}</textarea>
-                    @error('description')
+                    <div class="text-sm text-black pb-2 pt-5">Course</div>
+                    <input type="text"
+                        class="text-black text-xs rounded-md shadow-md peer block min-h-[auto] w-full bg-white px-3 py-[0.01rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('course') border-2 border-red-500 @enderror"
+                        name="course" placeholder="Enter title" value="{{ old('course') }}" />
+                    @error('course')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                    </p>
+                    <p class=" mx-2 leading-relaxed">
+                    <div class="text-sm text-black pb-2 pt-5">Major</div>
+                    <input type="text"
+                        class="text-black text-xs rounded-md shadow-md peer block min-h-[auto] w-full bg-white px-3 py-[0.01rem] leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('major') border-2 border-red-500 @enderror"
+                        name="major" placeholder="Enter title" value="{{ old('major') }}" />
+                    @error('major')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                     </p>

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('issuer');
             $table->date('date_issue');
             $table->string('description');
+            $table->timestamps();
             
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
