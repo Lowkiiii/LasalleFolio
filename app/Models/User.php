@@ -8,11 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany; 
+use Illuminate\Support\Facades\Auth;
+
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
-
+    
     /**
      * The attributes that are mass assignable.
      *
@@ -72,6 +74,24 @@ class User extends Authenticatable
     public function userHonorsAndAwards(): HasMany
     {
         return $this->hasMany(UserHonorsAndAwards::class);
+    }
+
+    public function userPosts()
+    {
+        return $this->hasMany(UserPosts::class);
+    }
+
+    public function index()
+    {
+        $userPosts = Auth::user()->userPosts;
+        return view('student.studentDashboard', compact('userPosts'));
+    }
+
+    // User.php
+
+    public function getNameAttribute()
+    {
+        return $this->first_name . ' ' . $this->last_name;
     }
 
 }

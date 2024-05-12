@@ -8,6 +8,7 @@ use App\Http\Controllers\UserProjectController;
 use App\Http\Controllers\UserSkillsController;
 use App\Http\Controllers\UserHonorsAndAwardsController;
 use App\Http\Controllers\UserAcademicsController;
+use App\Http\Controllers\UserPostController;
 
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticationController::class, 'index']);
@@ -62,4 +63,14 @@ Route::middleware('auth')->group(function () {
     // Honors and Awards routes
     Route::post('/honorsandawards', [UserHonorsAndAwardsController::class, 'store'])->name('honorsandawards.store');
     Route::get('/honorsandawards', [UserHonorsAndAwardsController::class, 'index'])->name('honorsandawards.index');
+});
+
+
+Route::middleware('auth')->group(function () {
+    // User's Posts routes
+    Route::post('/posts', [UserPostController::class, 'store'])->name('posts.store');
+    Route::get('/posts', [UserPostController::class, 'index'])->name('posts.index');
+    // Route::put('/projects/{id}', [UserProjectController::class, 'update'])->name('projects.update');
+    // Route::delete('/projects/{id}', [UserProjectController::class, 'destroy'])->name('projects.destroy');
+    // Route::get('/projects/{id}/modal', [UserProjectController::class, 'showModal'])->name('projects.show.modal');
 });

@@ -300,45 +300,30 @@
                         <hr class="my-7 h-0.5 border-t-0 bg-gray-200 opacity-40" />
 
                         <div class="w-full relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
-
-                            <div class=" flex  flex-grow items-center">
-
-
-                                <div class="w-12 h-12 rounded-full mr-2  ">
-                                    <div class="relative group">
-                                        <label for="file_input" class="cursor-pointer">
-                                            <img src="image/dog.jpg" alt="Profile"
-                                                class="w-full h-full rounded-full object-cover">
-                                        </label>
-
+                            @forelse ($userPosts as $post)
+                                <div class="flex flex-grow items-center">
+                                    <div class="w-12 h-12 rounded-full mr-2">
+                                        <div class="relative group">
+                                            <img src="{{ asset('image/dog.jpg') }}" alt="Profile" class="w-full h-full rounded-full object-cover">
+                                        </div>
                                     </div>
-
+                                    <div class="text-sm font-bold text-black">
+                                    {{ $post->user->name }} {{-- Display user's full name --}}
+                                        <div class="text-xs font-semibold opacity-70">{{ $post->created_at->diffForHumans() }}</div>
+                                    </div>
                                 </div>
-                                <div class="text-sm font-bold text-black">
-                                    Paulo John C. Jimenea
-                                    <div class="text-xs font-semibold opacity-70">1 Hour Ago</div>
-
+                                <div class="py-4 text-black">{{ $post->user_posts }}</div>
+                                <div class="container">
+                                    <!-- Render images if any -->
                                 </div>
-                            </div>
-
-                            <div class="py-4 text-black">Lorem Ipsum</div>
-
-                            <div class="container">
-                                <img src="image/PIC.png" alt="" class="rounded-xl object-cover   mb-2">
-                            </div>
-
-                            <div class="" >
-                                <button onclick="toggleColor(this)" >
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 47.5 47.5" id="heart">
-                                        <defs><clipPath id="a"><path d="M0 38h38V0H0v38Z"/></clipPath></defs>
-                                        <g clip-path="url(#a)" transform="matrix(1.25 0 0 -1.25 0 47.5)">
-                                            <path class="heart-path" fill="#C6C6C6" d="M3.067 25.68c0 8.799 12.184 12.06 15.933 1.874 3.749 10.186 15.933 6.925 15.933-1.874C34.933 16.12 19 3.999 19 3.999S3.067 16.12 3.067 25.68"/>
-                                        </g>
-                                    </svg>
-                                </button>
-                            </div>
-
-
+                                <div class="">
+                                    <button onclick="toggleColor(this)">
+                                        <!-- Heart icon -->
+                                    </button>
+                                </div>
+                            @empty
+                                <p>No posts found.</p>
+                            @endforelse
                         </div>
 
 

@@ -40,15 +40,16 @@ class UserController extends Controller
     }
 
     public function studentDashboard()
-{
-    $user = Auth::user();
-    $userProjects = $user->userProjects;
-    $userSkills = $user->userSkills;
-    $userAcademics = $user->userAcademics;
-    $userHonorsAndAwards = $user->userHonorsAndAwards;
+    {
+        $user = Auth::user();
+        $userProjects = $user->userProjects;
+        $userSkills = $user->userSkills;
+        $userAcademics = $user->userAcademics;
+        $userHonorsAndAwards = $user->userHonorsAndAwards;
+        $userPosts = $user->userPosts;
 
-    return view('student.studentDashboard', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards'));
-}
+        return view('student.studentDashboard', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+    }
 
     public function adminusers(){
         $users = User::all();
