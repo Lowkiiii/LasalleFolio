@@ -62,6 +62,7 @@ class UserProjectController extends Controller
 
             $project = $userProject;
 
+<<<<<<< Updated upstream
             $userProject->project = $validatedData['project'];
             $userProject->description = $validatedData['description'];
             $userProject->date_started = $validatedData['date_started'];
@@ -91,5 +92,16 @@ class UserProjectController extends Controller
             Log::error('Error deleting project: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'An error occurred while deleting the project.']);
         }
+=======
+        $viewData = [
+            'userProject' => $userProject,
+            'flash_message' => 'Project updated successfully!'
+        ];
+
+        return view('modalEditPanel', $viewData);
+    } catch (\Exception $e) {
+        Log::error('Error updating project: ' . $e->getMessage());
+        return redirect()->back()->withErrors(['error' => 'An error occurred while updating the project.']);
+>>>>>>> Stashed changes
     }
 }
