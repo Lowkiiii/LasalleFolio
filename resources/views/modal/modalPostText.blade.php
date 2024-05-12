@@ -28,7 +28,7 @@
                 <div class="flex items-center justify-end p-4">
                     <button
                         class="text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                        type="button" onclick="toggleModal('modal-idPanels')">
+                        type="button" onclick="toggleModal('modal-idPostText')">
                         Close
                     </button>
                     <button
@@ -41,4 +41,4 @@
         </div>
     </div>
 </div>
-<div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-idPanels-backdrop"></div>
+<div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-idPostText-backdrop"></div>

@@ -9,10 +9,7 @@
 
         <div class="flex row min-h-full justify-center relative">
 
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit">Logout</button>
-            </form>
+         
 
             <div class=" mx-auto max-w-[85rem]">
                 <div class="flex flex-row border border-InputGray rounded-xl drop-shadow-2xl shadow-[#006634] w-full ">
@@ -205,8 +202,19 @@
                                 <div class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg shadow-lg mb-2">
                                     <div class="absolute right-0 top-0 z-20">
                                         {{-- Add Project Button --}}
-                                        <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]" onclick="toggleModal('modal-idPanels')">
-                                            <!-- ... -->
+                                       
+                                            <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
+                                            onclick="toggleModal('modal-idPanels')">
+                                            <!DOCTYPE svg
+                                                PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+                                            <svg enable-background="new 0 0 512 512" height="18px" id="Layer_1"
+                                                version="1.1" viewBox="0 0 512 512" width="18px" xml:space="preserve"
+                                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                <path
+                                                    d="M256,512C114.625,512,0,397.391,0,256C0,114.609,114.625,0,256,0c141.391,0,256,114.609,256,256  C512,397.391,397.391,512,256,512z M256,64C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192  S362.047,64,256,64z M288,384h-64v-96h-96v-64h96v-96h64v96h96v64h-96V384z" />
+                                            </svg>
+    
+                                       
                                         </button>
                                     </div>
 
@@ -353,7 +361,7 @@
 
                         </div>
 
-                        <div class="flex flex-col w-full mr-1 ">
+                        <div class="flex flex-col w-full ">
                             <!-- Academics -->
                             <div
                                 class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg mb-2  shadow-lg ">

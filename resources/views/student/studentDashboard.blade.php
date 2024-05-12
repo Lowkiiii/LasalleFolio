@@ -11,11 +11,7 @@
                 <div class="flex flex-row">
                     <div class="flex flex-col w-2/5 ml-10 mr-10">
 
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit">Logout</button>
-                    </form>
-                    
+               
                         <div
                             class="w-full relative flex flex-wrap items-start space-x-3 p-6 border border-[#D4D4D4] rounded-xl shadow-lg ">
                             <div class="justify-center items-center mx-auto max-y-md max-w-lg flex ">
@@ -243,6 +239,8 @@
                                 </div>
                             </div>
 
+                            
+
                             <div class="flex flex-row w-full  items-center text-[#006634] font-bold text-xl mt-6 ">
                                 <div class="mr-auto">
                                     <div class=" items-center text-center flex px-8 ">
@@ -297,11 +295,12 @@
 
                         </div>
 
-                        <hr class="my-7 h-0.5 border-t-0 bg-gray-200 opacity-40" />
+                        <hr class="my-7 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
 
-                        <div class="w-full relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
-                            @forelse ($userPosts as $post)
-                                <div class="flex flex-grow items-center">
+                        @forelse ($userPosts as $post)
+                        <div class="w-full mb-3 relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
+                           
+                                <div class="flex flex-grow items-center mt-3">
                                     <div class="w-12 h-12 rounded-full mr-2">
                                         <div class="relative group">
                                             <img src="{{ asset('image/dog.jpg') }}" alt="Profile" class="w-full h-full rounded-full object-cover">
@@ -313,19 +312,47 @@
                                     </div>
                                 </div>
                                 <div class="py-4 text-black">{{ $post->user_posts }}</div>
-                                <div class="container">
-                                    <!-- Render images if any -->
-                                </div>
-                                <div class="">
+                         
+                             
+                                <div class="flex flex-row items-start justify-start">
                                     <button onclick="toggleColor(this)">
-                                        <!-- Heart icon -->
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 47.5 47.5" id="heart">
+                                            <defs><clipPath id="a"><path d="M0 38h38V0H0v38Z"/></clipPath></defs>
+                                            <g clip-path="url(#a)" transform="matrix(1.25 0 0 -1.25 0 47.5)">
+                                                <path class="heart-path" fill="#C6C6C6" d="M3.067 25.68c0 8.799 12.184 12.06 15.933 1.874 3.749 10.186 15.933 6.925 15.933-1.874C34.933 16.12 19 3.999 19 3.999S3.067 16.12 3.067 25.68"/>
+                                            </g>
+                                        </svg>
                                     </button>
+                                    <div class="flex flex-row text-sm px-1 font-bold text-black"> 0</div>
+                                    
                                 </div>
-                            @empty
-                                <p>No posts found.</p>
-                            @endforelse
-                        </div>
+                                <hr class="my-4 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
+                                <div class=" flex items-center">
 
+
+                                    <div class="w-10 h-10 rounded-full mr-2  ">
+                                        <div class="relative group">
+                                            <label for="file_input" class="cursor-pointer">
+                                                <img src="image/dog.jpg" alt="Profile"
+                                                    class="w-full h-full rounded-full object-cover">
+                                            </label>
+    
+                                        </div>
+    
+                                    </div>
+                               
+                                    <div class=" flex-grow">
+                                        <input type="" class=" outline-none text-sm w-full py-2 px-3 bg-gray-200 rounded-2xl "
+                                          placeholder="Reply">
+                                        
+                                       
+                                    </div>
+                                </div>
+                       
+                        </div>
+                        @empty
+                        <p>No posts found.</p>
+                    @endforelse
 
 
                     </div>
@@ -372,6 +399,6 @@
                     </div>
 
                 </div>
-
+            </div>
             </div>
         @endsection
