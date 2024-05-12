@@ -66,6 +66,7 @@ class UserProjectController extends Controller
             $userProject->date_ended = $validatedData['date_ended'] ?? null;
             $userProject->save();
 
+
             return redirect()->route('studentProf')->with('flash_message', 'Project updated successfully!');
         } catch (\Exception $e) {
             Log::error('Error updating project: ' . $e->getMessage());
