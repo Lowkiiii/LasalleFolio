@@ -126,4 +126,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/studentprofile', [UserController::class, 'studentProfile'])->name('student.studentprofile');
 });
 
+<<<<<<< Updated upstream
+=======
+Route::middleware('auth')->group(function () {
+    // Projects routes
+    Route::post('/projects', [UserProjectController::class, 'store'])->name('projects.store');
+    Route::get('/projects', [UserProjectController::class, 'index'])->name('projects.index');
+    Route::put('/projects/{id}', [UserProjectController::class, 'update'])->name('projects.update');
+    Route::delete('/projects/{id}', [UserProjectController::class, 'destroy'])->name('projects.destroy');
+});
+>>>>>>> Stashed changes
 
