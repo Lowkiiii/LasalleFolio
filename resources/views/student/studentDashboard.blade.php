@@ -7,9 +7,15 @@
     <section class="h-screen bg-white">
         <div class="flex row min-h-full justify-center relative">
             <div class=" mt-2 flex mx-auto max-w-[90rem]">
-
+                
                 <div class="flex flex-row">
                     <div class="flex flex-col w-2/5 ml-10 mr-10">
+
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit">Logout</button>
+                    </form>
+                    
                         <div
                             class="w-full relative flex flex-wrap items-start space-x-3 p-6 border border-[#D4D4D4] rounded-xl shadow-lg ">
                             <div class="justify-center items-center mx-auto max-y-md max-w-lg flex ">
@@ -17,7 +23,6 @@
                                     <div class=" container">
                                         <img src='/image/profileBG.png' class="w-full h-[8rem] object-cover rounded-xl " />
                                     </div>
-
 
                                     <div
                                         class="  justify-center mx-auto max-w-lg flex-col flex items-center  -translate-y-[3rem]">

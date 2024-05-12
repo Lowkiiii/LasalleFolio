@@ -22,13 +22,16 @@ Route::middleware('auth')->group(function () {
     });
     Route::get('/admin', [UserController::class, 'index'])->name('admin.index');
     Route::post('logout', [AuthenticationController::class, 'destroy'])->name('logout');
+    
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('studentDashboard', function () {
-        return view('student.studentDashboard');
-    });
+    // Route::get('studentDashboard', function () {
+    //     return view('student.studentDashboard');
+    // });
 
+    // Handle /studentDashboard route with UserController
+    Route::get('studentDashboard', [UserController::class, 'studentDashboard'])->name('student.studentDashboard');
     // Handle /studentProf route with UserController
     Route::get('/studentProf', [UserController::class, 'studentProfile'])->name('student.studentProf');
 });
@@ -37,6 +40,7 @@ Route::middleware('auth')->group(function () {
     // Projects routes
     Route::post('/projects', [UserProjectController::class, 'store'])->name('projects.store');
     Route::get('/projects', [UserProjectController::class, 'index'])->name('projects.index');
+    Route::put('/projects/{id}', [UserProjectController::class, 'update'])->name('projects.update');
 });
 
 Route::middleware('auth')->group(function () {

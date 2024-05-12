@@ -19,7 +19,7 @@ class CheckRole
         if(Auth::check() && Auth::user()->user_type_id == 1){
             return redirect('/admin');
         } elseif(Auth::check() && Auth::user()->user_type_id == 2){
-            return redirect('/teller');
+            return redirect('/student');
         }
 
         return $next($request);

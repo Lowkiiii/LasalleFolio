@@ -24,7 +24,6 @@ class UserController extends Controller
         if ($user->user_type_id == 1) {
             return view('admin.index', compact('users', 'user'))->with('admin.users', $users);
         } else if ($user->user_type_id == 2) {
-
             return view('student.studentDashboard', compact('user'));
         }
         
@@ -39,6 +38,17 @@ class UserController extends Controller
 
         return view('student.studentProf', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards'));
     }
+
+    public function studentDashboard()
+{
+    $user = Auth::user();
+    $userProjects = $user->userProjects;
+    $userSkills = $user->userSkills;
+    $userAcademics = $user->userAcademics;
+    $userHonorsAndAwards = $user->userHonorsAndAwards;
+
+    return view('student.studentDashboard', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards'));
+}
 
     public function adminusers(){
         $users = User::all();
