@@ -41,6 +41,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/projects', [UserProjectController::class, 'store'])->name('projects.store');
     Route::get('/projects', [UserProjectController::class, 'index'])->name('projects.index');
     Route::put('/projects/{id}', [UserProjectController::class, 'update'])->name('projects.update');
+    Route::delete('/projects/{id}', [UserProjectController::class, 'destroy'])->name('projects.destroy');
+    // Route::get('/projects/{id}/modal', [UserProjectController::class, 'showModal'])->name('projects.show.modal');
 });
 
 Route::middleware('auth')->group(function () {
