@@ -71,7 +71,7 @@
                         </label>
                     </button>
                     <div id="menu"
-                        class="absolute bg-white space-x-3 p-3 border border-[#D4D4D4] rounded-lg shadow-lg w-55 mt-1 transform translate-y-full opacity-0 top-12 left-1/2 -translate-x-1/2 z-10">
+                        class="absolute bg-white space-x-3 p-3 border border-[#D4D4D4] rounded-lg shadow-lg w-55  transform translate-y-full opacity-0 bottom-[-.5rem] left-1/2 -translate-x-1/2 z-10">
 
                         <ul class="p-1 text-black w-auto">
                             <form method="POST" action="{{ route('logout') }}">
@@ -90,9 +90,16 @@
 
                 menuButton.addEventListener('click', function() {
                     event.preventDefault();
-                    menu.classList.toggle('translate-y-full');
+                    event.stopPropagation(); 
                     menu.classList.toggle('opacity-100');
                 });
+                document.addEventListener('click', function(event) {
+                if (!menu.contains(event.target)) {
+
+                menu.classList.remove('opacity-100');
+            }
+        });
+                
             </script>
 
         </div>
