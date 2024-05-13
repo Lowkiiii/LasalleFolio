@@ -32,7 +32,7 @@ Route::middleware('auth')->group(function () {
     // });
 
     // Handle /studentDashboard route with UserController
-    Route::get('studentDashboard', [UserController::class, 'studentDashboard'])->name('student.studentDashboard');
+    Route::get('/studentDashboard', [UserController::class, 'studentDashboard'])->name('student.studentDashboard');
     // Handle /studentProf route with UserController
     Route::get('/studentProf', [UserController::class, 'studentProfile'])->name('student.studentProf');
 

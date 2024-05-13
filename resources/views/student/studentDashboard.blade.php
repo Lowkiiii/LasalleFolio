@@ -6,7 +6,7 @@
 @section('content')
     <section class="h-screen bg-white">
         <div class="flex row min-h-full justify-center relative">
-            <div class=" mt-2 flex mx-auto max-w-[90rem]">
+            <div class=" mt-4 flex mx-auto max-w-[90rem]">
                 
                 <div class="flex flex-row">
                     <div class="flex flex-col w-2/5 ml-10 mr-10">
