@@ -7,7 +7,7 @@
     <section class="h-screen bg-white">
         <div class="flex row min-h-full justify-center relative">
             <div class=" mt-4 flex mx-auto max-w-[90rem]">
-
+              
                 <div class="flex flex-row">
                     <div class="flex flex-col w-2/5 ml-10 mr-10">
 
@@ -199,18 +199,11 @@
                                                         Points</div>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
-
                                 </div>
-
-
-
                             </div>
-
                         </div>
-
                     </div>
                     <div class="z-20 flex flex-col w-3/5">
 
@@ -240,7 +233,7 @@
 
 
                             <div class="flex flex-row w-full  items-center text-[#006634] font-bold text-xl mt-6 ">
-                                <div class="mr-auto">
+                                <button class="mr-auto" onclick="toggleModal('')">
                                     <div class=" items-center text-center flex px-8 ">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="27"
                                             height="27" viewBox="0 0 30 30" fill="#D40000">
@@ -253,7 +246,7 @@
                                             Image
                                         </div>
                                     </div>
-                                </div>
+                                </button>
                                 <div class="mx-auto">
                                     <div class=" items-center text-center flex px-8 text-[#424242]">
                                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="27"
@@ -283,14 +276,7 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-
-
-
-
-
-
                         </div>
 
                         <hr class="my-7 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
@@ -301,7 +287,7 @@
                                     {{-- Edit Post Button --}}
 
                                     <div class="p-4">
-                                        <button id="editButton" >
+                                        <button id="editButton">
                                             <label for="file_input"
                                                 class=" cursor-pointer shadow-md rounded-full opacity-70">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -321,21 +307,21 @@
 
                                         <ul class="text-sm font-semibold text-black w-auto">
 
-                                            <div class="flex flex-row  hover:text-[#0066FF] " onclick="toggleModal('modal-idPostEditText')">
-                                                <button class="py-2"  >
+                                            <div class="flex flex-row  hover:text-[#0066FF] "
+                                                onclick="toggleModal('modal-idPostEditText')">
+                                                <button class="py-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
-                                                        viewBox="0 0 24 24"
-                                                        class="fill-current  opacity-80 ">
+                                                        viewBox="0 0 24 24" class="fill-current  opacity-80 ">
                                                         <path
                                                             d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
                                                     </svg>
                                                 </button>
                                                 <div class="ml-2 mr-2 ">
                                                     <button type="submit" class="py-2">Edit</button>
-                                                    </div>
+                                                </div>
                                             </div>
 
-                                            <div class="flex flex-row hover:text-[#FF0000] ">
+                                            <div class="flex flex-row hover:text-[#FF0000] " onclick="toggleModal('modal-idPostDelete')">
                                                 <button type="submit" class="py-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="14"
                                                         height="14" viewBox="0 0 30 30"
@@ -346,7 +332,7 @@
                                                     </svg>
                                                 </button>
                                                 <div class="ml-2 mr-2 ">
-                                                <button type="submit" class="py-2">Delete</button>
+                                                    <button type="submit" class="py-2">Delete</button>
                                                 </div>
                                             </div>
 
@@ -387,6 +373,8 @@
                                         </svg>
                                     </button>
                                     <div class="flex flex-row text-sm px-1 font-bold text-black">0</div>
+
+                                    <div class="justify-center items-center text-sm">text</div>
                                 </div>
 
                                 <hr class="my-4 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
@@ -413,11 +401,11 @@
                                                 <button class="flex flex-row text-xs opacity-70"
                                                     onclick="toggleReply()">Reply</button>
                                             </div>
-                                            
+
                                         </div>
-                                        
+
                                     </div>
-                                    
+
 
                                     <div class="flex flex-col mt-4 mb-4 hidden" id="replyInput">
                                         <div class="flex pl-10">

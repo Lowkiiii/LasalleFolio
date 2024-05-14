@@ -13,6 +13,7 @@
 
 <body>
     @include('modal/modalPanels')
+    @include('modal/modalPostDelete')
     @include('modal/modalProjects')
     @include('modal/modalProfilePicture')
     @include('modal/modalAboutMe')
@@ -59,6 +60,9 @@
                 editMenu.classList.remove('opacity-100');
             }
         });
+
+        
+        
     </script>
     @include('layouts.footer')
 </body>
