@@ -11,7 +11,7 @@
                 <div class="flex flex-row">
                     <div class="flex flex-col w-2/5 ml-10 mr-10">
 
-
+                    
                         <div
                             class="w-full relative flex flex-wrap items-start space-x-3 p-6 border border-[#D4D4D4] rounded-xl shadow-lg ">
                             <div class="justify-center items-center mx-auto max-y-md max-w-lg flex ">
