@@ -11,7 +11,7 @@
 
          
 
-            <div class=" mx-auto max-w-[85rem]">
+            <div class=" mx-auto max-w-[85rem] mt-4">
                 <div class="flex flex-row border border-InputGray rounded-xl drop-shadow-2xl shadow-[#006634] w-full ">
                     <div class=" container">
                         <img src='/image/profileBG.png' class="w-full h-full object-cover " />
