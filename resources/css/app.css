@@ -27,5 +27,9 @@
     fill: red;
 }
 
+.ReqIconColor {
+    fill: #006634;
+}
+
 @tailwind components;
 @tailwind utilities;

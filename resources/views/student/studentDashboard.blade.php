@@ -4,14 +4,14 @@
 @endsection
 
 @section('content')
-    <section class="h-screen bg-white">
+    <section class="h-screen bg-[#F8F8F8]">
         <div class="flex row min-h-full justify-center relative">
             <div class=" mt-4 flex mx-auto max-w-[90rem]">
-              
+
                 <div class="flex flex-row">
                     <div class="flex flex-col w-2/5 ml-10 mr-10">
 
-                    
+
                         <div
                             class="w-full relative flex flex-wrap items-start space-x-3 p-6 border border-[#D4D4D4] rounded-xl shadow-lg ">
                             <div class="justify-center items-center mx-auto max-y-md max-w-lg flex ">
@@ -29,7 +29,7 @@
                                         <div class="w-full mt-2">
                                             <div
                                                 class="flex text-sm text-black font-bold items-center justify-center w-full mx-auto max-w-lg truncate">
-                                                Paulo John C. Jimenea
+                                                {{ Auth::user()->name }}
 
                                             </div>
                                             <div class="flex items-center justify-center text-xs font-medium">
@@ -62,7 +62,6 @@
                                             </div>
 
                                         </div>
-
                                     </div>
 
                                     <button id="viewProfileBtn" type="button"
@@ -77,13 +76,8 @@
                                         });
                                     </script>
                                 </div>
-
-
                             </div>
-
                         </div>
-
-
                         <div
                             class="w-full relative flex flex-wrap items-start space-x-3 p-6 border border-[#D4D4D4] rounded-xl shadow-lg mt-5 ">
                             <div class="w-full ">
@@ -118,7 +112,7 @@
 
                                                 </div>
                                                 <div class=" flex flex-row text-xs text-black flex-wrap">
-                                                    {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} </div>
+                                                    {{ Auth::user()->name }} </div>
                                                 <div class="ml-auto flex flex-col">
                                                     1239
                                                     <div
@@ -154,11 +148,12 @@
 
                                                 </div>
                                                 <div class=" flex flex-row text-xs text-black flex-wrap">
-                                                    {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} </div>
+                                                    {{-- {{ Auth::user()->name }} --}} Luke Sellado
+                                                </div>
 
 
                                                 <div class="ml-auto flex flex-col">
-                                                    1239
+                                                    1156
                                                     <div
                                                         class="flex flex-row justify-end font-normal text-[#444444] text-xs">
                                                         Points</div>
@@ -190,10 +185,11 @@
 
                                                 </div>
                                                 <div class=" flex flex-row text-xs text-black flex-wrap">
-                                                    {{ Auth::user()->first_name }} {{ Auth::user()->last_name }} </div>
+                                                    {{-- {{ Auth::user()->name }}  --}} Jose Felizario
+                                                </div>
 
                                                 <div class="ml-auto flex flex-col">
-                                                    1239
+                                                    1009
                                                     <div
                                                         class="flex flex-row justify-end font-normal text-[#444444] text-xs">
                                                         Points</div>
@@ -321,7 +317,8 @@
                                                 </div>
                                             </div>
 
-                                            <div class="flex flex-row hover:text-[#FF0000] " onclick="toggleModal('modal-idPostDelete')">
+                                            <div class="flex flex-row hover:text-[#FF0000] "
+                                                onclick="toggleModal('modal-idPostDelete')">
                                                 <button type="submit" class="py-2">
                                                     <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="14"
                                                         height="14" viewBox="0 0 30 30"
@@ -349,7 +346,7 @@
                                         </div>
                                     </div>
                                     <div class="text-sm font-bold text-black">
-                                        {{ $post->user->name }} {{-- Display user's full name --}}
+                                        {{ $post->user->name }}
                                         <div class="text-xs font-semibold opacity-70">
                                             {{ $post->created_at->diffForHumans() }}</div>
                                     </div>
@@ -358,9 +355,10 @@
 
 
                                 <div class="flex flex-row items-start justify-start">
-                                    <button onclick="toggleColor(this)">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                            viewBox="0 0 47.5 47.5" id="heart">
+                                    <button onclick="toggleColor(this)"
+                                        class="flex flex-row justify-center items-center text-s mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
+                                            class="" viewBox="0 0 47.5 47.5" id="heart">
                                             <defs>
                                                 <clipPath id="a">
                                                     <path d="M0 38h38V0H0v38Z" />
@@ -371,10 +369,23 @@
                                                     d="M3.067 25.68c0 8.799 12.184 12.06 15.933 1.874 3.749 10.186 15.933 6.925 15.933-1.874C34.933 16.12 19 3.999 19 3.999S3.067 16.12 3.067 25.68" />
                                             </g>
                                         </svg>
+                                        <div
+                                            class="flex flex-row text-sm px-2 font-bold items-center justify-center text-black">
+                                            1</div>
                                     </button>
-                                    <div class="flex flex-row text-sm px-1 font-bold text-black">0</div>
 
-                                    <div class="justify-center items-center text-sm">text</div>
+
+                                    <div class="flex flex-row justify-center items-center text-sm">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"
+                                            class="w-6 h-6">
+                                            <path fill-rule="evenodd"
+                                                d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25Z"
+                                                clip-rule="evenodd" />
+                                        </svg>
+                                        <div
+                                            class="flex flex-row text-sm px-2 font-bold items-center justify-center text-black">
+                                            0</div>
+                                    </div>
                                 </div>
 
                                 <hr class="my-4 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
@@ -464,19 +475,29 @@
                         <div
                             class="w-full relative flex flex-col items-start  p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
                             <div class="max-y-md max-w-lg flex">
-                                <div class="max-y-md max-w-lg w-full font-bold text-black">
-                                    Lorem ipsum dolor sit amet
-                                    <div class="text-sm font-medium p-4 bg-gray-200 rounded-xl mt-3 mb-3">Lorem ipsum dolor
-                                        sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                                        dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                        laboris nisi ut aliquip ex ea commodo consequat.</div>
+                                <div class="max-y-md max-w-lg w-full  font-bold text-black">
+                                    Suggest Students for You
+                                    <div class="flex mt-3 mb-3 "> <label for="file_input"
+                                            class="cursor-pointer flex  items-center justify-center ">
+                                            <img src="image/dog.jpg" alt="Profile"
+                                                class="rounded-full object-cover w-9 h-9">
+                                            <div class="flex flex-col ml-4 text-sm font-bold text-black">
+                                                <div>Paulo John Jimenea</div>
+                                                <div class="text-xs font-semibold text-black opacity-45">BSCS 3A S.Y.
+                                                    2023-2024 </div>
+                                            </div>
+
+
+                                        </label>
+
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="max-y-md max-w-lg flex">
                                 <div class="max-y-md max-w-lg w-full font-bold text-black">
                                     Lorem ipsum dolor sit amet
-                                    <div class="text-sm font-medium p-4 bg-gray-200 rounded-xl mt-3">Lorem ipsum dolor sit
+                                    <div class="text-sm font-medium  mt-3">Lorem ipsum dolor sit
                                         amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                                         dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
                                         laboris nisi ut aliquip ex ea commodo consequat.</div>

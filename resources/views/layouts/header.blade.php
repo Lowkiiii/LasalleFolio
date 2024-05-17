@@ -1,4 +1,6 @@
-<div class="min-h-full border-b  border-[#D4D4D4] shadow-lg">
+
+
+<div class="min-h-full border-b  bg-[#F8F8F8] border-[#D4D4D4] shadow-lg">
     <div class="mx-auto max-w-[89rem] px-4 sm:px-6 lg:px-8 ">
         <div class="flex h-16 items-center justify-between ">
             <div class="flex items-center">
@@ -32,17 +34,82 @@
             </div>
             <div class="flex">
 
+
                 <div class="flex flex-row ">
-                    <div class="flex justify-center">
-                        <button type="button" class="flex flex-col items-center mx-auto mr-6" id="viewDashboard">
-                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                version="1.0" id="Layer_1" width="20" height="20" viewBox="0 0 64 64"
-                                enable-background="new 0 0 64 64" xml:space="preserve" class="">
-                                <path
-                                    fill="{{ request()->routeIs('student.studentDashboard') ? '#006634' : '#939393' }} "
-                                    d="M62.79,29.172l-28-28C34.009,0.391,32.985,0,31.962,0s-2.047,0.391-2.828,1.172l-28,28  c-1.562,1.566-1.484,4.016,0.078,5.578c1.566,1.57,3.855,1.801,5.422,0.234L8,33.617V60c0,2.211,1.789,4,4,4h16V48h8v16h16  c2.211,0,4-1.789,4-4V33.695l1.195,1.195c1.562,1.562,3.949,1.422,5.516-0.141C64.274,33.188,64.356,30.734,62.79,29.172z" />
+
+                    <div class="relative flex">
+                        <button id="ReqButton" class="flex flex-col items-center mx-auto mr-8 ">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                class="w-6 h-6  ReqIcon">
+                                <path fill="#939393" 
+                                    d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z"
+                                     />
+                                <path fill="#939393" 
+                                    d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z"   />
                             </svg>
-                            <div class="text-xs flex relative font-normal text-[#006634]">Home</div>
+                            <div class="text-xs flex relative font-normal text-ReqIcon">Request to View</div>
+
+                        </button>
+
+                        <div id="ReqMenu"
+                            class="absolute  bg-white   p-1 border border-[#D4D4D4] turncate rounded-lg shadow-lg w-[25rem] transform translate-y-full opacity-0 bottom-[-.5rem] left-1/4 -translate-x-[11.4rem] z-10">
+
+                            <div class="flex flex-row justify-center items-center py-2 px-3 text-black mb-4 ">
+                                <ul class="p-1 w-full  font-semibold ">
+                                    <div class="text-black mb-4">Requesting to View</div>
+
+                                    <div class="flex "> <label for="file_input"
+                                            class="cursor-pointer flex  items-center justify-center ">
+                                            <img src="image/dog.jpg" alt="Profile"
+                                                class="rounded-full object-cover w-9 h-9">
+                                            <div class="flex flex-col ml-4 text-sm font-bold text-black">
+                                                <div>Paulo John Jimenea</div>
+                                                <div class="text-xs font-semibold text-black opacity-45">BSCS 3A S.Y.
+                                                    2023-2024 </div>
+                                            </div>
+
+
+                                        </label>
+                                        <div class="ml-auto flex-row mr-2">
+                                            <div class=" flex items-center justify-center h-full ">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    fill="#35E000" class="w-6 h-6">
+                                                    <path fill-rule="evenodd"
+                                                        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <div class="flex-row">
+                                            <div class=" flex items-center justify-center h-full">
+                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                                    fill="#EB3223" class="w-6 h-6">
+                                                    <path fill-rule="evenodd"
+                                                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z"
+                                                        clip-rule="evenodd" />
+                                                </svg>
+
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center">
+                        <button type="button" class="flex flex-col items-center mx-auto mr-8" id="viewDashboard">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill class="w-6 h-6">
+                                <path
+                                    fill="{{ request()->routeIs('student.studentDashboard') ? '#006634' : '#939393' }}"
+                                    d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                                <path
+                                    fill="{{ request()->routeIs('student.studentDashboard') ? '#006634' : '#939393' }}"
+                                    d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+                            </svg>
+                            <div class="text-xs flex relative font-normal ">Home</div>
                         </button>
                     </div>
                     {{-- <div class="flex justify-center">
@@ -58,11 +125,7 @@
                        
                     </div> --}}
 
-                    <script>
-                        document.getElementById("viewDashboard").addEventListener("click", function() {
-                            window.location.href = "{{ route('student.studentDashboard') }}";
-                        });
-                    </script>
+
 
                 </div>
                 <div class="relative flex">
@@ -71,8 +134,9 @@
                             <img src="image/dog.jpg" alt="Profile" class="rounded-full object-cover w-9 h-9">
                         </label>
                     </button>
+
                     <div id="menu"
-                        class="absolute bg-white space-x-3 p-1 border border-[#D4D4D4] rounded-lg shadow-lg w-55  transform translate-y-full opacity-0 bottom-[-.5rem] left-1/2 -translate-x-1/2 z-10">
+                        class="absolute  bg-white space-x-3 p-1 border border-[#D4D4D4] rounded-lg shadow-lg w-55  transform translate-y-full opacity-0 bottom-[-.5rem] left-1/2 -translate-x-1/2 z-10">
 
                         <div
                             class="flex flex-row justify-center items-center py-1 px-3 text-blackQ hover:text-[#0066FF]">
@@ -97,23 +161,53 @@
                     </div>
                 </div>
             </div>
-            <script>
-                const menuButton = document.getElementById('menuButton');
-                const menu = document.getElementById('menu');
 
-                menuButton.addEventListener('click', function() {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    menu.classList.toggle('opacity-100');
-                });
-                document.addEventListener('click', function(event) {
-                    if (!menu.contains(event.target)) {
 
-                        menu.classList.remove('opacity-100');
-                    }
-                });
-            </script>
+
 
         </div>
     </div>
 </div>
+
+
+<script>
+    const ReqButton = document.getElementById('ReqButton');
+    const ReqMenu = document.getElementById('ReqMenu');
+    const ReqIcon = ReqButton.querySelector('.ReqIcon');
+
+    ReqButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        ReqMenu.classList.toggle('opacity-100');
+        ReqIcon.classList.toggle('ReqIconColor');
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!ReqMenu.contains(event.target)) {
+            ReqMenu.classList.remove('opacity-100');
+            ReqIcon.classList.remove('ReqIconColor');
+        }
+    });
+
+    const menuButton = document.getElementById('menuButton');
+    const menu = document.getElementById('menu');
+
+    menuButton.addEventListener('click', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        menu.classList.toggle('opacity-100');
+    });
+    document.addEventListener('click', function(event) {
+        if (!menu.contains(event.target)) {
+            menu.classList.remove('opacity-100');
+        }
+    });
+
+    function toggleReqColor(element) {
+        element.querySelector('.ReqIconColor').classList.toggle('ReqIconColorTrue');
+    }
+
+    document.getElementById("viewDashboard").addEventListener("click", function() {
+        window.location.href = "{{ route('student.studentDashboard') }}";
+    });
+</script>

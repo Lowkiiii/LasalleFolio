@@ -51,6 +51,18 @@ class UserController extends Controller
         return view('student.studentDashboard', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
     }
 
+    public function studentLeaderboard()
+    {
+        $user = Auth::user();
+        $userProjects = $user->userProjects;
+        $userSkills = $user->userSkills;
+        $userAcademics = $user->userAcademics;
+        $userHonorsAndAwards = $user->userHonorsAndAwards;
+        $userPosts = $user->userPosts;
+
+        return view('student.studentLeaderboard', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+    }
+
     public function adminusers(){
         $users = User::all();
 

@@ -14,7 +14,8 @@
                 <!--footer-->
                 <div class="flex items-center justify-center p-4">
                     <button
-                        class="text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        class="text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all d
+                        uration-150"
                         type="button" onclick="toggleModal('modal-idPostDelete')">
                         Close
                     </button>
