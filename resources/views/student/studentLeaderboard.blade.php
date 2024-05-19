@@ -4,11 +4,11 @@
 @endsection
 
 @section('content')
-    <section class="h-screen bg-[#F8F8F8]]">
-        <div class="flex row min-h-full justify-center relative">
+    <section class="h-screen bg-[#F8F8F8]">
+        <div class="flex  row min-h-full justify-center relative ">
 
 
-            <div class=" mx-auto max-w-[85rem] mt-4 w-full">
+            <div class=" mx-auto max-w-[85rem] mt-20 w-full">
 
                 <div class="w-full mr-10 mt-10">
 
@@ -23,23 +23,25 @@
                                 <div class="relative flex text-center w-full ">
 
 
-                                    <label for="file_input"
-                                        class="cursor-pointer flex flex-col relative justify-center items-center rounded-full ml-auto mr-auto ">
-                                        <img src="image/dog.jpg" alt="Profile"
-                                            class="rounded-full object-cover w-12 h-12 shadow-lg ">
-
-                                    </label>
+                                    <div class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                        <div class="relative group">
+                                            <label for="file_input" class="cursor-pointer ">
+                                                <img src="image/dog.jpg" alt="Profile"
+                                                    class="w-full h-full object-cover">
+                                            </label>
+                                        </div>
+                                    </div>
 
                                     <div class="flex flex-col relative justify-start items-start m-auto ">
                                         <div class="text-center font-bold text-black text-xl">Paulo John Jimenea</div>
                                         <div class="flex items-start text-xs font-bold text-black justify-start ">
                                             <div class="flex items-start text-[#006634]">
-                                                100
+                                                10
                                                 <div class="items-start ml-1 text-[#808080] text-xs font-semibold truncate">
                                                     Connection | </div>
                                             </div>
                                             <div class="flex items-start ml-1 text-[#006634]">
-                                                150
+                                                12
                                                 <div class="items-start ml-1 text-[#808080] text-xs font-semibold">
                                                     Engagements </div>
                                             </div>
@@ -56,7 +58,7 @@
                                             </svg>
                                         </div>
                                         <div class="flex text-xs justify-center items-start">
-                                            <div class="flex items-start text-sm font-bold text-black ">1283 <div
+                                            <div class="flex items-start text-sm font-bold text-black ">1239 <div
                                                     class="text-[#006634] ml-1">XP</div>
                                             </div>
                                         </div>
@@ -73,23 +75,25 @@
                                 <div class="relative flex text-center w-full ">
 
 
-                                    <label for="file_input"
-                                        class="cursor-pointer flex flex-col relative justify-center items-center rounded-full ml-auto mr-auto">
-                                        <img src="image/dog.jpg" alt="Profile"
-                                            class="rounded-full object-cover w-12 h-12 shadow-lg ">
-
-                                    </label>
+                                    <div class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                        <div class="relative group">
+                                            <label for="file_input" class="cursor-pointer ">
+                                                <img src="image/estetikLuke.png" alt="Profile"
+                                                    class="w-full h-full object-cover">
+                                            </label>
+                                        </div>
+                                    </div>
 
                                     <div class="flex flex-col relative justify-start items-start m-auto">
-                                        <div class="text-center font-bold text-black text-xl">Paulo John Jimenea</div>
+                                        <div class="text-center font-bold text-black text-xl">Luke Sellado</div>
                                         <div class="flex items-start text-xs font-bold text-black justify-start ">
                                             <div class="flex items-start text-[#006634]">
-                                                100
+                                                8
                                                 <div class="items-start ml-1 text-[#808080] text-xs font-semibold truncate">
                                                     Connection | </div>
                                             </div>
                                             <div class="flex items-start ml-1 text-[#006634]">
-                                                150
+                                                12
                                                 <div class="items-start ml-1 text-[#808080] text-xs font-semibold">
                                                     Engagements </div>
                                             </div>
@@ -108,7 +112,7 @@
                                             </svg>
                                         </div>
                                         <div class="flex text-xs justify-center items-start">
-                                            <div class="flex items-start text-sm font-bold text-black ">1283 <div
+                                            <div class="flex items-start text-sm font-bold text-black ">1156 <div
                                                     class="text-[#006634] ml-1">XP</div>
                                             </div>
                                         </div>
@@ -125,23 +129,24 @@
                                 <div class="relative flex text-center w-full ">
 
 
-                                    <label for="file_input"
-                                        class="cursor-pointer flex flex-col relative justify-center items-center rounded-full ml-auto mr-auto">
-                                        <img src="image/dog.jpg" alt="Profile"
-                                            class="rounded-full object-cover w-12 h-12 shadow-lg ">
-
-                                    </label>
-
+                                    <div class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                        <div class="relative group">
+                                            <label for="file_input" class="cursor-pointer ">
+                                                <img src="image/jose.jpg" alt="Profile"
+                                                    class="w-full h-full object-cover">
+                                            </label>
+                                        </div>
+                                    </div>
                                     <div class="flex flex-col relative justify-start items-start m-auto  ">
-                                        <div class="text-center font-bold text-black text-xl">Paulo John Jimenea</div>
+                                        <div class="text-center font-bold text-black text-xl">Jose Felizario</div>
                                         <div class="flex items-start text-xs font-bold text-black justify-start ">
                                             <div class="flex items-start text-[#006634]">
-                                                100
+                                                7
                                                 <div class="items-start ml-1 text-[#808080] text-xs font-semibold truncate">
                                                     Connection | </div>
                                             </div>
                                             <div class="flex items-start ml-1 text-[#006634]">
-                                                150
+                                               5
                                                 <div class="items-start ml-1 text-[#808080] text-xs font-semibold">
                                                     Engagements </div>
                                             </div>
@@ -160,7 +165,7 @@
                                             </svg>
                                         </div>
                                         <div class="flex text-xs justify-center items-start">
-                                            <div class="flex items-start text-sm font-bold text-black">1283 <div
+                                            <div class="flex items-start text-sm font-bold text-black">1009 <div
                                                     class="text-[#006634] ml-1">XP</div>
                                             </div>
                                         </div>
@@ -207,66 +212,31 @@
                                 </thead>
                                 <tbody class="border-b rounded-xl">
                                     <tr>
-                                        <td class="py-4 text-[#006634] text-xl font-bold">5</td>
-                                        <td class="py-4 font-bold text-black w-1/3">
-
-                                            <div class="relative flex  justify-center items-center text-center ">
-                                                <label for="file_input"
-                                                    class="cursor-pointer flex flex-col relative justify-center items-center rounded-full px-2 ">
-                                                    <img src="image/dog.jpg" alt="Profile"
-                                                        class="rounded-full object-cover w-12 h-12 shadow-lg ">
-
-                                                </label>
-
-                                                <div class="flex flex-col relative justify-start items-start  ">
-                                                    <div class="text-center font-bold text-black text-xl">Paulo John
-                                                        Jimenea</div>
-                                                    <div
-                                                        class="flex items-center text-xs font-bold text-black justify-center ">
-                                                        <div class="flex items-center text-[#006634]">
-                                                            100
-                                                            <div
-                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
-                                                                Connection | </div>
-                                                        </div>
-                                                        <div class="flex items-center ml-1 text-[#006634]">
-                                                            150
-                                                            <div
-                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
-                                                                Engagements </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="py-4 font-bold text-black">4</td>
-                                        <td class="py-4 font-bold text-black ">1234</td>
-                                    </tr>
-                                    <tr>
                                         <td class="py-4 text-[#006634] text-xl font-bold">4</td>
                                         <td class="py-4 font-bold text-black w-1/3">
 
                                             <div class="relative flex  justify-center items-center text-center ">
-                                                <label for="file_input"
-                                                    class="cursor-pointer flex flex-col relative justify-center items-center rounded-full px-2 ">
-                                                    <img src="image/dog.jpg" alt="Profile"
-                                                        class="rounded-full object-cover w-12 h-12 shadow-lg ">
-
-                                                </label>
+                                                <div class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/Kersch.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
 
                                                 <div class="flex flex-col relative justify-start items-start  ">
-                                                    <div class="text-center font-bold text-black text-xl">Paulo John
-                                                        Jimenea</div>
+                                                    <div class="text-center font-bold text-black text-xl">Kerschtine Billones</div>
                                                     <div
                                                         class="flex items-center text-xs font-bold text-black justify-center ">
                                                         <div class="flex items-center text-[#006634]">
-                                                            100
+                                                            10
                                                             <div
                                                                 class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
                                                                 Connection | </div>
                                                         </div>
                                                         <div class="flex items-center ml-1 text-[#006634]">
-                                                            150
+                                                            9
                                                             <div
                                                                 class="items-center ml-1 text-[#808080] text-xs font-semibold">
                                                                 Engagements </div>
@@ -276,7 +246,44 @@
                                             </div>
                                         </td>
                                         <td class="py-4 font-bold text-black">4</td>
-                                        <td class="py-4 font-bold text-black">1234</td>
+                                        <td class="py-4 font-bold text-black ">990</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">5</td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/cat.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Pepito Jimenea</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            6
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            3
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">1</td>
+                                        <td class="py-4 font-bold text-black">743</td>
                                     </tr>
                                 </tbody>
                             </table>

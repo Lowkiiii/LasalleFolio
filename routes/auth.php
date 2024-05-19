@@ -35,7 +35,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/studentDashboard', [UserController::class, 'studentDashboard'])->name('student.studentDashboard');
     // Handle /studentProf route with UserController
     Route::get('/studentProf', [UserController::class, 'studentProfile'])->name('student.studentProf');
-
     Route::get('/studentLeaderboard', [UserController:: class ,'studentLeaderboard'])->name('student.studentLeaderboard');
 
 });

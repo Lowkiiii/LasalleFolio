@@ -17,6 +17,7 @@
     @include('modal/modalProjects')
     @include('modal/modalProfilePicture')
     @include('modal/modalAboutMe')
+    @include('modal/modalPostImage')
     @include('modal/modalPostText')
     @include('modal/modalAwardsandHonorsPanel')
     @include('modal/modalAcademicsPanel')

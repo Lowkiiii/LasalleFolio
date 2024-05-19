@@ -5,6 +5,7 @@
         @apply text-[#4f4f4f];
     }
     body {
+        background-color: #f8f8f8;
         font-family: "Inter", sans-serif;
     }
 

@@ -9,7 +9,7 @@
     <section class="h-screen bg-[#F8F8F8]">
 
 
-        <div class="flex row min-h-full justify-center relative">
+        <div class="flex row min-h-full mt-24 justify-center relative bg-[#F8F8F8]">
 
             <ul class="p-1 w-auto font-semibold ">
                 <form method="POST" action="{{ route('logout') }}">
@@ -20,7 +20,7 @@
 
             </ul>
 
-            <div class=" mx-auto max-w-[85rem] mt-4">
+            <div class=" mx-auto  max-w-[85rem] mt-4">
                 <div class="flex flex-row  border-InputGray rounded-xl   w-full  ">
                     <div class=" container">
                         <img src='/image/profileBG.png' class="w-full h-full object-cover " />
@@ -28,39 +28,52 @@
                 </div>
                 
                 <div class="z-20  mx-auto max-w-full -translate-y-24">
-                    <div class="justify-center items-center ">
-                        <div
-                            class="w-36 h-36 bg-gray-200 border-4 border-[#F8F8F8] rounded-full justify-center mx-auto max-w-lg flex items-center relative">
-                            <div class="relative group">
-                                <label for="file_input" class="cursor-pointer">
-                                    <img src="image/dog.jpg" alt="Profile"
-                                        class="w-full h-full rounded-full object-cover transition duration-300 ease-in-out transform hover:scale-110"
-                                        style="filter: grayscale(100%);">
-                                    <div
-                                        class="absolute inset-0 bg-black opacity-0 group-hover:opacity-30 flex rounded-full items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" class="fill-current text-white">
-                                            <path
-                                                d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
+                    <div class="justify-center items-center">
+                        <div class="w-36 h-36 bg-white border-4 border-[#F8F8F8] rounded-full justify-center mx-auto max-w-lg flex items-center relative">
+                            <div class="relative group w-full h-full">
+                                <label for="file_input" class="cursor-pointer rounded-full w-full h-full">
+                                    <img src="image/dog.jpg" alt="Profile" 
+                                        class="w-full h-full rounded-full object-cover transition duration-300 ease-in-out transform hover:scale-110">
+                                    <div class="absolute inset-0 bg-black opacity-0 rounded-full group-hover:opacity-30 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="fill-current text-white">
+                                            <path d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
                                         </svg>
                                     </div>
                                 </label>
                                 <input id="file_input" type="file" class="hidden" />
                             </div>
                         </div>
-
                     </div>
                     <div>
 
 
                     </div>
-                    <h1 class="text-center text-lg pt-2 font-bold text-black">
-                        {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                    <h1 class="flex flex-row mx-auto max-y-md max-w-lg  items-center justify-center text-center text-lg pt-2 font-bold text-black">
+                        
+                        {{ Auth::user()->name }}
+
+                        {{-- Trophy Icon --}}
+                            <div class="ml-1"> <div class="items-start text-start flex flex-row">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                    viewBox="0 0 512 512" id="trophy" fill="#EBC351">
+                                    <path
+                                        d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
+                                </svg>
+                            </div>
+                        </div> 
+                        
                     </h1>
-                    <p class="text-xs font-d mx-auto max-y-md max-w-lg flex items-center justify-center">
+                    <p class="text-xs mx-auto max-y-md max-w-lg flex items-center justify-center">
                         {{ Auth::user()->full_address }}
                     </p>
-                    <div class="text-lg font-d mx-auto max-y-md max-w-lg flex items-center justify-center mt-2 mb-2">Button</div>
+                    <div class="text-sm font-d mx-auto max-y-md max-w-lg flex items-center justify-center mt-2 mb-2">
+                        <div>
+                            <button type=""
+                            class="inline-block rounded-md bg-[#006634] px-7 py-2 text-xs font-bold  leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
+                            Connect +
+                        </button>
+                        </div>
+                    </div>
 
 
                     <div class="flex items-center justify-center py-6 px-6">
@@ -96,9 +109,7 @@
                             </button> </div>
                         <div class="flex mt-2 text-sm font-medium text-center justify-center">
                             <div class="w-3/4 text-black">
-                                Lorem ipsum dolor sit amet consectetur. Tristique est felis sollicitudin vitae egestas
-                                elit quis. Massa amet etiam et netus quis ullamcorper orci integer. Amet etiam metus
-                                tincidunt diam diam. Aliquam molestie ullamcorper est turpis aliquam nibh condimentum.
+                              Lorem Ipsum
                             </div>
                         </div>
                     </div>
