@@ -12,7 +12,7 @@
                 <!--body-->
                 <div class="relative pb-5 flex-auto">
                     <p class=" mx-2 leading-relaxed">
-                    <div class="text-sm text-black pb-2 pt-5">Post a Content</div>
+                    <div class="text-sm text-black pb-2 pt-5">
                     <textarea
                         class="appearance-none resize-none outline-none overflow-hidden w-full h-[10rem] @error('user_posts') border-2 border-red-500 @enderror"
                         name="user_posts" placeholder="Enter content">{{ old('user_posts') }}</textarea>
@@ -24,6 +24,7 @@
            
                    </script>
                 </div>
+            </div>
                 <!--footer-->
                 <div class="flex items-center justify-end p-4">
                     <button
@@ -32,7 +33,7 @@
                         Close
                     </button>
                     <button
-                        class="bg-[#006634] text-white font-semibold uppercase text-xs px-2 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        class="bg-[#006634] text-white font-semibold uppercase text-xs px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="submit">
                         Save
                     </button>

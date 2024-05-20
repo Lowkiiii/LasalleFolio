@@ -11,15 +11,8 @@
 
         <div class="flex row min-h-full mt-24 justify-center relative bg-[#F8F8F8]">
 
-            <ul class="p-1 w-auto font-semibold ">
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit">Logout</button>
-                </form>
 
-
-            </ul>
-
+       
             <div class=" mx-auto  max-w-[85rem] mt-4">
                 <div class="flex flex-row  border-InputGray rounded-xl   w-full  ">
                     <div class=" container">
@@ -109,7 +102,7 @@
                             </button> </div>
                         <div class="flex mt-2 text-sm font-medium text-center justify-center">
                             <div class="w-3/4 text-black">
-                              Lorem Ipsum
+                              An aspiring Web Developer currently enrolled in USLS, and completing his Computer Science Degree
                             </div>
                         </div>
                     </div>
@@ -167,13 +160,11 @@
                                     <div class="relative">
                                         <div class="text-xl font-bold text-[#006634]">
                                             <button class="hover:text-[#004423]">
-                                                · Project Name
+                                                · ReactJS Calculator
                                             </button>
 
-                                            <div class="py-3 text-xs font-medium text-black items-start w-11/12">
-                                                Lorem ipsum dolor sit amet consectetur. Tristique est felis sollicitudin
-                                                vitae egestas
-                                                elit quis. Massa amet etiam et netus quis ullamcorper orci integer. .
+                                            <div class="py-3 text-xs font-medium text-black items-start w-full">
+                                                A simple React Calculator.
                                             </div>
                                         </div>
 
@@ -181,7 +172,37 @@
                                 </div>
                             </div>
 
-                            <div class="flex flex-col w-full">
+                            <div class="flex flex-col w-full ">
+                                <div class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg  shadow-lg"
+                                    onclick="to">
+
+                                    <div class="absolute right-0 top-0 z-20">
+                                        {{-- <button class="p-4" onclick="toggleModal('modal-idProjects')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
+                                                viewBox="0 0 24 24"
+                                                class="fill-current text-[#6e6e6e] hover:text-[#006634]">
+                                                <path
+                                                    d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
+                                            </svg>
+                                        </button> --}}
+                                    </div>
+
+                                    <div class="relative">
+                                        <div class="text-xl font-bold text-[#006634]">
+                                            <button class="hover:text-[#004423]">
+                                                · Money Transaction
+                                            </button>
+
+                                            <div class="py-3 text-xs font-medium text-black items-start w-full">
+                                                A simple Money Transaction made with Laravel PHP
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- <div class="flex flex-col w-full">
                                 <div class="relative flex flex-wrap w-full items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg  shadow-lg hover:bg-gray-200 "
                                     onclick="toggleModal('modal-idAddShowcase')">
 
@@ -205,7 +226,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>

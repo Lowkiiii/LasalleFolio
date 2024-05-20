@@ -18,7 +18,7 @@ use App\Models\User;
 class RegisterController extends Controller
 {
     /**
-     * Display the login view.
+     * Display the registration view.
      */
     public function index(): View
     {
@@ -26,7 +26,7 @@ class RegisterController extends Controller
     }
 
     /**
-     * Handle an incoming authentication request.
+     * Handle an incoming registration request.
      */
     public function register(Request $request)
     {
@@ -35,23 +35,27 @@ class RegisterController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'birthdate' => ['required', 'date', 'before_or_equal:today'],
             'full_address' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'sex'=>['required', 'string', 'max:50'],
-            'public_url'=>['nullable', 'string', 'max:255'],
+            'sex' => ['required', 'string', 'max:50'],
+            'public_url' => ['nullable', 'string', 'max:255'],
         ]);
-        
-        $user = User::create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'birthdate' => $request->birthdate,
-            'full_address' => $request->full_address,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'sex' => $request->sex,
-            'public_url' => $request->public_url,
-        ]);
-        return redirect()->back()->with('message', 'Successfully registered');
-    }
 
+        try {
+            $user = User::create([
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'birthdate' => $request->birthdate,
+                'full_address' => $request->full_address,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'sex' => $request->sex,
+                'public_url' => $request->public_url,
+            ]);
+
+            return redirect()->back()->with('success', 'Successfully registered');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred while registering. Please try again.');
+        }
+    }
 }

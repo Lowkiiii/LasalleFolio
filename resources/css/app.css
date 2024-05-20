@@ -28,6 +28,13 @@
     fill: red;
 }
 
+.categoryUnselected {
+    background-color: gray;
+}
+.categorySelected {
+    background-color: #006634;
+}
+
 .ReqIconColor {
     fill: #006634;
 }

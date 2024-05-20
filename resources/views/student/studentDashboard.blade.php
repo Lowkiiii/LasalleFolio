@@ -155,6 +155,8 @@
                                                 </div>
                                                 <div class=" flex flex-row text-xs text-black flex-wrap">
                                                     {{-- {{ Auth::user()->name }} --}} Luke Sellado
+                                                    
+                                                    
                                                 </div>
 
 
@@ -165,6 +167,7 @@
                                                         Points</div>
                                                 </div>
                                             </div>
+                                         
 
                                         </div>
                                         <div class="flex flex-row w-full">
@@ -199,10 +202,28 @@
                                                 </div>
                                             </div>
                                         </div>
+
+                                       
+
                                     </div>
+                                    <div class="w-full mt-4">
+                                        <div class="flex justify-center items-center">
+                                            <button type="button" id="viewLeaderboardBtn" class="text-black text-sm hover:text-[#006634]">
+                                                View More...
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <script>
+                                        document.getElementById("viewLeaderboardBtn").addEventListener("click", function() {
+                                            window.location.href = "{{ route('student.studentLeaderboard') }}";
+                                        });
+                                    </script>
                                 </div>
-                            </div>
+                                
+                               
+                            </div>      
                         </div>
+                        
                     </div>
                     <div class="z-20 flex flex-col ">
 
@@ -684,7 +705,14 @@
                                         </div>
                                     </div>
                                     <div class="flex-grow flex-col ml-4 text-sm font-bold text-black ">
-                                        <div>Luke Sellado</div>
+                                        <div class="flex">
+                                            Luke Sellado 
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="ml-1"
+                                            viewBox="0 0 512 512" id="trophy" fill="#B7B7B7">
+                                            <path
+                                                d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
+                                        </svg>
+                                        </div>
                                         <div class="text-xs font-semibold text-black opacity-45">BSCS 3A S.Y. 2023-2024
                                         </div>
                                     </div>
@@ -713,7 +741,13 @@
 
 
                                     <div class="flex-grow flex-col ml-4 text-sm font-bold text-black ">
-                                        <div>Jose Felizario</div>
+                                        <div class="flex">Jose Felizario
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" class="ml-1"
+                                            viewBox="0 0 512 512" id="trophy" fill="#7A601D">
+                                            <path
+                                                d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
+                                        </svg>
+                                        </div>
                                         <div class="text-xs font-semibold text-black opacity-45">BSCS 3A S.Y. 2023-2024
                                         </div>
                                     </div>
@@ -784,9 +818,9 @@
                                         </div>
                                     </div>
                                     <div class="flex items-center justify-center ml-3 ">
-                                        <div class="text-xs font-bold ">
-                                            <div class="w-12 h-12">
-                                                <img src="image/art.jpg" alt="" class=" rounded-lg object-cover mb-2 border border-[#D4D4D4] shadow-sm ">
+                                        <div class="text-xs font-bold  ">
+                                            <div class="w-14 h-14">
+                                                <img src="image/art.jpg" alt="" class=" rounded-lg object-cover mb-2 border border-[#D4D4D4] shadow-lg ">
                                             </div>
                                         </div>
                                     </div>

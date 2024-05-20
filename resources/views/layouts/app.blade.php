@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    
     @include('modal/modalPanels')
     @include('modal/modalPostDelete')
     @include('modal/modalProjects')

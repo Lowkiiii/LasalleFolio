@@ -10,26 +10,67 @@
                         </div>
                     </div>
                 </div>
-                <div class="w-full">
-                    <div class="relative">
-                        <input type=""
-                            class="outline-none text-sm w-full py-2 px-3 pl-10 border border-[#D4D4D4] rounded-2xl"
-                            placeholder="Search">
-                        <i class="absolute left-2 top-[0.4rem]  opacity-60">
-                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="26" height="26"
-                                viewBox="0 0 30 30">
-                                <path
-                                    d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
-                                </path>
+            </div>
+               
+
+                    <div class="relative w-full">
+                        <form action="">
+                            <input id="searchBar" type="text" 
+                               class="outline-none text-sm w-1/2 py-2 px-3 pl-10 border border-[#D4D4D4] rounded-2xl" 
+                               placeholder="Search">
+                        <i class="absolute left-3 top-1/2 transform -translate-y-1/2 opacity-60">
+                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 30 30">
+                                <path d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"></path>
                             </svg>
                         </i>
+                        
+                        <div id="search" class="hidden absolute left-0 transform mt-2 py-2 px-2 w-1/2 items-center justify-center  bg-[#F8F8F8] border border-[#D4D4D4] rounded-lg">
+                            <div class="w-full py-2 px-4 ">
+                                <div class="flex "> <label for="file_input"
+                                    class="cursor-pointer flex  items-center justify-center ">
+                                    <img src="image/Kersch.png" alt="Profile"
+                                        class="rounded-full object-cover w-10 h-10">
+                                    <div class="flex  ml-4 text-md font-bold text-black">
+                                        <div>Kerschtine Billones</div>
+                                        <div class="text-xs font-semibold flex text-black opacity-45 ml-1 items-center justify-center">| BSCS 3A S.Y. 2023-2024 
+                                        </div>
+                                    </div>
+
+                                </label>            
+                                </div>
+                            </div>
+                            <div class="w-full py-2 px-4 ">
+                                <div class="flex "> <label for="file_input"
+                                    class="cursor-pointer flex  items-center justify-center ">
+                                    <img src="image/estetikLuke.png" alt="Profile"
+                                        class="rounded-full object-cover w-10 h-10">
+                                    <div class="flex  ml-4 text-md font-bold text-black">
+                                        <div>Luke Sellado</div>
+                                        <div class="text-xs font-semibold flex text-black opacity-45 ml-1 items-center justify-center">| BSCS 3A S.Y. 2023-2024 
+                                        </div>
+                                    </div>
+
+                                </label>            
+                                </div>
+                            </div>
+                            <div class="w-full py-2 px-4 ">
+                                <div class="flex "> <label for="file_input"
+                                    class="cursor-pointer flex  items-center justify-center ">
+                                    <img src="image/Jose.jpg" alt="Profile"
+                                        class="rounded-full object-cover w-10 h-10">
+                                    <div class="flex  ml-4 text-md font-bold text-black">
+                                        <div>Jose Felizario</div>
+                                        <div class="text-xs font-semibold flex text-black opacity-45 ml-1 items-center justify-center">| BSCS 3A S.Y. 2023-2024 
+                                        </div>
+                                    </div>
+
+                                </label>            
+                                </div>
+                            </div>
+                            
+                        </div>
+                        </form>
                     </div>
-
-                </div>
-
-
-
-            </div>
             <div class="flex">
 
                 <div class="flex flex-row">
@@ -58,11 +99,11 @@
                                         d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                <div class="text-xs flex relative font-normal ]">Request to View</div>
+                                <div class="text-xs flex relative font-normal truncate">Request to View</div>
                             </button>
 
                             <div id="ReqMenu"
-                                class="absolute hidden bg-white   p-1 border border-[#D4D4D4] turncate rounded-lg shadow-lg w-[25rem] transform translate-y-full  bottom-[-.5rem] left-1/4 -translate-x-[11.4rem] z-30">
+                                class="absolute hidden bg-[#F8F8F8] p-1 border border-[#D4D4D4] turncate rounded-lg shadow-lg w-[25rem] transform translate-y-full  bottom-[-.5rem] left-1/4 -translate-x-[11.4rem] z-30">
 
                                 <div class="flex flex-row justify-center items-center py-2 px-3 text-black mb-4 ">
                                     <ul class="p-1 w-full  font-semibold ">
@@ -219,7 +260,19 @@
             }
         });
 
+        const searchBar = document.getElementById('searchBar');
+        const search = document.getElementById('search');
 
+        searchBar.addEventListener('click', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            search.classList.toggle('hidden');
+        });
+        document.addEventListener('click', function(event) {
+            if (!search.contains(event.target)) {
+                search.classList.add('hidden');
+            }
+        });
 
 
 
@@ -231,4 +284,12 @@
         document.getElementById("viewDashboard").addEventListener("click", function() {
             window.location.href = "{{ route('student.studentDashboard') }}";
         });
+
+
+
+
+
+
+       
+
     </script>

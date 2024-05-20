@@ -14,10 +14,7 @@
             <!--body-->
             <div class="relative pb-5 items-center justify-center flex-auto">
                 <div class=" h-60 w-full border-2 border-black leading-relaxed">
-                  
-              
-
-                  
+                      
                 </div>
 
 

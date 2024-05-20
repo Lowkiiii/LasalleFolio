@@ -37,6 +37,7 @@ class UserController extends Controller
         $userHonorsAndAwards = $user->userHonorsAndAwards;
 
         return view('student.studentProf', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards'));
+        
     }
 
     public function studentDashboard()
@@ -168,7 +169,7 @@ class UserController extends Controller
             ]);
             return redirect()->back();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            // Handle the exception, for example, return a response or log it
+           
             return response()->json(['error' => 'No Found Record'], 404);
         } catch (\Exception $e) {
             // Handle other types of exceptions

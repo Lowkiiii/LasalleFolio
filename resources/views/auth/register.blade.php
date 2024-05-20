@@ -26,7 +26,7 @@
                                         </svg>
                                     </span>
 
-                                    Missing Inputs!
+                                  Missing
                                 </div>
                             @break
                         @endforeach

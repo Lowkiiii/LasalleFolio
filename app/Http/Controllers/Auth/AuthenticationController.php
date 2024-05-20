@@ -30,7 +30,7 @@ class AuthenticationController extends Controller
             'password' => ['required'],
         ]);
 
-
+        try{
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             
@@ -43,9 +43,14 @@ class AuthenticationController extends Controller
             }
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+     
+        return redirect()->back()->with('success', 'Successfully registered');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'An error occurred while registering. Please try again.');
+    }
+    
+        
+    
     }
 
     /**
