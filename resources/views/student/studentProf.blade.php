@@ -12,7 +12,6 @@
         <div class="flex row min-h-full mt-24 justify-center relative bg-[#F8F8F8]">
 
 
-       
             <div class=" mx-auto  max-w-[85rem] mt-4">
                 <div class="flex flex-row  border-InputGray rounded-xl   w-full  ">
                     <div class=" container">
@@ -240,8 +239,8 @@
 
                         <div class="flex flex-col w-full mr-2">
 
+                        
                             <div class="container mx-auto">
-
 
                                 <div class="container mx-auto">
                                     <div
@@ -292,6 +291,7 @@
                                                                         <path
                                                                             d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
                                                                     </svg>
+                                                                    
                                                                 </button>
 
                                                                 {{-- Delete Button --}}
@@ -331,6 +331,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    
                                                 </div>
                                             @empty
                                                 <p>No projects found.</p>

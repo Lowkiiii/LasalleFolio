@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\UserPosts;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use App\Models\User;
 
 class UserPostController extends Controller
 {
@@ -34,7 +35,8 @@ class UserPostController extends Controller
 
     public function index()
     {
-        $userPost = Auth::user()->userPost;
+        $user = Auth::user();
+        $userPosts = $user->userPosts;
         return view('student.studentDashboard', compact('userPosts'));
     }
 }

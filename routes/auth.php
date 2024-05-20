@@ -10,6 +10,10 @@ use App\Http\Controllers\UserHonorsAndAwardsController;
 use App\Http\Controllers\UserAcademicsController;
 use App\Http\Controllers\UserPostController;
 
+//use Illuminate\Foundation\Auth\EmailVerificationRequest;
+
+//Auth::routes(['verify' => true]);
+
 Route::middleware('guest')->group(function () {
     Route::get('login', [AuthenticationController::class, 'index']);
     Route::post('login', [AuthenticationController::class, 'login'])->name('login');
@@ -46,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/projects/{id}', [UserProjectController::class, 'update'])->name('projects.update');
     Route::delete('/projects/{id}', [UserProjectController::class, 'destroy'])->name('projects.destroy');
     // Route::get('/projects/{id}/modal', [UserProjectController::class, 'showModal'])->name('projects.show.modal');
+    Route::get('/projects/{id}/edit', [UserProjectController::class, 'edit'])->name('projects.edit');
 });
 
 Route::middleware('auth')->group(function () {
@@ -71,7 +76,9 @@ Route::middleware('auth')->group(function () {
     // User's Posts routes
     Route::post('/posts', [UserPostController::class, 'store'])->name('posts.store');
     Route::get('/posts', [UserPostController::class, 'index'])->name('posts.index');
+    //Route::get('/student/dashboard/{userId}', [UserPostController::class, 'index'])->name('student.dashboard');
     // Route::put('/projects/{id}', [UserProjectController::class, 'update'])->name('projects.update');
     // Route::delete('/projects/{id}', [UserProjectController::class, 'destroy'])->name('projects.destroy');
     // Route::get('/projects/{id}/modal', [UserProjectController::class, 'showModal'])->name('projects.show.modal');
 });
+
