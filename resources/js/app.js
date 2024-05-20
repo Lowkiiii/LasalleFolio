@@ -11,24 +11,32 @@ function toggleModal(modalID) {
 }
 
 // Create anoter toggle method for edit
-function toggleEditModal(modalID, id) {
-    document.getElementById(modalID).classList.toggle("hidden");
-    document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
-    document.getElementById(modalID).classList.toggle("flex");
-    document.getElementById(modalID + "-backdrop").classList.toggle("flex");
+// function toggleEditModal(modalID, id) {
+//     document.getElementById(modalID).classList.toggle("hidden");
+//     document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
+//     document.getElementById(modalID).classList.toggle("flex");
+//     document.getElementById(modalID + "-backdrop").classList.toggle("flex");
 
-    // AJAX request to retrieve the data project id
-    
-    // axios.get(`/projects/${id}`).then((response) => {
-    //     document.getElementById("edit-project-name").value = response.data.name;
-    //     document.getElementById("edit-project-description").value =
-    //         response.data.description;
-    //     document.getElementById("edit-project-id").value = response.data.id;
-    // });
-
-    // console.log(id);
-
-}
+//     // AJAX request to retrieve the data
+//     fetch(`/projects/${id}/edit`)
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error('Network response was not ok');
+//             }
+//             return response.json();
+//         })
+//         .then(data => {
+//             // Update the modal fields with the retrieved data
+//             document.getElementById('edit-modal-project').value = data.project;
+//             document.getElementById('edit-modal-description').value = data.description;
+//             document.getElementById('edit-modal-date-started').value = data.date_started;
+//             document.getElementById('edit-modal-date-ended').value = data.date_ended;
+//             // Update other modal fields as needed
+//         })
+//         .catch(error => {
+//             console.error('Error fetching data:', error);
+//         });
+// }
 
 
 

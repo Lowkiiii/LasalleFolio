@@ -465,7 +465,7 @@
 
                             </div>
                         @empty
-                            <p>No posts found.</p>
+                            <p></p>
                         @endforelse
 
 
@@ -542,7 +542,8 @@
                                     <div class="text-sm font-bold text-black">
                                         Kerschtine Billones
                                         <div class="text-xs font-semibold opacity-70">
-                                            {{ $post->created_at->diffForHumans() }}</div>
+                                           
+                                        </div>
                                     </div>
                                 </div>
 
@@ -598,7 +599,7 @@
                                             </div>
 
                                             <div class="text-sm font-bold text-black">
-                                                {{ $post->user->name }}
+                                                
                                                 <div class="text-sm font-medium text-black">WOW!</div>
                                                 <div class="flex flex-row py-1">
                                                     <div class="flex flex-row text-xs font-medium opacity-70 mr-3">· 1 Hour

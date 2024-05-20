@@ -90,5 +90,16 @@ class UserProjectController extends Controller
             return redirect()->back()->withErrors(['error' => 'An error occurred while deleting the project.']);
         }
     }
+
+    public function edit($id)
+{
+    $project = UserProject::findOrFail($id);
+
+    if ($project->user_id !== Auth::id()) {
+        return response()->json(['error' => 'You are not authorized to access this project.'], 403);
+    }
+
+    return response()->json($project);
+}
         
 }

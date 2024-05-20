@@ -160,10 +160,10 @@
 
                                 <ul class="p-1 w-auto font-semibold">
                                     <li>
-                                        <form method="POST" action="{{ route('logout') }}">
-                                            @csrf
-                                            <button type="submit">Logout</button>
-                                        </form>
+                                    <form method="POST" action="{{ route('logout') }}">
+                                        @csrf
+                                        <button type="submit">Logout</button>
+                                    </form>
                                     </li>
                                 </ul>
                             </div>
