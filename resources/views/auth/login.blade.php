@@ -42,7 +42,7 @@
         <div class="z-20 overflow-hidden flex flex-col items-center justify-center w-1/2">
 
 
-            <div class="inline-block rounded-xl bg-opacity-10  px-20 pt-6 pb-8 mb-4 sm:w-3/5 ">
+            <div class="inline-block rounded-xl bg-opacity-10  px-20 pt-6 pb-8 mb-4 sm:w-3/5  animate-blink ">
 
 
                 <form method="POST" action="{{ route('login') }}">
@@ -106,7 +106,7 @@
 
             </form>
 
-            <div class=" absolute z-[-1] left-1 overflow-hidden ">
+            <div class=" absolute z-[-1] left-1 overflow-hidden  ">
                 <img src='/image/HALFlogo.png' class="opacity-5 size-fit " />
             </div>
         </div>

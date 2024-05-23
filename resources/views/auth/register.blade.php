@@ -7,8 +7,8 @@
 @section('content')
     <section class=" bg-[#efefef] ">
 
-        <div class="flex min-h-full justify-center ">
-            <div class="absolute mx-auto max-y-md max-w-lg flex items-center">
+        <div class="flex min-h-full justify-center  animate-blink">
+            <div class="absolute mx-auto max-y-md max-w-lg flex items-center ">
 
                 <div class="z-20  top-0 w-full mt-4">
 
@@ -150,7 +150,7 @@
                                 </div>
                             
 
-                                <div class="mb-6 flex items-center justify-between">
+                                <div class="mb-6 flex items-center justify-between ">
                                     <!-- Remember me checkbox -->
                                     <div class="items-center justify-center  pl-[1.5rem]" id="termsCheckbox">
                                         <input

@@ -12,13 +12,12 @@
         <div class="flex row min-h-full mt-24 justify-center relative bg-[#F8F8F8]">
 
 
-            <div class=" mx-auto  max-w-[85rem] mt-4">
-                <div class="flex flex-row  border-InputGray rounded-xl   w-full  ">
+            <div class=" mx-auto  max-w-[85rem] mt-4  animate-blink">
+                <div class="flex flex-row border-InputGray rounded-xl w-full">
                     <div class=" container">
-                        <img src='/image/profileBG.png' class="w-full h-full object-cover " />
+                        <img src='/image/profileBG.png' class="w-full h-[20rem] object-cover rounded-xl  " />
                     </div>
                 </div>
-                
                 <div class="z-20  mx-auto max-w-full -translate-y-24">
                     <div class="justify-center items-center">
                         <div class="w-36 h-36 bg-white border-4 border-[#F8F8F8] rounded-full justify-center mx-auto max-w-lg flex items-center relative">
@@ -41,29 +40,59 @@
 
                     </div>
                     <h1 class="flex flex-row mx-auto max-y-md max-w-lg  items-center justify-center text-center text-lg pt-2 font-bold text-black">
-                        
+                       
                         {{ Auth::user()->name }}
 
                         {{-- Trophy Icon --}}
                             <div class="ml-1"> <div class="items-start text-start flex flex-row">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25"
+                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
                                     viewBox="0 0 512 512" id="trophy" fill="#EBC351">
                                     <path
                                         d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
                                 </svg>
+                             
                             </div>
                         </div> 
+                        <div class="ml-1">
+                            <div class="items-start text-start flex fle-row"  data-twe-toggle="tooltip"
+                            title="This user is Verified">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#006634" class="size-5 " 
+              >
+                                    <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z" clip-rule="evenodd" />
+                                  </svg>
+                                  
+                                
+
+                            </div>
+                        </div>
                         
                     </h1>
                     <p class="text-xs mx-auto max-y-md max-w-lg flex items-center justify-center">
                         {{ Auth::user()->full_address }}
                     </p>
-                    <div class="text-sm font-d mx-auto max-y-md max-w-lg flex items-center justify-center mt-2 mb-2">
+                    <div class="text-sm font-d mx-auto max-y-md max-w-lg flex items-center justify-center mt-2 mb-2" id="btn-ConnectContainer">
                         <div>
-                            <button type=""
-                            class="inline-block rounded-md bg-[#006634] px-7 py-2 text-xs font-bold  leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
-                            Connect +
-                        </button>
+                            <button  class="btn shadow-lg inline-block rounded-md bg-[#006634] px-7 py-2 text-xs font-bold leading-normal text-white  transition duration-300 ease-in-out hover:bg-[#004423]  w-full">
+                         Connect +
+                            </button>
+                            
+                            <script>
+                                const ConnectBtn = document.querySelector('#btn-ConnectContainer button');
+                            
+                                ConnectBtn.addEventListener('click', (event) => {
+                                    const btn = event.target;
+                                    event.preventDefault();
+                                    if (btn.style.backgroundColor === 'rgb(217, 217, 217)') {
+                                        btn.style.backgroundColor = '#006634';
+                                        btn.innerText = 'Connect +'
+                                        btn.style.color = "white";
+                                    } else {
+                                        btn.style.backgroundColor = '#D9D9D9';
+                                        btn.innerText = 'Connected';
+                                        btn.style.color = "#444444";
+                                    }
+                                });
+                            </script>
                         </div>
                     </div>
 
@@ -108,8 +137,8 @@
                     <div class="mr-10 mt-10 w-full ">
                         <h1 class="font-bold text-black py-2">Pinned Project Showcase</h1>
 
-                        <div class="flex ">
-                            <div class="flex flex-col w-full mr-5">
+                        <div class="flex  animate-blink animation-delay-100">
+                            <div class="flex flex-col w-full mr-5 ">
                                 <div
                                     class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg shadow-lg  ">
 
@@ -235,7 +264,7 @@
                             class="text-sm font-medium text-black py-4 hover:text-[#006634] ">Customize Showcase</button>
                     </div>
 
-                    <div class="flex">
+                    <div class="flex animate-blink animation-delay-200">
 
                         <div class="flex flex-col w-full mr-2">
 

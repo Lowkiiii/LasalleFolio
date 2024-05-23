@@ -26,5 +26,9 @@ export default {
             },
         },
     },
-    plugins: [require("tw-elements/dist/plugin.cjs"), animations],
+    plugins: [
+        require("tw-elements/dist/plugin.cjs"),
+        require("tailwindcss-animation-delay"),
+        animations,
+    ],
 };

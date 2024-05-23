@@ -12,13 +12,16 @@
 </head>
 
 <body>
-    
+
+
+  
     @include('modal/modalPanels')
     @include('modal/modalPostDelete')
     @include('modal/modalProjects')
     @include('modal/modalProfilePicture')
     @include('modal/modalAboutMe')
     @include('modal/modalPostImage')
+    @include('modal/modalPostDocument')
     @include('modal/modalPostText')
     @include('modal/modalAwardsandHonorsPanel')
     @include('modal/modalAcademicsPanel')
@@ -63,7 +66,8 @@
             }
         });
 
-        
+      
+                                       
         
     </script>
     @include('layouts.footer')

@@ -10,12 +10,12 @@
 
             <div class=" mx-auto max-w-[85rem] mt-20 w-full">
 
-                <div class="w-full mr-10 mt-10">
+                <div class="w-full mr-10 mt-10 ">
 
                     <div class="mb-4 font-bold text-2xl text-black">Leaderboard</div>
 
                     <div class="flex flex-row ">
-                        <div class="flex flex-col w-full mr-3">
+                        <div class="flex flex-col w-full mr-3 animate-blink animation-delay-75">
 
                             <div
                                 class="w-full relative flex flex-wrap items-start  space-x-3 mr-10 py-[1.8rem] px-4 border border-[#D9D9D9] rounded-lg shadow-lg ">
@@ -67,7 +67,7 @@
                             </div>
 
                         </div>
-                        <div class="flex flex-col w-full mr-3">
+                        <div class="flex flex-col w-full mr-3 animate-blink animation-delay-100">
 
                             <div
                                 class="w-full relative flex flex-wrap items-start  space-x-3 mr-10 py-[1.8rem] px-4 border border-[#D9D9D9] rounded-lg shadow-lg ">
@@ -121,7 +121,7 @@
                             </div>
 
                         </div>
-                        <div class="flex flex-col w-full">
+                        <div class="flex flex-col w-full animate-blink animation-delay-150">
 
                             <div
                                 class="w-full relative flex flex-wrap items-start  space-x-3 mr-10 py-[1.8rem] px-4 border border-[#D9D9D9] rounded-lg shadow-lg ">
@@ -185,7 +185,7 @@
 
 
 
-                    <div class="w-full mt-6">
+                    <div class="w-full mt-6 animate-blink animation-delay-200">
                         <div class="relative mb-6">
                             <input type="text"
                                 class="outline-none text-sm w-1/3 py-2 px-3 pl-10 border border-[#D4D4D4] rounded-2xl"
@@ -263,7 +263,7 @@
                                                 </div>
 
                                                 <div class="flex flex-col relative justify-start items-start  ">
-                                                    <div class="text-center font-bold text-black text-xl">Pepito Jimenea</div>
+                                                    <div class="text-center font-bold text-black text-xl">Jane Doe</div>
                                                     <div
                                                         class="flex items-center text-xs font-bold text-black justify-center ">
                                                         <div class="flex items-center text-[#006634]">
