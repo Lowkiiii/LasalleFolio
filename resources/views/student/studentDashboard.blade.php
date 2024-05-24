@@ -4,10 +4,7 @@
 @endsection
 
 @section('content')
-
-
-
-{{-- @include('modal/Interest')     --}}
+    {{-- @include('modal/Interest')  --}}
 
     <section class="h-screen bg-[#F8F8F8]">
         <div class="flex row min-h-full justify-center relative">
@@ -32,19 +29,21 @@
                                                 class="rounded-full object-cover w-20 h-20  ">
                                         </label>
                                         <div class="w-full mt-2">
-                                            
+
                                             <div
                                                 class="flex text-sm text-black font-bold items-center justify-center w-full mx-auto max-w-lg truncate">
                                                 {{ Auth::user()->name }}
 
                                                 <div class="ml-1">
                                                     <div class="items-start text-start">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="20"
-                                                            height="20" viewBox="0 0 512 512" id="trophy"
-                                                            fill="#EBC351">
-                                                            <path
-                                                                d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
-                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#EBC351" height="22" width="22" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                                            <g>
+                                                                <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                                <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                                <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                                <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                            </g>
+                                                            </svg>
                                                     </div>
                                                 </div>
 
@@ -104,18 +103,22 @@
                                         Top 3 Students
                                         <div class="font-medium text-xs text-[#444444]">That has Garnered Points</div>
                                     </div>
+
                                     <div class="flex flex-col w-full  items-start text-[#006634] font-bold text-xl  ">
                                         <div class="flex flex-row w-full">
                                             <div class=" items-center text-start  pt-6 w-full flex flex-row">
                                                 <div class="items-start text-start flex flex-row">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                        viewBox="0 0 512 512" id="trophy" fill="#EBC351">
-                                                        <path
-                                                            d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
-                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#EBC351" height="30" width="30" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class=" ">
+                                                        <g>
+                                                            <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                            <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                            <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                            <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                        </g>
+                                                        </svg>
                                                 </div>
 
-                                                <div class="w-10 h-10 rounded-full mx-5 ">
+                                                <div class="w-10 h-10 rounded-full mx-4 shadow-lg">
                                                     <div class="relative group">
                                                         <label for="file_input" class="cursor-pointer">
                                                             <img src="image/dog.jpg" alt="Profile"
@@ -141,17 +144,20 @@
 
                                         <div class="flex flex-row w-full">
                                             <div class=" items-center text-start  py-6 w-full flex flex-row">
-                                                <div class="items-start text-start flex flex-row">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                        viewBox="0 0 512 512" id="trophy" fill="#B7B7B7">
-                                                        <path
-                                                            d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
-                                                    </svg>
+                                                <div class="items-start text-start flex flex-row ">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#B7B7B7" height="30" width="30" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="  ">
+                                                        <g>
+                                                            <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                            <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                            <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                            <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                        </g>
+                                                        </svg>
 
 
                                                 </div>
 
-                                                <div class="w-10 h-10 rounded-full overflow-hidden mx-5 ">
+                                                <div class="w-10 h-10 rounded-full overflow-hidden mx-4 shadow-lg ">
                                                     <div class="relative group">
                                                         <label for="file_input" class="cursor-pointer">
                                                             <img src="image/estetikLuke.png" alt="Profile"
@@ -177,22 +183,24 @@
                                                 </div>
                                             </div>
 
-                                        
+
 
                                         </div>
                                         <div class="flex flex-row w-full">
                                             <div class=" items-center text-start  w-full flex flex-row">
                                                 <div class="items-start text-start flex flex-row">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                        viewBox="0 0 512 512" id="trophy" fill="#7A601D">
-                                                        <path
-                                                            d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
-                                                    </svg>
-
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#B7B7B7" height="30" width="30" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class=" ">
+                                                        <g>
+                                                            <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                            <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                            <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                            <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                        </g>
+                                                        </svg>
 
                                                 </div>
 
-                                                <div class="w-10 h-10 rounded-full mx-5 overflow-hidden shadow-lg">
+                                                <div class="w-10 h-10 rounded-full mx-4 overflow-hidden shadow-lg">
                                                     <div class="relative group">
                                                         <label for="file_input" class="cursor-pointer ">
                                                             <img src="image/jose.jpg" alt="Profile"
@@ -287,7 +295,8 @@
                                                 d="M24.707,8.793l-6.5-6.5C18.019,2.105,17.765,2,17.5,2H7C5.895,2,5,2.895,5,4v22c0,1.105,0.895,2,2,2h16c1.105,0,2-0.895,2-2 V9.5C25,9.235,24.895,8.981,24.707,8.793z M18,21h-8c-0.552,0-1-0.448-1-1c0-0.552,0.448-1,1-1h8c0.552,0,1,0.448,1,1 C19,20.552,18.552,21,18,21z M20,17H10c-0.552,0-1-0.448-1-1c0-0.552,0.448-1,1-1h10c0.552,0,1,0.448,1,1C21,16.552,20.552,17,20,17 z M18,10c-0.552,0-1-0.448-1-1V3.904L23.096,10H18z">
                                             </path>
                                         </svg>
-                                        <div class="text-sm text-center  font-bold flex px-2"  onclick="toggleModal('modal-idPostDocument')">
+                                        <div class="text-sm text-center  font-bold flex px-2"
+                                            onclick="toggleModal('modal-idPostDocument')">
                                             Document
                                         </div>
                                     </div>
@@ -385,11 +394,15 @@
                                     <div class="text-sm font-bold text-black flex flex-col">
                                         <div class="flex items-center">
                                             <span>{{ $post->user->name }}</span>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                class="ml-1" viewBox="0 0 512 512" fill="#EBC351">
-                                                <path
-                                                    d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
-                                            </svg>
+                                           
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#EBC351" height="15" width="15" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                                    <g>
+                                                        <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                        <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                        <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                        <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                    </g>
+                                                    </svg>
                                         </div>
                                         <div class="text-xs font-semibold opacity-70">
                                             {{ $post->created_at->diffForHumans() }}
@@ -446,10 +459,20 @@
                                         </div>
 
                                         <div class="text-sm font-bold text-black">
+                                            <div class="flex">
                                             Kerschtine Billones
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#7A601D" height="15" width="15" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                                <g>
+                                                    <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                    <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                    <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                    <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                </g>
+                                                </svg>
+                                            </div>
                                             <div class="text-sm font-medium text-black">Hello!</div>
                                             <div class="flex flex-row py-1">
-                                                <div class="flex flex-row text-xs font-medium opacity-70 mr-3">· 1 Hour Ago
+                                                <div class="flex flex-row text-xs font-medium opacity-70 mr-3">· Just Now!
                                                 </div>
                                                 <button class="flex flex-row text-xs opacity-70"
                                                     onclick="toggleReply()">Reply</button>
@@ -580,9 +603,18 @@
                                     </div>
                                 </div>
                                 <div class="text-sm font-bold text-black">
-                                    Kerschtine Billones
-                                
-                             
+                                    <div class="flex">
+                                        Kerschtine Billones
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#7A601D" height="15" width="15" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                            <g>
+                                                <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                            </g>
+                                            </svg>
+                                        </div>
+
                                     <div class="text-xs font-semibold opacity-70">
                                         1 Hour Ago
                                     </div>
@@ -592,7 +624,7 @@
                             <div class="container w-full mt-2">
                                 <img src="image/art.jpg" alt=""
                                     class="animate-spin  rounded-xl object-cover mb-2 border border-[#D4D4D4] ">
-                                    <div class="flex flex-row items-start justify-start">
+                                <div class="flex flex-row items-start justify-start">
                                     <button onclick="toggleColor(this)"
                                         class="flex flex-row justify-center items-center text-s mr-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
@@ -622,7 +654,7 @@
                                         </svg>
                                         <div
                                             class="flex flex-row text-sm px-2 font-bold items-center justify-center text-black">
-                                            0</div>
+                                            1</div>
                                     </div>
                                 </div>
 
@@ -642,7 +674,17 @@
                                         </div>
 
                                         <div class="text-sm font-bold text-black">
-                                            Paulo John Jimenea
+                                            <div class="flex">
+                                                Paulo John Jimenea
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#EBC351" height="15" width="15" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                                    <g>
+                                                        <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                        <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                        <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                        <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                    </g>
+                                                    </svg>
+                                                </div>
                                             <div class="text-sm font-medium text-black">WOW!</div>
                                             <div class="flex flex-row py-1">
                                                 <div class="flex flex-row text-xs font-medium opacity-70 mr-3">· 1 Hour
@@ -771,87 +813,127 @@
                                     </div>
                                 </div>
                                 <div class="text-sm font-bold text-black">
-                                    Kerschtine Billones
+                                    <div class="flex">
+                                        Kerschtine Billones
+                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#7A601D" height="15" width="15" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                            <g>
+                                                <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                            </g>
+                                            </svg>
+                                        </div>
 
                                     <div class="text-xs font-semibold opacity-70">
                                         1 Hour Ago
                                     </div>
-                                   
+
                                 </div>
-                             
+
                             </div>
                             <div class="flex mb-2 mt-2 text-black"> Our Thesis Document!</div>
-                            
+
                             <div class="container w-full mt-2">
                                 <div class="flex">
-                                    <img src="image/Doc1.png" alt="" class="rounded-xl object-cover w-9/12 mb-2 border border-[#D4D4D4]">
+                                    <img src="image/Doc1.png" alt=""
+                                        class="rounded-xl object-cover w-9/12 mb-2 border border-[#D4D4D4]">
                                     <div class="ml-2">
-                                        <div class="flex justify-center  items-center mb-2 w-full flex-row overflow-hidden ">
+                                        <div
+                                            class="flex justify-center  items-center mb-2 w-full flex-row overflow-hidden ">
                                             <div class="flex flex-col w-full ">
                                                 <div class="container w-10/12  ml-auto mr-auto ">
-                                                    <img src="image/Doc2.png" alt="" class="object-cover rounded-xl border border-[#D4D4D4]">
+                                                    <img src="image/Doc2.png" alt=""
+                                                        class="object-cover rounded-xl border border-[#D4D4D4]">
 
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="flex justify-center  items-center w-full mb-2 flex-row overflow-hidden">
+                                        <div
+                                            class="flex justify-center  items-center w-full mb-2 flex-row overflow-hidden">
                                             <div class="flex flex-col w-full">
                                                 <div class="container w-10/12  ml-auto mr-auto  ">
-                                                    <img src="image/Doc3.png" alt="" class="object-cove rounded-xl border border-[#D4D4D4] ">
+                                                    <img src="image/Doc3.png" alt=""
+                                                        class="object-cove rounded-xl border border-[#D4D4D4] ">
 
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="flex justify-center  items-center mb-2 w-full flex-row overflow-hidden">
+                                        <div
+                                            class="flex justify-center  items-center mb-2 w-full flex-row overflow-hidden">
                                             <div class="flex flex-col w-full">
                                                 <div class="relative container w-10/12  ml-auto mr-auto   ">
-                                                    <div class="absolute z-30 text-base  inset-0 flex justify-center items-center text-white shadow-lg font-semibold">10+</div>
-                                                    <img src="image/Doc3.png" alt="" class="object-cover rounded-xl brightness-75 blur-[1px] border border-[#D4D4D4]" >
+                                                    <div
+                                                        class="absolute z-30 text-base  inset-0 flex justify-center items-center text-white shadow-lg font-semibold">
+                                                        10+</div>
+                                                    <img src="image/Doc3.png" alt=""
+                                                        class="object-cover rounded-xl brightness-75 blur-[1px] border border-[#D4D4D4]">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <div class="flex flex-row items-start justify-start mt-2">
-                                    <button onclick="toggleColor(this)" class="flex flex-row justify-center items-center text-sm mr-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" class="" viewBox="0 0 47.5 47.5" id="heart">
+                                    <button onclick="toggleColor(this)"
+                                        class="flex flex-row justify-center items-center text-sm mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
+                                            class="" viewBox="0 0 47.5 47.5" id="heart">
                                             <defs>
                                                 <clipPath id="a">
                                                     <path d="M0 38h38V0H0v38Z" />
                                                 </clipPath>
                                             </defs>
                                             <g clip-path="url(#a)" transform="matrix(1.25 0 0 -1.25 0 47.5)">
-                                                <path class="heart-path" fill="#C6C6C6" d="M3.067 25.68c0 8.799 12.184 12.06 15.933 1.874 3.749 10.186 15.933 6.925 15.933-1.874C34.933 16.12 19 3.999 19 3.999S3.067 16.12 3.067 25.68" />
+                                                <path class="heart-path" fill="#C6C6C6"
+                                                    d="M3.067 25.68c0 8.799 12.184 12.06 15.933 1.874 3.749 10.186 15.933 6.925 15.933-1.874C34.933 16.12 19 3.999 19 3.999S3.067 16.12 3.067 25.68" />
                                             </g>
                                         </svg>
 
-                                        <div class="flex flex-row text-sm px-2 font-bold items-center justify-center text-black">1</div>
+                                        <div
+                                            class="flex flex-row text-sm px-2 font-bold items-center justify-center text-black">
+                                            1</div>
                                     </button>
 
                                     <div class="flex flex-row justify-center items-center text-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black" class="w-6 h-6">
-                                            <path fill-rule="evenodd" d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25Z" clip-rule="evenodd" />
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"
+                                            class="w-6 h-6">
+                                            <path fill-rule="evenodd"
+                                                d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25Z"
+                                                clip-rule="evenodd" />
                                         </svg>
-                                        <div class="flex flex-row text-sm px-2 font-bold items-center justify-center text-black">0</div>
+                                        <div
+                                            class="flex flex-row text-sm px-2 font-bold items-center justify-center text-black">
+                                            0</div>
                                     </div>
                                 </div>
-                            
+
                                 <hr class="my-4 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
-                            
+
                                 <div>
                                     <div class="flex items-center">
                                         <div class="w-9 h-9 rounded-full mr-2">
                                             <div class="relative group">
                                                 <label for="file_input" class="cursor-pointer">
-                                                    <img src="image/estetikLuke.png" alt="Profile" class="w-full h-full rounded-full object-cover">
+                                                    <img src="image/estetikLuke.png" alt="Profile"
+                                                        class="w-full h-full rounded-full object-cover">
                                                 </label>
                                             </div>
                                         </div>
                                         <div class="text-sm font-bold text-black">
-                                            Luke Sellado
+                                            <div class="flex">
+                                                Luke Sellado
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#B7B7B7" height="15" width="15" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                                    <g>
+                                                        <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                        <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                        <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                        <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                    </g>
+                                                    </svg>
+                                                </div>
                                             <div class="text-sm font-medium text-black">I like it</div>
                                             <div class="flex flex-row py-1">
                                                 <div class="flex flex-row text-xs font-medium opacity-70 mr-3">· 1 Hour Ago
@@ -862,192 +944,219 @@
 
                                         </div>
                                     </div>
-                            
+
                                     <div class="flex flex-col mt-4 mb-4 hidden" id="replyInput">
                                         <div class="flex pl-10">
                                             <div class="w-7 h-7 rounded-full mr-1">
                                                 <div class="relative group">
                                                     <label for="file_input" class="cursor-pointer">
-                                                        <img src="image/dog.jpg" alt="Profile" class="w-full h-full rounded-full object-cover">
+                                                        <img src="image/dog.jpg" alt="Profile"
+                                                            class="w-full h-full rounded-full object-cover">
                                                     </label>
                                                 </div>
                                             </div>
                                             <div id="replyInput" class="justify-center items-center flex-grow">
-                                                <input type="text" placeholder="Reply" class="outline-none justify-center items-center text-xs w-full py-2 px-3 bg-gray-200 rounded-2xl">
+                                                <input type="text" placeholder="Reply"
+                                                    class="outline-none justify-center items-center text-xs w-full py-2 px-3 bg-gray-200 rounded-2xl">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            
+
                                 <div class="flex items-center mt-2">
                                     <div class="w-10 h-10 rounded-full mr-2">
                                         <div class="relative group">
                                             <label for="file_input" class="cursor-pointer">
-                                                <img src="image/dog.jpg" alt="Profile" class="w-full h-full rounded-full object-cover">
+                                                <img src="image/dog.jpg" alt="Profile"
+                                                    class="w-full h-full rounded-full object-cover">
                                             </label>
                                         </div>
                                     </div>
                                     <div class="flex-grow">
-                                        <input type="text" class="outline-none text-sm w-full py-2 px-3 bg-gray-200 rounded-2xl" placeholder="Comment">
+                                        <input type="text"
+                                            class="outline-none text-sm w-full py-2 px-3 bg-gray-200 rounded-2xl"
+                                            placeholder="Comment">
                                     </div>
                                 </div>
                             </div>
-                            
-                            
-                            
-                        </div>
-                        
-
-                </div>
-
-
-                <div class="flex flex-col w-2/5 ml-10 mr-10 z-20 animate-blink animation-delay-200">
-                    <div
-                        class="w-full relative flex flex-col items-start  p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
-                        <div class="max-y-md max-w-lg flex ">
-                            <div class="max-w-lg w-full font-bold text-black">
-                                Suggested Students for You
-                                <div class="flex mt-3 ">
-                                    <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg">
-                                        <div class="relative group">
-                                            <label for="file_input" class="cursor-pointer ">
-                                                <img src="image/estetikLuke.png" alt="Profile"
-                                                    class="w-full h-full object-cover">
-
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow flex-col ml-4 text-sm font-bold text-black ">
-                                        <div class="flex">
-                                            Luke Sellado
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                class="ml-1" viewBox="0 0 512 512" id="trophy" fill="#B7B7B7">
-                                                <path
-                                                    d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
-                                            </svg>
-                                        </div>
-                                        <div class="text-xs font-semibold text-black opacity-45">BSCS 3A S.Y. 2023-2024
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center justify-center ml-5 ">
-                                        <div class="text-xs font-bold ">
-                                            <div>
-                                                <button type=""
-                                                    class="inline-block rounded-md bg-[#006634] px-2 py-1 text-xs font-bold  leading-normal truncate text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
-                                                    Connect +
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="flex mt-3 ">
-                                    <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg">
-                                        <div class="relative group">
-                                            <label for="file_input" class="cursor-pointer ">
-                                                <img src="image/Jose.jpg" alt="Profile"
-                                                    class="w-full h-full object-cover">
-
-                                            </label>
-                                        </div>
-                                    </div>
-
-
-                                    <div class="flex-grow flex-col ml-4 text-sm font-bold text-black ">
-                                        <div class="flex">Jose Felizario
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
-                                                class="ml-1" viewBox="0 0 512 512" id="trophy" fill="#7A601D">
-                                                <path
-                                                    d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
-                                            </svg>
-                                        </div>
-                                        <div class="text-xs font-semibold text-black opacity-45">BSCS 3A S.Y. 2023-2024
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center justify-center ml-5 ">
-                                        <div class="text-xs font-bold ">
-                                            <div>
-                                                <button type=""
-                                                    class="inline-block rounded-md bg-[#006634] px-2 py-1 text-xs font-bold  leading-normal truncate text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
-                                                    Connect +
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="flex mt-3 ">
-                                    <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg">
-                                        <div class="relative group">
-                                            <label for="file_input" class="cursor-pointer ">
-                                                <img src="image/Kersch.png" alt="Profile"
-                                                    class="w-full h-full object-cover">
-
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow flex-col ml-4 text-sm font-bold text-black ">
-                                        <div>Kerschtine Billones</div>
-                                        <div class="text-xs font-semibold text-black opacity-45">BSCS 3A S.Y. 2023-2024
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center justify-center ml-5 ">
-                                        <div class="text-xs font-bold ">
-                                            <div>
-                                                <button type=""
-                                                    class="inline-block rounded-md bg-[#006634] px-2 py-1 text-xs font-bold  leading-normal truncate text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
-                                                    Connect +
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
 
 
 
-                    </div>
-
-                    <div
-                        class="w-full relative flex flex-col items-start  p-6 border border-[#D4D4D4] rounded-xl shadow-lg mt-5">
-                        <div class="max-y-md max-w-lg flex">
-                            <div class="max-y-md max-w-lg w-full font-bold text-black">
-                                Posts by Suggested Students
-                                <div class="flex mt-3 ">
-                                    <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg">
-                                        <div class="relative group">
-                                            <label for="file_input" class="cursor-pointer ">
-                                                <img src="image/Kersch.png" alt="Profile"
-                                                    class="w-full h-full object-cover">
-
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow flex-col ml-4 text-sm font-bold text-black ">
-                                        <div>Kerschtine Billones</div>
-                                        <div class="text-xs font-semibold text-black opacity-45"> Kerschtine Posted an
-                                            Image!
-                                        </div>
-                                    </div>
-                                    <div class="flex items-center justify-center ml-3 ">
-                                        <div class="text-xs font-bold  ">
-                                            <div class="w-14 h-14">
-                                                <img src="image/art.jpg" alt=""
-                                                    class=" rounded-lg object-cover mb-2 border border-[#D4D4D4] shadow-lg ">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
 
                     </div>
-                </div>
 
+
+                    <div class="flex flex-col w-2/5 ml-10 mr-10 z-20 animate-blink animation-delay-200">
+                        <div
+                            class="w-full relative flex flex-col items-start  p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
+                            <div class="max-y-md max-w-lg flex ">
+                                <div class="max-w-lg w-full font-bold text-black">
+                                    Suggested Students for You
+                                    <div class="flex mt-3 ">
+                                        <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg">
+                                            <div class="relative group">
+                                                <label for="file_input" class="cursor-pointer ">
+                                                    <img src="image/estetikLuke.png" alt="Profile"
+                                                        class="w-full h-full object-cover">
+
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow flex-col ml-4 text-sm font-bold text-black ">
+                                            <div class="flex">
+                                                Luke Sellado
+                                          
+                                                <div class="ml-1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#B7B7B7" height="18" width="18" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl ">
+                                                            <g>
+                                                                <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                                <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                                <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                                <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                            </g>
+                                                            </svg>
+                                                        </div>
+                                            </div>
+                                            <div class="text-xs font-semibold text-black opacity-45">BSCS 3A S.Y. 2023-2024
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-center ml-5 ">
+                                            <div class="text-xs font-bold ">
+                                                <div>
+                                                    <button type=""
+                                                        class="inline-block rounded-md bg-[#006634] px-2 py-1 text-xs font-bold  leading-normal truncate text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
+                                                        Connect +
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex mt-3 ">
+                                        <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg">
+                                            <div class="relative group">
+                                                <label for="file_input" class="cursor-pointer ">
+                                                    <img src="image/Jose.jpg" alt="Profile"
+                                                        class="w-full h-full object-cover">
+
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="flex-grow flex-col ml-4 text-sm font-bold text-black ">
+                                            <div class="flex">Jose Felizario
+                                                <div class="ml-1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#B7B7B7" height="18" width="18" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl ">
+                                                            <g>
+                                                                <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                                <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                                <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                                <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                            </g>
+                                                            </svg>
+                                                        </div>
+                                            </div>
+                                            <div class="text-xs font-semibold text-black opacity-45">BSCS 3A S.Y. 2023-2024
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-center ml-5 ">
+                                            <div class="text-xs font-bold ">
+                                                <div>
+                                                    <button type=""
+                                                        class="inline-block rounded-md bg-[#006634] px-2 py-1 text-xs font-bold  leading-normal truncate text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
+                                                        Connect +
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex mt-3 ">
+                                        <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg">
+                                            <div class="relative group">
+                                                <label for="file_input" class="cursor-pointer ">
+                                                    <img src="image/Kersch.png" alt="Profile"
+                                                        class="w-full h-full object-cover">
+
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow flex-col ml-4 text-sm font-bold text-black ">
+                                            <div class="flex">Kersctine Billones
+                                                <div class="ml-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#7A601D" height="18" width="18" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl ">
+                                                        <g>
+                                                            <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                            <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                            <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                            <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                        </g>
+                                                        </svg>
+                                                    </div>
+                                            </div>
+                                            <div class="text-xs font-semibold text-black opacity-45">BSCS 3A S.Y. 2023-2024
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-center ml-5 ">
+                                            <div class="text-xs font-bold ">
+                                                <div>
+                                                    <button type=""
+                                                        class="inline-block rounded-md bg-[#006634] px-2 py-1 text-xs font-bold  leading-normal truncate text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
+                                                        Connect +
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div
+                            class="w-full relative flex flex-col items-start  p-6 border border-[#D4D4D4] rounded-xl shadow-lg mt-5">
+                            <div class="max-y-md max-w-lg flex">
+                                <div class="max-y-md max-w-lg w-full font-bold text-black">
+                                    Posts by Suggested Students
+                                    <div class="flex mt-3 ">
+                                        <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg">
+                                            <div class="relative group">
+                                                <label for="file_input" class="cursor-pointer ">
+                                                    <img src="image/Kersch.png" alt="Profile"
+                                                        class="w-full h-full object-cover">
+
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="flex-grow flex-col ml-4 text-sm font-bold text-black ">
+                                            <div>Kerschtine Billones</div>
+                                            <div class="text-xs font-semibold text-black opacity-45"> Kerschtine Posted an
+                                                Image!
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center justify-center ml-3 ">
+                                            <div class="text-xs font-bold  ">
+                                                <div class="w-14 h-14">
+                                                    <img src="image/art.jpg" alt=""
+                                                        class=" rounded-lg object-cover mb-2 border border-[#D4D4D4] shadow-lg ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </div>
         </div>
     @endsection

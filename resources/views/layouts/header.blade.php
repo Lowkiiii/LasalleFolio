@@ -113,11 +113,11 @@
                                     d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z"
                                     clip-rule="evenodd" />
                             </svg>
-                            <div class="text-xs flex relative font-normal truncate">Request to View</div>
+                            <div class="text-xs flex relative font-normal truncate">Request</div>
                         </button>
 
                         <div id="ReqMenu"
-                            class="absolute hidden  bg-[#F8F8F8] p-1 border border-[#D4D4D4] turncate rounded-lg shadow-lg w-[25rem] transform translate-y-full  bottom-[-.5rem] left-1/4 -translate-x-[11.4rem] z-30">
+                            class="absolute hidden bg-[#F8F8F8] p-1 border border-[#D4D4D4] turncate rounded-lg shadow-lg w-[25rem] transform translate-y-full  bottom-[-.5rem] left-1/4 -translate-x-[11.4rem] z-30">
 
                             <div class="flex flex-row justify-center items-center py-2 px-3 text-black mb-4 ">
                                 <ul class="p-1 w-full  font-semibold ">
@@ -163,7 +163,7 @@
                             </div>
                         </div>
 
-                        <button id="menuButton ">
+                        <button id="menuButton">
                             <label for="file_input" class="cursor-pointer  w-full shadow-md rounded-full">
                                 <img src="image/dog.jpg" alt="Profile" class="rounded-full object-cover w-9 h-9">
                             </label>
@@ -277,6 +277,7 @@
             menu.classList.add('hidden');
         }
     });
+    
 
 
     const searchBar = document.getElementById('searchBar');

@@ -24,7 +24,7 @@
                             class="w-36 h-36 bg-white border-4 border-[#F8F8F8] rounded-full justify-center mx-auto max-w-lg flex items-center relative">
                             <div class="relative group w-full h-full">
                                 <label for="file_input" class="cursor-pointer rounded-full w-full h-full">
-                                    <img src="image/dog.jpg" alt="Profile"
+                                    <img src="image/kersch.png" alt="Profile"
                                         class="w-full h-full rounded-full object-cover transition duration-300 ease-in-out transform hover:scale-110">
                                     <div
                                         class="absolute inset-0 bg-black opacity-0 rounded-full group-hover:opacity-30 flex items-center justify-center">
@@ -46,12 +46,15 @@
                     <h1
                         class="flex flex-row mx-auto max-y-md max-w-lg  items-center justify-center text-center text-lg pt-2 font-bold text-black">
 
-                        {{ Auth::user()->name }}
+                        Kerschtine Billones
 
-                      
+                        {{-- Trophy Icon --}}
+                 
                         <div class="ml-1">
-                            <div class="items-start text-start flex flex-row">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#EBC351" height="25" width="25" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                            <div class="items-start text-start flex fle-row" data-twe-toggle="tooltip"
+                                title="This user is Verified">
+
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#7A601D" height="25" width="25" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
                                     <g>
                                         <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
                                         <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
@@ -59,24 +62,15 @@
                                         <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
                                     </g>
                                     </svg>
-
-
-
-                            </div>
-                        </div>
-                        <div class="ml-1">
-                            <div class="items-start text-start flex fle-row" data-twe-toggle="tooltip"
-                                title="This user is Not Verified">
-{{-- 
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#006634" class="size-5 ">
                                     <path fill-rule="evenodd"
                                         d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
                                         clip-rule="evenodd" />
-                                </svg> --}}
+                                </svg>
 
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 opacity-30">
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 opacity-30">
   <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z" clip-rule="evenodd" />
-</svg>
+</svg> --}}
 
 
                             </div>
@@ -89,9 +83,9 @@
                     <div class="text-sm font-d mx-auto max-y-md max-w-lg flex items-center justify-center mt-2 mb-2"
                         id="btn-ConnectContainer">
                         <div>
-                            {{-- <button  class="btn shadow-lg inline-block rounded-md bg-[#006634] px-7 py-2 text-xs font-bold leading-normal text-white  transition duration-300 ease-in-out hover:bg-[#004423]  w-full">
+                            <button  class="btn shadow-lg inline-block rounded-md bg-[#006634] px-7 py-2 text-xs font-bold leading-normal text-white  transition duration-300 ease-in-out hover:bg-[#004423]  w-full">
                          Connect +
-                            </button> --}}
+                            </button>
 
                             <script>
                                 const ConnectBtn = document.querySelector('#btn-ConnectContainer button');
@@ -129,7 +123,7 @@
                             </div>
 
                             <div class="flex flex-col items-center ml-32 text-[#006634] ">
-                                <div class="font-bold text-xl">0</div>
+                                <div class="font-bold text-xl">3</div>
                                 <div class="text-xs font-regular text-center truncate text-[#444444] font-medium">
                                     Projects Posted</div>
                             </div>
@@ -147,8 +141,7 @@
                             </button> </div>
                         <div class="flex mt-2 text-sm font-medium text-center justify-center">
                             <div class="w-3/4 text-black">
-                                An aspiring Web Developer currently enrolled in USLS, and completing his Computer Science
-                                Degree
+                                Multimedia Designer/Computer Science student of USLS.
                             </div>
                         </div>
                     </div>
@@ -175,12 +168,11 @@
                                     <div class="relative">
                                         <div class="text-xl font-bold text-[#006634]">
                                             <button class="hover:text-[#004423] ">
-                                                · Zesto-Chat-Application
+                                                · LasalleFolio Document
                                             </button>
 
                                             <div class="py-3 text-xs font-medium text-black items-start w-11/12">
-                                                Credits to Antonio Erdeljac for his youtube video on how to create a
-                                                Messenger like applicatio .</div>
+                                             A document containing our Thesis titled: LasalleFolio</div>
                                         </div>
 
                                     </div>
@@ -206,11 +198,11 @@
                                     <div class="relative">
                                         <div class="text-xl font-bold text-[#006634]">
                                             <button class="hover:text-[#004423]">
-                                                · ReactJS Calculator
+                                                · Face of the Many
                                             </button>
 
                                             <div class="py-3 text-xs font-medium text-black items-start w-full">
-                                                A simple React Calculator.
+                                                A simple sketch of diferent faces.
                                             </div>
                                         </div>
 

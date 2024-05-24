@@ -12,178 +12,12 @@
 
                 <div class="w-full mr-10 mt-10 ">
 
-                    <div class="mb-4 font-bold text-2xl text-black">Leaderboard</div>
-
-                    <div class="flex flex-row ">
-                        <div class="flex flex-col w-full mr-3 animate-blink animation-delay-75">
-
-                            <div
-                                class="w-full relative flex flex-wrap items-start  space-x-3 mr-10 py-[1.8rem] px-4 border border-[#D9D9D9] rounded-lg shadow-lg ">
-
-                                <div class="relative flex text-center w-full ">
-
-
-                                    <div class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
-                                        <div class="relative group">
-                                            <label for="file_input" class="cursor-pointer ">
-                                                <img src="image/dog.jpg" alt="Profile"
-                                                    class="w-full h-full object-cover">
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-col relative justify-start items-start m-auto ">
-                                        <div class="text-center font-bold text-black text-xl">Paulo John Jimenea</div>
-                                        <div class="flex items-start text-xs font-bold text-black justify-start ">
-                                            <div class="flex items-start text-[#006634]">
-                                                10
-                                                <div class="items-start ml-1 text-[#808080] text-xs font-semibold truncate">
-                                                    Connection | </div>
-                                            </div>
-                                            <div class="flex items-start ml-1 text-[#006634]">
-                                                12
-                                                <div class="items-start ml-1 text-[#808080] text-xs font-semibold">
-                                                    Engagements </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div
-                                        class="flex flex-col relative justify-center items-center ml-auto mr-auto px-2 border-l">
-                                        <div class="flex relative justify-center items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                viewBox="0 0 512 512" id="trophy" fill="#EBC351">
-                                                <path
-                                                    d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
-                                            </svg>
-                                        </div>
-                                        <div class="flex text-xs justify-center items-start">
-                                            <div class="flex items-start text-sm font-bold text-black ">1239 <div
-                                                    class="text-[#006634] ml-1">XP</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
+                    <div class="flex flex-row justify-between items-center">
+                        <div class="font-bold text-2xl text-black">Leaderboard</div>
+                        <div class="text-end">
+                            Total Student: 20
                         </div>
-                        <div class="flex flex-col w-full mr-3 animate-blink animation-delay-100">
-
-                            <div
-                                class="w-full relative flex flex-wrap items-start  space-x-3 mr-10 py-[1.8rem] px-4 border border-[#D9D9D9] rounded-lg shadow-lg ">
-
-                                <div class="relative flex text-center w-full ">
-
-
-                                    <div class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
-                                        <div class="relative group">
-                                            <label for="file_input" class="cursor-pointer ">
-                                                <img src="image/estetikLuke.png" alt="Profile"
-                                                    class="w-full h-full object-cover">
-                                            </label>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-col relative justify-start items-start m-auto">
-                                        <div class="text-center font-bold text-black text-xl">Luke Sellado</div>
-                                        <div class="flex items-start text-xs font-bold text-black justify-start ">
-                                            <div class="flex items-start text-[#006634]">
-                                                8
-                                                <div class="items-start ml-1 text-[#808080] text-xs font-semibold truncate">
-                                                    Connection | </div>
-                                            </div>
-                                            <div class="flex items-start ml-1 text-[#006634]">
-                                                12
-                                                <div class="items-start ml-1 text-[#808080] text-xs font-semibold">
-                                                    Engagements </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div
-                                        class="flex flex-col relative justify-center items-center ml-auto mr-auto px-2 border-l">
-                                        <div class="flex relative justify-center items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                viewBox="0 0 512 512" id="trophy" fill="#B7B7B7">
-                                                <path
-                                                    d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
-                                            </svg>
-                                        </div>
-                                        <div class="flex text-xs justify-center items-start">
-                                            <div class="flex items-start text-sm font-bold text-black ">1156 <div
-                                                    class="text-[#006634] ml-1">XP</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="flex flex-col w-full animate-blink animation-delay-150">
-
-                            <div
-                                class="w-full relative flex flex-wrap items-start  space-x-3 mr-10 py-[1.8rem] px-4 border border-[#D9D9D9] rounded-lg shadow-lg ">
-
-                                <div class="relative flex text-center w-full ">
-
-
-                                    <div class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
-                                        <div class="relative group">
-                                            <label for="file_input" class="cursor-pointer ">
-                                                <img src="image/jose.jpg" alt="Profile"
-                                                    class="w-full h-full object-cover">
-                                            </label>
-                                        </div>
-                                    </div>
-                                    <div class="flex flex-col relative justify-start items-start m-auto  ">
-                                        <div class="text-center font-bold text-black text-xl">Jose Felizario</div>
-                                        <div class="flex items-start text-xs font-bold text-black justify-start ">
-                                            <div class="flex items-start text-[#006634]">
-                                                7
-                                                <div class="items-start ml-1 text-[#808080] text-xs font-semibold truncate">
-                                                    Connection | </div>
-                                            </div>
-                                            <div class="flex items-start ml-1 text-[#006634]">
-                                               5
-                                                <div class="items-start ml-1 text-[#808080] text-xs font-semibold">
-                                                    Engagements </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-                                    <div
-                                        class="flex flex-col relative justify-center items-center ml-auto mr-auto px-2 border-l">
-                                        <div class="flex relative justify-center items-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
-                                                viewBox="0 0 512 512" id="trophy" fill="#7A601D">
-                                                <path
-                                                    d="M479.863 103.342c-.051-2.833-.096-5.279-.096-7.342h-80.835c1.56-34.617.512-64 .512-64H256.876a9.76 9.76 0 0 0-1 .056 9.728 9.728 0 0 0-1-.056H111.945s-1.048 29.383.512 64H32V128h.161c.811 26.096 4.98 60.999 22.333 96.729 14.718 30.307 35.912 55.664 62.996 75.367 22.422 16.312 48.041 28.064 76.205 35.084C209.96 352.539 226 362.109 240 365.957v35.625C238 412.165 225.86 448 141.234 448H128v32h256v-32h-13.178C271.538 448 272 398.666 272 398.666v-32.714c14-3.843 29.73-13.374 45.91-30.644 28.369-7.004 54.072-18.801 76.633-35.213 27.082-19.703 48.262-45.06 62.98-75.367 23.68-48.761 22.803-96.005 22.34-121.386zM83.262 210.745C68.802 180.966 65.018 150.996 64.187 128h50.487c.868 8.914 1.966 17.701 3.356 25.98 8.513 50.709 20.213 95.493 42.354 135.009-33.838-17.141-60.414-43.84-77.122-78.244zm345.475 0c-16.807 34.61-43.603 61.421-77.729 78.55 22.215-39.591 33.816-84.475 42.352-135.314 1.39-8.28 2.488-17.067 3.356-25.98h51.096c-.831 22.995-4.614 52.965-19.075 82.744z" />
-                                            </svg>
-                                        </div>
-                                        <div class="flex text-xs justify-center items-start">
-                                            <div class="flex items-start text-sm font-bold text-black">1009 <div
-                                                    class="text-[#006634] ml-1">XP</div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-
                     </div>
-
-
-
 
                     <div class="w-full mt-6 animate-blink animation-delay-200">
                         <div class="relative mb-6">
@@ -207,16 +41,181 @@
                                         <th class="font-bold text-sm  py-4">Rank</th>
                                         <th class="font-bold text-sm py-4">Name</th>
                                         <th class="font-bold text-sm py-4">Projects Posted</th>
-                                        <th class="font-bold text-sm py-4">Total Points</th>
+                                        <th class="font-bold text-sm py-4">Total XP</th>
                                     </tr>
                                 </thead>
                                 <tbody class="border-b rounded-xl">
                                     <tr>
-                                        <td class="py-4 text-[#006634] text-xl font-bold">4</td>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#EBC351" height="25" width="25" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                                <g>
+                                                    <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                    <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                    <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                    <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                </g>
+                                                </svg>
+                                                <div class="ml-2">1</div>
+                                            </div>
+                                        </td>
                                         <td class="py-4 font-bold text-black w-1/3">
 
                                             <div class="relative flex  justify-center items-center text-center ">
-                                                <div class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/dog.jpg" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Paulo John Jimenea</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            20
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            4
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">9</td>
+                                        <td class="py-4 font-bold text-black ">1239</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#B7B7B7" height="25" width="25" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                                    <g>
+                                                        <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                        <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                        <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                        <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                    </g>
+                                                    </svg>
+                                                    <div class="ml-2">2</div>
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/estetikLuke.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Luke Sellado</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            7
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                           3
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">3</td>
+                                        <td class="py-4 font-bold text-black ">1156</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold"><div class="items-center justify-center flex">
+                                           
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#B7B7B7" height="25" width="25" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                                <g>
+                                                    <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                    <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                    <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                    <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                </g>
+                                                </svg>
+                                                <div class="ml-2">3</div>
+                                            </div></td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/Jose.jpg" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Jose Felizario</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            2
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                           8
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">2</td>
+                                        <td class="py-4 font-bold text-black ">1009</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#7A601D" height="25" width="25" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                                    <g>
+                                                        <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                        <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                        <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                        <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                    </g>
+                                                    </svg>
+                                                    <div class="ml-2">4</div>
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
                                                     <div class="relative group">
                                                         <label for="file_input" class="cursor-pointer ">
                                                             <img src="image/Kersch.png" alt="Profile"
@@ -226,7 +225,110 @@
                                                 </div>
 
                                                 <div class="flex flex-col relative justify-start items-start  ">
-                                                    <div class="text-center font-bold text-black text-xl">Kerschtine Billones</div>
+                                                    <div class="text-center font-bold text-black text-xl">Kerschtine
+                                                        Billones</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            4
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                           6
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">3</td>
+                                        <td class="py-4 font-bold text-black ">1000</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#7A601D" height="25" width="25" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                                    <g>
+                                                        <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                        <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                        <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                        <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                    </g>
+                                                    </svg>
+                                                    <div class="ml-2">5</div>
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/Cat.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Jane Doe</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            6
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            1
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">4</td>
+                                        <td class="py-4 font-bold text-black ">995</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#7A601D" height="25" width="25" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                                    <g>
+                                                        <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                        <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                        <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                        <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                    </g>
+                                                    </svg>
+                                                    <div class="ml-2">6</div>
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">John Doe</div>
                                                     <div
                                                         class="flex items-center text-xs font-bold text-black justify-center ">
                                                         <div class="flex items-center text-[#006634]">
@@ -249,21 +351,120 @@
                                         <td class="py-4 font-bold text-black ">990</td>
                                     </tr>
                                     <tr>
-                                        <td class="py-4 text-[#006634] text-xl font-bold">5</td>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">7</div> 
+                                                </div>
+                                        </td>
                                         <td class="py-4 font-bold text-black w-1/3">
 
                                             <div class="relative flex  justify-center items-center text-center ">
-                                                <div class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
                                                     <div class="relative group">
                                                         <label for="file_input" class="cursor-pointer ">
-                                                            <img src="image/cat.png" alt="Profile"
+                                                            <img src="image/NoProfile.png" alt="Profile"
                                                                 class="w-full h-full object-cover">
                                                         </label>
                                                     </div>
                                                 </div>
 
                                                 <div class="flex flex-col relative justify-start items-start  ">
-                                                    <div class="text-center font-bold text-black text-xl">Jane Doe</div>
+                                                    <div class="text-center font-bold text-black text-xl">Olivia Johnson</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            4
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            3
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">2</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">900</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">8</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Liam Smith</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            7
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            3
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">2</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">855</td>
+                                    </tr> <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">9</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Emma Brown</div>
                                                     <div
                                                         class="flex items-center text-xs font-bold text-black justify-center ">
                                                         <div class="flex items-center text-[#006634]">
@@ -283,7 +484,503 @@
                                             </div>
                                         </td>
                                         <td class="py-4 font-bold text-black">1</td>
-                                        <td class="py-4 font-bold text-black">743</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">831</td>
+                                    </tr> <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">10</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Noah Davis</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            2
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            3
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">2</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">766</td>
+                                    </tr> <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">11</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Ava Wilson</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            3
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            1
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">1</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">753</td>
+                                    </tr> <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">12</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">William Miller</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            3
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            0
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">1</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">599</td>
+                                    </tr> <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">13</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Sophia Taylor</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            4
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            1
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">1</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">588</td>
+                                    </tr> <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">14</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">James Anderson</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            1
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            3
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">0</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">563</td>
+                                    </tr> <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">15</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Isabella Moore</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            1
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            2
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">1</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">355</td>
+                                    </tr> <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">16</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Benjamin Thomas</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            1
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            1
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">4</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">324</td>
+                                    </tr> <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">17</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Mia Jackson</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            0
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            2
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">4</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">311</td>
+                                    </tr> <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">18</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Lucas White</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                           1
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            0
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">4</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">283</td>
+                                    </tr> <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">19</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Charlotte Harris</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            1
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                           1
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">4</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">273</td>
+                                    </tr> <tr>
+                                        <td class="py-4 text-[#006634] text-xl font-bold">
+                                            <div class="items-center justify-center flex">
+                                           
+                                          
+                                                {{-- Rank --}}
+                                                    <div class="ml-2">20</div> 
+                                                </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black w-1/3">
+
+                                            <div class="relative flex  justify-center items-center text-center ">
+                                                <div
+                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer ">
+                                                            <img src="image/NoProfile.png" alt="Profile"
+                                                                class="w-full h-full object-cover">
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="flex flex-col relative justify-start items-start  ">
+                                                    <div class="text-center font-bold text-black text-xl">Henry Martin</div>
+                                                    <div
+                                                        class="flex items-center text-xs font-bold text-black justify-center ">
+                                                        <div class="flex items-center text-[#006634]">
+                                                            5
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold truncate">
+                                                                Connection | </div>
+                                                        </div>
+                                                        <div class="flex items-center ml-1 text-[#006634]">
+                                                            1
+                                                            <div
+                                                                class="items-center ml-1 text-[#808080] text-xs font-semibold">
+                                                                Engagements </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="py-4 font-bold text-black">1</td>
+                                        {{-- XP --}}
+                                        <td class="py-4 font-bold text-black ">210</td>
                                     </tr>
                                 </tbody>
                             </table>

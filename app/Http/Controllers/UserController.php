@@ -64,6 +64,18 @@ class UserController extends Controller
         return view('student.studentLeaderboard', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
     }
 
+    public function kerschProf()
+    {
+        $user = Auth::user();
+        $userProjects = $user->userProjects;
+        $userSkills = $user->userSkills;
+        $userAcademics = $user->userAcademics;
+        $userHonorsAndAwards = $user->userHonorsAndAwards;
+        $userPosts = $user->userPosts;
+
+        return view('student.kerschProf', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+    }
+
     public function adminusers(){
         $users = User::all();
 
@@ -122,7 +134,7 @@ class UserController extends Controller
     public function delete(Request $request) : RedirectResponse
     {
         try {
-            // Your code that may throw an exception
+            // Your code that mayf throw an exception
             return redirect()->back();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             // Handle the exception, for example, return a response or log it

@@ -14,7 +14,7 @@
 <body>
 
 
-  
+    @include('modal/modalVerifyEmail')
     @include('modal/modalPanels')
     @include('modal/modalPostDelete')
     @include('modal/modalProjects')
