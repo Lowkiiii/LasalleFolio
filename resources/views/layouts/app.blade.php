@@ -13,7 +13,9 @@
 
 <body>
 
-
+    @include('modal/modalEditAwardsandHonorsPanel')
+    @include('modal/modalEditAcademicsPanel')
+    @include('modal/modalSkillsEditPanel')
     @include('modal/modalVerifyEmail')
     @include('modal/modalPanels')
     @include('modal/modalPostDelete')

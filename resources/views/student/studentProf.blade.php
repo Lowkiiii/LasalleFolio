@@ -51,7 +51,7 @@
                       
                         <div class="ml-1">
                             <div class="items-start text-start flex flex-row">
-                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#EBC351" height="25" width="25" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#EBC351" height="25" width="25" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="">
                                     <g>
                                         <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
                                         <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
@@ -118,19 +118,19 @@
                         <div class="flex">
                             <div class="flex flex-col items-center mr-32 ">
                                 <div class="font-bold text-xl text-[#006634] ">0</div>
-                                <div class="text-xs font-regular text-center truncate text-[#444444] font-medium">Points
+                                <div class="text-xs font-normal text-center truncate text-[#444444] font-medium">Points
                                     Garnered</div>
                             </div>
 
                             <div class="flex flex-col items-center mx-32 text-[#006634] ">
                                 <div class="font-bold text-xl">0</div>
-                                <div class="text-xs font-regular text-center truncate text-[#444444] font-medium">
+                                <div class="text-xs font-normal text-center truncate text-[#444444] font-medium">
                                     Students Connected</div>
                             </div>
 
                             <div class="flex flex-col items-center ml-32 text-[#006634] ">
                                 <div class="font-bold text-xl">0</div>
-                                <div class="text-xs font-regular text-center truncate text-[#444444] font-medium">
+                                <div class="text-xs font-normal text-center truncate text-[#444444] font-medium">
                                     Projects Posted</div>
                             </div>
                         </div>
@@ -363,16 +363,16 @@
                                                             </div>
 
                                                             {{-- Description --}}
-                                                            <div class="font-regular text-sm">{{ $project->description }}
+                                                            <div class="font-normal text-sm">{{ $project->description }}
                                                             </div>
 
                                                             {{-- Date --}}
                                                             <div class="flex flex-row">
-                                                                <p class="flex text-xs font-regular opacity-70 pr-1">Start
+                                                                <p class="flex text-xs font-normal opacity-70 pr-1">Start
                                                                     Date:
                                                                     {{ \Carbon\Carbon::parse($project->date_started)->format('d/m/Y') }}
                                                                     |</p>
-                                                                <p class="flex text-xs font-regular opacity-70">End Date:
+                                                                <p class="flex text-xs font-normal opacity-70">End Date:
                                                                     {{ $project->date_ended ? \Carbon\Carbon::parse($project->date_ended)->format('d/m/Y') : 'Not set' }}
                                                                 </p>
                                                             </div>
@@ -431,7 +431,7 @@
                                                         {{ $skills->skills }}
 
                                                         {{-- Edit Button --}}
-                                                        <button class=" ml-1" onclick="toggleModal('idSkillsPanel')">
+                                                        <button class=" ml-1" onclick="toggleModal('modal-idSkillsEditPanels')">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" viewBox="0 0 24 24"
                                                                 class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634] ">
@@ -455,15 +455,15 @@
                                                     </div>
 
                                                     {{-- Description --}}
-                                                    <div class="font-regular text-sm">{{ $skills->description }}</div>
+                                                    <div class="font-normal text-sm">{{ $skills->description }}</div>
 
                                                     {{-- Date --}}
                                                     <div class="flex flex-row">
-                                                        <p class=" flex text-xs font-regular opacity-70 pr-1">Start
+                                                        <p class=" flex text-xs font-normal opacity-70 pr-1">Start
                                                             Date:
                                                             {{ \Carbon\Carbon::parse($skills->date_started)->format('d/m/Y') }}
                                                             | </p>
-                                                        <p class=" flex text-xs font-regular opacity-70">End Date:
+                                                        <p class=" flex text-xs font-normal opacity-70">End Date:
                                                             {{ $skills->date_ended ? \Carbon\Carbon::parse($skills->date_ended)->format('d/m/Y') : 'Not set' }}
                                                         </p>
                                                     </div>
@@ -485,7 +485,7 @@
 
                                 <div class="absolute right-0 top-0 z-20">
                                     <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
-                                        onclick="toggleModal('modal-idExpPanel')">
+                                        onclick="toggleModal('modal-idAcademicPanel')">
                                         <!DOCTYPE svg
                                             PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
                                         <svg enable-background="new 0 0 512 512" height="18px" id="Layer_1"
@@ -517,10 +517,11 @@
                                                     <div class="font-bold text-base ">
 
                                                         {{-- Title of Skills --}}
+                                                
                                                         {{ $academics->education_insitution }}
 
                                                         {{-- Edit Button --}}
-                                                        <button class=" ml-1" onclick="toggleModal('idSkillsPanel')">
+                                                        <button class=" ml-1" onclick="toggleModal('modal-idEditAcademicPanel')">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" viewBox="0 0 24 24"
                                                                 class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634] ">
@@ -550,18 +551,23 @@
                                                     </div>
 
                                                     {{-- Description --}}
-                                                    <div class="font-regular text-sm">{{ $academics->course }}</div>
-
+                                                   
+                                                    <div class="flex font-normal text-sm">
+                                                        <h1 class="flex font-bold mr-1">Course: </h1>
+                                                        {{ $academics->course }}</div>
+                                                
                                                     {{-- Major --}}
-                                                    <div class="font-regular text-sm">{{ $academics->major }}</div>
+                                                    <div class="flex font-normal text-sm">
+                                                        <h1 class="flex font-bold mr-1">Major: </h1>
+                                                        {{ $academics->major }}</div>
 
                                                     {{-- Date --}}
                                                     <div class="flex flex-row">
-                                                        <p class=" flex text-xs font-regular opacity-70 pr-1">Start
+                                                        <p class=" flex text-xs font-normal opacity-70 pr-1">Start
                                                             Date:
                                                             {{ \Carbon\Carbon::parse($academics->date_started)->format('d/m/Y') }}
                                                             | </p>
-                                                        <p class=" flex text-xs font-regular opacity-70">End Date:
+                                                        <p class=" flex text-xs font-normal opacity-70">End Date:
                                                             {{ $academics->date_ended ? \Carbon\Carbon::parse($academics->date_ended)->format('d/m/Y') : 'Not set' }}
                                                         </p>
                                                     </div>
@@ -580,7 +586,7 @@
 
                             <!-- Awards and Honors -->
                             <div
-                                class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg  shadow-lg ">
+                            class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg mb-2  shadow-lg ">
 
                                 <div class="absolute right-0 top-0 z-20">
                                     <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
@@ -616,11 +622,11 @@
                                                     <div class="font-bold text-base ">
 
                                                         {{-- Title of Honors And Awards --}}
-                                                        {{ $honorsandawards->honorsandawards }}
+                                                        {{ $honorsandawards->title }}
 
                                                         {{-- Edit Button --}}
                                                         <button class=" ml-1"
-                                                            onclick="toggleModal('modal-idAwardsHonorsPanel')">
+                                                            onclick="toggleModal('modal-idEditAwardsHonorsPanel')">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" viewBox="0 0 24 24"
                                                                 class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634] ">
@@ -643,16 +649,21 @@
 
                                                     </div>
 
+                                                    <div class="flex font-normal">
+
+                                                    </div>
                                                     {{-- Issuer --}}
-                                                    <div class="font-regular text-sm">{{ $honorsandawards->issuer }}</div>
+                                                    <div class="flex font-normal text-sm">
+                                                        <h1 class="flex font-bold mr-1">Issuer: </h1>{{ $honorsandawards->issuer }}</div>
 
                                                     {{-- Description --}}
-                                                    <div class="font-regular text-sm">{{ $honorsandawards->description }}
+                                                    <div class="font-normal text-sm">
+                                                        {{ $honorsandawards->description }}
                                                     </div>
 
                                                     {{-- Date --}}
                                                     <div class="flex flex-row">
-                                                        <p class=" flex text-xs font-regular opacity-70 pr-1">Start
+                                                        <p class=" flex text-xs font-normal opacity-70 pr-1">Start
                                                             Date:
                                                             {{ \Carbon\Carbon::parse($honorsandawards->date_issue)->format('d/m/Y') }}
                                                         </p>
