@@ -163,11 +163,7 @@
                             </div>
                         </div>
 
-                        <button id="menuButton">
-                            <label for="file_input" class="cursor-pointer  w-full shadow-md rounded-full">
-                                <img src="image/dog.jpg" alt="Profile" class="rounded-full object-cover w-9 h-9">
-                            </label>
-                        </button>
+                 
                     </div>
 
                     <div class="flex justify-center">
@@ -183,10 +179,6 @@
                             <div class="text-xs flex relative font-normal ">Home</div>
                         </button>
                     </div>
-
-                    
-               
-
 
 
                     <div class="relative flex">
@@ -204,10 +196,10 @@
                     </button>
 
                     <div id="menu"
-                        class="absolute hidden bg-white space-x-3 p-1 border border-[#D4D4D4] rounded-lg shadow-lg w-55  transform translate-y-full  bottom-[-.5rem] left-1/2 -translate-x-1/2 z-30">
+                        class="absolute hidden  bg-white space-x-3 p-1 border border-[#D4D4D4] rounded-lg shadow-lg w-55  transform translate-y-full  bottom-[-.5rem] left-1/2 -translate-x-1/2 z-30">
 
                         <div
-                            class="flex flex-row justify-center items-center py-1 px-3 text-blackQ hover:text-[#0066FF]">
+                            class="flex flex-row justify-center items-center py-1 px-3 text-blackQ hover:text-[#0066FF]" id="">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                                 class="fill-current" height="15" width="15" version="1.1" id="Capa_1"
                                 viewBox="0 0 384.971 384.971" xml:space="preserve">

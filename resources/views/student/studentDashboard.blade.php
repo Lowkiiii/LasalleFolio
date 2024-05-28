@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-    @include('modal/Interest') 
+    {{-- @include('modal/Interest')  --}}
 
     <section class="h-screen bg-[#F8F8F8]">
         <div class="flex row min-h-full justify-center relative">
