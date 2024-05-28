@@ -7,7 +7,7 @@
                 @csrf
                 <!--header-->
                 <div class="flex items-start w-full justify-between pt-4 rounded-t">
-                    <h3 class="text-md text-black font-bold "> Post An Image</h3>
+                    <h3 class="text-md text-black font-bold "> Post a Content</h3>
                 </div>
                 <!--body-->
                 <div class="relative pb-1 flex-auto">
