@@ -41,8 +41,8 @@ class UserHonorsAndAwardsController extends Controller
 
     public function index()
     {
-        $userHonorsAndAwards = Auth::user()->userHonorsAndAwards;
-        return view('student.studentProf', compact('userHonorsAndAwards'));
+        $userHonorsAndAward = Auth::user()->userHonorsAndAward;
+        return view('student.studentProf', compact('userHonorsAndAward'));
     }
 
     public function update(Request $request, $id)

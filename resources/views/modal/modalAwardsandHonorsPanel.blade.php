@@ -37,21 +37,15 @@
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                     </p>
-                    @if($honorsandawards->date_issue)
-    <?php 
-    try {
-        $dateIssue = new DateTime($honorsandawards->date_issue);
-    } catch (Exception $e) {
-        $dateIssue = null;
-        echo "Error: " . $e->getMessage(); // Output any parsing errors
-    }
-    ?>
-@else
-    <?php $dateIssue = null; ?>
-@endif
-
-<input type="date" class="text-black font-normal text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_issue') border-2 border-red-500 @enderror" id="" name="date_issue" placeholder="Start Date" value="{{ old('date_issue', $dateIssue ? $dateIssue->format('Y-m-d') : '') }}" />
-
+                    <p class="mx-2 leading-relaxed">
+                    <div class="text-sm text-black font-semibold pb-2 pt-5">Date Issued</div>
+                    <input type="date"
+                    class="text-black font-normal text-xs rounded-xl  peer block min-h-[auto] w-full bg-gray-100  px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_issue') border-2 border-red-500 @enderror"
+                        id="" name="date_issue" placeholder="Start Date" />
+                    @error('date_issue')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                    </p>
                    <script>
            
                    </script>
