@@ -316,7 +316,7 @@
                                                 <div class="text-black">Project</div>
                                             </div>
 
-                                            @forelse ($userProjects as $project)
+                                            @forelse ($userProjects as $projects)
                                                 <div class="flex flex-col">
                                                     <div class="flex items-center pb-1">
                                                         <div class="w-12 h-12 bg-gray-300">
@@ -326,24 +326,76 @@
                                                         <div class="ml-3 py-2 text-xs font-medium text-black w-5/6">
                                                             <div class="font-bold text-base">
                                                                 {{-- Title of Panel --}}
-                                                                {{ $project->project }}
+                                                                {{ $projects->projects }}
 
-                                                                {{-- Edit Button --}}
-                                                                <button class="ml-1"
-                                                                    onclick="toggleModal('modal-idEditPanels', '{{ $project->id }}')">
+                                                                <!-- Edit Modal -->
+                                                    <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center animate-blink" id="modal-idEditPanels-{{ $projects->id }}">
+                                                        <div class="relative w-1/2 px-4 my-auto mx-auto max-w-xl">
+                                                            <div class="border border-[#D9D9D9] rounded-lg shadow-lg relative flex flex-col px-4 w-full bg-[#F8F8F8] outline-none focus:outline-none">
+                                                                <form action="{{ route('projects.update', $projects->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <!--header-->
+                                                                    <div class="flex items-start w-full justify-between pt-4 rounded-t">
+                                                                        <h3 class="text-base text-black font-bold "> Edit Project </h3>
+                                                                    </div>
+                                                                    <!--body-->
+                                                                    <div class="relative flex-auto">
+                                                                        <p class=" mx-2 leading-relaxed">
+                                                                            <div class="text-sm font-bold text-black pb-2 pt-5">Edit Project</div>
+                                                                            <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('project') border-2 border-red-500 @enderror" name="project" placeholder="Enter insitution" value="{{ $projects->project }}" />
+                                                                            @error('project') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                        </p>
+                                                                        <p class=" mx-2 leading-relaxed">
+                                                                            <div class="text-sm font-bold text-black pb-2 pt-5">Edit Course</div>
+                                                                            <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('description') border-2 border-red-500 @enderror" name="description" placeholder="Enter course" value="{{ $projects->description }}" />
+                                                                            @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                        </p>
 
+                                                                        <div class="flex flex-row justify-start items-start rounded-xl mt-4 py-2">
+                                                                            <div class="text-xs flex-col flex font-semibold items-start justify-start truncate text-black px-1 w-full mt-auto mb-2">
+                                                                                Start
+                                                                                <input type="date" class="text-black font-normal text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_started') border-2 border-red-500 @enderror" id="" name="date_started" placeholder="Start Date" value="{{ old('date_started', $projects->date_started ? $projects->date_started->format('Y-m-d') : '') }}" />
+                                                                                @error('date_started') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                            </div>
+
+                                                                            <div class="flex items-center justify-normal mb-auto ml-2 mr-2 mt-auto">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-7">
+                                                                                    <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                                                                </svg>
+                                                                            </div>
+
+                                                                            <div class="text-xs truncate flex flex-col text-black font-semibold px-1 w-full mt-auto mb-2">
+                                                                                End
+                                                                                <input type="date" class="text-black font-normal text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_ended') border-2 border-red-500 @enderror" id="" name="date_ended" placeholder="End Date" value="{{ old('date_ended', $projects->date_ended ? $projects->date_ended->format('Y-m-d') : '') }}" />
+                                                                                @error('date_ended') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--footer-->
+                                                                    <div class="flex items-center justify-end p-4">
+                                                                        <button class="text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('modal-idEditPanels-{{ $projects->id }}')"> Close </button>
+                                                                        <button class="bg-[#006634] text-white font-semibold uppercase text-xs px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit"> Save </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                            <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-idEditPanels-{{ $projects->id }}-backdrop"></div>
+
+                                                                <button class="ml-1" onclick="toggleModal('modal-idEditPanels-{{ $projects->id }}')">
                                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                         height="14" viewBox="0 0 24 24"
                                                                         class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634]">
                                                                         <path
                                                                             d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
                                                                     </svg>
-
                                                                 </button>
 
                                                                 {{-- Delete Button --}}
                                                                 <form
-                                                                    action="{{ route('projects.destroy', $project->id) }}"
+                                                                    action="{{ route('projects.destroy', $projects->id) }}"
                                                                     method="POST"
                                                                     onsubmit="return confirm('Are you sure you want to delete this project?')"
                                                                     class="inline-block">
@@ -363,17 +415,21 @@
                                                             </div>
 
                                                             {{-- Description --}}
-                                                            <div class="font-normal text-sm">{{ $project->description }}
+                                                            <div class="font-normal text-sm">{{ $projects->project }}
+                                                            </div>
+
+                                                            {{-- Description --}}
+                                                            <div class="font-normal text-sm">{{ $projects->description }}
                                                             </div>
 
                                                             {{-- Date --}}
                                                             <div class="flex flex-row">
                                                                 <p class="flex text-xs font-normal opacity-70 pr-1">Start
                                                                     Date:
-                                                                    {{ \Carbon\Carbon::parse($project->date_started)->format('d/m/Y') }}
+                                                                    {{ \Carbon\Carbon::parse($projects->date_started)->format('d/m/Y') }}
                                                                     |</p>
                                                                 <p class="flex text-xs font-normal opacity-70">End Date:
-                                                                    {{ $project->date_ended ? \Carbon\Carbon::parse($project->date_ended)->format('d/m/Y') : 'Not set' }}
+                                                                    {{ $projects->date_ended ? \Carbon\Carbon::parse($projects->date_ended)->format('d/m/Y') : 'Not set' }}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -391,8 +447,8 @@
 
                             <!-- skills -->
 
-                            <div
-                                class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg  shadow-lg ">
+                        <div 
+                            class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg  shadow-lg ">
 
                                 <div class="absolute right-0 top-0 z-20">
                                     <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
@@ -429,9 +485,42 @@
 
                                                         {{-- Title of Skills --}}
                                                         {{ $skills->skills }}
+                                                    <!-- Edit Modal -->
+                                                    <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center animate-blink" id="modal-idSkillsEditPanel-{{ $skills->id }}">
+                                                        <div class="relative w-1/2 px-4 my-auto mx-auto max-w-xl">
+                                                            <div class="border border-[#D9D9D9] rounded-lg shadow-lg relative flex flex-col px-4 w-full bg-[#F8F8F8] outline-none focus:outline-none">
+                                                                <form action="{{ route('skills.update', $skills->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <!--header-->
+                                                                    <div class="flex items-start w-full justify-between pt-4 rounded-t">
+                                                                        <h3 class="text-base text-black font-bold "> Edit Skill </h3>
+                                                                    </div>
+                                                                    <!--body-->
+                                                                    <div class="relative flex-auto">
+                                                                        <p class=" mx-2 leading-relaxed">
+                                                                            <div class="text-sm font-bold text-black pb-2 pt-5">Edit Title</div>
+                                                                            <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('skills') border-2 border-red-500 @enderror" name="skills" placeholder="Enter title" value="{{ $skills->skills }}" />
+                                                                            @error('skills') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                        </p>
+                                                                        <p class=" mx-2 leading-relaxed">
+                                                                            <div class="text-sm font-bold text-black pb-2 pt-5">Content</div>
+                                                                            <textarea class="appearance-none resize-none bg-gray-100 text-sm font-normal outline-none rounded-xl overflow-hidden px-3 py-2 leading-[2.15] w-full h-[10rem] @error('description') border-2 border-red-500 @enderror" name="description" placeholder="Enter content">{{ $skills->description }}</textarea>
+                                                                            @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                        </p>
+                                                                    </div>
+                                                                    <!--footer-->
+                                                                    <div class="flex items-center justify-end p-4">
+                                                                        <button class="text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('modal-idSkillsEditPanel-{{ $skills->id }}')"> Close </button>
+                                                                        <button class="bg-[#006634] text-white font-semibold uppercase text-xs px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit"> Save </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-idSkillsEditPanel-{{ $skills->id }}-backdrop"></div>
 
-                                                        {{-- Edit Button --}}
-                                                        <button class=" ml-1" onclick="toggleModal('modal-idSkillsEditPanels')">
+                                                        <button class="ml-1" onclick="toggleModal('modal-idSkillsEditPanel-{{ $skills->id }}')">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" viewBox="0 0 24 24"
                                                                 class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634] ">
@@ -442,31 +531,30 @@
 
 
                                                         {{-- Delete Button --}}
-                                                        <button class="">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                                width="14" height="14" viewBox="0 0 30 30"
-                                                                class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634] ">
-                                                                <path
-                                                                    d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
-                                                                </path>
-                                                            </svg>
-                                                        </button>
+                                                                <form
+                                                                    action="{{ route('skills.destroy', $skills->id) }}"
+                                                                    method="POST"
+                                                                    onsubmit="return confirm('Are you sure you want to delete this skill?')"
+                                                                    class="inline-block">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="ml-1">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px"
+                                                                            y="0px" width="14" height="14"
+                                                                            viewBox="0 0 30 30"
+                                                                            class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634]">
+                                                                            <path
+                                                                                d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
+                                                                            </path>
+                                                                        </svg>
+                                                                    </button>
+                                                                </form>
 
                                                     </div>
 
                                                     {{-- Description --}}
                                                     <div class="font-normal text-sm">{{ $skills->description }}</div>
 
-                                                    {{-- Date --}}
-                                                    <div class="flex flex-row">
-                                                        <p class=" flex text-xs font-normal opacity-70 pr-1">Start
-                                                            Date:
-                                                            {{ \Carbon\Carbon::parse($skills->date_started)->format('d/m/Y') }}
-                                                            | </p>
-                                                        <p class=" flex text-xs font-normal opacity-70">End Date:
-                                                            {{ $skills->date_ended ? \Carbon\Carbon::parse($skills->date_ended)->format('d/m/Y') : 'Not set' }}
-                                                        </p>
-                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -477,9 +565,10 @@
                             </div>
 
                         </div>
-
+                                <!-- Academics -->
+                                
                         <div class="flex flex-col w-full ">
-                            <!-- Academics -->
+                            
                             <div
                                 class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg mb-2  shadow-lg ">
 
@@ -516,12 +605,69 @@
 
                                                     <div class="font-bold text-base ">
 
-                                                        {{-- Title of Skills --}}
-                                                
-                                                        {{ $academics->education_insitution }}
+                                                        {{-- Title of Academics --}}
+                                                        {{ $academics->academics }}
+                                                    <!-- Edit Modal -->
+                                                    <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center animate-blink" id="modal-idEditAcademicPanel-{{ $academics->id }}">
+                                                        <div class="relative w-1/2 px-4 my-auto mx-auto max-w-xl">
+                                                            <div class="border border-[#D9D9D9] rounded-lg shadow-lg relative flex flex-col px-4 w-full bg-[#F8F8F8] outline-none focus:outline-none">
+                                                                <form action="{{ route('academics.update', $academics->id) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('PUT')
+                                                                    <!--header-->
+                                                                    <div class="flex items-start w-full justify-between pt-4 rounded-t">
+                                                                        <h3 class="text-base text-black font-bold "> Edit Academics </h3>
+                                                                    </div>
+                                                                    <!--body-->
+                                                                    <div class="relative flex-auto">
+                                                                        <p class=" mx-2 leading-relaxed">
+                                                                            <div class="text-sm font-bold text-black pb-2 pt-5">Edit Institution</div>
+                                                                            <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('education_insitution') border-2 border-red-500 @enderror" name="education_insitution" placeholder="Enter insitution" value="{{ $academics->education_insitution }}" />
+                                                                            @error('education_insitution') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                        </p>
+                                                                        <p class=" mx-2 leading-relaxed">
+                                                                            <div class="text-sm font-bold text-black pb-2 pt-5">Edit Course</div>
+                                                                            <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('course') border-2 border-red-500 @enderror" name="course" placeholder="Enter course" value="{{ $academics->course }}" />
+                                                                            @error('course') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                        </p>
+                                                                        <p class=" mx-2 leading-relaxed">
+                                                                            <div class="text-sm font-bold text-black pb-2 pt-5">Edit Major</div>
+                                                                            <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('major') border-2 border-red-500 @enderror" name="major" placeholder="Enter major" value="{{ $academics->major }}" />
+                                                                            @error('major') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                        </p>
 
-                                                        {{-- Edit Button --}}
-                                                        <button class=" ml-1" onclick="toggleModal('modal-idEditAcademicPanel')">
+                                                                        <div class="flex flex-row justify-start items-start rounded-xl mt-4 py-2">
+                                                                            <div class="text-xs flex-col flex font-semibold items-start justify-start truncate text-black px-1 w-full mt-auto mb-2">
+                                                                                Start
+                                                                                <input type="date" class="text-black font-normal text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_started') border-2 border-red-500 @enderror" id="" name="date_started" placeholder="Start Date" value="{{ old('date_started', $academics->date_started ? $academics->date_started->format('Y-m-d') : '') }}" />
+                                                                                @error('date_started') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                            </div>
+
+                                                                            <div class="flex items-center justify-normal mb-auto ml-2 mr-2 mt-auto">
+                                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-7">
+                                                                                    <path fill-rule="evenodd" d="M16.72 7.72a.75.75 0 0 1 1.06 0l3.75 3.75a.75.75 0 0 1 0 1.06l-3.75 3.75a.75.75 0 1 1-1.06-1.06l2.47-2.47H3a.75.75 0 0 1 0-1.5h16.19l-2.47-2.47a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                                                                                </svg>
+                                                                            </div>
+
+                                                                            <div class="text-xs truncate flex flex-col text-black font-semibold px-1 w-full mt-auto mb-2">
+                                                                                End
+                                                                                <input type="date" class="text-black font-normal text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_ended') border-2 border-red-500 @enderror" id="" name="date_ended" placeholder="End Date" value="{{ old('date_ended', $academics->date_ended ? $academics->date_ended->format('Y-m-d') : '') }}" />
+                                                                                @error('date_ended') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <!--footer-->
+                                                                    <div class="flex items-center justify-end p-4">
+                                                                        <button class="text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('modal-idEditAcademicPanel-{{ $academics->id }}')"> Close </button>
+                                                                        <button class="bg-[#006634] text-white font-semibold uppercase text-xs px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit"> Save </button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-idEditAcademicPanel-{{ $academics->id }}-backdrop"></div>
+
+                                                        <button class="ml-1" onclick="toggleModal('modal-idEditAcademicPanel-{{ $academics->id }}')">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" viewBox="0 0 24 24"
                                                                 class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634] ">
@@ -531,27 +677,33 @@
                                                         </button>
 
 
-                                                        <form action="{{ route('projects.destroy', $project->id) }}"
-                                                            method="POST"
-                                                            onsubmit="return confirm('Are you sure you want to delete this project?')"
-                                                            class="inline-block">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="ml-1">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                                    width="14" height="14" viewBox="0 0 30 30"
-                                                                    class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634]">
-                                                                    <path
-                                                                        d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
-                                                                    </path>
-                                                                </svg>
-                                                            </button>
-                                                        </form>
+                                                        {{-- Delete Button --}}
+                                                                <form
+                                                                    action="{{ route('academics.destroy', $academics->id) }}"
+                                                                    method="POST"
+                                                                    onsubmit="return confirm('Are you sure you want to delete this academic?')"
+                                                                    class="inline-block">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="ml-1">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px"
+                                                                            y="0px" width="14" height="14"
+                                                                            viewBox="0 0 30 30"
+                                                                            class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634]">
+                                                                            <path
+                                                                                d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
+                                                                            </path>
+                                                                        </svg>
+                                                                    </button>
+                                                                </form>
 
                                                     </div>
 
                                                     {{-- Description --}}
-                                                   
+                                                    <div class="flex font-normal text-sm">
+                                                        <h1 class="flex font-bold mr-1">Course: </h1>
+                                                        {{ $academics->education_insitution }}</div>
+
                                                     <div class="flex font-normal text-sm">
                                                         <h1 class="flex font-bold mr-1">Course: </h1>
                                                         {{ $academics->course }}</div>
@@ -611,22 +763,67 @@
                                     </div>
 
                                     @forelse ($userHonorsAndAwards as $honorsandawards)
-                                        <div class="flex flex-col">
-                                            <div class="flex items-center pb-1">
-                                                <div class="w-12 h-12 bg-gray-300">
-                                                    <!-- LOGO HERE -->
-                                                </div>
+                                                <div class="flex flex-col">
+                                                    <div class="flex items-center pb-1">
+                                                        <div class="w-12 h-12 bg-gray-300">
+                                                            <!-- LOGO HERE -->
+                                                        </div>
 
-                                                <div class="ml-3 py-2 text-xs font-medium text-black  w-5/6">
+                                                        <div class="ml-3 py-2 text-xs font-medium text-black w-5/6">
+                                                            <div class="font-bold text-base">
+                                                                {{-- Title of honorsandawards --}}
+                                                                {{ $honorsandawards->honorsandawards }}
 
-                                                    <div class="font-bold text-base ">
+                                                                <!-- Edit Modal -->
+                                                                <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center animate-blink" id="modal-idEditAwardsHonorsPanel-{{ $honorsandawards->id }}">
+                                                                    <div class="relative w-1/2 px-4 my-auto mx-auto max-w-xl">
+                                                                        <div class="border border-[#D9D9D9] rounded-lg shadow-lg relative flex flex-col px-4 w-full bg-[#F8F8F8] outline-none focus:outline-none">
+                                                                            <form action="{{ route('honorsandawards.update', $honorsandawards->id) }}" method="POST">
+                                                                                @csrf
+                                                                                @method('PUT')
+                                                                                <!--header-->
+                                                                                <div class="flex items-start w-full justify-between pt-4 rounded-t">
+                                                                                    <h3 class="text-base text-black font-bold "> Edit honorsandawards </h3>
+                                                                                </div>
+                                                                                <!--body-->
+                                                                                <div class="relative flex-auto">
+                                                                                    <p class=" mx-2 leading-relaxed">
+                                                                                        <div class="text-sm font-bold text-black pb-2 pt-5">Edit title</div>
+                                                                                        <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('title') border-2 border-red-500 @enderror" name="title" placeholder="Enter insitution" value="{{ $honorsandawards->title }}" />
+                                                                                        @error('title') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                                    </p>
+                                                                                    <p class=" mx-2 leading-relaxed">
+                                                                                        <div class="text-sm font-bold text-black pb-2 pt-5">Edit title</div>
+                                                                                        <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('issuer') border-2 border-red-500 @enderror" name="issuer" placeholder="Enter insitution" value="{{ $honorsandawards->issuer }}" />
+                                                                                        @error('issuer') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                                    </p>
+                                                                                    <p class=" mx-2 leading-relaxed">
+                                                                                        <div class="text-sm font-bold text-black pb-2 pt-5">Edit description</div>
+                                                                                        <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('description') border-2 border-red-500 @enderror" name="description" placeholder="Enter course" value="{{ $honorsandawards->description }}" />
+                                                                                        @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                                    </p>
 
-                                                        {{-- Title of Honors And Awards --}}
-                                                        {{ $honorsandawards->title }}
+                                                                                    <div class="flex flex-row justify-start items-start rounded-xl mt-4 py-2">
+                                                                                        <div class="text-xs flex-col flex font-semibold items-start justify-start truncate text-black px-1 w-full mt-auto mb-2">
+                                                                                            Start
+                                                                                            <input type="date" class="text-black font-normal text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_issue') border-2 border-red-500 @enderror" id="" name="date_issue" placeholder="Start Date" value="{{ old('date_issue', $honorsandawards->date_issue ? $honorsandawards->date_issue->format('Y-m-d') : '') }}" />
+                                                                                            @error('date_issue') <span class="text-red-500">{{ $message }}</span> @enderror
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!--footer-->
+                                                                                <div class="flex items-center justify-end p-4">
+                                                                                    <button class="text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('modal-idEditAwardsHonorsPanel-{{ $honorsandawards->id }}')"> Close </button>
+                                                                                    <button class="bg-[#006634] text-white font-semibold uppercase text-xs px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit"> Save </button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
-                                                        {{-- Edit Button --}}
-                                                        <button class=" ml-1"
-                                                            onclick="toggleModal('modal-idEditAwardsHonorsPanel')">
+                                                    <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-idEditAwardsHonorsPanel-{{ $honorsandawards->id }}-backdrop"></div>
+
+                                                        <button class="ml-1" onclick="toggleModal('modal-idEditAwardsHonorsPanel-{{ $honorsandawards->id }}')">
                                                             <svg xmlns="http://www.w3.org/2000/svg" width="14"
                                                                 height="14" viewBox="0 0 24 24"
                                                                 class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634] ">
@@ -637,21 +834,34 @@
 
 
                                                         {{-- Delete Button --}}
-                                                        <button class="">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                                width="14" height="14" viewBox="0 0 30 30"
-                                                                class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634] ">
-                                                                <path
-                                                                    d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
-                                                                </path>
-                                                            </svg>
-                                                        </button>
+                                                            <form
+                                                                    action="{{ route('honorsandawards.destroy', $honorsandawards->id) }}"
+                                                                    method="POST"
+                                                                    onsubmit="return confirm('Are you sure you want to delete this honor and award?')"
+                                                                    class="inline-block">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <button type="submit" class="ml-1">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px"
+                                                                            y="0px" width="14" height="14"
+                                                                            viewBox="0 0 30 30"
+                                                                            class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634]">
+                                                                            <path
+                                                                                d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
+                                                                            </path>
+                                                                        </svg>
+                                                                    </button>
+                                                                </form>
 
                                                     </div>
 
                                                     <div class="flex font-normal">
 
                                                     </div>
+
+                                                    {{-- Title --}}
+                                                    <div class="flex font-normal text-sm">
+                                                        <h1 class="flex font-bold mr-1">Title: </h1>{{ $honorsandawards->title }}</div>
                                                     {{-- Issuer --}}
                                                     <div class="flex font-normal text-sm">
                                                         <h1 class="flex font-bold mr-1">Issuer: </h1>{{ $honorsandawards->issuer }}</div>
@@ -663,8 +873,8 @@
 
                                                     {{-- Date --}}
                                                     <div class="flex flex-row">
-                                                        <p class=" flex text-xs font-normal opacity-70 pr-1">Start
-                                                            Date:
+                                                        <p class=" flex text-xs font-normal opacity-70 pr-1">Date
+                                                            Issued:
                                                             {{ \Carbon\Carbon::parse($honorsandawards->date_issue)->format('d/m/Y') }}
                                                         </p>
                                                     </div>

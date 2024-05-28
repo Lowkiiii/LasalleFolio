@@ -44,5 +44,51 @@ class UserHonorsAndAwardsController extends Controller
         $userHonorsAndAwards = Auth::user()->userHonorsAndAwards;
         return view('student.studentProf', compact('userHonorsAndAwards'));
     }
+
+    public function update(Request $request, $id)
+    {
+        try {
+            $validatedData = $request->validate([
+                'title' => 'required|string',
+                'issuer' => 'required|string',
+                'description' => 'required|string',
+                'date_issue' => 'required|date',
+            ]);
+            
+            $userHonorsAndAwards = UserHonorsAndAwards::findOrFail($id);
+
+            if ($userHonorsAndAwards->user_id !== Auth::id()) {
+                return redirect()->back()->with('error', 'You are not authorized to update this awards.');
+            }
+
+            $userHonorsAndAwards->title = $validatedData['title'];
+            $userHonorsAndAwards->issuer = $validatedData['issuer'];
+            $userHonorsAndAwards->description = $validatedData['description'];
+            $userHonorsAndAwards->date_issue = $validatedData['date_issue'];
+            $userHonorsAndAwards->save();
+
+            return redirect()->route('studentProf')->with('flash_message', 'Awards updated successfully!');
+        } catch (\Exception $e) {
+            Log::error('Error updating awards: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the awards.']);
+        }
+    }
+    public function destroy($id)
+    {
+        try {
+            $userHonorsAndAwards = UserHonorsAndAwards::findOrFail($id);
+
+            if ($userHonorsAndAwards->user_id !== Auth::id()) {
+                return redirect()->back()->with('error', 'You are not authorized to delete this userHonorsAndAwards.');
+            }
+
+            $userHonorsAndAwards->delete();
+            return redirect()->route('studentProf')->with('flash_message', 'userHonorsAndAwards deleted successfully!');
+        } catch (\Exception $e) {
+            Log::error('Error deleting userHonorsAndAwards: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'An error occurred while deleting the userHonorsAndAwards.']);
+        }
+    }
+    
         
 }

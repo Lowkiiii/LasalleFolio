@@ -32,5 +32,8 @@ class UserHonorsAndAwards extends Model
         'title', 'issuer', 'date_issue' , 'description' , 'user_id'
     ];
 
+    protected $casts = [
+        'date_issue' => 'datetime',
+    ];
 
 }

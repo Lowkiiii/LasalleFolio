@@ -48,28 +48,34 @@ Route::middleware('auth')->group(function () {
     // Projects routes
     Route::post('/projects', [UserProjectController::class, 'store'])->name('projects.store');
     Route::get('/projects', [UserProjectController::class, 'index'])->name('projects.index');
-    Route::put('/projects/{id}', [UserProjectController::class, 'update'])->name('projects.update');
+    // Route::put('/projects/{id}', [UserProjectController::class, 'update'])->name('projects.update');
+    Route::put('/projects/{projects}', [UserProjectController::class, 'update'])->name('projects.update');
     Route::delete('/projects/{id}', [UserProjectController::class, 'destroy'])->name('projects.destroy');
-    // Route::get('/projects/{id}/modal', [UserProjectController::class, 'showModal'])->name('projects.show.modal');
-    Route::get('/projects/{id}/edit', [UserProjectController::class, 'edit'])->name('projects.edit');
+   
 });
 
 Route::middleware('auth')->group(function () {
     // Skills routes
     Route::post('/skills', [UserSkillsController::class, 'store'])->name('skills.store');
     Route::get('/skills', [UserSkillsController::class, 'index'])->name('skills.index');
+    Route::put('/skills/{skill}', [UserSkillsController::class, 'update'])->name('skills.update');
+    Route::delete('/skills/{id}', [UserSkillsController::class, 'destroy'])->name('skills.destroy');
 });
 
 Route::middleware('auth')->group(function () {
     // Academics routes
     Route::post('/academics', [UserAcademicsController::class, 'store'])->name('academics.store');
     Route::get('/academics', [UserAcademicsController::class, 'index'])->name('academics.index');
+    Route::put('/academics/{academics}', [UserAcademicsController::class, 'update'])->name('academics.update');
+    Route::delete('/academics/{id}', [UserAcademicsController::class, 'destroy'])->name('academics.destroy');
 });
 
 Route::middleware('auth')->group(function () {
     // Honors and Awards routes
     Route::post('/honorsandawards', [UserHonorsAndAwardsController::class, 'store'])->name('honorsandawards.store');
     Route::get('/honorsandawards', [UserHonorsAndAwardsController::class, 'index'])->name('honorsandawards.index');
+    Route::put('/honorsandawards/{honorsandawards}', [UserHonorsAndAwardsController::class, 'update'])->name('honorsandawards.update');
+    Route::delete('/honorsandawards/{id}', [UserHonorsAndAwardsController::class, 'destroy'])->name('honorsandawards.destroy');
 });
 
 
