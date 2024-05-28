@@ -31,7 +31,7 @@
                     <div class="flex flex-row justify-start items-start rounded-xl mt-4 py-2">
                         <div class="text-xs flex-col flex font-semibold items-start justify-start truncate text-black px-1 w-full mt-auto mb-2">
                             Start
-                            <input type="date" class="text-black font-normal text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_issue') border-2 border-red-500 @enderror" id="" name="date_issue" placeholder="Start Date" value="{{ old('date_issue', $projects->date_issue ? $projects->date_issue->format('Y-m-d') : '') }}" />
+                            <input type="date" class="text-black font-normal text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_issue') border-2 border-red-500 @enderror" id="" name="date_issue" placeholder="Start Date" value="{{ old('date_issue', $honorsandawards->date_issue ? $honorsandawards->date_issue->format('Y-m-d') : '') }}" />
                             @error('date_issue') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
