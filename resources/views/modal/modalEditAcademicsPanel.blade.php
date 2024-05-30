@@ -56,5 +56,5 @@
         </div>
     </div>
 </div>
-<div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-idEditAcademicPanel-backdrop"></div>
+<div class="hidden opacity-25 bg-black fixed inset-0 z-40 bg-black" id="modal-idEditAcademicPanel-{{ $academics->id }}-backdrop"></div>
 @endforeach
