@@ -519,7 +519,7 @@
 
                                 <div class="absolute right-0 top-0 z-20">
                                     <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
-                                        onclick="toggleModal('modal-idAcademicPanel')">
+                                        onclick="toggleModal('modal-idAcademics')">
                                         <!DOCTYPE svg
                                             PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
                                         <svg enable-background="new 0 0 512 512" height="18px" id="Layer_1"
@@ -552,7 +552,7 @@
 
                                                         {{-- Title of Academics --}}
                                                         {{ $academics->academics }}
-
+                                                    
                                                    
                                                             {{ $academics->education_insitution }}
                                                     <!-- Edit Modal -->
