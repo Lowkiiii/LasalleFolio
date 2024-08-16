@@ -83,9 +83,7 @@ Route::middleware('auth')->group(function () {
     // User's Posts routes
     Route::post('/posts', [UserPostController::class, 'store'])->name('posts.store');
     Route::get('/posts', [UserPostController::class, 'index'])->name('posts.index');
-    //Route::get('/student/dashboard/{userId}', [UserPostController::class, 'index'])->name('student.dashboard');
-    // Route::put('/projects/{id}', [UserProjectController::class, 'update'])->name('projects.update');
-    // Route::delete('/projects/{id}', [UserProjectController::class, 'destroy'])->name('projects.destroy');
-    // Route::get('/projects/{id}/modal', [UserProjectController::class, 'showModal'])->name('projects.show.modal');
+    Route::put('/posts/{posts}', [UserPostController::class, 'update'])->name('posts.update');
+    Route::delete('/posts/{id}', [UserPostController::class, 'destroy'])->name('posts.destroy');
 });
 

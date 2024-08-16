@@ -14,75 +14,74 @@
 
 
             <div class="relative w-full">
-                <form action="" >
-                    <input id="searchBar" type="text"
+                <form action="" method="GET" id="searchForm">
+                    <input id="searchBar" name="query" type="text"
                         class="outline-none text-sm w-1/2 py-2 px-3 pl-10 border border-[#D4D4D4] rounded-2xl"
                         placeholder="Search">
                     <i class="absolute left-3 top-1/2 transform -translate-y-1/2 opacity-60">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20"
                             viewBox="0 0 30 30">
-                            <path
-                                d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
+                            <path d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
                             </path>
                         </svg>
                     </i>
-
-                    <div id="search"
-                        class=" absolute hidden  left-0 transform mt-2 py-2 px-1 w-1/2 items-center justify-center  bg-[#F8F8F8] border border-[#D4D4D4] rounded-lg">
-                        <div class="w-full py-2 px-4 rounded-xl hover:bg-[#efefef] ">
-                            <div class="flex "> <label for="file_input"
-                                    class="cursor-pointer flex  items-center justify-center ">
-                                    <img src="image/kersch.png" alt="Profile"
-                                        class="rounded-full object-cover w-10 h-10">
-                                    <div class="flex  ml-4 text-md font-bold text-black truncate">
-                                        <div>Kerschtine Billones</div>
-                                        <div
-                                            class="text-xs font-semibold flex text-black opacity-45 ml-1 items-center justify-center">
-                                            | BSCS 3A S.Y. 2023-2024
-                                        </div>
-                                    </div>
-
-                                </label>
-                            </div>
-                        </div>
-                        <div class="w-full py-2 px-4 rounded-xl hover:bg-[#efefef] ">
-                            <div class="flex "> <label for="file_input"
-                                    class="cursor-pointer flex  items-center justify-center ">
-                                    <img src="image/estetikLuke.png" alt="Profile"
-                                        class="rounded-full object-cover w-10 h-10">
-                                    <div class="flex  ml-4 text-md font-bold text-black">
-                                        <div>Luke Sellado</div>
-                                        <div
-                                            class="text-xs font-semibold flex text-black opacity-45 ml-1 items-center justify-center">
-                                            | BSCS 3A S.Y. 2023-2024
-                                        </div>
-                                    </div>
-
-                                </label>
-                            </div>
-                        </div>
-                        <div class="w-full py-2 px-4  rounded-xl hover:bg-[#efefef]">
-                            <div class="flex "> <label for="file_input"
-                                    class="cursor-pointer flex  items-center justify-center ">
-                                    <img src="image/Jose.jpg" alt="Profile"
-                                        class="rounded-full object-cover w-10 h-10">
-                                    <div class="flex  ml-4 text-md font-bold text-black">
-                                        <div>Jose Felizario</div>
-                                        <div
-                                            class="text-xs font-semibold flex text-black opacity-45 ml-1 items-center justify-center">
-                                            | BSCS 3A S.Y. 2023-2024
-                                        </div>
-                                    </div>
-
-                                </label>
-                            </div>
-                        </div>
-
-                    </div>
                 </form>
+            
+                <div id="searchResults"
+                    class="absolute hidden left-0 transform mt-2 py-2 px-1 w-1/2 items-center justify-center bg-[#F8F8F8] border border-[#D4D4D4] rounded-lg">
+                    <!-- Initially empty, will be populated by JavaScript -->
+                </div>
             </div>
+            
+            <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const searchBar = document.getElementById('searchBar');
+                const searchResults = document.getElementById('searchResults');
+                const users = @json($authUser); // Pass users data from PHP to JavaScript
+            
+                searchBar.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    const filteredUsers = users.filter(user => 
+                        user.first_name.toLowerCase().includes(searchTerm) || 
+                        user.last_name.toLowerCase().includes(searchTerm)
+                    );
+            
+                    displayResults(filteredUsers);
+                });
+            
+                function displayResults(users) {
+                    searchResults.innerHTML = '';
+                    if (users.length > 0) {
+                        users.forEach(user => {
+                            const userDiv = document.createElement('div');
+                            userDiv.className = 'w-full py-2 px-4 rounded-xl hover:bg-[#efefef]';
+                            userDiv.innerHTML = `
+                                <div class="flex">
+                                    <label class="cursor-pointer flex items-center justify-center">
+                                        <img src="image/kersch.png" alt="Profile" class="rounded-full object-cover w-10 h-10">
+                                        <div class="flex ml-4 text-md font-bold text-black truncate">
+                                            <div>${user.first_name} ${user.last_name}</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            `;
+                            searchResults.appendChild(userDiv);
+                        });
+                        searchResults.classList.remove('hidden');
+                    } else {
+                        searchResults.classList.add('hidden');
+                    }
+                }
+            
+                // Hide results when clicking outside
+                document.addEventListener('click', function(event) {
+                    if (!searchBar.contains(event.target) && !searchResults.contains(event.target)) {
+                        searchResults.classList.add('hidden');
+                    }
+                });
+            });
+            </script>
             <div class="flex">
-
 
                 <div class="flex flex-row">
 

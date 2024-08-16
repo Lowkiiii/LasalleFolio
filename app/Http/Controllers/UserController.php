@@ -28,20 +28,32 @@ class UserController extends Controller
         }
         
     }
-    public function studentProfile()
+    public function studentProfile(Request $request)
     {
+        $query = $request->input('query');
+        
+        $authUser = User::where('first_name', 'LIKE', "%{$query}%")
+                    ->orWhere('last_name', 'LIKE', "%{$query}%")
+                    ->get();
+
         $user = Auth::user();
         $userProjects = $user->userProjects;
         $userSkills = $user->userSkills;
         $userAcademics = $user->userAcademics;
         $userHonorsAndAwards = $user->userHonorsAndAwards;
 
-        return view('student.studentProf', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards'));
+        return view('student.studentProf', compact('authUser','user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards'));
         
     }
 
-    public function studentDashboard()
+    public function studentDashboard(Request $request)
     {
+        $query = $request->input('query');
+        
+        $authUser = User::where('first_name', 'LIKE', "%{$query}%")
+                    ->orWhere('last_name', 'LIKE', "%{$query}%")
+                    ->get();
+
         $user = Auth::user();
         $userProjects = $user->userProjects;
         $userSkills = $user->userSkills;
@@ -49,11 +61,17 @@ class UserController extends Controller
         $userHonorsAndAwards = $user->userHonorsAndAwards;
         $userPosts = $user->userPosts;
 
-        return view('student.studentDashboard', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+        return view('student.studentDashboard', compact('authUser','user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
     }
 
-    public function studentLeaderboard()
+    public function studentLeaderboard(Request $request)
     {
+        $query = $request->input('query');
+        
+        $authUser = User::where('first_name', 'LIKE', "%{$query}%")
+                    ->orWhere('last_name', 'LIKE', "%{$query}%")
+                    ->get();
+
         $user = Auth::user();
         $userProjects = $user->userProjects;
         $userSkills = $user->userSkills;
@@ -61,11 +79,17 @@ class UserController extends Controller
         $userHonorsAndAwards = $user->userHonorsAndAwards;
         $userPosts = $user->userPosts;
 
-        return view('student.studentLeaderboard', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+        return view('student.studentLeaderboard', compact('authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
     }
 
-    public function kerschProf()
+    public function kerschProf(Request $request)
     {
+        $query = $request->input('query');
+        
+        $authUser = User::where('first_name', 'LIKE', "%{$query}%")
+                    ->orWhere('last_name', 'LIKE', "%{$query}%")
+                    ->get();
+
         $user = Auth::user();
         $userProjects = $user->userProjects;
         $userSkills = $user->userSkills;
@@ -73,9 +97,28 @@ class UserController extends Controller
         $userHonorsAndAwards = $user->userHonorsAndAwards;
         $userPosts = $user->userPosts;
 
-        return view('student.kerschProf', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+        return view('student.kerschProf', compact('authUser','user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
     }
 
+    public function searchUser(Request $request)
+    {
+        $query = $request->input('query');
+        
+        $authUser = User::where('first_name', 'LIKE', "%{$query}%")
+                    ->orWhere('last_name', 'LIKE', "%{$query}%")
+                    ->get();
+
+        $user = Auth::user();
+        $userProjects = $authUser->userProjects;
+        $userSkills = $authUser->userSkills;
+        $userAcademics = $authUser->userAcademics;
+        $userHonorsAndAwards = $authUser->userHonorsAndAwards;
+        $userPosts = $authUser->userPosts;
+
+        return view('layouts.header', compact('authUser', 'user', 'authUser', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+    }
+
+   
     public function adminusers(){
         $users = User::all();
 
