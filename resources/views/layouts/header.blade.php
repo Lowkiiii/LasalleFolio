@@ -14,10 +14,12 @@
 
 
             <div class="relative w-full">
-                <form action="" method="GET" id="searchForm">
+                <form onsubmit="return false;" id="searchForm">
                     <input id="searchBar" name="query" type="text"
                         class="outline-none text-sm w-1/2 py-2 px-3 pl-10 border border-[#D4D4D4] rounded-2xl"
                         placeholder="Search">
+                        {{-- Button for search icon --}}
+                    <button id="searchButton" type="button" class=""> 
                     <i class="absolute left-3 top-1/2 transform -translate-y-1/2 opacity-60">
                         <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20"
                             viewBox="0 0 30 30">
@@ -25,6 +27,7 @@
                             </path>
                         </svg>
                     </i>
+                </button>
                 </form>
             
                 <div id="searchResults"
@@ -270,22 +273,42 @@
     });
     
 
-
+    document.addEventListener('DOMContentLoaded', function() {
     const searchBar = document.getElementById('searchBar');
-    const search = document.getElementById('search');
+    const searchResults = document.getElementById('searchResults');
+    const searchForm = document.getElementById('searchForm');
+    const searchButton = document.getElementById('searchButton');
 
-    searchBar.addEventListener('click', function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-        search.classList.toggle('hidden');
-    });
-    document.addEventListener('click', function(event) {
-        if (!search.contains(event.target)) {
-            search.classList.add('hidden');
+    function handleSearch(event) {
+        if (event) {
+            event.preventDefault();
+        }
+        const searchTerm = searchBar.value;
+        console.log('Search term:', searchTerm);
+        return false;
+    }
+
+    searchBar.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            event.preventDefault();
+            handleSearch();
         }
     });
 
+    searchButton.addEventListener('click', handleSearch);
 
+    searchForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        handleSearch();
+        return false;
+    });
+
+    document.addEventListener('click', function(event) {
+        if (!searchBar.contains(event.target) && !searchResults.contains(event.target)) {
+            searchResults.classList.add('hidden');
+        }
+    });
+});
     document.getElementById("viewProfile").addEventListener("click", function() {
         window.location.href = "{{ route('student.studentProf') }}";
     });

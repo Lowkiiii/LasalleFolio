@@ -21,7 +21,7 @@
                     @enderror
                     </p>
                     <p class=" mx-2 leading-relaxed">
-                    <div class="text-sm font-bold text-black pb-2 pt-5">Add Institution</div>
+                    <div class="text-sm font-bold text-black pb-2 pt-5">Add Course</div>
                     <input type="text"
                         class="text-black text-xs rounded-xl  peer block min-h-[auto] w-full bg-gray-100  px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('course') border-2 border-red-500 @enderror"
                         name="course" placeholder="Enter title" value="{{ old('course') }}" />
@@ -30,7 +30,7 @@
                     @enderror
                     </p>
                     <p class=" mx-2 leading-relaxed">
-                    <div class="text-sm font-bold text-black pb-2 pt-5">Add Institution</div>
+                    <div class="text-sm font-bold text-black pb-2 pt-5">Add Major</div>
                     <input type="text"
                         class="text-black text-xs rounded-xl  peer block min-h-[auto] w-full bg-gray-100  px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('major') border-2 border-red-500 @enderror"
                         name="major" placeholder="Enter title" value="{{ old('major') }}" />

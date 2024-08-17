@@ -248,6 +248,8 @@
                                 </div>
                             </div>
 
+                        {{-- Add Button for Projects --}}
+
                             {{-- <div class="flex flex-col w-full">
                                 <div class="relative flex flex-wrap w-full items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg  shadow-lg hover:bg-gray-200 "
                                     onclick="toggleModal('modal-idAddShowcase')">
