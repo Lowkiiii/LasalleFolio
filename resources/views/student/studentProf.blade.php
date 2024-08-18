@@ -297,9 +297,6 @@
 
                         <div class="flex flex-col w-full mr-2">
 
-
-                            <div class="container mx-auto">
-
                                 <div class="container mx-auto">
                                     <div
                                         class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg shadow-lg mb-2">
@@ -397,7 +394,7 @@
                                                 <p>No projects found.</p>
                                             @endforelse
                                         </div>
-                                    </div>
+                                   
                                 </div>
 
                             </div>
