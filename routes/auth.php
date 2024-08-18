@@ -9,6 +9,7 @@ use App\Http\Controllers\UserSkillsController;
 use App\Http\Controllers\UserHonorsAndAwardsController;
 use App\Http\Controllers\UserAcademicsController;
 use App\Http\Controllers\UserPostController;
+use App\Http\Controllers\ProfileController;
 
 //use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -87,3 +88,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/posts/{id}', [UserPostController::class, 'destroy'])->name('posts.destroy');
 });
 
+
+Route::middleware('auth')->group(function () {
+    // search route
+    Route::get('/search-user', [UserController::class, 'searchUser'])->name('search.user');
+
+    //view profile
+    Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+});

@@ -41,8 +41,9 @@ class UserController extends Controller
         $userSkills = $user->userSkills;
         $userAcademics = $user->userAcademics;
         $userHonorsAndAwards = $user->userHonorsAndAwards;
+        $userPosts = $user->userPosts;
 
-        return view('student.studentProf', compact('authUser','user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards'));
+        return view('student.studentProf', compact('authUser','user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
         
     }
 
@@ -103,19 +104,13 @@ class UserController extends Controller
     public function searchUser(Request $request)
     {
         $query = $request->input('query');
-        
-        $authUser = User::where('first_name', 'LIKE', "%{$query}%")
+    
+        $users = User::where('first_name', 'LIKE', "%{$query}%")
                     ->orWhere('last_name', 'LIKE', "%{$query}%")
-                    ->get();
+                    ->limit(5)
+                    ->get(['id', 'first_name', 'last_name']); // Only select the fields you need
 
-        $user = Auth::user();
-        $userProjects = $authUser->userProjects;
-        $userSkills = $authUser->userSkills;
-        $userAcademics = $authUser->userAcademics;
-        $userHonorsAndAwards = $authUser->userHonorsAndAwards;
-        $userPosts = $authUser->userPosts;
-
-        return view('layouts.header', compact('authUser', 'user', 'authUser', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+        return response()->json($users);
     }
 
    

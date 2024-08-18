@@ -40,6 +40,13 @@ class UserPostController extends Controller
         return view('student.studentDashboard', compact('userPosts'));
     }
 
+    public function userProfile()
+    {
+        $user = Auth::user();
+        $userPosts = $user->userPosts;
+        return view('student.studentProf', compact('userPosts'));
+    }
+
     public function update(Request $request, $id)
     {
         try {

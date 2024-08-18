@@ -319,7 +319,7 @@
                             </div>
                         </div>
 
-                        <hr class="my-7 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
+                    <hr class="my-7 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
 
                         @forelse ($userPosts as $post)
                             <div class="w-full mb-4 relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg">

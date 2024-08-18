@@ -37,52 +37,57 @@
             </div>
             
             <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const searchBar = document.getElementById('searchBar');
-                const searchResults = document.getElementById('searchResults');
-                const users = @json($authUser); // Pass users data from PHP to JavaScript
-            
-                searchBar.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase();
-                    const filteredUsers = users.filter(user => 
-                        user.first_name.toLowerCase().includes(searchTerm) || 
-                        user.last_name.toLowerCase().includes(searchTerm)
-                    );
-            
-                    displayResults(filteredUsers);
+                    document.addEventListener('DOMContentLoaded', function() {
+    const searchBar = document.getElementById('searchBar');
+    const searchResults = document.getElementById('searchResults');
+
+    searchBar.addEventListener('input', function() {
+        const searchTerm = this.value;
+        if (searchTerm.length > 0) {
+            fetch(`/search-user?query=${encodeURIComponent(searchTerm)}`)
+                .then(response => response.json())
+                .then(data => {
+                    displayResults(data);
                 });
-            
-                function displayResults(users) {
-                    searchResults.innerHTML = '';
-                    if (users.length > 0) {
-                        users.forEach(user => {
-                            const userDiv = document.createElement('div');
-                            userDiv.className = 'w-full py-2 px-4 rounded-xl hover:bg-[#efefef]';
-                            userDiv.innerHTML = `
-                                <div class="flex">
-                                    <label class="cursor-pointer flex items-center justify-center">
-                                        <img src="image/kersch.png" alt="Profile" class="rounded-full object-cover w-10 h-10">
-                                        <div class="flex ml-4 text-md font-bold text-black truncate">
-                                            <div>${user.first_name} ${user.last_name}</div>
-                                        </div>
-                                    </label>
-                                </div>
-                            `;
-                            searchResults.appendChild(userDiv);
-                        });
-                        searchResults.classList.remove('hidden');
-                    } else {
-                        searchResults.classList.add('hidden');
-                    }
-                }
-            
-                // Hide results when clicking outside
-                document.addEventListener('click', function(event) {
-                    if (!searchBar.contains(event.target) && !searchResults.contains(event.target)) {
-                        searchResults.classList.add('hidden');
-                    }
+        } else {
+            searchResults.classList.add('hidden');
+        }
+    });
+
+    function displayResults(users) {
+        searchResults.innerHTML = '';
+        if (users.length > 0) {
+            users.slice(0, 5).forEach(user => {
+                const userDiv = document.createElement('div');
+                userDiv.className = 'w-full py-2 px-4 rounded-xl hover:bg-[#efefef] cursor-pointer';
+                userDiv.innerHTML = `
+                    <div class="flex">
+                        <a href="/profile/${user.id}" class="flex items-center justify-center w-full">
+                            <img src="image/kersch.png" alt="Profile" class="rounded-full object-cover w-10 h-10">
+                            <div class="flex ml-4 text-md font-bold text-black truncate">
+                                <div>${user.first_name} ${user.last_name}</div>
+                            </div>
+                        </a>
+                    </div>
+                `;
+                userDiv.addEventListener('click', function() {
+                    window.location.href = `/profile/${user.id}`;
                 });
+                searchResults.appendChild(userDiv);
             });
+            searchResults.classList.remove('hidden');
+        } else {
+            searchResults.classList.add('hidden');
+        }
+    }
+
+    // Hide results when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!searchBar.contains(event.target) && !searchResults.contains(event.target)) {
+            searchResults.classList.add('hidden');
+        }
+    });
+});
             </script>
             <div class="flex">
 
@@ -185,7 +190,7 @@
 
                     <div class="relative flex">
                  
-                    <button class="w-10 h-10 rounded-full overflow-hidden " id="menuButton">
+                    <button class="w-10 h-10 rounded-full overflow-hidden" id="menuButton">
                         <div class="relative group">
                             <label for="file_input" class="cursor-pointer">
                                 <img src="image/dog.jpg" alt="Profile"
@@ -247,7 +252,7 @@
 
     document.addEventListener('click', function(event) {
         if (!ReqMenu.contains(event.target)) {
-            ReqMenu.classList.add('hidden ');
+            ReqMenu.classList.add('hidden');
             ReqIcon.classList.remove('ReqIconColor');
         }
     });

@@ -46,7 +46,7 @@
                     <h1
                         class="flex flex-row mx-auto max-y-md max-w-lg  items-center justify-center text-center text-lg pt-2 font-bold text-black">
 
-                        {{ Auth::user()->name }}
+                        {{ $user->first_name }} {{ $user->last_name }}
 
                       
                         <div class="ml-1">
@@ -137,14 +137,7 @@
                     </div>
 
                     <div class="flex flex-col items-center text-xs font-medium text-center justify-center ">
-                        <div class=" mt-4 text-black font-bold text-lg"> About Me <button class="opacity-70"
-                                onclick="toggleModal('modal-idAboutMe')">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
-                                    class="fill-current text-[#6e6e6e] hover:text-[#006634]">
-                                    <path
-                                        d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
-                                </svg>
-                            </button> </div>
+                        <div class=" mt-4 text-black font-bold text-lg"> About Me </div>
                         <div class="flex mt-2 text-sm font-medium text-center justify-center">
                             <div class="w-3/4 text-black">
                                 An aspiring Web Developer currently enrolled in USLS, and completing his Computer Science
@@ -294,24 +287,6 @@
                                 <div class="container mx-auto">
                                     <div
                                         class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg shadow-lg mb-2">
-                                        <div class="absolute right-0 top-0 z-20">
-                                            {{-- Add Project Button --}}
-
-                                            <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
-                                                onclick="toggleModal('modal-idPanels')">
-                                                <!DOCTYPE svg
-                                                    PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-                                                <svg enable-background="new 0 0 512 512" height="18px" id="Layer_1"
-                                                    version="1.1" viewBox="0 0 512 512" width="18px"
-                                                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                    <path
-                                                        d="M256,512C114.625,512,0,397.391,0,256C0,114.609,114.625,0,256,0c141.391,0,256,114.609,256,256  C512,397.391,397.391,512,256,512z M256,64C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192  S362.047,64,256,64z M288,384h-64v-96h-96v-64h96v-96h64v96h96v64h-96V384z" />
-                                                </svg>
-
-
-                                            </button>
-                                        </div>
 
                                         <div class="relative">
                                             <div class="relative text-xl font-bold text-[#006634]">
@@ -329,41 +304,8 @@
                                                             <div class="font-bold text-base">
                                                                 {{-- Title of Panel --}}
                                                                 {{ $projects->project }}
-
                                                                 
-                                                    
-
-                                                                <button class="ml-1" onclick="toggleModal('modal-idEditPanels-{{ $projects->id }}')">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                        height="14" viewBox="0 0 24 24"
-                                                                        class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634]">
-                                                                        <path
-                                                                            d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
-                                                                    </svg>
-                                                                </button>
-
-                                                                {{-- Delete Button --}}
-                                                                <form
-                                                                    action="{{ route('projects.destroy', $projects->id) }}"
-                                                                    method="POST"
-                                                                    onsubmit="return confirm('Are you sure you want to delete this project?')"
-                                                                    class="inline-block">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="ml-1">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px"
-                                                                            y="0px" width="14" height="14"
-                                                                            viewBox="0 0 30 30"
-                                                                            class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634]">
-                                                                            <path
-                                                                                d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
-                                                                            </path>
-                                                                        </svg>
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-
-                                                          
+                                                            </div>                
 
                                                             {{-- Description --}}
                                                             <div class="font-normal text-sm">{{ $projects->description }}
@@ -396,23 +338,6 @@
 
                         <div 
                             class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg  shadow-lg ">
-
-                                <div class="absolute right-0 top-0 z-20">
-                                    <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
-                                        onclick="toggleModal('modal-idSkillsPanel')">
-                                        <!DOCTYPE svg
-                                            PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-                                        <svg enable-background="new 0 0 512 512" height="18px" id="Layer_1"
-                                            version="1.1" viewBox="0 0 512 512" width="18px" xml:space="preserve"
-                                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                            <path
-                                                d="M256,512C114.625,512,0,397.391,0,256C0,114.609,114.625,0,256,0c141.391,0,256,114.609,256,256  C512,397.391,397.391,512,256,512z M256,64C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192  S362.047,64,256,64z M288,384h-64v-96h-96v-64h96v-96h64v96h96v64h-96V384z" />
-                                        </svg>
-
-                                    </button>
-                                </div>
-
-
                                 <div class="relative">
 
                                     <div class="relative text-xl font-bold text-[#006634]">
@@ -465,39 +390,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-idSkillsEditPanel-{{ $skills->id }}-backdrop"></div>
-
-                                                        <button class="ml-1" onclick="toggleModal('modal-idSkillsEditPanel-{{ $skills->id }}')">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                height="14" viewBox="0 0 24 24"
-                                                                class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634] ">
-                                                                <path
-                                                                    d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
-                                                            </svg>
-                                                        </button>
-
-
-                                                        {{-- Delete Button --}}
-                                                                <form
-                                                                    action="{{ route('skills.destroy', $skills->id) }}"
-                                                                    method="POST"
-                                                                    onsubmit="return confirm('Are you sure you want to delete this skill?')"
-                                                                    class="inline-block">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="ml-1">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px"
-                                                                            y="0px" width="14" height="14"
-                                                                            viewBox="0 0 30 30"
-                                                                            class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634]">
-                                                                            <path
-                                                                                d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
-                                                                            </path>
-                                                                        </svg>
-                                                                    </button>
-                                                                </form>
-
-                                                    </div>
 
                                                     {{-- Description --}}
                                                     <div class="font-normal text-sm">{{ $skills->description }}</div>
@@ -518,21 +410,6 @@
                             
                             <div
                                 class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg mb-2  shadow-lg ">
-
-                                <div class="absolute right-0 top-0 z-20">
-                                    <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
-                                        onclick="toggleModal('modal-idAcademics')">
-                                        <!DOCTYPE svg
-                                            PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-                                        <svg enable-background="new 0 0 512 512" height="18px" id="Layer_1"
-                                            version="1.1" viewBox="0 0 512 512" width="18px" xml:space="preserve"
-                                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                            <path
-                                                d="M256,512C114.625,512,0,397.391,0,256C0,114.609,114.625,0,256,0c141.391,0,256,114.609,256,256  C512,397.391,397.391,512,256,512z M256,64C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192  S362.047,64,256,64z M288,384h-64v-96h-96v-64h96v-96h64v96h96v64h-96V384z" />
-                                        </svg>
-
-                                    </button>
-                                </div>
 
 
                                 <div class="relative">
@@ -557,38 +434,7 @@
 
                                                    
                                                             {{ $academics->education_insitution }}
-                                                    <!-- Edit Modal -->
                                                     
-
-                                                        <button class="ml-1" onclick="toggleModal('modal-idEditAcademicPanel-{{ $academics->id }}')">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                height="14" viewBox="0 0 24 24"
-                                                                class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634] ">
-                                                                <path
-                                                                    d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
-                                                            </svg>
-                                                        </button>
-
-
-                                                        {{-- Delete Button --}}
-                                                                <form
-                                                                    action="{{ route('academics.destroy', $academics->id) }}"
-                                                                    method="POST"
-                                                                    onsubmit="return confirm('Are you sure you want to delete this academic?')"
-                                                                    class="inline-block">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="ml-1">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px"
-                                                                            y="0px" width="14" height="14"
-                                                                            viewBox="0 0 30 30"
-                                                                            class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634]">
-                                                                            <path
-                                                                                d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
-                                                                            </path>
-                                                                        </svg>
-                                                                    </button>
-                                                                </form>
 
                                                     </div>
 
@@ -631,20 +477,7 @@
                             <div
                             class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg mb-2  shadow-lg ">
 
-                                <div class="absolute right-0 top-0 z-20">
-                                    <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
-                                        onclick="toggleModal('modal-idAwardsHonorsPanel')">
-                                        <!DOCTYPE svg
-                                            PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-                                        <svg enable-background="new 0 0 512 512" height="18px" id="Layer_1"
-                                            version="1.1" viewBox="0 0 512 512" width="18px" xml:space="preserve"
-                                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                            <path
-                                                d="M256,512C114.625,512,0,397.391,0,256C0,114.609,114.625,0,256,0c141.391,0,256,114.609,256,256  C512,397.391,397.391,512,256,512z M256,64C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192  S362.047,64,256,64z M288,384h-64v-96h-96v-64h96v-96h64v96h96v64h-96V384z" />
-                                        </svg>
-
-                                    </button>
-                                </div>
+                                
 
 
                                 <div class="relative">
@@ -666,38 +499,8 @@
                                                                 {{ $honorsandawards->honorsandawards }}
 
                                                                           {{-- Title --}}
-                                             {{ $honorsandawards->title }}
-                                                                
-                                                                
-                                                        <button class="ml-1" onclick="toggleModal('modal-idEditAwardsHonorsPanel-{{ $honorsandawards->id }}')">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="14"
-                                                                height="14" viewBox="0 0 24 24"
-                                                                class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634] ">
-                                                                <path
-                                                                    d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
-                                                            </svg>
-                                                        </button>
-
-
-                                                        {{-- Delete Button --}}
-                                                            <form
-                                                                    action="{{ route('honorsandawards.destroy', $honorsandawards->id) }}"
-                                                                    method="POST"
-                                                                    onsubmit="return confirm('Are you sure you want to delete this honor and award?')"
-                                                                    class="inline-block">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <button type="submit" class="ml-1">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px"
-                                                                            y="0px" width="14" height="14"
-                                                                            viewBox="0 0 30 30"
-                                                                            class="fill-current text-[#6e6e6e] opacity-80 hover:text-[#006634]">
-                                                                            <path
-                                                                                d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
-                                                                            </path>
-                                                                        </svg>
-                                                                    </button>
-                                                                </form>
+                                                                {{ $honorsandawards->title }}
+                                                                                               
 
                                                     </div>
 
@@ -735,7 +538,6 @@
                 </div>
             </div>
         </div>
-
         <hr class="my-7 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
 
                         @forelse ($userPosts as $post)
@@ -993,7 +795,7 @@
                         </div>
 
 
-                    </div>
-                    </div>
+            </div>
+        </div>
         @include('modal.modalPanels')
     @endsection
