@@ -10,6 +10,7 @@ use App\Http\Controllers\UserHonorsAndAwardsController;
 use App\Http\Controllers\UserAcademicsController;
 use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FriendRequestController;
 
 //use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -95,4 +96,9 @@ Route::middleware('auth')->group(function () {
 
     //view profile
     Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+
+    //add friend
+    Route::post('/send-request/{receiver_id}', [FriendRequestController::class, 'sendRequest'])->name('friend-request.send');
+    Route::post('/friend-request/accept/{id}', [FriendRequestController::class, 'acceptRequest'])->name('friendRequest.accept');
+    Route::post('/friend-request/reject/{id}', [FriendRequestController::class, 'rejectRequest'])->name('friendRequest.reject');
 });

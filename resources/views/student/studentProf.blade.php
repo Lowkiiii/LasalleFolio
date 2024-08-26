@@ -350,8 +350,7 @@
                                                                 </button>
 
                                                                 {{-- Delete Button --}}
-                                                                <form
-                                                                    action="{{ route('projects.destroy', $projects->id) }}"
+                                                                <form action="{{ route('projects.destroy', $projects->id) }}"
                                                                     method="POST"
                                                                     onsubmit="return confirm('Are you sure you want to delete this project?')"
                                                                     class="inline-block">

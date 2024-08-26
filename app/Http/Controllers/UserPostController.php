@@ -64,7 +64,7 @@ class UserPostController extends Controller
             $userPosts->save();
 
 
-            return redirect()->route('studentProf')->with('flash_message', 'Post updated successfully!');
+            return redirect()->route('studentDashboard')->with('flash_message', 'Post updated successfully!');
         } catch (\Exception $e) {
             Log::error('Error updating post: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'An error occurred while updating the post.']);
@@ -81,7 +81,7 @@ class UserPostController extends Controller
             }
 
             $userPosts->delete();
-            return redirect()->route('studentProf')->with('flash_message', 'post deleted successfully!');
+            return redirect()->route('studentDashboard')->with('flash_message', 'post deleted successfully!');
         } catch (\Exception $e) {
             Log::error('Error deleting post: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'An error occurred while deleting the post.']);

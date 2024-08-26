@@ -123,52 +123,77 @@
                             <div class="text-xs flex relative font-normal truncate">Request</div>
                         </button>
 
+                        
+                        @php
+                        $friendRequests = App\Models\FriendRequest::where('receiver_id', auth()->id())->where('status', 'pending')->get();
+                    @endphp
+                    
+                    @if($friendRequests->count() > 0)
+                        <button id="friendRequestButton" class="relative">
+                            <!-- Button SVG Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                <path fill-rule="evenodd"
+                                    d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            
+                            <!-- Notification badge -->
+                            <span class="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full">{{ $friendRequests->count() }}</span>
+                        </button>
+                    
+                        <!-- Dropdown Menu for Friend Requests -->
                         <div id="ReqMenu"
-                            class="absolute hidden bg-[#F8F8F8] p-1 border border-[#D4D4D4] turncate rounded-lg shadow-lg w-[25rem] transform translate-y-full  bottom-[-.5rem] left-1/4 -translate-x-[11.4rem] z-30">
-
-                            <div class="flex flex-row justify-center items-center py-2 px-3 text-black mb-4 ">
-                                <ul class="p-1 w-full  font-semibold ">
+                            class="absolute hidden bg-[#F8F8F8] p-1 border border-[#D4D4D4] truncate rounded-lg shadow-lg w-[25rem] transform translate-y-full bottom-[-.5rem] left-1/4 -translate-x-[11.4rem] z-30">
+                            <div class="flex flex-row justify-center items-center py-2 px-3 text-black mb-4">
+                                <ul class="p-1 w-full font-semibold">
                                     <div class="text-black mb-4">Requesting to View</div>
-
-                                    <div class="flex "> <label for="file_input"
-                                            class="cursor-pointer flex  items-center justify-center ">
-                                            <img src="image/Kersch.png" alt="Profile"
-                                                class="rounded-full object-cover w-9 h-9">
+                                    @foreach ($friendRequests as $request)
+                                    <div class="flex">
+                                        <label for="file_input" class="cursor-pointer flex items-center justify-center">
+                                            <img src="image/Kersch.png" alt="Profile" class="rounded-full object-cover w-9 h-9">
                                             <div class="flex flex-col ml-4 text-sm font-bold text-black">
-                                                <div>Kerschtine Billones</div>
-                                                <div class="text-xs font-semibold text-black opacity-45">BSCS 3A
-                                                    S.Y.
-                                                    2023-2024 </div>
+                                                <div>{{ $request->sender->name }}</div>
+                                                <div class="text-xs font-semibold text-black opacity-45">{{ $request->sender->info }}</div>
                                             </div>
-
-
                                         </label>
                                         <div class="ml-auto flex-row mr-2">
-                                            <div class=" flex items-center justify-center h-full ">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                    fill="#006634" class="w-6 h-6">
-                                                    <path fill-rule="evenodd"
-                                                        d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
-                                                        clip-rule="evenodd" />
-                                                </svg>
+                                            <div class="flex items-center justify-center h-full">
+                                                <!-- Accept button -->
+                                                <form action="{{ route('friendRequest.accept', $request->id) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#006634" class="w-6 h-6">
+                                                            <path fill-rule="evenodd"
+                                                                d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12Zm13.36-1.814a.75.75 0 1 0-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 0 0-1.06 1.06l2.25 2.25a.75.75 0 0 0 1.14-.094l3.75-5.25Z"
+                                                                clip-rule="evenodd" />
+                                                        </svg>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                         <div class="flex-row">
-                                            <div class=" flex items-center justify-center h-full">
-                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                    fill="#dd1100" class="w-6 h-6">
-                                                    <path fill-rule="evenodd"
-                                                        d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z"
-                                                        clip-rule="evenodd" />
-                                                </svg>
-
-                                                </svg>
+                                            <div class="flex items-center justify-center h-full">
+                                                <!-- Reject button -->
+                                                <form action="{{ route('friendRequest.reject', $request->id) }}" method="POST">
+                                                    @csrf
+                                                    <button type="submit">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#dd1100" class="w-6 h-6">
+                                                            <path fill-rule="evenodd"
+                                                                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z"
+                                                                clip-rule="evenodd" />
+                                                        </svg>
+                                                    </button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
+                    @endif
+                    
+                        
 
                  
                     </div>
