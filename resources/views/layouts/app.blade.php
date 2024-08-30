@@ -52,21 +52,31 @@
             var replyInput = document.getElementById("replyInput");
             replyInput.classList.toggle("hidden");
         }
-        const editButton = document.getElementById('editButton');
-        const editMenu = document.getElementById('editMenu');
+        document.addEventListener('DOMContentLoaded', function() {
+    const posts = document.querySelectorAll('.post');
+
+    posts.forEach(post => {
+        const editButton = post.querySelector('.editButton');
+        const editMenu = post.querySelector('.editMenu');
 
         editButton.addEventListener('click', function(event) {
             event.preventDefault();
-            event.stopPropagation(); 
+            event.stopPropagation();
+            editMenu.classList.toggle('hidden');
             editMenu.classList.toggle('opacity-100');
         });
+    });
 
-        document.addEventListener('click', function(event) {
-            if (!editMenu.contains(event.target)) {
-
-                editMenu.classList.remove('opacity-100');
+    document.addEventListener('click', function(event) {
+        const editMenus = document.querySelectorAll('.editMenu');
+        editMenus.forEach(menu => {
+            if (!menu.contains(event.target) && !event.target.closest('.editButton')) {
+                menu.classList.add('hidden');
+                menu.classList.remove('opacity-100');
             }
         });
+    });
+});
 
       
                                        
