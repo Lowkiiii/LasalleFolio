@@ -53,4 +53,24 @@ class FriendRequestController extends Controller
 
         return back()->with('success', 'Friend request rejected.');
     }
+
+    public function unfriend($receiver_id)
+    {
+        // Find the friend request where the users are connected
+        $friendRequest = FriendRequest::where(function ($query) use ($receiver_id) {
+            $query->where('sender_id', auth()->id())
+                ->where('receiver_id', $receiver_id);
+        })->orWhere(function ($query) use ($receiver_id) {
+            $query->where('receiver_id', auth()->id())
+                ->where('sender_id', $receiver_id);
+        })->where('status', 'accepted')->first();
+
+        if ($friendRequest) {
+            $friendRequest->delete();
+            return back()->with('success', 'Unfriended successfully.');
+        }
+
+        return back()->with('error', 'Friend not found.');
+    }
+
 }

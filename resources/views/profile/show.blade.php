@@ -122,7 +122,7 @@
                         </div>
                     </div>
 
-                    {{-- add friend --}}
+                    {{-- add friend
                     <div class="flex items-center justify-center ml-5 ">
                         <div class="text-xs font-bold">
                             <form action="{{ route('friend-request.send', $user->id) }}" method="POST">
@@ -133,7 +133,65 @@
                                 </button>
                             </form>
                         </div>
-                    </div>
+                    </div> --}}
+
+                    {{-- Friend/Connect/Unfriend button --}}
+                        <div class="flex items-center justify-center ml-5">
+                            <div class="text-xs font-bold">
+                                @php
+                                    $friendRequest = \App\Models\FriendRequest::where(function($query) use ($user) {
+                                        $query->where('sender_id', auth()->id())
+                                            ->where('receiver_id', $user->id);
+                                    })->orWhere(function($query) use ($user) {
+                                        $query->where('receiver_id', auth()->id())
+                                            ->where('sender_id', $user->id);
+                                    })->first();
+                                @endphp
+
+                                @if($friendRequest && $friendRequest->status === 'accepted')
+                                    
+                                    <form action="{{ route('friend-request.unfriend', $user->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="inline-block rounded-md bg-[#FF0000] px-2 py-1 text-xs font-bold leading-normal truncate text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#990000] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#990000] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#990000] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
+                                            Unfriend
+                                        </button>
+                                    </form>
+                                @elseif($friendRequest && $friendRequest->status === 'pending' && $friendRequest->receiver_id === auth()->id())
+                                    
+                                    <form action="{{ route('friendRequest.accept', $friendRequest->id) }}" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        <button type="submit"
+                                            class="inline-block rounded-md bg-[#006634] px-2 py-1 text-xs font-bold leading-normal truncate text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
+                                            Accept
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('friendRequest.reject', $friendRequest->id) }}" method="POST" style="display:inline-block;">
+                                        @csrf
+                                        <button type="submit"
+                                            class="inline-block rounded-md bg-[#FF0000] px-2 py-1 text-xs font-bold leading-normal truncate text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#990000] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#990000] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#990000] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
+                                            Reject
+                                        </button>
+                                    </form>
+                                @elseif($friendRequest && $friendRequest->status === 'pending' && $friendRequest->sender_id === auth()->id())
+                                    
+                                    <button disabled
+                                        class="inline-block rounded-md bg-gray-500 px-2 py-1 text-xs font-bold leading-normal truncate text-white shadow-[0_4px_9px_-4px_#3b71ca] w-full">
+                                        Pending
+                                    </button>
+                                @else
+                               
+                                    <form action="{{ route('friend-request.send', $user->id) }}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="inline-block rounded-md bg-[#006634] px-2 py-1 text-xs font-bold leading-normal truncate text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(
+                                                                dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
+                                            Connect +
+                                        </button>
+                                    </form>
+                                @endif
+                            </div>
+                        </div>
 
 
 
