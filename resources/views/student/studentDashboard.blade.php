@@ -413,7 +413,7 @@
                                     </button>
                                 
                                     <!-- Comment Section -->
-                                    {{-- <div class="flex flex-col mt-4 mb-4">
+                                    <div class="flex flex-col mt-4 mb-4">
                                         <!-- Comment Input Form -->
                                         <div class="flex items-center">
                                             <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
@@ -432,7 +432,7 @@
                                         <div id="commentsContainer{{ $post->id }}" class="mt-4">
                                             <!-- Comments will be loaded here -->
                                         </div>
-                                    </div> --}}
+                                    </div>
                                 </div>
                                 
                                 <hr class="my-4 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
@@ -574,7 +574,7 @@
                                     </div>
 
                                     <div class=" flex-grow">
-                                        <input type=""
+                                        <input type="text" id="commentInput{{ $post->id }}" placeholder="Add a comment..."
                                             class=" outline-none text-sm w-full py-2 px-3 bg-gray-200 rounded-2xl "
                                             placeholder="Comment">
                                     </div>
