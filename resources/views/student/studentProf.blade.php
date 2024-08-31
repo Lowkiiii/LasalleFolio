@@ -126,19 +126,20 @@
                     <div class="flex items-center justify-center py-6 px-6">
                         <div class="flex">
                             <div class="flex flex-col items-center mr-32 ">
-                                <div class="font-bold text-xl text-[#006634] ">0</div>
+                                <div class="font-bold text-xl text-[#006634] ">{{ $points }}</div>
                                 <div class="text-xs font-normal text-center truncate text-[#444444] font-medium">Points
                                     Garnered</div>
                             </div>
-
-                            <div class="flex flex-col items-center mx-32 text-[#006634] ">
-                                <div class="font-bold text-xl">0</div>
+                            
+                            <div class="flex flex-col items-center mx-32 text-[#006634]">
+                                <div class="font-bold text-xl">{{ $connectedStudentsCount }}</div>
                                 <div class="text-xs font-normal text-center truncate text-[#444444] font-medium">
-                                    Students Connected</div>
+                                    Students Connected
+                                </div>
                             </div>
 
                             <div class="flex flex-col items-center ml-32 text-[#006634] ">
-                                <div class="font-bold text-xl">0</div>
+                                <div class="font-bold text-xl">{{ $projectCount }}</div>
                                 <div class="text-xs font-normal text-center truncate text-[#444444] font-medium">
                                     Projects Posted</div>
                             </div>
@@ -856,23 +857,74 @@
                         </div>
                         <div class="py-4 text-black">{{ $post->user_posts }}</div>
                         <div class="flex flex-row items-start justify-start">
-                            <button onclick="toggleColor(this)"
+                            <button onclick="toggleReaction({{ $post->id }}, this)"
                                 class="flex flex-row justify-center items-center text-s mr-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" class=""
-                                    viewBox="0 0 47.5 47.5" id="heart">
-                                    <defs>
-                                        <clipPath id="a">
-                                            <path d="M0 38h38V0H0v38Z" />
-                                        </clipPath>
-                                    </defs>
-                                    <g clip-path="url(#a)" transform="matrix(1.25 0 0 -1.25 0 47.5)">
-                                        <path class="heart-path" fill="#C6C6C6"
-                                            d="M3.067 25.68c0 8.799 12.184 12.06 15.933 1.874 3.749 10.186 15.933 6.925 15.933-1.874C34.933 16.12 19 3.999 19 3.999S3.067 16.12 3.067 25.68" />
-                                    </g>
-                                </svg>
-                                <div class="flex flex-row text-sm px-2 font-bold items-center justify-center text-black">
-                                    1</div>
-                            </button>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 47.5 47.5" id="heart">
+                                <defs>
+                                    <clipPath id="a">
+                                        <path d="M0 38h38V0H0v38Z" />
+                                    </clipPath>
+                                </defs>
+                                <g clip-path="url(#a)" transform="matrix(1.25 0 0 -1.25 0 47.5)">
+                                    <path class="heart-path {{ $post->user_reacted ? 'reacted' : '' }}" fill="{{ $post->user_reacted ? '#FF0000' : '#C6C6C6' }}" d="M3.067 25.68c0 8.799 12.184 12.06 15.933 1.874 3.749 10.186 15.933 6.925 15.933-1.874C34.933 16.12 19 3.999 19 3.999S3.067 16.12 3.067 25.68" />
+                                </g>
+                            </svg>
+                            <div class="flex flex-row text-sm px-2 font-bold items-center justify-center text-black">
+                                <span class="reaction-count">{{ $post->reaction_count }}</span>
+                            </div>
+                        </button>
+                                                      
+                        
+                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+                            <script>
+                            function toggleReaction(postId, element) {
+                            $.ajax({
+                                url: '/posts/' + postId + '/react',
+                                type: 'POST',
+                                data: {
+                                    _token: '{{ csrf_token() }}'
+                                },
+                                success: function(response) {
+                                    // Update reaction count
+                                    $(element).find('.reaction-count').text(response.count);
+
+                                    // Toggle heart color
+                                    if (response.reacted) {
+                                        $(element).find('.heart-path').addClass('reacted').attr('fill', '#FF0000');
+                                    } else {
+                                        $(element).find('.heart-path').removeClass('reacted').attr('fill', '#C6C6C6');
+                                    }
+                                },
+                                error: function() {
+                                    alert('An error occurred. Please try again.');
+                                }
+                            });
+                        }
+
+
+
+                            function toggleColor(element) {
+                            console.log('Element for color toggle:', element);
+                            let heartPath = $(element).find('.heart-path');
+                            console.log('Heart path:', heartPath);
+
+                            if (heartPath.length > 0) {
+                                heartPath.toggleClass('reacted');
+                            } else {
+                                console.error('Heart path element not found.');
+                            }
+                        }
+
+
+
+                            </script>
+                            
+                            <style>
+                            .heart-path.reacted {
+                                fill: #FF0000;
+                            }
+                            </style>
                             <div class="flex flex-row justify-center items-center text-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"
                                     class="w-6 h-6">

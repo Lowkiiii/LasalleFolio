@@ -56,26 +56,26 @@
                                         <div
                                             class="flex flex-row w-full  items-center text-[#006634] font-bold text-xl mt-10">
                                             <div class="mr-20 items-center text-center  ">
-                                                10
+                                                {{ $connectedStudentsCount }}
                                                 <div class="text-xs font-regular text-center text-[#444444] font-medium">
                                                     Student Connected
 
                                                 </div>
                                             </div>
                                             <div class="mx-auto items-center text-center">
-                                                1.2k
+                                                {{ $points }}
                                                 <div class="text-xs font-regular text-center text-[#444444] font-medium">
                                                     Points Garnered
-
                                                 </div>
-
                                             </div>
-                                            <div class="ml-20 items-center text-center"> 8
+                                            
+                                            <div class="ml-20 items-center text-center">
+                                                {{ $projectCount }}
                                                 <div class="text-xs font-regular text-center text-[#444444] font-medium">
                                                     Projects Posted
-
                                                 </div>
                                             </div>
+                                            
 
                                         </div>
                                     </div>
@@ -338,7 +338,7 @@
                                         </div>
                                         <div class="editMenu hidden absolute bg-white space-x-2 py-2 px-5 border border-[#D4D4D4] rounded-lg shadow-lg w-55 transform translate-y-full bottom-5 left-1/2 -translate-x-1/2 z-10">
                                             <ul class="text-sm font-semibold text-black w-auto">
-                                                <div class="flex flex-row hover:text-[#0066FF]" onclick="toggleModal('modal-idPostEditText')">
+                                                <div class="flex flex-row hover:text-[#0066FF]" onclick="toggleModal('modal-idPostEditText-{{ $post->id }}')">
                                                     <button class="py-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" class="fill-current opacity-80">
                                                             <path d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
@@ -394,97 +394,171 @@
 
 
                                 <div class="flex flex-row items-start justify-start">
-                                    <button onclick="toggleColor(this)"
+                                    <!-- Heart Reaction Feature -->
+                                    <button onclick="toggleReaction({{ $post->id }}, this)"
                                         class="flex flex-row justify-center items-center text-s mr-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23"
-                                            class="" viewBox="0 0 47.5 47.5" id="heart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 47.5 47.5" id="heart">
                                             <defs>
                                                 <clipPath id="a">
                                                     <path d="M0 38h38V0H0v38Z" />
                                                 </clipPath>
                                             </defs>
                                             <g clip-path="url(#a)" transform="matrix(1.25 0 0 -1.25 0 47.5)">
-                                                <path class="heart-path" fill="#C6C6C6"
-                                                    d="M3.067 25.68c0 8.799 12.184 12.06 15.933 1.874 3.749 10.186 15.933 6.925 15.933-1.874C34.933 16.12 19 3.999 19 3.999S3.067 16.12 3.067 25.68" />
+                                                <path class="heart-path {{ $post->user_reacted ? 'reacted' : '' }}" fill="{{ $post->user_reacted ? '#FF0000' : '#C6C6C6' }}" d="M3.067 25.68c0 8.799 12.184 12.06 15.933 1.874 3.749 10.186 15.933 6.925 15.933-1.874C34.933 16.12 19 3.999 19 3.999S3.067 16.12 3.067 25.68" />
                                             </g>
                                         </svg>
-                                        <div
-                                            class="flex flex-row text-sm px-2 font-bold items-center justify-center text-black">
-                                            1</div>
+                                        <div class="flex flex-row text-sm px-2 font-bold items-center justify-center text-black">
+                                            <span class="reaction-count">{{ $post->reaction_count }}</span>
+                                        </div>
                                     </button>
-
-
-                                    <div class="flex flex-row justify-center items-center text-sm">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"
-                                            class="w-6 h-6">
-                                            <path fill-rule="evenodd"
-                                                d="M4.804 21.644A6.707 6.707 0 0 0 6 21.75a6.721 6.721 0 0 0 3.583-1.029c.774.182 1.584.279 2.417.279 5.322 0 9.75-3.97 9.75-9 0-5.03-4.428-9-9.75-9s-9.75 3.97-9.75 9c0 2.409 1.025 4.587 2.674 6.192.232.226.277.428.254.543a3.73 3.73 0 0 1-.814 1.686.75.75 0 0 0 .44 1.223ZM8.25 10.875a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25ZM10.875 12a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Zm4.875-1.125a1.125 1.125 0 1 0 0 2.25 1.125 1.125 0 0 0 0-2.25Z"
-                                                clip-rule="evenodd" />
-                                        </svg>
-                                        <div
-                                            class="flex flex-row text-sm px-2 font-bold items-center justify-center text-black">
-                                            0</div>
-                                    </div>
+                                
+                                    <!-- Comment Section -->
+                                    {{-- <div class="flex flex-col mt-4 mb-4">
+                                        <!-- Comment Input Form -->
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
+                                                <img src="image/Kersch.png" alt="Profile" class="w-full h-full object-cover">
+                                            </div>
+                                            <div class="flex-grow">
+                                                <input type="text" id="commentInput{{ $post->id }}" placeholder="Add a comment..."
+                                                    class="outline-none text-xs w-full py-2 px-3 bg-gray-200 rounded-2xl">
+                                            </div>
+                                            <button onclick="postComment({{ $post->id }})" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg">
+                                                Post
+                                            </button>
+                                        </div>
+                                
+                                        <!-- Display Comments -->
+                                        <div id="commentsContainer{{ $post->id }}" class="mt-4">
+                                            <!-- Comments will be loaded here -->
+                                        </div>
+                                    </div> --}}
                                 </div>
-
+                                
                                 <hr class="my-4 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
-
+                                
+                                <!-- Example Comment -->
                                 <div>
-                                    <div class=" flex items-center ">
+                                    <div class="flex items-center">
                                         <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
                                             <label for="file_input" class="cursor-pointer w-full h-full">
-                                                <img src="image/Kersch.png" alt="Profile"
-                                                    class="w-full h-full object-cover">
+                                                <img src="image/Kersch.png" alt="Profile" class="w-full h-full object-cover">
                                             </label>
                                         </div>
-
                                         <div class="text-sm font-bold text-black">
                                             <div class="flex">
-                                            Kerschtine Billones
-                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#7A601D" height="15" width="15" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
-                                                <g>
-                                                    <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
-                                                    <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
-                                                    <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
-                                                    <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
-                                                </g>
+                                                Kerschtine Billones
+                                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#7A601D" height="15" width="15" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
+                                                    <g>
+                                                        <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                        <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                        <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                        <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                    </g>
                                                 </svg>
                                             </div>
                                             <div class="text-sm font-medium text-black">Hello!</div>
                                             <div class="flex flex-row py-1">
-                                                <div class="flex flex-row text-xs font-medium opacity-70 mr-3">· Just Now!
-                                                </div>
-                                                <button class="flex flex-row text-xs opacity-70"
-                                                    onclick="toggleReply()">Reply</button>
+                                                <div class="flex flex-row text-xs font-medium opacity-70 mr-3">· Just Now!</div>
+                                                <button class="flex flex-row text-xs opacity-70" onclick="toggleReply()">Reply</button>
                                             </div>
-
                                         </div>
-
                                     </div>
-
+                                
+                                    <!-- Reply Input (Initially Hidden) -->
                                     <div class="flex flex-col mt-4 mb-4 hidden" id="replyInput">
                                         <div class="flex pl-10">
-                                            <div class="w-7 h-7 rounded-full mr-1 flex-row ">
+                                            <div class="w-7 h-7 rounded-full mr-1 flex-row">
                                                 <div class="relative group">
                                                     <label for="file_input" class="cursor-pointer">
-                                                        <img src="image/dog.jpg" alt="Profile"
-                                                            class="w-full h-full rounded-full object-cover">
+                                                        <img src="image/dog.jpg" alt="Profile" class="w-full h-full rounded-full object-cover">
                                                     </label>
-
                                                 </div>
-
                                             </div>
-
                                             <div id="replyInput" class="justify-center items-center flex-grow">
-                                                <input type="text" placeholder="Reply"
-                                                    class="outline-none justify-center items-center text-xs w-full py-2 px-3 bg-gray-200 rounded-2xl">
+                                                <input type="text" placeholder="Reply" class="outline-none justify-center items-center text-xs w-full py-2 px-3 bg-gray-200 rounded-2xl">
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                
+                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <script>
+                                    // Function to toggle reaction
+                                    function toggleReaction(postId, element) {
+                                        $.ajax({
+                                            url: '/posts/' + postId + '/react',
+                                            type: 'POST',
+                                            data: {
+                                                _token: '{{ csrf_token() }}'
+                                            },
+                                            success: function(response) {
+                                                // Update reaction count
+                                                $(element).find('.reaction-count').text(response.count);
+                                
+                                                // Toggle heart color
+                                                if (response.reacted) {
+                                                    $(element).find('.heart-path').addClass('reacted').attr('fill', '#FF0000');
+                                                } else {
+                                                    $(element).find('.heart-path').removeClass('reacted').attr('fill', '#C6C6C6');
+                                                }
+                                            },
+                                            error: function() {
+                                                alert('An error occurred. Please try again.');
+                                            }
+                                        });
+                                    }
+                                
+                                    // Function to post a comment
+                                    function postComment(postId) {
+                                        let commentContent = document.getElementById('commentInput' + postId).value;
+                                
+                                        $.ajax({
+                                            url: '/posts/' + postId + '/comments',
+                                            type: 'POST',
+                                            data: {
+                                                _token: '{{ csrf_token() }}',
+                                                content: commentContent
+                                            },
+                                            success: function(response) {
+                                                let commentsContainer = $('#commentsContainer' + postId);
+                                                commentsContainer.prepend(`
+                                                    <div class="flex items-start mt-2">
+                                                        <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
+                                                            <img src="image/Kersch.png" alt="Profile" class="w-full h-full object-cover">
+                                                        </div>
+                                                        <div class="text-sm font-medium text-black">
+                                                            ${response.user.name}
+                                                            <div>${response.content}</div>
+                                                            <div class="text-xs opacity-70">Just Now</div>
+                                                        </div>
+                                                    </div>
+                                                `);
+                                                    // Clear the comment input field
+                                                    document.getElementById('commentInput' + postId).value = '';
+                                                },
+                                                error: function() {
+                                                    alert('An error occurred. Please try again.');
+                                                }
+                                            });
+                                        }
 
+                                        // Function to toggle reply input visibility
+                                        function toggleReply() {
+                                            let replyInput = document.getElementById('replyInput');
+                                            if (replyInput.style.display === 'none' || replyInput.style.display === '') {
+                                                replyInput.style.display = 'flex';
+                                            } else {
+                                                replyInput.style.display = 'none';
+                                            }
+                                        }
+                                    </script>
 
-
+                                    <style>
+                                        .heart-path.reacted {
+                                            fill: #FF0000;
+                                        }
+                                    </style>
 
                                 <div class=" flex items-center mt-2">
 
@@ -503,9 +577,8 @@
                                         <input type=""
                                             class=" outline-none text-sm w-full py-2 px-3 bg-gray-200 rounded-2xl "
                                             placeholder="Comment">
-
-
                                     </div>
+
                                 </div>
 
                             </div>

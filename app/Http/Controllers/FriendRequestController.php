@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\FriendRequest;
+use Illuminate\Support\Facades\DB;
+
 
 class FriendRequestController extends Controller
 {
@@ -72,5 +74,23 @@ class FriendRequestController extends Controller
 
         return back()->with('error', 'Friend not found.');
     }
+    public function getConnectedStudentsCount()
+    {
+        $userId = auth()->id();
+        
+        $count = FriendRequest::where(function ($query) use ($userId) {
+            $query->where('sender_id', $userId)
+                ->orWhere('receiver_id', $userId);
+        })
+        ->where('status', 'accepted')
+        ->count();
 
+        return $count;
+    }
+
+    // public function showStudentProfile()
+    // {
+    //     $connectedStudentsCount = $this->getConnectedStudentsCount();
+    //     return view('student.studentProf', compact('connectedStudentsCount'));
+    // }
 }

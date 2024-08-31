@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaction;
+use App\Models\UserPosts;
+use App\Models\FriendRequest;
+use App\Models\Reaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\UserType;
+use App\Http\Controllers\FriendRequestController;   
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\JsonResponse;
@@ -37,33 +39,112 @@ class UserController extends Controller
                     ->get();
 
         $user = Auth::user();
+        $userId = Auth::id();
         $userProjects = $user->userProjects;
         $userSkills = $user->userSkills;
         $userAcademics = $user->userAcademics;
         $userHonorsAndAwards = $user->userHonorsAndAwards;
         $userPosts = $user->userPosts;
+        
+        // Add reaction count and user reaction status to each post
+        foreach ($userPosts as $post) {
+            $post->reaction_count = Reaction::where('post_id', $post->id)->count();
+            $post->user_reacted = Reaction::where('post_id', $post->id)
+                                        ->where('user_id', $userId)
+                                        ->exists();
+        }
 
-        return view('student.studentProf', compact('authUser','user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+        // Calculate points
+        $points = $this->calculatePoints();
+
+        // Get project count
+        $projectCount = $this->countProjects();
+
+            $friendRequestController = new FriendRequestController();
+            $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount();
+
+        return view('student.studentProf', compact('connectedStudentsCount','authUser','user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts','projectCount','points'));
         
     }
+
+    public function countProjects()
+    {
+        $user = Auth::user();
+        $projectCount = $user->userPosts->count(); // Adjust if the relationship is named differently
+        
+        return $projectCount;
+    }
+
 
     public function studentDashboard(Request $request)
     {
         $query = $request->input('query');
         
         $authUser = User::where('first_name', 'LIKE', "%{$query}%")
-                    ->orWhere('last_name', 'LIKE', "%{$query}%")
-                    ->get();
+                        ->orWhere('last_name', 'LIKE', "%{$query}%")
+                        ->get();
 
+        $userId = Auth::id();
         $user = Auth::user();
         $userProjects = $user->userProjects;
         $userSkills = $user->userSkills;
         $userAcademics = $user->userAcademics;
         $userHonorsAndAwards = $user->userHonorsAndAwards;
-        $userPosts = $user->userPosts;
 
-        return view('student.studentDashboard', compact('authUser','user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+        // Get IDs of connected users
+        $connectedUserIds = FriendRequest::where(function ($query) use ($userId) {
+            $query->where('sender_id', $userId)
+                ->orWhere('receiver_id', $userId);
+        })
+        ->where('status', 'accepted')
+        ->get()
+        ->map(function ($request) use ($userId) {
+            return $request->sender_id === $userId ? $request->receiver_id : $request->sender_id;
+        });
+
+        // Include the authenticated user's ID
+        $connectedUserIds[] = $userId;
+
+        // Get posts from connected users and the authenticated user
+        $userPosts = UserPosts::whereIn('user_id', $connectedUserIds)->get();
+
+        // Add reaction count and user reaction status to each post
+        foreach ($userPosts as $post) {
+            $post->reaction_count = Reaction::where('post_id', $post->id)->count();
+            $post->user_reacted = Reaction::where('post_id', $post->id)
+                                        ->where('user_id', $userId)
+                                        ->exists();
+        }
+
+        $friendRequestController = new FriendRequestController();
+        $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount();
+
+        // Calculate points
+        $points = $this->calculatePoints();
+
+        // Get project count
+        $projectCount = $this->countProjects();
+
+        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points','projectCount'));
     }
+
+    public function calculatePoints()
+    {
+        $user = Auth::user();
+
+        // Calculate total points
+        $postPoints = $user->userPosts->count() * 30;
+        $connectionPoints = FriendRequest::where(function ($query) use ($user) {
+            $query->where('sender_id', $user->id)
+                ->orWhere('receiver_id', $user->id);
+        })->where('status', 'accepted')->count() * 20;
+        $reactionPoints = Reaction::where('user_id', $user->id)->count() * 10;
+
+        $totalPoints = $postPoints + $connectionPoints + $reactionPoints;
+
+        return $totalPoints;
+    }
+
 
     public function studentLeaderboard(Request $request)
     {

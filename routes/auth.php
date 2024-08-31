@@ -11,6 +11,7 @@ use App\Http\Controllers\UserAcademicsController;
 use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FriendRequestController;
+use App\Http\Controllers\CommentController;
 
 //use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -103,5 +104,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/friend-request/reject/{id}', [FriendRequestController::class, 'rejectRequest'])->name('friendRequest.reject');
     // Unfriend route
     Route::post('/friend-request/unfriend/{receiver_id}', [FriendRequestController::class, 'unfriend'])->name('friend-request.unfriend');
+
+    //count accepted requests
+    Route::get('/student-profile', [FriendRequestController::class, 'showStudentProfile'])->name('student.profile');
+
+    //count reactions
+    Route::post('/posts/{post}/react', [UserPostController::class, 'react'])->name('posts.react');
+
+    //comments
+    Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
+    Route::get('/posts/{post}/comments', [CommentController::class, 'index'])->name('comments.index');
 
 });

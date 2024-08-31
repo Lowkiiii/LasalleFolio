@@ -83,17 +83,10 @@ class User extends Authenticatable //implements MustVerifyEmail
         return $this->hasMany(UserPosts::class);
     }
 
-    // public function index()
-    // {
-    //     $userPosts = Auth::user()->userPosts;
-    //     return view('student.studentDashboard', compact('userPosts'));
-    // }
-
-    // User.php
-
     public function getNameAttribute()
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
 
 }
