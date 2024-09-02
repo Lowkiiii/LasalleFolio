@@ -413,7 +413,7 @@
                                     </button>
                                 
                                     <!-- Comment Section -->
-                                    <div class="flex flex-col mt-4 mb-4">
+                                    {{-- <div class="flex flex-col mt-4 mb-4">
                                         <!-- Comment Input Form -->
                                         <div class="flex items-center">
                                             <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
@@ -432,7 +432,7 @@
                                         <div id="commentsContainer{{ $post->id }}" class="mt-4">
                                             <!-- Comments will be loaded here -->
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 
                                 <hr class="my-4 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
@@ -447,7 +447,7 @@
                                         </div>
                                         <div class="text-sm font-bold text-black">
                                             <div class="flex">
-                                                Kerschtine Billones
+                                                Name of the User Commented
                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#7A601D" height="15" width="15" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class="shadow-xl">
                                                     <g>
                                                         <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
@@ -457,7 +457,7 @@
                                                     </g>
                                                 </svg>
                                             </div>
-                                            <div class="text-sm font-medium text-black">Hello!</div>
+                                            <div class="text-sm font-medium text-black">Sample Comment</div>
                                             <div class="flex flex-row py-1">
                                                 <div class="flex flex-row text-xs font-medium opacity-70 mr-3">· Just Now!</div>
                                                 <button class="flex flex-row text-xs opacity-70" onclick="toggleReply()">Reply</button>
@@ -573,11 +573,13 @@
 
                                     </div>
 
-                                    <div class=" flex-grow">
+                                    <div class="flex-grow">
                                         <input type="text" id="commentInput{{ $post->id }}" placeholder="Add a comment..."
-                                            class=" outline-none text-sm w-full py-2 px-3 bg-gray-200 rounded-2xl "
-                                            placeholder="Comment">
+                                            class="outline-none text-xs w-full py-2 px-3 bg-gray-200 rounded-2xl">
                                     </div>
+                                    <button onclick="postComment({{ $post->id }})" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg">
+                                        Post
+                                    </button>
 
                                 </div>
 
