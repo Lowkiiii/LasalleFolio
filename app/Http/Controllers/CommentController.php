@@ -19,12 +19,17 @@ class CommentController extends Controller
         $comment->content = $request->content;
         $comment->save();
 
-        return response()->json($comment);
+        $comment->load('user'); // Load the user relationship
+
+        return response()->json([
+            'user' => $comment->user->name,
+            'content' => $comment->content,
+        ]);
     }
 
     public function index(UserPosts $post)
     {
         $comments = $post->comments()->with('user')->get();
-        return response()->json($comments);
+        return view('student.studentProf', compact('comments'));
     }
 }
