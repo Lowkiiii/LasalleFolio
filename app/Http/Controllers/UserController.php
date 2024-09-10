@@ -89,6 +89,15 @@ class UserController extends Controller
                         ->orWhere('last_name', 'LIKE', "%{$query}%")
                         ->get();
 
+        // Fetch all users and calculate their points
+        $users = User::all()->map(function ($user) {
+            $user->points = $this->calculatePointsForUser($user);
+            return $user;
+        });
+
+        // Get the top 3 users based on points
+        $topUsers = $users->sortByDesc('points')->take(3);
+
         $userId = Auth::id();
         $user = Auth::user();
         $userProjects = $user->userProjects;
@@ -133,7 +142,7 @@ class UserController extends Controller
         // Get project count
         $projectCount = $this->countProjects();
 
-        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points','projectCount'));
+        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points','projectCount', 'topUsers'));
     }
 
     public function calculatePoints()
@@ -157,24 +166,70 @@ class UserController extends Controller
         return $totalPoints;
     }
 
-
     public function studentLeaderboard(Request $request)
     {
         $query = $request->input('query');
-        
-        $authUser = User::where('first_name', 'LIKE', "%{$query}%")
-                    ->orWhere('last_name', 'LIKE', "%{$query}%")
-                    ->get();
-
+    
+        // Retrieve all users and calculate their points, connections, and total likes
+        $users = User::all()->map(function ($user) {
+            $user->points = $this->calculatePointsForUser($user);
+    
+            // Calculate number of connected users
+            $user->connectedUsersCount = FriendRequest::where(function ($query) use ($user) {
+                $query->where('sender_id', $user->id)
+                      ->orWhere('receiver_id', $user->id);
+            })->where('status', 'accepted')->count();
+    
+            // Calculate total number of likes (reactions) across all user posts
+            $user->totalLikes = Reaction::whereIn('post_id', $user->userPosts->pluck('id'))->count();
+    
+            return $user;
+        })->sortByDesc('points');
+    
+        // Optionally filter based on query
+        if ($query) {
+            $users = $users->filter(function ($user) use ($query) {
+                return stripos($user->first_name, $query) !== false ||
+                       stripos($user->last_name, $query) !== false;
+            });
+        }
+    
+        // Get the authenticated user's information
         $user = Auth::user();
         $userProjects = $user->userProjects;
         $userSkills = $user->userSkills;
         $userAcademics = $user->userAcademics;
         $userHonorsAndAwards = $user->userHonorsAndAwards;
         $userPosts = $user->userPosts;
-
-        return view('student.studentLeaderboard', compact('authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+    
+        // Return the view with the sorted users
+        return view('student.studentLeaderboard', [
+            'users' => $users,
+            'authUser' => $user,
+            'userProjects' => $userProjects,
+            'userSkills' => $userSkills,
+            'userAcademics' => $userAcademics,
+            'userHonorsAndAwards' => $userHonorsAndAwards,
+            'userPosts' => $userPosts,
+        ]);
     }
+    
+    
+    
+    private function calculatePointsForUser($user)
+    {
+        // Calculate total points for a given user
+        $postPoints = $user->userPosts->count() * 30;
+        $connectionPoints = FriendRequest::where(function ($query) use ($user) {
+            $query->where('sender_id', $user->id)
+                  ->orWhere('receiver_id', $user->id);
+        })->where('status', 'accepted')->count() * 20;
+        $reactionPoints = Reaction::where('user_id', $user->id)->count() * 10;
+        $commentPoints = Comment::where('user_id', $user->id)->count() * 15;
+    
+        return $postPoints + $connectionPoints + $reactionPoints + $commentPoints;
+    }
+    
 
     public function kerschProf(Request $request)
     {
