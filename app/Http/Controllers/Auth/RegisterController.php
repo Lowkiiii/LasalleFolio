@@ -40,11 +40,15 @@ class RegisterController extends Controller
             'sex' => ['required', 'string', 'max:50'],
             'public_url' => ['nullable', 'string', 'max:255'],
         ]);
-
+    
         try {
+            // Capitalize the first letter of each word in first and last names
+            $firstName = ucwords(strtolower($request->first_name));
+            $lastName = ucwords(strtolower($request->last_name));
+            
             $user = User::create([
-                'first_name' => $request->first_name,
-                'last_name' => $request->last_name,
+                'first_name' => $firstName,
+                'last_name' => $lastName,
                 'birthdate' => $request->birthdate,
                 'full_address' => $request->full_address,
                 'email' => $request->email,
@@ -52,10 +56,11 @@ class RegisterController extends Controller
                 'sex' => $request->sex,
                 'public_url' => $request->public_url,
             ]);
-
+    
             return redirect()->back()->with('success', 'Successfully registered');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred while registering. Please try again.');
         }
-    }
+    }    
+
 }
