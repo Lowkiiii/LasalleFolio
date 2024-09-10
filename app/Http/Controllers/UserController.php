@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\UserPosts;
 use App\Models\FriendRequest;
 use App\Models\Reaction;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Http\Controllers\FriendRequestController;   
+use App\Http\Controllers\FriendRequestController;
+use App\Http\Controllers\CommentController; 
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\JsonResponse;
@@ -52,6 +54,9 @@ class UserController extends Controller
             $post->user_reacted = Reaction::where('post_id', $post->id)
                                         ->where('user_id', $userId)
                                         ->exists();
+
+            // Get comments for each post
+            $post->comments = Comment::where('post_id', $post->id)->with('user')->get();
         }
 
         // Calculate points
@@ -114,6 +119,9 @@ class UserController extends Controller
             $post->user_reacted = Reaction::where('post_id', $post->id)
                                         ->where('user_id', $userId)
                                         ->exists();
+
+            // Get comments for each post
+            $post->comments = Comment::where('post_id', $post->id)->with('user')->get();
         }
 
         $friendRequestController = new FriendRequestController();
@@ -140,7 +148,11 @@ class UserController extends Controller
         })->where('status', 'accepted')->count() * 20;
         $reactionPoints = Reaction::where('user_id', $user->id)->count() * 10;
 
-        $totalPoints = $postPoints + $connectionPoints + $reactionPoints;
+        // Calculate comment points (15 points for each comment made by the user)
+        $commentPoints = Comment::where('user_id', $user->id)->count() * 15;
+
+        // Total points including comments
+        $totalPoints = $postPoints + $connectionPoints + $reactionPoints + $commentPoints;
 
         return $totalPoints;
     }

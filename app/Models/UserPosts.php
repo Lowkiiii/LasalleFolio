@@ -41,7 +41,7 @@ class UserPosts extends Model
 
     public function comments()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Comment::class, 'post_id');
     }
 
     // In the Comment model, the relationship should use 'post_id'

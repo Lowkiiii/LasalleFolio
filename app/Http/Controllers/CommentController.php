@@ -29,7 +29,11 @@ class CommentController extends Controller
 
     public function index(UserPosts $post)
     {
+        // Retrieve comments for the post with the associated user data
         $comments = $post->comments()->with('user')->get();
-        return view('student.studentProf', compact('comments'));
+
+        // Pass the post and comments to the view
+        return view('student.studentProf', compact('post', 'comments'));
     }
+
 }

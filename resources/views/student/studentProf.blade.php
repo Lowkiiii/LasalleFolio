@@ -875,55 +875,83 @@
                         </button>
                                                       
                         
-                            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-                            <script>
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script>
+                            // Function to toggle reaction
                             function toggleReaction(postId, element) {
-                            $.ajax({
-                                url: '/posts/' + postId + '/react',
-                                type: 'POST',
-                                data: {
-                                    _token: '{{ csrf_token() }}'
-                                },
-                                success: function(response) {
-                                    // Update reaction count
-                                    $(element).find('.reaction-count').text(response.count);
-
-                                    // Toggle heart color
-                                    if (response.reacted) {
-                                        $(element).find('.heart-path').addClass('reacted').attr('fill', '#FF0000');
-                                    } else {
-                                        $(element).find('.heart-path').removeClass('reacted').attr('fill', '#C6C6C6');
+                                $.ajax({
+                                    url: '/posts/' + postId + '/react',
+                                    type: 'POST',
+                                    data: {
+                                        _token: '{{ csrf_token() }}'
+                                    },
+                                    success: function(response) {
+                                        // Update reaction count
+                                        $(element).find('.reaction-count').text(response.count);
+                        
+                                        // Toggle heart color
+                                        if (response.reacted) {
+                                            $(element).find('.heart-path').addClass('reacted').attr('fill', '#FF0000');
+                                        } else {
+                                            $(element).find('.heart-path').removeClass('reacted').attr('fill', '#C6C6C6');
+                                        }
+                                    },
+                                    error: function() {
+                                        alert('An error occurred. Please try again.');
                                     }
-                                },
-                                error: function() {
-                                    alert('An error occurred. Please try again.');
+                                });
+                            }
+                        
+                            function postComment(postId) {
+                                let commentContent = document.getElementById('commentInput' + postId).value;
+
+                                $.ajax({
+                                    url: '/posts/' + postId + '/comments',
+                                    type: 'POST',
+                                    data: {
+                                        _token: '{{ csrf_token() }}',
+                                        content: commentContent
+                                    },
+                                    success: function(response) {
+                                        let commentsContainer = $('#commentsContainer' + postId);
+                                        commentsContainer.prepend(`
+                                            <div class="flex items-start mt-2">
+                                                <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
+                                                    <img src="image/Kersch.png" alt="Profile" class="w-full h-full object-cover">
+                                                </div>
+                                                <div class="text-sm font-medium text-black">
+                                                    ${response.user}
+                                                    <div>${response.content}</div>
+                                                    <div class="text-xs opacity-70">Just Now</div>
+                                                </div>
+                                            </div>
+                                        `);
+
+                                        // Clear the comment input field
+                                        document.getElementById('commentInput' + postId).value = '';
+                                    },
+                                    error: function() {
+                                        alert('An error occurred. Please try again.');
+                                    }
+                                });
+                            }
+
+
+                                // Function to toggle reply input visibility
+                                function toggleReply() {
+                                    let replyInput = document.getElementById('replyInput');
+                                    if (replyInput.style.display === 'none' || replyInput.style.display === '') {
+                                        replyInput.style.display = 'flex';
+                                    } else {
+                                        replyInput.style.display = 'none';
+                                    }
                                 }
-                            });
-                        }
-
-
-
-                            function toggleColor(element) {
-                            console.log('Element for color toggle:', element);
-                            let heartPath = $(element).find('.heart-path');
-                            console.log('Heart path:', heartPath);
-
-                            if (heartPath.length > 0) {
-                                heartPath.toggleClass('reacted');
-                            } else {
-                                console.error('Heart path element not found.');
-                            }
-                        }
-
-
-
                             </script>
-                            
+
                             <style>
-                            .heart-path.reacted {
-                                fill: #FF0000;
-                            }
+                                .heart-path.reacted {
+                                    fill: #FF0000;
+                                }
                             </style>
                             <div class="flex flex-row justify-center items-center text-sm">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="black"
@@ -938,13 +966,64 @@
                         </div>
                         <hr class="my-4 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
                         <div>
-                            <div class=" flex items-center ">
+                            {{-- <div class=" flex items-center ">
                                 <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
                                     <label for="file_input" class="cursor-pointer w-full h-full">
                                         <img src="image/Kersch.png" alt="Profile" class="w-full h-full object-cover">
                                     </label>
                                 </div>
-                            </div>
+                            </div> --}}
+
+                                {{-- comments --}}
+                                @if($post->comments->isNotEmpty())
+                                    @foreach($post->comments as $comment)
+                                        <div class="flex items-center">
+                                            <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
+                                                <label for="file_input" class="cursor-pointer w-full h-full">
+                                                    <img src="image/Kersch.png" alt="Profile" class="w-full h-full object-cover">
+                                                </label>
+                                            </div>
+                                            <div class="text-sm font-bold text-black">
+                                                <div class="flex">
+                                                    {{ $comment->user->name }} <!-- Display the name of the comment's user -->
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#7A601D" height="15" width="15" viewBox="0 0 296.084 296.084" class="shadow-xl">
+                                                        <g>
+                                                            <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                            <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                            <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                            <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+                                                <div class="text-sm font-medium text-black">{{ $comment->content }}</div> <!-- Display comment content -->
+                                                <div class="flex flex-row py-1">
+                                                    <div class="flex flex-row text-xs font-medium opacity-70 mr-3">· Just Now!</div>
+                                                    <button class="flex flex-row text-xs opacity-70" onclick="toggleReply()">Reply</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @else
+                                    <p>No comments yet.</p>
+                                @endif
+
+                                <!-- Reply Input (Initially Hidden) -->
+                                <div class="flex flex-col mt-4 mb-4 hidden" id="replyInput">
+                                    <div class="flex pl-10">
+                                        <div class="w-7 h-7 rounded-full mr-1 flex-row">
+                                            <div class="relative group">
+                                                <label for="file_input" class="cursor-pointer">
+                                                    <img src="image/dog.jpg" alt="Profile" class="w-full h-full rounded-full object-cover">
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div id="replyInput" class="justify-center items-center flex-grow">
+                                            <input type="text" placeholder="Reply" class="outline-none justify-center items-center text-xs w-full py-2 px-3 bg-gray-200 rounded-2xl">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
                             <div class="flex flex-col mt-4 mb-4 hidden" id="replyInput">
                                 <div class="flex pl-10">
                                     <div class="w-7 h-7 rounded-full mr-1 flex-row ">
@@ -971,11 +1050,13 @@
                                     </label>
                                 </div>
                             </div>
-                            <div class=" flex-grow">
-                                <input type=""
-                                    class=" outline-none text-sm w-full py-2 px-3 bg-gray-200 rounded-2xl "
-                                    placeholder="Comment">
+                            <div class="flex-grow">
+                                <input type="text" id="commentInput{{ $post->id }}" placeholder="Add a comment..."
+                                    class="outline-none text-xs w-full py-2 px-3 bg-gray-200 rounded-2xl">
                             </div>
+                            <button onclick="postComment({{ $post->id }})" class="ml-2 px-4 py-2 bg-blue-500 text-white rounded-lg">
+                                Post
+                            </button>
                         </div>
                     </div>
                 @empty
