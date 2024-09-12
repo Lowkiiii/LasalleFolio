@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('reactions', function (Blueprint $table) {
             $table->id(); // Primary key 'id'
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('post_id')->constrained('user_posts')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('post_id');
             $table->timestamps();
-            $table->unique(['user_id', 'post_id']); // Ensure a user can only react to a post once
+            $table->unique(['user_id', 'post_id']); 
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
         });
     }
 
@@ -25,6 +28,15 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('reactions', function (Blueprint $table) {
+            $table->dropForeign('reactions_user_id_foreign');
+            
+        });
+
+        Schema::table('reactions', function (Blueprint $table) {
+            $table->dropForeign('reactions_post_id_foreign');
+        });
+        
         Schema::dropIfExists('reactions');
     }
 };
