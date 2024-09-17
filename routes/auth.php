@@ -12,6 +12,7 @@ use App\Http\Controllers\UserPostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FriendRequestController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\InterestController;
 
 //use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -115,4 +116,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::get('/posts/{post}/comments', [CommentController::class, 'index'])->name('comments.index');
 
+   // Interest routes
+    Route::get('/interests', [InterestController::class, 'showInterestsForm'])->name('interests.form');
+    Route::post('/interests', [InterestController::class, 'storeInterests'])->name('interests.store');
+
+    // Student profile route
+    Route::get('/profile', [UserController::class, 'studentProfile'])->name('student.profile');
 });
+
+

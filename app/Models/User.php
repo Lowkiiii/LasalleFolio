@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany; 
 use Illuminate\Support\Facades\Auth;
+use App\Models\Interest;
 
 
 class User extends Authenticatable //implements MustVerifyEmail
@@ -88,5 +89,9 @@ class User extends Authenticatable //implements MustVerifyEmail
         return $this->first_name . ' ' . $this->last_name;
     }
 
+    public function interests()
+    {
+        return $this->hasMany(Interest::class);
+    }
 
 }

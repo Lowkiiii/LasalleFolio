@@ -8,7 +8,9 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Interest;
 use Illuminate\View\View;
+
 //use Illuminate\Foundation\Auth\VerifiesEmails;
 
 class AuthenticationController extends Controller
@@ -24,34 +26,36 @@ class AuthenticationController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function login(Request $request) : RedirectResponse
+    public function login(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        try{
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-            
-            $user = Auth::user();
+        try {
+            if (Auth::attempt($credentials)) {
+                $request->session()->regenerate();
+                
+                $user = Auth::user();
 
-            if($user->user_type_id == 1){
-                return redirect()->intended('/admin');
-            }else if($user->user_type_id == 2){
-                return redirect()->intended('/studentDashboard');
+                // Check if user has selected at least 3 interests
+                if ($user->interests()->count() < 3) {
+                    return redirect()->route('interests.form')->with('message', 'Please select at least 3 interests.');
+                }
+
+                // Redirect based on user type
+                if ($user->user_type_id == 1) {
+                    return redirect()->intended('/admin');
+                } else if ($user->user_type_id == 2) {
+                    return redirect()->intended('/studentDashboard');
+                }
             }
-        }
 
-     
-        return redirect()->back()->with('success', 'Successfully registered');
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'An error occurred while registering. Please try again.');
-    }
-    
-        
-    
+            return redirect()->back()->with('error', 'Login failed, please try again.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'An error occurred while logging in. Please try again.');
+        }
     }
 
     /**
@@ -59,11 +63,9 @@ class AuthenticationController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
-        
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();
-
         $request->session()->regenerateToken();
 
         return redirect('/login');

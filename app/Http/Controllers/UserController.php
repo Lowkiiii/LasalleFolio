@@ -47,6 +47,7 @@ class UserController extends Controller
         $userAcademics = $user->userAcademics;
         $userHonorsAndAwards = $user->userHonorsAndAwards;
         $userPosts = $user->userPosts;
+        $userInterests = $user->interests;
         
         // Add reaction count and user reaction status to each post
         foreach ($userPosts as $post) {
@@ -65,13 +66,23 @@ class UserController extends Controller
         // Get project count
         $projectCount = $this->countProjects();
 
-            $friendRequestController = new FriendRequestController();
-            $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount();
+        $friendRequestController = new FriendRequestController();
+        $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount();
 
-        return view('student.studentProf', compact('connectedStudentsCount','authUser','user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts','projectCount','points'));
-        
+        return view('student.studentProf', compact(
+            'connectedStudentsCount',
+            'authUser',
+            'user',
+            'userProjects',
+            'userSkills',
+            'userAcademics',
+            'userHonorsAndAwards',
+            'userPosts',
+            'projectCount',
+            'points',
+            'userInterests'
+        ));
     }
-
     public function countProjects()
     {
         $user = Auth::user();
