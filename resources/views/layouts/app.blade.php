@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+    @include('modal/Interest')
     @include('modal/modalEditAwardsandHonorsPanel')
     @include('modal/modalEditAcademicsPanel')
     @include('modal/modalSkillsEditPanel')
