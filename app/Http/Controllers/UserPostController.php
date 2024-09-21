@@ -12,56 +12,33 @@ use App\Models\FriendRequest;
 
 class UserPostController extends Controller
 {
-    //
 
-    public function store(Request $request)
-    {
-        try {
-            $validatedData = $request->validate([
-                'user_posts' => 'required|string',
-            ]);
-    
-            $userPosts = new UserPosts();
-            $userPosts->user_posts = $validatedData['user_posts'];
-            $userPosts->user_id = Auth::id();
-    
-            $userPosts->save();
-    
-            return redirect()->route('studentDashboard')->with('flash_message', 'Post Added!');
-        } catch (\Exception $e) {
-            Log::error('Error saving post: ' . $e->getMessage());
-            return Redirect::back()->withErrors(['error' => 'An error occurred while saving the posts.']);
+        public function store(Request $request)
+        {
+            try {
+                $validatedData = $request->validate([
+                    'user_posts' => 'required|string',
+                    'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file if uploaded
+                ]);
+
+                $userPosts = new UserPosts();
+                $userPosts->user_posts = $validatedData['user_posts'];
+                $userPosts->user_id = Auth::id();
+
+                // Check if an image is uploaded
+                if ($request->hasFile('image')) {
+                    $imagePath = $request->file('image')->store('uploads', 'public'); // Store image in the 'uploads' folder
+                    $userPosts->image_path = $imagePath; // Save the image path in the database
+                }
+
+                $userPosts->save();
+
+                return redirect()->route('studentDashboard')->with('flash_message', 'Post Added!');
+            } catch (\Exception $e) {
+                Log::error('Error saving post: ' . $e->getMessage());
+                return Redirect::back()->withErrors(['error' => 'An error occurred while saving the post.']);
+            }
         }
-    }
-
-    // public function index()
-    // {
-    //     $userPosts = UserPosts::all();
-    //     return view('student.studentDashboard', compact('userPosts'));
-    // }
-    // public function index()
-    // {
-    //     $userId = Auth::id();
-
-    //     // Get IDs of connected users
-    //     $connectedUserIds = FriendRequest::where(function ($query) use ($userId) {
-    //         $query->where('sender_id', $userId)
-    //             ->orWhere('receiver_id', $userId);
-    //     })
-    //     ->where('status', 'accepted')
-    //     ->get()
-    //     ->map(function ($request) use ($userId) {
-    //         return $request->sender_id === $userId ? $request->receiver_id : $request->sender_id;
-    //     });
-
-    //     // Include the authenticated user's ID
-    //     $connectedUserIds[] = $userId;
-
-    //     // Get posts from connected users and the authenticated user
-    //     $userPosts = UserPosts::whereIn('user_id', $connectedUserIds)->get();
-
-    //     return view('student.studentDashboard', compact('userPosts'));
-    // }
 
     public function index()
     {

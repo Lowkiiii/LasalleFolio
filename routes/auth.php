@@ -122,6 +122,7 @@ Route::middleware('auth')->group(function () {
 
     // Student profile route
     Route::get('/profile', [UserController::class, 'studentProfile'])->name('student.profile');
+
 });
 
 
