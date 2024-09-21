@@ -31,7 +31,7 @@ class UserPostController extends Controller
                     $userPosts->image_path = $imagePath; // Save the image path in the database
                 }
 
-                $userPosts->save();
+                $userPosts->save(); 
 
                 return redirect()->route('studentDashboard')->with('flash_message', 'Post Added!');
             } catch (\Exception $e) {

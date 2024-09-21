@@ -564,6 +564,14 @@
                             </div>
 
                             <div class="py-4 text-black">{{ $post->user_posts }}</div>
+                             {{-- Check if the post has an image and display it --}}
+                             @if($post->image_path)
+                             <div class="mt-2">
+                                 <img src="{{ asset('storage/' . $post->image_path) }}" alt="Post Image" class="w-full h-auto rounded-lg">
+                             </div>
+                         @else
+                             
+                         @endif
 
 
                             <div class="flex flex-row items-start justify-start">
