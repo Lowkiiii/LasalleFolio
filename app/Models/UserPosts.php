@@ -31,7 +31,7 @@ class UserPosts extends Model
      * @var array
      */
     protected $fillable = [
-        'user_posts', 'user_id', 'image_path'
+        'user_posts', 'user_id', 'image_path', 'category'
     ];
 
     public function user()

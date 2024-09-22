@@ -19,10 +19,12 @@ class UserPostController extends Controller
                 $validatedData = $request->validate([
                     'user_posts' => 'required|string',
                     'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file if uploaded
+                    'category' => 'required|string' // Validate category input
                 ]);
 
                 $userPosts = new UserPosts();
                 $userPosts->user_posts = $validatedData['user_posts'];
+                $userPosts->category = $validatedData['category'];
                 $userPosts->user_id = Auth::id();
 
                 // Check if an image is uploaded

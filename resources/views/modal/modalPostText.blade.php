@@ -35,7 +35,34 @@
                         @enderror
                     </div>
                 </div>
-                
+
+                 <!-- Category dropdown -->
+                <div class="text-sm text-black pb-2 pt-5">
+                    <label for="category" class="block font-bold">Select Category:</label>
+                    <select name="category" class="appearance-none bg-gray-100 rounded-xl p-4 w-full @error('category') border-2 border-red-500 @enderror">
+                        <option value="">-- Select Category --</option>
+                        <option value="3D Animation">3D Animation</option>
+                        <option value="3D Modelling">3D Modelling</option>
+                        <option value="AI">AI</option>
+                        <option value="Game Development">Game Development</option>
+                        <option value="UI/UX">UI/UX</option>
+                        <option value="Programming">Programming</option>
+                        <option value="Data Analytics">Data Analytics</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="Networking">Networking</option>
+                        <option value="Database">Database</option>
+                        <option value="Web Design">Web Design</option>
+                        <option value="Multimedia">Multimedia</option>
+                        <option value="Graphic Design">Graphic Design</option>
+                        <option value="Software Development">Software Development</option>
+                        <option value="Cloud Computing">Cloud Computing</option>
+                        <option value="Web Development">Web Development</option>
+                    </select>
+                    @error('category')
+                        <span class="text-red-500">{{ $message }}</span>
+                    @enderror
+                </div>
+                        
                 <!--footer-->
                 <div class="flex items-center justify-end p-4">
                     <button
