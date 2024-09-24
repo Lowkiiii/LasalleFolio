@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserPosts;
+use App\Models\Interest;
 use App\Models\Reaction;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\FriendRequest;
+use Illuminate\Support\Facades\DB;
 
 class UserPostController extends Controller
 {
@@ -42,37 +44,53 @@ class UserPostController extends Controller
             }
         }
 
-    public function index()
-    {
-        $userId = Auth::id();
+        public function index()
+        {
+            $userId = Auth::id();
+        
+            // Get IDs of connected users
+            $connectedUserIds = FriendRequest::where(function ($query) use ($userId) {
+                $query->where('sender_id', $userId)
+                    ->orWhere('receiver_id', $userId);
+            })
+            ->where('status', 'accepted')
+            ->get()
+            ->map(function ($request) use ($userId) {
+                return $request->sender_id === $userId ? $request->receiver_id : $request->sender_id;
+            });
+        
+            // Include the authenticated user's ID
+            $connectedUserIds[] = $userId;
+        
+            // Get the current user's interests
+            $userInterests = Interest::where('user_id', $userId)->pluck('interest_name')->toArray();
     
-        // Get IDs of connected users
-        $connectedUserIds = FriendRequest::where(function ($query) use ($userId) {
-            $query->where('sender_id', $userId)
-                ->orWhere('receiver_id', $userId);
-        })
-        ->where('status', 'accepted')
-        ->get()
-        ->map(function ($request) use ($userId) {
-            return $request->sender_id === $userId ? $request->receiver_id : $request->sender_id;
-        });
+            // Get posts from connected users and the authenticated user
+            $userPosts = UserPosts::whereIn('user_id', $connectedUserIds)->get();
     
-        // Include the authenticated user's ID
-        $connectedUserIds[] = $userId;
+            // Separate posts into two collections: matching interests and non-matching
+            $matchingPosts = $userPosts->filter(function ($post) use ($userInterests) {
+                return in_array($post->category, $userInterests);
+            });
+            $nonMatchingPosts = $userPosts->diff($matchingPosts);
     
-        // Get posts from connected users and the authenticated user
-        $userPosts = UserPosts::whereIn('user_id', $connectedUserIds)->get();
+            // Shuffle both collections
+            $matchingPosts = $matchingPosts->shuffle();
+            $nonMatchingPosts = $nonMatchingPosts->shuffle();
     
-         // Add reaction count and user reaction status to each post
-        foreach ($userPosts as $post) {
-            $post->reaction_count = Reaction::where('post_id', $post->id)->count();
-            $post->user_reacted = Reaction::where('post_id', $post->id)
-                                        ->where('user_id', $userId)
-                                        ->exists();
+            // Merge the collections, with matching posts first
+            $userPosts = $matchingPosts->merge($nonMatchingPosts);
+    
+            // Add reaction count and user reaction status to each post
+            foreach ($userPosts as $post) {
+                $post->reaction_count = Reaction::where('post_id', $post->id)->count();
+                $post->user_reacted = Reaction::where('post_id', $post->id)
+                                            ->where('user_id', $userId)
+                                            ->exists();
+            }
+        
+            return view('student.studentDashboard', compact('userPosts'));
         }
-    
-        return view('student.studentDashboard', compact('userPosts'));
-    }
 
     public function userProfile()
     {

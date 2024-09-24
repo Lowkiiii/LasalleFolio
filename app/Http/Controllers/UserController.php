@@ -6,6 +6,7 @@ use App\Models\UserPosts;
 use App\Models\FriendRequest;
 use App\Models\Reaction;
 use App\Models\Comment;
+use App\Models\Interest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -130,10 +131,26 @@ class UserController extends Controller
         // Include the authenticated user's ID
         $connectedUserIds[] = $userId;
 
-        // Get posts from connected users and the authenticated user
-        $userPosts = UserPosts::whereIn('user_id', $connectedUserIds)->get();
+        // Get the current user's interests
+        $userInterests = Interest::where('user_id', $userId)->pluck('interest_name')->toArray();
 
-        // Add reaction count and user reaction status to each post
+        // Get posts from connected users and the authenticated user
+        $allPosts = UserPosts::whereIn('user_id', $connectedUserIds)->get();
+
+        // Separate posts into two collections: matching interests and non-matching
+        $matchingPosts = $allPosts->filter(function ($post) use ($userInterests) {
+            return in_array($post->category, $userInterests);
+        });
+        $nonMatchingPosts = $allPosts->diff($matchingPosts);
+
+        // Shuffle both collections
+        $matchingPosts = $matchingPosts->shuffle();
+        $nonMatchingPosts = $nonMatchingPosts->shuffle();
+
+        // Merge the collections, with matching posts first
+        $userPosts = $matchingPosts->merge($nonMatchingPosts);
+
+        // Add reaction count, user reaction status, and comments to each post
         foreach ($userPosts as $post) {
             $post->reaction_count = Reaction::where('post_id', $post->id)->count();
             $post->user_reacted = Reaction::where('post_id', $post->id)
@@ -153,7 +170,7 @@ class UserController extends Controller
         // Get project count
         $projectCount = $this->countProjects();
 
-        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points','projectCount', 'topUsers'));
+        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers'));
     }
 
     public function calculatePoints()

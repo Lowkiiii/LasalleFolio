@@ -323,6 +323,8 @@
                                 @else
                                     
                                 @endif
+                                {{-- Display Post Category --}}
+                                <p class="mt-2 text-gray-600">Category: {{ $post->category }}</p>
 
 
                                 <div class="flex flex-row items-start justify-start">
