@@ -213,43 +213,49 @@ class UserController extends Controller
     public function studentLeaderboard(Request $request)
     {
         $query = $request->input('query');
-    
-        // Retrieve all users and calculate their points, connections, and total likes
-        $users = User::all()->map(function ($user) {
-            $user->points = $this->calculatePointsForUser($user);
-    
-            // Calculate number of connected users
-            $user->connectedUsersCount = FriendRequest::where(function ($query) use ($user) {
-                $query->where('sender_id', $user->id)
-                      ->orWhere('receiver_id', $user->id);
-            })->where('status', 'accepted')->count();
-    
-            // Calculate total number of likes (reactions) across all user posts
-            $user->totalLikes = Reaction::whereIn('post_id', $user->userPosts->pluck('id'))->count();
-    
-            return $user;
-        })->sortByDesc('points');
-    
-        // Optionally filter based on query
-        if ($query) {
+
+        // Retrieve all users except the admin
+        $users = User::where('user_type_id', '!=', 1) // Exclude admin by user_type_id
+            ->get()
+            ->map(function ($user) {
+                // Calculate points for the user
+                $user->points = $this->calculatePointsForUser($user);
+
+                // Calculate number of connected users
+                $user->connectedUsersCount = FriendRequest::where(function ($query) use ($user) {
+                    $query->where('sender_id', $user->id)
+                        ->orWhere('receiver_id', $user->id);
+                })->where('status', 'accepted')->count();
+
+                // Calculate total number of likes (reactions) across all user posts
+                $user->totalLikes = Reaction::whereIn('post_id', $user->userPosts->pluck('id'))->count();
+
+                return $user;
+            });
+
+        // If the query is provided and not empty, filter the users
+        if (!empty($query)) {
             $users = $users->filter(function ($user) use ($query) {
                 return stripos($user->first_name, $query) !== false ||
-                       stripos($user->last_name, $query) !== false;
+                    stripos($user->last_name, $query) !== false;
             });
         }
-    
+
+        // Sort users by points regardless of whether filtering was done
+        $users = $users->sortByDesc('points'); // Sort after filtering
+
         // Get the authenticated user's information
-        $user = Auth::user();
-        $userProjects = $user->userProjects;
-        $userSkills = $user->userSkills;
-        $userAcademics = $user->userAcademics;
-        $userHonorsAndAwards = $user->userHonorsAndAwards;
-        $userPosts = $user->userPosts;
-    
+        $authUser = Auth::user();
+        $userProjects = $authUser->userProjects;
+        $userSkills = $authUser->userSkills;
+        $userAcademics = $authUser->userAcademics;
+        $userHonorsAndAwards = $authUser->userHonorsAndAwards;
+        $userPosts = $authUser->userPosts;
+
         // Return the view with the sorted users
         return view('student.studentLeaderboard', [
             'users' => $users,
-            'authUser' => $user,
+            'authUser' => $authUser,
             'userProjects' => $userProjects,
             'userSkills' => $userSkills,
             'userAcademics' => $userAcademics,
@@ -257,9 +263,8 @@ class UserController extends Controller
             'userPosts' => $userPosts,
         ]);
     }
-    
-    
-    
+
+
     private function calculatePointsForUser($user)
     {
         // Calculate total points for a given user

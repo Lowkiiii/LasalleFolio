@@ -123,6 +123,8 @@ Route::middleware('auth')->group(function () {
     // Student profile route
     Route::get('/profile', [UserController::class, 'studentProfile'])->name('student.profile');
 
+    //Search in leaderboards
+    Route::get('/leaderboard', [UserController::class, 'studentLeaderboard'])->name('student.leaderboard');
 });
 
 
