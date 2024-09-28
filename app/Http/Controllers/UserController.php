@@ -137,15 +137,22 @@ class UserController extends Controller
         // Get posts from connected users and the authenticated user
         $allPosts = UserPosts::whereIn('user_id', $connectedUserIds)->get();
 
+        // Calculate relevance score for each post
+        $scoredPosts = $allPosts->map(function ($post) use ($userInterests) {
+            $interestScore = in_array($post->category, $userInterests) ? 50 : 0;
+            $timeScore = 100 - min($post->created_at->diffInHours(now()), 100);
+            $post->relevanceScore = $interestScore + $timeScore;
+            return $post;
+        });
+
+        // Sort posts by relevance score
+        $sortedPosts = $scoredPosts->sortByDesc('relevanceScore');
+
         // Separate posts into two collections: matching interests and non-matching
-        $matchingPosts = $allPosts->filter(function ($post) use ($userInterests) {
+        $matchingPosts = $sortedPosts->filter(function ($post) use ($userInterests) {
             return in_array($post->category, $userInterests);
         });
-        $nonMatchingPosts = $allPosts->diff($matchingPosts);
-
-        // Shuffle both collections
-        $matchingPosts = $matchingPosts->shuffle();
-        $nonMatchingPosts = $nonMatchingPosts->shuffle();
+        $nonMatchingPosts = $sortedPosts->diff($matchingPosts);
 
         // Merge the collections, with matching posts first
         $userPosts = $matchingPosts->merge($nonMatchingPosts);
@@ -170,7 +177,16 @@ class UserController extends Controller
         // Get project count
         $projectCount = $this->countProjects();
 
-        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers'));
+        // Find other students with similar interests
+        $studentInterest = User::whereHas('interests', function($query) use ($userInterests) {
+            $query->whereIn('interest_name', $userInterests);
+        })->where('id', '!=', $userId)// Exclude the logged-in user
+        ->whereNotIn('id', $connectedUserIds) //Exlude connected users
+        ->inRandomOrder() // Shuffle the results
+        ->take(5) // Limit to 5 users
+        ->get();
+
+        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers', 'userInterests', 'studentInterest'));
     }
 
     public function calculatePoints()

@@ -88,9 +88,4 @@ class FriendRequestController extends Controller
         return $count;
     }
 
-    // public function showStudentProfile()
-    // {
-    //     $connectedStudentsCount = $this->getConnectedStudentsCount();
-    //     return view('student.studentProf', compact('connectedStudentsCount'));
-    // }
 }

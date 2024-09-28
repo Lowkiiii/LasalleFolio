@@ -98,10 +98,6 @@
                     <div class="text-sm font-d mx-auto max-y-md max-w-lg flex items-center justify-center mt-2 mb-2"
                         id="btn-ConnectContainer">
                         <div>
-                            {{-- <button  class="btn shadow-lg inline-block rounded-md bg-[#006634] px-7 py-2 text-xs font-bold leading-normal text-white  transition duration-300 ease-in-out hover:bg-[#004423]  w-full">
-                         Connect +
-                            </button> --}}
-
                             <script>
                                 const ConnectBtn = document.querySelector('#btn-ConnectContainer button');
 
@@ -121,19 +117,6 @@
                             </script>
                         </div>
                     </div>
-
-                    {{-- add friend
-                    <div class="flex items-center justify-center ml-5 ">
-                        <div class="text-xs font-bold">
-                            <form action="{{ route('friend-request.send', $user->id) }}" method="POST">
-                                @csrf
-                                <button type="submit"
-                                    class="inline-block rounded-md bg-[#006634] px-2 py-1 text-xs font-bold leading-normal truncate text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full">
-                                    Connect +
-                                </button>
-                            </form>
-                        </div>
-                    </div> --}}
 
                     {{-- Friend/Connect/Unfriend button --}}
                         <div class="flex items-center justify-center ml-5">
