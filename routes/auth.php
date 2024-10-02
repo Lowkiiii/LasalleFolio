@@ -132,6 +132,12 @@ Route::middleware('auth')->group(function () {
     // Remove pinned projects
     Route::post('/remove-pinned-project/{id}', [UserController::class, 'removePinnedProject'])->name('pinnedProjects.remove');
 
+    // Update bio
+    Route::put('/bio/{user}', [UserController::class, 'updateBio'])->name('bio.update');
+
+    // Remove bio
+    Route::delete('/bio/{user}', [UserController::class, 'removeBio'])->name('bio.remove');
+
 
 });
 

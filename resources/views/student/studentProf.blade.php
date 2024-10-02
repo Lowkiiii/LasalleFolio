@@ -157,10 +157,16 @@
                             </button> </div>
                         <div class="flex mt-2 text-sm font-medium text-center justify-center">
                             <div class="w-3/4 text-black">
-                                An aspiring Web Developer currently enrolled in USLS, and completing his Computer Science
-                                Degree
+                                {{ $bio->bio ?? 'No bio available.' }}
                             </div>
                         </div>
+                        <form action="{{ route('bio.remove', $user->id) }}" method="POST" class="inline-block">
+                            @csrf
+                            @method('DELETE') <!-- Use DELETE method for removing -->
+                            <button class="bg-red-500 text-white font-semibold uppercase text-xs px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="submit">
+                                Remove
+                            </button>
+                        </form>
                     </div>
                     <div class="mr-10 mt-10 w-full ">
                         <h1 class="font-bold text-black py-2">Pinned Project Showcase</h1>
@@ -772,7 +778,8 @@
 
                                 </svg>
                                 <div class="text-sm text-center text-[#D40000] font-bold flex px-2"
-                                    onclick="toggleModal('modal-idPostImage')">
+                                    {{-- onclick="toggleModal('modal-idPostImage')" --}}
+                                    >
                                     Image
                                 </div>
                             </div>
@@ -786,7 +793,8 @@
                                     </path>
                                 </svg>
                                 <div class="text-sm text-center  font-bold flex px-2"
-                                    onclick="toggleModal('modal-idPostDocument')">
+                                    {{-- onclick="toggleModal('modal-idPostDocument')" --}}
+                                    >
                                     Document
                                 </div>
                             </div>

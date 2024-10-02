@@ -7,7 +7,7 @@ use App\Models\FriendRequest;
 use App\Models\Reaction;
 use App\Models\Comment;
 use App\Models\Interest;
-use App\Models\UserProject;
+use App\Models\Bio;
 use App\Models\PinnedProject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -61,6 +61,8 @@ class UserController extends Controller
         // Exclude pinned projects from the available projects list
         $availableProjects = $userProjects->whereNotIn('id', $pinnedProjects->pluck('project_id'));
 
+        // Get the user's bio
+        $bio = Bio::where('user_id', $userId)->first();
         
         // Add reaction count and user reaction status to each post
         foreach ($userPosts as $post) {
@@ -94,7 +96,8 @@ class UserController extends Controller
             'projectCount',
             'points',
             'userInterests',
-            'pinnedProjects'
+            'pinnedProjects',
+            'bio'
         ));
     }
 
@@ -127,6 +130,35 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Pinned projects updated successfully!');
     }
+
+    public function updateBio(Request $request, $userId)
+    {
+        $request->validate([
+            'bio' => 'nullable|string|max:1000', // Validation rules
+        ]);
+
+        // Find or create the bio entry for the user
+        $bio = Bio::updateOrCreate(
+            ['user_id' => $userId],
+            ['bio' => $request->input('bio')]
+        );
+
+        return redirect()->back()->with('success', 'Bio updated successfully!');
+    }
+
+    public function removeBio($userId)
+    {
+        // Find the user's bio and delete it
+        $bio = Bio::where('user_id', $userId)->first();
+
+        if ($bio) {
+            $bio->delete(); // Delete the bio record
+            return redirect()->back()->with('success', 'Bio removed successfully.');
+        }
+
+        return redirect()->back()->with('error', 'No bio found to remove.');
+    }
+
 
     public function countProjects()
     {
