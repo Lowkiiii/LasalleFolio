@@ -125,6 +125,11 @@ Route::middleware('auth')->group(function () {
 
     //Search in leaderboards
     Route::get('/leaderboard', [UserController::class, 'studentLeaderboard'])->name('student.leaderboard');
+    
+    //Pin projects
+    Route::post('/pin-projects', [UserController::class, 'pinProjects'])->name('pin.projects');
+
+
 });
 
 

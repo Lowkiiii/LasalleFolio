@@ -127,13 +127,16 @@ class UserPostController extends Controller
     {
         try {
             $userPosts = UserPosts::findOrFail($id);
+            $requestUserId = request('user_id');
 
-            if ($userPosts->user_id !== Auth::id()) {
-                return redirect()->back()->with('error', 'You are not authorized to delete this post.');
+            if ($userPosts->user_id != $requestUserId || $requestUserId != Auth::id()) {
+                $message = "You are not authorized to delete this post.";
+                Log::warning("Unauthorized delete attempt. Post user_id: " . $userPosts->user_id . ", Request user_id: " . $requestUserId . ", Auth::id(): " . Auth::id());
+                return redirect()->back()->with('error', $message);
             }
 
             $userPosts->delete();
-            return redirect()->route('studentDashboard')->with('flash_message', 'post deleted successfully!');
+            return redirect()->route('studentDashboard')->with('flash_message', 'Post deleted successfully!');
         } catch (\Exception $e) {
             Log::error('Error deleting post: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'An error occurred while deleting the post.']);

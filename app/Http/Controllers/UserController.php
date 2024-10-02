@@ -7,6 +7,8 @@ use App\Models\FriendRequest;
 use App\Models\Reaction;
 use App\Models\Comment;
 use App\Models\Interest;
+use App\Models\UserProject;
+use App\Models\PinnedProject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -33,6 +35,7 @@ class UserController extends Controller
         }
         
     }
+
     public function studentProfile(Request $request)
     {
         $query = $request->input('query');
@@ -49,6 +52,11 @@ class UserController extends Controller
         $userHonorsAndAwards = $user->userHonorsAndAwards;
         $userPosts = $user->userPosts;
         $userInterests = $user->interests;
+
+        $pinnedProjects = PinnedProject::with('project') // Eager load the project
+        ->where('user_id', $user->id)
+        ->get();
+
         
         // Add reaction count and user reaction status to each post
         foreach ($userPosts as $post) {
@@ -81,9 +89,28 @@ class UserController extends Controller
             'userPosts',
             'projectCount',
             'points',
-            'userInterests'
+            'userInterests',
+            'pinnedProjects'
         ));
     }
+
+    public function pinProjects(Request $request)
+    {
+        $user = Auth::user();
+
+        // Save new pinned projects
+        if ($request->has('pinned_projects')) {
+            foreach ($request->pinned_projects as $projectId) {
+                PinnedProject::create([
+                    'user_id' => $user->id,
+                    'project_id' => $projectId,
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Pinned projects updated successfully!');
+    }
+
     public function countProjects()
     {
         $user = Auth::user();
@@ -192,23 +219,36 @@ class UserController extends Controller
     public function calculatePoints()
     {
         $user = Auth::user();
-
+    
         // Calculate total points
         $postPoints = $user->userPosts->count() * 30;
+    
+        // Calculate connection points
         $connectionPoints = FriendRequest::where(function ($query) use ($user) {
             $query->where('sender_id', $user->id)
-                ->orWhere('receiver_id', $user->id);
+                  ->orWhere('receiver_id', $user->id);
         })->where('status', 'accepted')->count() * 20;
-        $reactionPoints = Reaction::where('user_id', $user->id)->count() * 10;
-
+    
+        // Calculate reaction points only for user's own posts or those liked on their posts
+        $userPostIds = $user->userPosts->pluck('id');
+        $reactionPointsFromOwnPosts = Reaction::whereIn('post_id', $userPostIds)
+                                              ->count() * 10; // Reactions on user's own posts
+        $reactionPointsReceived = Reaction::where('user_id', $user->id)
+                                           ->whereIn('post_id', $userPostIds)
+                                           ->count() * 10; // Likes received on user's posts
+    
+        // Combine points for reactions
+        $reactionPoints = $reactionPointsFromOwnPosts + $reactionPointsReceived;
+    
         // Calculate comment points (15 points for each comment made by the user)
         $commentPoints = Comment::where('user_id', $user->id)->count() * 15;
-
+    
         // Total points including comments
         $totalPoints = $postPoints + $connectionPoints + $reactionPoints + $commentPoints;
-
+    
         return $totalPoints;
     }
+    
 
     public function studentLeaderboard(Request $request)
     {
@@ -269,15 +309,32 @@ class UserController extends Controller
     {
         // Calculate total points for a given user
         $postPoints = $user->userPosts->count() * 30;
+
+        // Calculate connection points
         $connectionPoints = FriendRequest::where(function ($query) use ($user) {
             $query->where('sender_id', $user->id)
-                  ->orWhere('receiver_id', $user->id);
+                ->orWhere('receiver_id', $user->id);
         })->where('status', 'accepted')->count() * 20;
-        $reactionPoints = Reaction::where('user_id', $user->id)->count() * 10;
+
+        // Get the user's posts
+        $userPostIds = $user->userPosts->pluck('id');
+
+        // Calculate reaction points only for user's own posts or those liked on their posts
+        $reactionPointsFromOwnPosts = Reaction::whereIn('post_id', $userPostIds)
+                                            ->count() * 10; // Reactions on user's own posts
+        $reactionPointsReceived = Reaction::where('user_id', $user->id)
+                                        ->whereIn('post_id', $userPostIds)
+                                        ->count() * 10; // Likes received on user's posts
+
+        // Combine points for reactions
+        $reactionPoints = $reactionPointsFromOwnPosts + $reactionPointsReceived;
+
+        // Calculate comment points (15 points for each comment made by the user)
         $commentPoints = Comment::where('user_id', $user->id)->count() * 15;
-    
+
         return $postPoints + $connectionPoints + $reactionPoints + $commentPoints;
     }
+
     
 
     public function kerschProf(Request $request)

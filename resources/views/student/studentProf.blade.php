@@ -164,14 +164,14 @@
                     </div>
                     <div class="mr-10 mt-10 w-full ">
                         <h1 class="font-bold text-black py-2">Pinned Project Showcase</h1>
-
+                        
                         <div class="flex  animate-blink animation-delay-100">
                             <div class="flex flex-col w-full mr-5 ">
                                 <div
                                     class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg shadow-lg  ">
 
                                     <div class="absolute right-0 top-0 z-20">
-                                        {{-- <button class="p-4">
+                                        <button class="p-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                                 viewBox="0 0 24 24"
                                                 class="fill-current text-[#6e6e6e] hover:text-[#006634]  "onclick="toggleModal('modal-idEditShowcase')">
@@ -179,19 +179,40 @@
                                                         5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816
                                                         2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
                                             </svg>
-                                        </button> --}}
+                                        </button>
                                     </div>
 
                                     <div class="relative">
                                         <div class="text-xl font-bold text-[#006634]">
-                                            <button class="hover:text-[#004423] ">
-                                                · Zesto-Chat-Application
-                                            </button>
 
-                                            <div class="py-3 text-xs font-medium text-black items-start w-11/12">
-                                                Credits to Antonio Erdeljac for his youtube video on how to create a
-                                                Messenger like applicatio .</div>
+                                            <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
+                                                onclick="toggleModal('modal-idPinnedProjects')">
+                                                <!DOCTYPE svg
+                                                    PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+                                                <svg enable-background="new 0 0 512 512" height="18px" id="Layer_1"
+                                                    version="1.1" viewBox="0 0 512 512" width="18px"
+                                                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                    <path
+                                                        d="M256,512C114.625,512,0,397.391,0,256C0,114.609,114.625,0,256,0c141.391,0,256,114.609,256,256  C512,397.391,397.391,512,256,512z M256,64C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192  S362.047,64,256,64z M288,384h-64v-96h-96v-64h96v-96h64v96h96v64h-96V384z" />
+                                                </svg>
+
+
+                                            </button>
+                                                @foreach($pinnedProjects as $pinnedProject)
+                                                <div>
+                                                    <button class="hover:text-[#004423]">
+                                                        · {{ $pinnedProject->project->project ?? 'Project Name Not Available' }}
+                                                    </button>
+                                            
+                                                    <div class="py-3 text-xs font-medium text-black items-start w-11/12">
+                                                        {{ $pinnedProject->project->description ?? 'No description available' }}
+                                                    </div>
+                                                </div>
+                                             @endforeach
+                                        
                                         </div>
+                                        
 
                                     </div>
                                 </div>
@@ -771,6 +792,80 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="w-full relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
+
+                    <div class=" flex items-center">
+                        <div class="w-12 h-12 rounded-full mr-2  ">
+                            <div class="relative group">
+                                <label for="file_input" class="cursor-pointer">
+                                    <img src="image/dog.jpg" alt="Profile"
+                                        class="w-full h-full rounded-full object-cover">
+                                </label>
+
+                            </div>
+
+                        </div>
+                        <div class=" flex-grow">
+                            <button type="" class=" text-sm w-full py-2 px-3 bg-gray-200 rounded-2xl "
+                                onclick="toggleModal('modal-idPostText')" placeholder="Share something...">
+                                <div class="text-start opacity-60">
+                                    Share your thoughts...
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+
+
+                    <div class="flex flex-row w-full  items-center text-[#006634] font-bold text-xl mt-6 ">
+                        <button class="mr-auto" onclick="toggleModal('')">
+                            <div class=" items-center text-center flex px-8 ">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="27"
+                                    height="27" viewBox="0 0 30 30" fill="#D40000">
+                                    <path
+                                        d="M 4 5 C 2.895 5 2 5.895 2 7 L 2 23 C 2 24.105 2.895 25 4 25 L 26 25 C 27.105 25 28 24.105 28 23 L 28 7 C 28 5.895 27.105 5 26 5 L 4 5 z M 23 8 C 24.105 8 25 8.895 25 10 C 25 11.105 24.105 12 23 12 C 21.895 12 21 11.105 21 10 C 21 8.895 21.895 8 23 8 z M 9 12.001953 C 9.61925 12.001953 10.238437 12.238437 10.710938 12.710938 L 13.972656 15.972656 L 15 17 L 16.15625 18.15625 C 16.57825 18.57825 17.259641 18.574344 17.681641 18.152344 C 18.104641 17.730344 18.104641 17.044094 17.681641 16.621094 L 16.529297 15.470703 L 17.289062 14.710938 C 18.234063 13.765937 19.765937 13.765937 20.710938 14.710938 L 25 19 L 25 22 L 5 22 L 5 15 L 7.2890625 12.710938 C 7.7615625 12.238437 8.38075 12.001953 9 12.001953 z">
+                                    </path>
+
+                                </svg>
+                                <div class="text-sm text-center text-[#D40000] font-bold flex px-2"
+                                    onclick="toggleModal('modal-idPostImage')">
+                                    Image
+                                </div>
+                            </div>
+                        </button>
+                        <button class="mx-auto">
+                            <div class=" items-center text-center flex px-8 text-[#424242]">
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="27"
+                                    height="27" viewBox="0 0 30 30 " fill="#424242">
+                                    <path
+                                        d="M24.707,8.793l-6.5-6.5C18.019,2.105,17.765,2,17.5,2H7C5.895,2,5,2.895,5,4v22c0,1.105,0.895,2,2,2h16c1.105,0,2-0.895,2-2 V9.5C25,9.235,24.895,8.981,24.707,8.793z M18,21h-8c-0.552,0-1-0.448-1-1c0-0.552,0.448-1,1-1h8c0.552,0,1,0.448,1,1 C19,20.552,18.552,21,18,21z M20,17H10c-0.552,0-1-0.448-1-1c0-0.552,0.448-1,1-1h10c0.552,0,1,0.448,1,1C21,16.552,20.552,17,20,17 z M18,10c-0.552,0-1-0.448-1-1V3.904L23.096,10H18z">
+                                    </path>
+                                </svg>
+                                <div class="text-sm text-center  font-bold flex px-2"
+                                    onclick="toggleModal('modal-idPostDocument')">
+                                    Document
+                                </div>
+                            </div>
+                        </button>
+                        <div class="ml-auto">
+                            <div class=" items-center justify-center text-center flex px-8 text-[#0066FF]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27"
+                                    viewBox="0 0 24 24" fill="#0066FF">
+                                    <path
+                                        d="M16 10L18.5768 8.45392C19.3699 7.97803 19.7665 7.74009 20.0928 7.77051C20.3773 7.79703 20.6369 7.944 20.806 8.17433C21 8.43848 21 8.90095 21 9.8259V14.1741C21 15.099 21 15.5615 20.806 15.8257C20.6369 16.056 20.3773 16.203 20.0928 16.2295C19.7665 16.2599 19.3699 16.022 18.5768 15.5461L16 14M6.2 18H12.8C13.9201 18 14.4802 18 14.908 17.782C15.2843 17.5903 15.5903 17.2843 15.782 16.908C16 16.4802 16 15.9201 16 14.8V9.2C16 8.0799 16 7.51984 15.782 7.09202C15.5903 6.71569 15.2843 6.40973 14.908 6.21799C14.4802 6 13.9201 6 12.8 6H6.2C5.0799 6 4.51984 6 4.09202 6.21799C3.71569 6.40973 3.40973 6.71569 3.21799 7.09202C3 7.51984 3 8.07989 3 9.2V14.8C3 15.9201 3 16.4802 3.21799 16.908C3.40973 17.2843 3.71569 17.5903 4.09202 17.782C4.51984 18 5.07989 18 6.2 18Z"
+                                        stroke="#0066FF" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                <div class="text-sm text-center font-bold flex px-2">
+                                    Video
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 @forelse ($userPosts as $post)
                     <div class="w-full mb-4 relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
                         <div class="absolute right-0 top-0 z-20">
@@ -1078,4 +1173,5 @@
         </div>
         </div>
         @include('modal.modalPanels')
+        @include('modal.PinnedProjectShowcaseModal')
     @endsection

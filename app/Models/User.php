@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany; 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Interest;
+use App\Models\PinnedProject;
 
 
 class User extends Authenticatable //implements MustVerifyEmail
@@ -92,6 +93,11 @@ class User extends Authenticatable //implements MustVerifyEmail
     public function interests()
     {
         return $this->hasMany(Interest::class);
+    }
+
+    public function pinnedProjects()
+    {
+        return $this->hasMany(PinnedProject::class);
     }
 
 }

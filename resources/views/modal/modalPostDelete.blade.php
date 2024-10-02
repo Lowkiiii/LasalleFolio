@@ -1,10 +1,10 @@
 @foreach ($userPosts as $posts)
 <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center"
-    id="modal-idPostDelete">
+    id="modal-idPostDelete-{{ $posts->id }}">
     <div class="relative w-auto px-4 my-auto mx-auto max-w-xl">
         <div
             class="border border-[#D9D9D9] rounded-lg shadow-lg relative flex flex-col px-4 w-full bg-white outline-none focus:outline-none">
-            <form action="{{ route('posts.destroy', $posts->id) }}"
+            <form action="{{ route('posts.destroy', ['id' => $posts->id, 'user_id' => $posts->user_id])  }}"
                 method="POST"
                 onsubmit="return confirm('Are you sure you want to delete this post?')"
                 class="inline-block">
@@ -27,5 +27,5 @@
         </div>
     </div>
 </div>
-<div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-idPostDelete-backdrop"></div>
+<div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-idPostDelete-{{ $posts->id }}-backdrop"></div>
 @endforeach
