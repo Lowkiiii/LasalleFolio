@@ -213,12 +213,8 @@
                                                 @endforeach
                                         
                                         </div>
-                                        
-
                                     </div>
                                 </div>
-                            </div>
-
                             </div>
 
                             {{-- Add Button for Projects --}}
