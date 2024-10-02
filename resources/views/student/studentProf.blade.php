@@ -171,7 +171,7 @@
                                     class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#939393] rounded-lg shadow-lg  ">
 
                                     <div class="absolute right-0 top-0 z-20">
-                                        <button class="p-4">
+                                        {{-- <button class="p-4">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15"
                                                 viewBox="0 0 24 24"
                                                 class="fill-current text-[#6e6e6e] hover:text-[#006634]  "onclick="toggleModal('modal-idEditShowcase')">
@@ -179,7 +179,7 @@
                                                         5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816
                                                         2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
                                             </svg>
-                                        </button>
+                                        </button> --}}
                                     </div>
 
                                     <div class="relative">
@@ -200,18 +200,23 @@
 
                                             </button>
                                                 
-                                                @foreach($pinnedProjects as $pinnedProject)
-                                                    <div>
-                                                        <button class="hover:text-[#004423]">
-                                                            · {{ $pinnedProject->project->project ?? 'Project Name Not Available' }}
-                                                        </button>
-                                                
-                                                        <div class="py-3 text-xs font-medium text-black items-start w-11/12">
-                                                            {{ $pinnedProject->project->description ?? 'No description available' }}
-                                                        </div>
+                                            @foreach($pinnedProjects as $pinnedProject)
+                                                <div>
+                                                    <button class="hover:text-[#004423]">
+                                                        · {{ $pinnedProject->project->project ?? 'Project Name Not Available' }}
+                                                    </button>
+                                                    <div class="py-3 text-xs font-medium text-black items-start w-11/12">
+                                                        {{ $pinnedProject->project->description ?? 'No description available' }}
                                                     </div>
-                                                @endforeach
-                                        
+                                                    
+                                                    <!-- Remove button form -->
+                                                    <form action="{{ route('pinnedProjects.remove', $pinnedProject->id) }}" method="POST" class="inline-block">
+                                                        @csrf
+                                                        <button type="submit" class="text-red-500 text-xs">Remove</button>
+                                                    </form>
+                                                </div>
+                                            @endforeach
+                                            
                                         </div>
                                     </div>
                                 </div>

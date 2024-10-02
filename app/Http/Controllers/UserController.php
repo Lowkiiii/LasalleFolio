@@ -53,9 +53,13 @@ class UserController extends Controller
         $userPosts = $user->userPosts;
         $userInterests = $user->interests;
 
+        // Fetch pinned projects for the user
         $pinnedProjects = PinnedProject::with('project') // Eager load the project
         ->where('user_id', $user->id)
         ->get();
+
+        // Exclude pinned projects from the available projects list
+        $availableProjects = $userProjects->whereNotIn('id', $pinnedProjects->pluck('project_id'));
 
         
         // Add reaction count and user reaction status to each post
@@ -93,6 +97,19 @@ class UserController extends Controller
             'pinnedProjects'
         ));
     }
+
+    public function removePinnedProject($id)
+    {
+        $pinnedProject = PinnedProject::where('id', $id)->where('user_id', Auth::id())->first();
+        
+        if ($pinnedProject) {
+            $pinnedProject->delete();
+        }
+
+        return redirect()->back()->with('success', 'Pinned project removed successfully.');
+    }
+
+
 
     public function pinProjects(Request $request)
     {

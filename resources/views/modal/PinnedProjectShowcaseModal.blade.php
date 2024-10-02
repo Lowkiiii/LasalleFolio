@@ -7,31 +7,39 @@
             <!-- Form to submit pinned projects -->
             <form action="{{ route('pin.projects') }}" method="POST">
                 @csrf
+
+                <!-- Retrieve pinned project IDs -->
+                @php
+                    $pinnedProjectIds = $pinnedProjects->pluck('project_id')->toArray(); // Assuming the pivot table has 'project_id'
+                @endphp
+
                 @forelse ($userProjects as $projects)
-                <div class="flex flex-col">
-                    <div class="flex items-center pb-1">
-                        <div class="w-12 h-12 bg-gray-300">
-                            <!-- LOGO HERE -->
-                        </div>
+                    @if (!in_array($projects->id, $pinnedProjectIds)) <!-- Check if the project is not already pinned -->
+                        <div class="flex flex-col">
+                            <div class="flex items-center pb-1">
+                                <div class="w-12 h-12 bg-gray-300">
+                                    <!-- LOGO HERE -->
+                                </div>
 
-                        <div class="ml-3 py-2 text-xs font-medium text-black w-5/6">
-                            <div class="font-bold text-base">
-                                {{ $projects->project }}
+                                <div class="ml-3 py-2 text-xs font-medium text-black w-5/6">
+                                    <div class="font-bold text-base">
+                                        {{ $projects->project }}
+                                    </div>
+
+                                    <div class="font-normal text-sm">
+                                        {{ $projects->description }}
+                                    </div>
+                                </div>
+
+                                <!-- Checkbox for pinning project -->
+                                <div class="ml-auto">
+                                    <input type="checkbox" name="pinned_projects[]" value="{{ $projects->id }}" class="form-checkbox h-4 w-4 text-green-600">
+                                </div>
                             </div>
-
-                            <div class="font-normal text-sm">
-                                {{ $projects->description }}
-                            </div>
                         </div>
-
-                        <!-- Checkbox for pinning project -->
-                        <div class="ml-auto">
-                            <input type="checkbox" name="pinned_projects[]" value="{{ $projects->id }}" class="form-checkbox h-4 w-4 text-green-600">
-                        </div>
-                    </div>
-                </div>
+                    @endif
                 @empty
-                <p>No projects available.</p>
+                    <p>No projects available.</p>
                 @endforelse
 
                 <!--footer-->

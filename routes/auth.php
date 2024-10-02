@@ -129,6 +129,9 @@ Route::middleware('auth')->group(function () {
     //Pin projects
     Route::post('/pin-projects', [UserController::class, 'pinProjects'])->name('pin.projects');
 
+    // Remove pinned projects
+    Route::post('/remove-pinned-project/{id}', [UserController::class, 'removePinnedProject'])->name('pinnedProjects.remove');
+
 
 });
 
