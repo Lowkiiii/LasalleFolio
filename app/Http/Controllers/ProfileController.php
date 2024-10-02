@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\PinnedProject;
 
 class ProfileController extends Controller
 {
@@ -16,6 +17,10 @@ class ProfileController extends Controller
         $userHonorsAndAwards = $user->userHonorsAndAwards;
         $userPosts = $user->userPosts;
 
-        return view('profile.show', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+        $pinnedProjects = PinnedProject::with('project') // Eager load the project
+        ->where('user_id', $user->id)
+        ->get();
+
+        return view('profile.show', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts','pinnedProjects'));
     }
 }
