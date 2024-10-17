@@ -105,6 +105,7 @@
                                                                 class="flex flex-row justify-end font-normal text-[#444444] text-xs">
                                                                 Points</div>
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             @endforeach
@@ -115,6 +116,18 @@
                                                     class="text-black text-sm hover:text-[#006634]">
                                                     View More...
                                                 </button>
+                                                
+                                                <div class=" flex flex-row text-xs text-black flex-wrap">
+                                                    {{ $topUser->name }} </div>
+                                                <div class="ml-auto flex flex-col">
+                                                    {{ $topUser->points }}
+                                                    
+                                                    <div
+                                                        class="flex flex-row justify-end font-normal text-[#444444] text-xs">
+                                                        Points</div>
+                                                </div>
+                                          
+
                                             </div>
                                         </div>
                                         <script>
@@ -282,6 +295,7 @@
                                                                 class="w-full h-full object-cover">
                                                         </label>
                                                     </div>
+
                                                 </div>
                                                 <div class="text-sm font-bold text-black bg-gray-200 rounded-lg p-2">
                                                     <div class="flex">
@@ -292,8 +306,12 @@
                                                     <div class="text-sm font-medium text-black">{{ $comment->content }}
                                                     </div> <!-- Display comment content -->
                                                     {{-- <div class="flex flex-row py-1">
+
+                                                    <div class="text-sm font-medium text-black">{{ $comment->content }}</div> <!-- Display comment content -->
+                                                    <div class="flex flex-row py-1">
+
                                                         <button class="flex flex-row text-xs opacity-70" onclick="toggleReply()">Reply</button>
-                                                    </div> --}}
+                                                    </div>
                                                 </div>
                                             </div>
                                         @endforeach
