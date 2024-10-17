@@ -9,12 +9,19 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "andreiio/blade-remix-icon": "^3.3",
+        "blade-ui-kit/blade-heroicons": "^2.4",
+        "blade-ui-kit/blade-ui-kit": "^0.6.2",
+        "davidhsianturi/blade-bootstrap-icons": "^1.5",
+        "faisal50x/blade-ionicons": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
+        "hasnayeen/blade-eva-icons": "^2.0",
         "intervention/image": "^3.6",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.5",
+        "owenvoke/blade-fontawesome": "^2.6",
         "tjgazel/laravel-toastr": "^1.1",
         "yoeunes/toastr": "^2.3"
     },
@@ -60,6 +67,7 @@
         }
     },
     "config": {
+        "apcu-autoloader": true,
         "optimize-autoloader": true,
         "preferred-install": "dist",
         "sort-packages": true,

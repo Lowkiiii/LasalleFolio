@@ -59,10 +59,10 @@
         if (users.length > 0) {
             users.slice(0, 5).forEach(user => {
                 const userDiv = document.createElement('div');
-                userDiv.className = 'w-full py-2 px-4 rounded-xl hover:bg-[#efefef] cursor-pointer';
+                userDiv.className = 'w-full py-2 px-4 rounded-xl  cursor-pointer hover:bg-gray-200';
                 userDiv.innerHTML = `
                     <div class="flex">
-                        <a href="/profile/${user.id}" class="flex items-center justify-center w-full">
+                        <a href="/profile/${user.id}" class="flex items-start justify-start w-full">
                             <img src="image/kersch.png" alt="Profile" class="rounded-full object-cover w-10 h-10">
                             <div class="flex ml-4 text-md font-bold text-black truncate">
                                 <div>${user.first_name} ${user.last_name}</div>
