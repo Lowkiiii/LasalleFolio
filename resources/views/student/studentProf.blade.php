@@ -170,7 +170,20 @@
                     </div>
                     <div class="mr-10 mt-10 w-full ">
                         <h1 class="font-bold text-black py-2">Pinned Project Showcase</h1>
-                        
+                        <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
+                                                onclick="toggleModal('modal-idPinnedProjects')">
+                                                <!DOCTYPE svg
+                                                    PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
+                                                <svg enable-background="new 0 0 512 512" height="18px" id="Layer_1"
+                                                    version="1.1" viewBox="0 0 512 512" width="18px"
+                                                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
+                                                    <path
+                                                        d="M256,512C114.625,512,0,397.391,0,256C0,114.609,114.625,0,256,0c141.391,0,256,114.609,256,256  C512,397.391,397.391,512,256,512z M256,64C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192  S362.047,64,256,64z M288,384h-64v-96h-96v-64h96v-96h64v96h96v64h-96V384z" />
+                                                </svg>
+
+
+                                            </button>
                         <div class="flex  animate-blink animation-delay-100">
                             <div class="flex flex-col w-full mr-5 ">
                                 <div
@@ -191,20 +204,7 @@
                                     <div class="relative">
                                         <div class="text-xl font-bold text-[#006634]">
 
-                                            <button class="p-4 fill-current text-[#6e6e6e] hover:text-[#006634]"
-                                                onclick="toggleModal('modal-idPinnedProjects')">
-                                                <!DOCTYPE svg
-                                                    PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-                                                <svg enable-background="new 0 0 512 512" height="18px" id="Layer_1"
-                                                    version="1.1" viewBox="0 0 512 512" width="18px"
-                                                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                    <path
-                                                        d="M256,512C114.625,512,0,397.391,0,256C0,114.609,114.625,0,256,0c141.391,0,256,114.609,256,256  C512,397.391,397.391,512,256,512z M256,64C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192  S362.047,64,256,64z M288,384h-64v-96h-96v-64h96v-96h64v96h96v64h-96V384z" />
-                                                </svg>
-
-
-                                            </button>
+                                            
                                                 
                                             @foreach($pinnedProjects as $pinnedProject)
                                                 <div>
@@ -821,20 +821,19 @@
                     <div class="w-full mb-4 relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
                         <div class="absolute right-0 top-0 z-20">
                             {{-- Edit Post Button --}}
-                            <div class=" p-4">
-                                <button id="editButton">
-                                    <label for="file_input" class=" cursor-pointer shadow-md rounded-full opacity-70">
-                                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                                            fill="#000000" height="20" width="20" version="1.1" id="Capa_1"
-                                            viewBox="0 0 32.055 32.055" xml:space="preserve">
-                                            <g>
-                                                <path
-                                                    d="M3.968,12.061C1.775,12.061,0,13.835,0,16.027c0,2.192,1.773,3.967,3.968,3.967c2.189,0,3.966-1.772,3.966-3.967   C7.934,13.835,6.157,12.061,3.968,12.061z M16.233,12.061c-2.188,0-3.968,1.773-3.968,3.965c0,2.192,1.778,3.967,3.968,3.967   s3.97-1.772,3.97-3.967C20.201,13.835,18.423,12.061,16.233,12.061z M28.09,12.061c-2.192,0-3.969,1.774-3.969,3.967   c0,2.19,1.774,3.965,3.969,3.965c2.188,0,3.965-1.772,3.965-3.965S30.278,12.061,28.09,12.061z" />
-                                            </g>
-                                        </svg>
-                                    </label>
-                                </button>
-                            </div>
+                                <div class="p-4">
+                                                        
+                                    <button class="editButton">
+                                        <label for="file_input" class="cursor-pointer shadow-md rounded-full opacity-70">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="20" width="20" version="1.1" id="Capa_1" viewBox="0 0 32.055 32.055" xml:space="preserve">
+                                                <g>
+                                                    <path d="M3.968,12.061C1.775,12.061,0,13.835,0,16.027c0,2.192,1.773,3.967,3.968,3.967c2.189,0,3.966-1.772,3.966-3.967   C7.934,13.835,6.157,12.061,3.968,12.061z M16.233,12.061c-2.188,0-3.968,1.773-3.968,3.965c0,2.192,1.778,3.967,3.968,3.967   s3.97-1.772,3.97-3.967C20.201,13.835,18.423,12.061,16.233,12.061z M28.09,12.061c-2.192,0-3.969,1.774-3.969,3.967   c0,2.19,1.774,3.965,3.969,3.965c2.188,0,3.965-1.772,3.965-3.965S30.278,12.061,28.09,12.061z" />
+                                                </g>
+                                            </svg>
+                                        </label>
+                                    </button>
+                                
+                                </div>
                             <div id="editMenu"
                                 class="absolute bg-white space-x-2 py-2 px-5 border border-[#D4D4D4] rounded-lg shadow-lg w-55 transform translate-y-full opacity-0 bottom-5 left-1/2 -translate-x-1/2 z-10">
 
