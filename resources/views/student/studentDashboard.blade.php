@@ -63,15 +63,19 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <x-button id="viewProfileBtn" type="primary">
-                                            View Profile
-                                        </x-button>
-                                        <script>
-                                            document.getElementById("viewProfileBtn").addEventListener("click", function() {
-                                                window.location.href = "{{ route('student.studentProf') }}";
-                                            });
-                                        </script>
                                     </div>
+
+                                    <button id="viewProfileBtn" type="button"
+                                        class="inline-block rounded-xl bg-[#006634] px-7 pb-2.5 pt-3 text-sm font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full"
+                                        data-te-ripple-init data-te-ripple-color="light">
+                                        View Profile
+                                    </button>
+
+                                    <script>
+                                        document.getElementById("viewProfileBtn").addEventListener("click", function() {
+                                            window.location.href = "{{ route('student.studentProf') }}";
+                                        });
+                                    </script>
                                 </div>
                             </div>
 
@@ -312,9 +316,7 @@
                                                     {{-- <div class="flex flex-row py-1">
 
                                                     <div class="text-sm font-medium text-black">{{ $comment->content }}</div> <!-- Display comment content -->
-
                                                     {{-- <div class="flex flex-row py-1">
-
                                                         <button class="flex flex-row text-xs opacity-70" onclick="toggleReply()">Reply</button>
                                                     </div> --}}
                                                 </div>
