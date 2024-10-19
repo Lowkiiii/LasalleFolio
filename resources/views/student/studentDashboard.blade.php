@@ -63,48 +63,58 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <x-button id="viewProfileBtn" type="primary">
-                                            View Profile
-                                        </x-button>
-                                        <script>
-                                            document.getElementById("viewProfileBtn").addEventListener("click", function() {
-                                                window.location.href = "{{ route('student.studentProf') }}";
-                                            });
-                                        </script>
                                     </div>
+
+                                    <button id="viewProfileBtn" type="button"
+                                        class="inline-block rounded-xl bg-[#006634] px-7 pb-2.5 pt-3 text-sm font-medium leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-300 ease-in-out hover:bg-[#004423] hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-[#004423] focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-[#004423] active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] w-full"
+                                        data-te-ripple-init data-te-ripple-color="light">
+                                        View Profile
+                                    </button>
+
+                                    <script>
+                                        document.getElementById("viewProfileBtn").addEventListener("click", function() {
+                                            window.location.href = "{{ route('student.studentProf') }}";
+                                        });
+                                    </script>
                                 </div>
                             </div>
-                            <div
-                                class="w-full relative flex flex-wrap items-start space-x-3 p-5 border border-[#D4D4D4] rounded-xl shadow-lg mt-5 ">
-                                <div class="w-full ">
-                                    <div class="justify-center mx-auto max-w-lg w-auto ">
-                                        <div class="font-bold text-black justify-center text-center">
-                                            Top 3 Students
-                                            <div class="font-medium text-xs text-[#444444]">That has Garnered Points</div>
-                                        </div>
-                                        <div class="flex flex-col w-full  items-start text-[#006634] font-bold text-xl  ">
-                                            @foreach ($topUsers as $index => $topUser)
-                                                <div class="flex flex-row w-full">
-                                                    <div class=" items-center text-start  pt-6 w-full flex flex-row">
-                                                        <div class="items-start text-start flex flex-row">
-                                                            <x-ri-medal-fill class="w-6 h-6 text-[#EBC351]" />
-                                                        </div>
-                                                        <div class="w-10 h-10 rounded-full mx-4 shadow-lg">
-                                                            <div class="relative group">
-                                                                <label for="file_input" class="cursor-pointer">
-                                                                    <img src="image/dog.jpg" alt="Profile"
-                                                                        class="w-full h-full rounded-full object-cover">
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                        <div class=" flex flex-row text-xs text-black flex-wrap">
-                                                            {{ $topUser->name }} </div>
-                                                        <div class="ml-auto flex flex-col">
-                                                            {{ $topUser->points }}
-                                                            <div
-                                                                class="flex flex-row justify-end font-normal text-[#444444] text-xs">
-                                                                Points</div>
-                                                        </div>
+                        </div>
+                        <div
+                            class="w-full relative flex flex-wrap items-start space-x-3 p-6 border border-[#D4D4D4] rounded-xl shadow-lg mt-5 ">
+                            <div class="w-full ">
+                                <div class="justify-center mx-auto max-w-lg w-auto ">
+
+                                    <div class="font-bold text-black justify-center text-center">
+                                        Top 3 Students
+                                        <div class="font-medium text-xs text-[#444444]">That has Garnered Points</div>
+                                    </div>
+                                    
+                                    <div class="flex flex-col w-full  items-start text-[#006634] font-bold text-xl  ">
+                                        
+                                        @foreach ($topUsers as $index => $topUser)
+                                        {{ $badge }}
+                                        <div class="flex flex-row w-full">
+                                            
+                                            <div class=" items-center text-start  pt-6 w-full flex flex-row">
+                                                <div class="items-start text-start flex flex-row">                                      
+                                                                                                                                        {{-- Color --}}
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#EBC351" height="30" width="30" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class=" ">
+                                                        <g>
+                                                            <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                            <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                            <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                            <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                        </g>
+                                                    </svg>
+                                                </div>
+
+                                                <div class="w-10 h-10 rounded-full mx-4 shadow-lg">
+                                                    <div class="relative group">
+                                                        <label for="file_input" class="cursor-pointer">
+                                                            <img src="image/dog.jpg" alt="Profile"
+                                                                class="w-full h-full rounded-full object-cover">
+                                                        </label>
+
 
                                                     </div>
                                                 </div>
@@ -121,7 +131,6 @@
                                                     {{ $topUser->name }} </div>
                                                 <div class="ml-auto flex flex-col">
                                                     {{ $topUser->points }}
-                                                    
                                                     <div
                                                         class="flex flex-row justify-end font-normal text-[#444444] text-xs">
                                                         Points</div>
@@ -309,9 +318,8 @@
 
                                                     <div class="text-sm font-medium text-black">{{ $comment->content }}</div> <!-- Display comment content -->
                                                     <div class="flex flex-row py-1">
-
                                                         <button class="flex flex-row text-xs opacity-70" onclick="toggleReply()">Reply</button>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         @endforeach
