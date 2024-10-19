@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Controllers\FriendRequestController;
-use App\Http\Controllers\CommentController; 
+use App\Http\Controllers\CommentController;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\JsonResponse;
@@ -30,19 +30,18 @@ class UserController extends Controller
 
         if ($user->user_type_id == 1) {
             return view('admin.index', compact('users', 'user'))->with('admin.users', $users);
-        } else if ($user->user_type_id == 2) {
+        } elseif ($user->user_type_id == 2) {
             return view('student.studentDashboard', compact('user'));
         }
-        
     }
 
     public function studentProfile(Request $request)
     {
         $query = $request->input('query');
-        
+
         $authUser = User::where('first_name', 'LIKE', "%{$query}%")
-                    ->orWhere('last_name', 'LIKE', "%{$query}%")
-                    ->get();
+            ->orWhere('last_name', 'LIKE', "%{$query}%")
+            ->get();
 
         $user = Auth::user();
         $userId = Auth::id();
@@ -55,24 +54,26 @@ class UserController extends Controller
 
         // Fetch pinned projects for the user
         $pinnedProjects = PinnedProject::with('project') // Eager load the project
-        ->where('user_id', $user->id)
-        ->get();
+            ->where('user_id', $user->id)
+            ->get();
 
         // Exclude pinned projects from the available projects list
         $availableProjects = $userProjects->whereNotIn('id', $pinnedProjects->pluck('project_id'));
 
         // Get the user's bio
         $bio = Bio::where('user_id', $userId)->first();
-        
+
         // Add reaction count and user reaction status to each post
         foreach ($userPosts as $post) {
             $post->reaction_count = Reaction::where('post_id', $post->id)->count();
             $post->user_reacted = Reaction::where('post_id', $post->id)
-                                        ->where('user_id', $userId)
-                                        ->exists();
+                ->where('user_id', $userId)
+                ->exists();
 
             // Get comments for each post
-            $post->comments = Comment::where('post_id', $post->id)->with('user')->get();
+            $post->comments = Comment::where('post_id', $post->id)
+                ->with('user')
+                ->get();
         }
 
         // Calculate points
@@ -88,37 +89,19 @@ class UserController extends Controller
         $friendRequestController = new FriendRequestController();
         $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount();
 
-        return view('student.studentProf', compact(
-            'connectedStudentsCount',
-            'authUser',
-            'user',
-            'userProjects',
-            'userSkills',
-            'userAcademics',
-            'userHonorsAndAwards',
-            'userPosts',
-            'projectCount',
-            'points',
-            'userInterests',
-            'pinnedProjects',
-            'bio',
-            'totalPoints',
-            'badge',
-        ));
+        return view('student.studentProf', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'projectCount', 'points', 'userInterests', 'pinnedProjects', 'bio', 'totalPoints', 'badge'));
     }
 
     public function removePinnedProject($id)
     {
         $pinnedProject = PinnedProject::where('id', $id)->where('user_id', Auth::id())->first();
-        
+
         if ($pinnedProject) {
             $pinnedProject->delete();
         }
 
         return redirect()->back()->with('success', 'Pinned project removed successfully.');
     }
-
-
 
     public function pinProjects(Request $request)
     {
@@ -144,10 +127,7 @@ class UserController extends Controller
         ]);
 
         // Find or create the bio entry for the user
-        $bio = Bio::updateOrCreate(
-            ['user_id' => $userId],
-            ['bio' => $request->input('bio')]
-        );
+        $bio = Bio::updateOrCreate(['user_id' => $userId], ['bio' => $request->input('bio')]);
 
         return redirect()->back()->with('success', 'Bio updated successfully!');
     }
@@ -165,23 +145,21 @@ class UserController extends Controller
         return redirect()->back()->with('error', 'No bio found to remove.');
     }
 
-
     public function countProjects()
     {
         $user = Auth::user();
         $projectCount = $user->userPosts->count(); // Adjust if the relationship is named differently
-        
+
         return $projectCount;
     }
-
 
     public function studentDashboard(Request $request)
     {
         $query = $request->input('query');
-        
+
         $authUser = User::where('first_name', 'LIKE', "%{$query}%")
-                        ->orWhere('last_name', 'LIKE', "%{$query}%")
-                        ->get();
+            ->orWhere('last_name', 'LIKE', "%{$query}%")
+            ->get();
 
         // Fetch all users and calculate their points
         $users = User::all()->map(function ($user) {
@@ -201,14 +179,13 @@ class UserController extends Controller
 
         // Get IDs of connected users
         $connectedUserIds = FriendRequest::where(function ($query) use ($userId) {
-            $query->where('sender_id', $userId)
-                ->orWhere('receiver_id', $userId);
+            $query->where('sender_id', $userId)->orWhere('receiver_id', $userId);
         })
-        ->where('status', 'accepted')
-        ->get()
-        ->map(function ($request) use ($userId) {
-            return $request->sender_id === $userId ? $request->receiver_id : $request->sender_id;
-        });
+            ->where('status', 'accepted')
+            ->get()
+            ->map(function ($request) use ($userId) {
+                return $request->sender_id === $userId ? $request->receiver_id : $request->sender_id;
+            });
 
         // Include the authenticated user's ID
         $connectedUserIds[] = $userId;
@@ -243,11 +220,13 @@ class UserController extends Controller
         foreach ($userPosts as $post) {
             $post->reaction_count = Reaction::where('post_id', $post->id)->count();
             $post->user_reacted = Reaction::where('post_id', $post->id)
-                                        ->where('user_id', $userId)
-                                        ->exists();
+                ->where('user_id', $userId)
+                ->exists();
 
             // Get comments for each post
-            $post->comments = Comment::where('post_id', $post->id)->with('user')->get();
+            $post->comments = Comment::where('post_id', $post->id)
+                ->with('user')
+                ->get();
         }
 
         $friendRequestController = new FriendRequestController();
@@ -264,67 +243,52 @@ class UserController extends Controller
         $projectCount = $this->countProjects();
 
         // Find other students with similar interests
-        $studentInterest = User::whereHas('interests', function($query) use ($userInterests) {
+        $studentInterest = User::whereHas('interests', function ($query) use ($userInterests) {
             $query->whereIn('interest_name', $userInterests);
-        })->where('id', '!=', $userId)// Exclude the logged-in user
-        ->whereNotIn('id', $connectedUserIds) //Exlude connected users
-        ->inRandomOrder() // Shuffle the results
-        ->take(5) // Limit to 5 users
-        ->get();
+        })
+            ->where('id', '!=', $userId) // Exclude the logged-in user
+            ->whereNotIn('id', $connectedUserIds) //Exlude connected users
+            ->inRandomOrder() // Shuffle the results
+            ->take(5) // Limit to 5 users
+            ->get();
 
-        return view('student.studentDashboard', 
-        compact('connectedStudentsCount', 
-        'authUser',
-         'user',
-          'userProjects',
-           'userSkills',
-            'userAcademics',
-             'userHonorsAndAwards',
-              'userPosts',
-               'points',
-               'projectCount',
-                'topUsers',
-                 'userInterests',
-                  'studentInterest',
-                     'totalPoints',
-                      'badge'
-
-        ));
+        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers', 'userInterests', 'studentInterest', 'totalPoints', 'badge'));
     }
 
     public function calculatePoints()
     {
         $user = Auth::user();
-    
+
         // Calculate total points
         $postPoints = $user->userPosts->count() * 30;
-    
+
         // Calculate connection points
-        $connectionPoints = FriendRequest::where(function ($query) use ($user) {
-            $query->where('sender_id', $user->id)
-                  ->orWhere('receiver_id', $user->id);
-        })->where('status', 'accepted')->count() * 20;
-    
+        $connectionPoints =
+            FriendRequest::where(function ($query) use ($user) {
+                $query->where('sender_id', $user->id)->orWhere('receiver_id', $user->id);
+            })
+                ->where('status', 'accepted')
+                ->count() * 20;
+
         // Calculate reaction points only for user's own posts or those liked on their posts
         $userPostIds = $user->userPosts->pluck('id');
-        $reactionPointsFromOwnPosts = Reaction::whereIn('post_id', $userPostIds)
-                                              ->count() * 10; // Reactions on user's own posts
-        $reactionPointsReceived = Reaction::where('user_id', $user->id)
-                                           ->whereIn('post_id', $userPostIds)
-                                           ->count() * 10; // Likes received on user's posts
-    
+        $reactionPointsFromOwnPosts = Reaction::whereIn('post_id', $userPostIds)->count() * 10; // Reactions on user's own posts
+        $reactionPointsReceived =
+            Reaction::where('user_id', $user->id)
+                ->whereIn('post_id', $userPostIds)
+                ->count() * 10; // Likes received on user's posts
+
         // Combine points for reactions
         $reactionPoints = $reactionPointsFromOwnPosts + $reactionPointsReceived;
-    
+
         // Calculate comment points (15 points for each comment made by the user)
         $commentPoints = Comment::where('user_id', $user->id)->count() * 15;
-    
+
         // Total points including comments
         $totalPoints = $postPoints + $connectionPoints + $reactionPoints + $commentPoints;
-    
+
         return $totalPoints;
     }
-    
 
     public function studentLeaderboard(Request $request)
     {
@@ -339,9 +303,10 @@ class UserController extends Controller
 
                 // Calculate number of connected users
                 $user->connectedUsersCount = FriendRequest::where(function ($query) use ($user) {
-                    $query->where('sender_id', $user->id)
-                        ->orWhere('receiver_id', $user->id);
-                })->where('status', 'accepted')->count();
+                    $query->where('sender_id', $user->id)->orWhere('receiver_id', $user->id);
+                })
+                    ->where('status', 'accepted')
+                    ->count();
 
                 // Calculate total number of likes (reactions) across all user posts
                 $user->totalLikes = Reaction::whereIn('post_id', $user->userPosts->pluck('id'))->count();
@@ -352,8 +317,7 @@ class UserController extends Controller
         // If the query is provided and not empty, filter the users
         if (!empty($query)) {
             $users = $users->filter(function ($user) use ($query) {
-                return stripos($user->first_name, $query) !== false ||
-                    stripos($user->last_name, $query) !== false;
+                return stripos($user->first_name, $query) !== false || stripos($user->last_name, $query) !== false;
             });
         }
 
@@ -380,27 +344,28 @@ class UserController extends Controller
         ]);
     }
 
-
     private function calculatePointsForUser($user)
     {
         // Calculate total points for a given user
         $postPoints = $user->userPosts->count() * 30;
 
         // Calculate connection points
-        $connectionPoints = FriendRequest::where(function ($query) use ($user) {
-            $query->where('sender_id', $user->id)
-                ->orWhere('receiver_id', $user->id);
-        })->where('status', 'accepted')->count() * 20;
+        $connectionPoints =
+            FriendRequest::where(function ($query) use ($user) {
+                $query->where('sender_id', $user->id)->orWhere('receiver_id', $user->id);
+            })
+                ->where('status', 'accepted')
+                ->count() * 20;
 
         // Get the user's posts
         $userPostIds = $user->userPosts->pluck('id');
 
         // Calculate reaction points only for user's own posts or those liked on their posts
-        $reactionPointsFromOwnPosts = Reaction::whereIn('post_id', $userPostIds)
-                                            ->count() * 10; // Reactions on user's own posts
-        $reactionPointsReceived = Reaction::where('user_id', $user->id)
-                                        ->whereIn('post_id', $userPostIds)
-                                        ->count() * 10; // Likes received on user's posts
+        $reactionPointsFromOwnPosts = Reaction::whereIn('post_id', $userPostIds)->count() * 10; // Reactions on user's own posts
+        $reactionPointsReceived =
+            Reaction::where('user_id', $user->id)
+                ->whereIn('post_id', $userPostIds)
+                ->count() * 10; // Likes received on user's posts
 
         // Combine points for reactions
         $reactionPoints = $reactionPointsFromOwnPosts + $reactionPointsReceived;
@@ -438,15 +403,14 @@ class UserController extends Controller
             return 'No Badge';
         }
     }
-    
 
     public function kerschProf(Request $request)
     {
         $query = $request->input('query');
-        
+
         $authUser = User::where('first_name', 'LIKE', "%{$query}%")
-                    ->orWhere('last_name', 'LIKE', "%{$query}%")
-                    ->get();
+            ->orWhere('last_name', 'LIKE', "%{$query}%")
+            ->get();
 
         $user = Auth::user();
         $userProjects = $user->userProjects;
@@ -455,23 +419,23 @@ class UserController extends Controller
         $userHonorsAndAwards = $user->userHonorsAndAwards;
         $userPosts = $user->userPosts;
 
-        return view('student.kerschProf', compact('authUser','user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
+        return view('student.kerschProf', compact('authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
     }
 
     public function searchUser(Request $request)
     {
         $query = $request->input('query');
-    
+
         $users = User::where('first_name', 'LIKE', "%{$query}%")
-                    ->orWhere('last_name', 'LIKE', "%{$query}%")
-                    ->limit(5)
-                    ->get(['id', 'first_name', 'last_name']); // Only select the fields you need
+            ->orWhere('last_name', 'LIKE', "%{$query}%")
+            ->limit(5)
+            ->get(['id', 'first_name', 'last_name']); // Only select the fields you need
 
         return response()->json($users);
     }
 
-   
-    public function adminusers(){
+    public function adminusers()
+    {
         $users = User::all();
 
         $user = Auth::user();
@@ -489,15 +453,14 @@ class UserController extends Controller
             'password' => 'required',
             'birthdate' => 'nullable',
             'full_address' => 'nullable',
-            'user_type_id'=>'required|numeric',
-            'sex '=>'required',
-            'public_url'=>'nullable',
-            
+            'user_type_id' => 'required|numeric',
+            'sex ' => 'required',
+            'public_url' => 'nullable',
         ]);
 
         try {
             // Your code that may throw an exception
-            $user = new User;
+            $user = new User();
             $user->first_name = $request->first_name;
             $user->last_name = $request->last_name;
             $user->birthdate = $request->birthdate;
@@ -507,10 +470,10 @@ class UserController extends Controller
             if ($request->user_type_id == 1) {
                 $user->balance = null;
             }
-            
+
             $user->email = $request->email;
             $user->password = $request->password;
-    
+
             $user->saveOrFail();
 
             return redirect()->back();
@@ -526,7 +489,7 @@ class UserController extends Controller
         }
     }
 
-    public function delete(Request $request) : RedirectResponse
+    public function delete(Request $request): RedirectResponse
     {
         try {
             // Your code that mayf throw an exception
@@ -542,7 +505,7 @@ class UserController extends Controller
         }
     }
 
-    public function edit(Request $request) : View
+    public function edit(Request $request): View
     {
         try {
             // Your code that may throw an exception
@@ -559,9 +522,13 @@ class UserController extends Controller
         }
     }
 
-    public function update(Request $request, User $user) : RedirectResponse
+    public function quiz()
     {
+        return view('quiz.quiz');
+    }
 
+    public function update(Request $request, User $user): RedirectResponse
+    {
         try {
             // Your code that may throw an exception
             $user = User::findOrFail($request->id);
@@ -576,7 +543,6 @@ class UserController extends Controller
             ]);
             return redirect()->back();
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-           
             return response()->json(['error' => 'No Found Record'], 404);
         } catch (\Exception $e) {
             // Handle other types of exceptions
@@ -585,7 +551,4 @@ class UserController extends Controller
             return response()->json(['error' => 'Something went wrong'], 500);
         }
     }
-
-    
-
 }
