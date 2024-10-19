@@ -79,15 +79,17 @@ class UserController extends Controller
         // Calculate points
         $points = $this->calculatePoints();
 
+        // Get badge
+        $totalPoints = $this->calculatePoints();
+        $badge = $this->getUserBadge($totalPoints);
+
         // Get project count
         $projectCount = $this->countProjects();
 
         $friendRequestController = new FriendRequestController();
         $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount();
 
-
         return view('student.studentProf', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'projectCount', 'points', 'userInterests', 'pinnedProjects', 'bio', 'totalPoints', 'badge'));
-
     }
 
     public function removePinnedProject($id)
@@ -233,21 +235,24 @@ class UserController extends Controller
         // Calculate points
         $points = $this->calculatePoints();
 
+        // Get badge
+        $totalPoints = $this->calculatePoints();
+        $badge = $this->getUserBadge($totalPoints);
+
         // Get project count
         $projectCount = $this->countProjects();
 
         // Find other students with similar interests
         $studentInterest = User::whereHas('interests', function ($query) use ($userInterests) {
             $query->whereIn('interest_name', $userInterests);
+        })
+            ->where('id', '!=', $userId) // Exclude the logged-in user
+            ->whereNotIn('id', $connectedUserIds) //Exlude connected users
+            ->inRandomOrder() // Shuffle the results
+            ->take(5) // Limit to 5 users
+            ->get();
 
-        })->where('id', '!=', $userId)// Exclude the logged-in user
-        ->whereNotIn('id', $connectedUserIds) //Exlude connected users
-        ->inRandomOrder() // Shuffle the results
-        ->take(5) // Limit to 5 users
-        ->get();
-
-        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers', 'userInterests', 'studentInterest'));
-
+        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers', 'userInterests', 'studentInterest', 'totalPoints', 'badge'));
     }
 
     public function calculatePoints()
@@ -371,7 +376,6 @@ class UserController extends Controller
         return $postPoints + $connectionPoints + $reactionPoints + $commentPoints;
     }
 
-
     public function getUserBadge($totalPoints)
     {
         // Get all users and their total points
@@ -399,7 +403,6 @@ class UserController extends Controller
             return 'No Badge';
         }
     }
-
 
     public function kerschProf(Request $request)
     {
