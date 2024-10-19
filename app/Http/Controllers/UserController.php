@@ -78,10 +78,6 @@ class UserController extends Controller
         // Calculate points
         $points = $this->calculatePoints();
 
-        // Get badge
-        $totalPoints = $this->calculatePoints();
-        $badge = $this->getUserBadge($totalPoints);
-
         // Get project count
         $projectCount = $this->countProjects();
 
@@ -101,9 +97,7 @@ class UserController extends Controller
             'points',
             'userInterests',
             'pinnedProjects',
-            'bio',
-            'totalPoints',
-            'badge',
+            'bio'
         ));
     }
 
@@ -256,10 +250,6 @@ class UserController extends Controller
         // Calculate points
         $points = $this->calculatePoints();
 
-        // Get badge
-        $totalPoints = $this->calculatePoints();
-        $badge = $this->getUserBadge($totalPoints);
-
         // Get project count
         $projectCount = $this->countProjects();
 
@@ -272,24 +262,7 @@ class UserController extends Controller
         ->take(5) // Limit to 5 users
         ->get();
 
-        return view('student.studentDashboard', 
-        compact('connectedStudentsCount', 
-        'authUser',
-         'user',
-          'userProjects',
-           'userSkills',
-            'userAcademics',
-             'userHonorsAndAwards',
-              'userPosts',
-               'points',
-               'projectCount',
-                'topUsers',
-                 'userInterests',
-                  'studentInterest',
-                     'totalPoints',
-                      'badge'
-
-        ));
+        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers', 'userInterests', 'studentInterest'));
     }
 
     public function calculatePoints()
@@ -411,33 +384,6 @@ class UserController extends Controller
         return $postPoints + $connectionPoints + $reactionPoints + $commentPoints;
     }
 
-    public function getUserBadge($totalPoints)
-    {
-        // Get all users and their total points
-        $allUsers = User::all();
-        $allUserPoints = $allUsers->map(function ($user) {
-            return $this->calculatePointsForUser($user);
-        });
-
-        // Sort points in descending order
-        $sortedPoints = $allUserPoints->sort()->reverse();
-
-        // Calculate percentiles
-        $totalUsers = $sortedPoints->count();
-        $userRank = $sortedPoints->search($totalPoints) + 1;
-        $percentile = ($userRank / $totalUsers) * 100;
-
-        // Determine badge
-        if ($percentile <= 5) {
-            return 'Gold';
-        } elseif ($percentile <= 10) {
-            return 'Silver';
-        } elseif ($percentile <= 20) {
-            return 'Bronze';
-        } else {
-            return 'No Badge';
-        }
-    }
     
 
     public function kerschProf(Request $request)
