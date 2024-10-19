@@ -49,6 +49,20 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    // Route::get('studentDashboard', function () {
+    //     return view('student.studentDashboard');
+    // });
+
+    // Handle /studentDashboard route with UserController
+    Route::get('/quiz', [UserController::class, 'quiz'])->name('quiz.quiz');
+    // Handle /studentProf route with UserController
+    Route::get('/quiz', [UserController::class, 'quiz'])->name('quiz.quiz');
+  
+
+});
+
+
+Route::middleware('auth')->group(function () {
     // Projects routes
     Route::post('/projects', [UserProjectController::class, 'store'])->name('projects.store');
     Route::get('/projects', [UserProjectController::class, 'index'])->name('projects.index');
