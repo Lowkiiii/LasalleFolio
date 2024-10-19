@@ -27,4 +27,4 @@ class Button extends Component
     {
         return view('components.button');
     }
-}
+

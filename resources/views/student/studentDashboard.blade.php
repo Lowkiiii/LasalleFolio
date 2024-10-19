@@ -2,23 +2,23 @@
 @section('webtitle')
     Dashboard
 @endsection
-
 @section('content')
     {{-- @include('modal/Interest')  --}}
-
     <section class="h-screen bg-[#F8F8F8]">
         <div class="flex row min-h-full justify-center relative">
             <div class=" mt-24 flex mx-auto max-w-[90rem]">
-
                 <div class="flex flex-row ">
                     <div class="flex sticky top-10 flex-col w-2/5 ml-10 mr-10 animate-blink">
                         <div class="sticky top-20">
                             <div
+
                                  class="w-full relative flex flex-wrap items-start space-x-3 p-6 border border-[#D4D4D4] rounded-xl shadow-lg ">
+
                                 <div class="justify-center items-center mx-auto max-y-md max-w-lg flex ">
                                     <div class="justify-center mx-auto max-y-md max-w-lg w-auto ">
                                         <div class=" container">
                                             <img src='/image/profileBG.png'
+
                                                  class="w-full h-[8rem] object-cover rounded-xl " />
                                         </div>
 
@@ -94,6 +94,7 @@
                                                     </div>
                                                 </div>
 
+
                                             </div>
                                         </div>
                                         <x-button id="viewProfileBtn"
@@ -110,6 +111,35 @@
                                     </div>
                                 </div>
                             </div>
+
+                        </div>
+                        <div
+                            class="w-full relative flex flex-wrap items-start space-x-3 p-6 border border-[#D4D4D4] rounded-xl shadow-lg mt-5 ">
+                            <div class="w-full ">
+                                <div class="justify-center mx-auto max-w-lg w-auto ">
+
+                                    <div class="font-bold text-black justify-center text-center">
+                                        Top 3 Students
+                                        <div class="font-medium text-xs text-[#444444]">That has Garnered Points</div>
+                                    </div>
+                                    
+                                    <div class="flex flex-col w-full  items-start text-[#006634] font-bold text-xl  ">
+                                        
+                                        @foreach ($topUsers as $index => $topUser)
+                                        <div class="flex flex-row w-full">
+                                            
+                                            <div class=" items-center text-start  pt-6 w-full flex flex-row">
+                                                <div class="items-start text-start flex flex-row">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#EBC351" height="30" width="30" version="1.1" id="Capa_1" viewBox="0 0 296.084 296.084" xml:space="preserve" class=" ">
+                                                        <g>
+                                                            <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z"/>
+                                                            <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z"/>
+                                                            <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z"/>
+                                                            <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z"/>
+                                                        </g>
+                                                        </svg>
+                                                </div>
+
 
                             <div
                                  class="w-full relative flex flex-wrap items-start space-x-3 p-6 border border-[#D4D4D4] rounded-xl shadow-lg mt-5 ">
@@ -156,9 +186,9 @@
                                                         </div>
 
                                                     </div>
-
                                                 </div>
                                             @endforeach
+
 
                                         </div>
                                         <div class="w-full mt-4">
@@ -168,6 +198,7 @@
                                                         class="text-black text-sm hover:text-[#006634]">
                                                     View More...
                                                 </button>
+
                                             </div>
                                         </div>
                                         <script>
@@ -176,14 +207,14 @@
                                             });
                                         </script>
                                     </div>
+
                                 </div>
+
                             </div>
                         </div>
                     </div>
                     <div class="z-20 flex flex-col animate-blink animation-delay-100 w-6/12">
-
                         <div class="w-full relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
-
                             <div class=" flex items-center">
                                 <div class="w-12 h-12 rounded-full mr-2  ">
                                     <div class="relative group">
@@ -193,9 +224,7 @@
                                                  alt="Profile"
                                                  class="w-full h-full rounded-full object-cover">
                                         </label>
-
                                     </div>
-
                                 </div>
                                 <div class=" flex-grow">
                                     <button type=""
@@ -213,6 +242,7 @@
                                 <button class="mr-auto"
                                         onclick="toggleModal('')">
                                     <div class=" items-center text-center flex px-8 ">
+
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              x="0px"
                                              y="0px"
@@ -227,6 +257,7 @@
                                         </svg>
                                         <div class="text-sm text-center text-[#D40000] font-bold flex px-2"
                                              {{-- onclick="toggleModal('modal-idPostImage')" --}}>
+
                                             Image
                                         </div>
                                     </div>
@@ -246,12 +277,14 @@
                                         </svg>
                                         <div class="text-sm text-center  font-bold flex px-2"
                                              {{-- onclick="toggleModal('modal-idPostDocument')" --}}>
+
                                             Document
                                         </div>
                                     </div>
                                 </button>
                                 <div class="ml-auto">
                                     <div class=" items-center justify-center text-center flex px-8 text-[#0066FF]">
+
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              width="27"
                                              height="27"
@@ -263,9 +296,9 @@
                                                   stroke-linecap="round"
                                                   stroke-linejoin="round" />
                                         </svg>
+
                                         <div class="text-sm text-center font-bold flex px-2">
                                             Video
-
                                         </div>
                                     </div>
                                 </div>
@@ -274,6 +307,7 @@
 
                         <hr class="my-7 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
 
+
                         @forelse ($userPosts as $post)
                             <div class="w-full mb-4 relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
                                 @auth
@@ -281,6 +315,7 @@
                                         <div class="post relative">
                                             <div class="absolute right-0 top-0 z-20">
                                                 <div class="p-4">
+
 
                                                     <button class="editButton">
                                                         <label for="file_input"
@@ -317,6 +352,7 @@
                                                                     <path
                                                                           d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
                                                                 </svg>
+
                                                             </button>
                                                             <div class="ml-2 mr-2">
                                                                 <button type="submit"
@@ -324,6 +360,7 @@
                                                             </div>
                                                         </div>
                                                         <div class="flex flex-row hover:text-[#FF0000]"
+
                                                              onclick="toggleModal('modal-idPostDelete-{{ $post->id }}')">
                                                             <button type="submit"
                                                                     class="py-2">
@@ -338,6 +375,7 @@
                                                                           d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
                                                                     </path>
                                                                 </svg>
+
                                                             </button>
                                                             <div class="ml-2 mr-2">
                                                                 <button type="submit"
@@ -350,7 +388,6 @@
                                         </div>
                                     @endif
                                 @endauth
-
                                 <div class="flex flex-grow items-center mt-3">
                                     <div class="w-12 h-12 rounded-full mr-2">
                                         <div class="relative group">
@@ -359,10 +396,10 @@
                                                  class="w-full h-full rounded-full object-cover">
                                         </div>
                                     </div>
-
                                     <div class="text-sm font-bold text-black flex flex-col">
                                         <div class="flex items-center">
                                             <span>{{ $post->user->name }}</span>
+
 
                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                  xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -385,24 +422,27 @@
                                                           d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
                                                 </g>
                                             </svg>
+
                                         </div>
                                         <div class="text-xs font-semibold opacity-70">
                                             {{ $post->created_at->diffForHumans() }}
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="py-4 text-black">{{ $post->user_posts }}</div>
                                 {{-- Check if the post has an image and display it --}}
                                 @if ($post->image_path)
                                     <div class="mt-2">
+
                                         <img src="{{ asset('storage/' . $post->image_path) }}"
                                              alt="Post Image"
                                              class="w-full h-auto rounded-lg">
+
                                     </div>
                                 @else
                                 @endif
                                 {{-- Display Post Category --}}
+
                                 <p class="mt-2 text-sm text-gray-600">Category: {{ $post->category }}</p>
 
                                 <div class="flex flex-row items-start justify-start">
@@ -414,11 +454,13 @@
                                              height="23"
                                              viewBox="0 0 47.5 47.5"
                                              id="heart">
+
                                             <defs>
                                                 <clipPath id="a">
                                                     <path d="M0 38h38V0H0v38Z" />
                                                 </clipPath>
                                             </defs>
+
                                             <g clip-path="url(#a)"
                                                transform="matrix(1.25 0 0 -1.25 0 47.5)">
                                                 <path class="heart-path {{ $post->user_reacted ? 'reacted' : '' }}"
@@ -436,11 +478,13 @@
 
                                 <hr class="my-4 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
 
+
                                 <!-- Example Comment -->
                                 <div>
                                     <!-- (Error Comment ) -->
                                     @if ($post->comments->isNotEmpty())
                                         @foreach ($post->comments as $comment)
+
                                             <div class="flex items-center">
                                                 <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
                                                     <label for="file_input"
@@ -449,11 +493,13 @@
                                                              alt="Profile"
                                                              class="w-full h-full object-cover">
                                                     </label>
+
                                                 </div>
-                                                <div class="text-sm font-bold text-black">
+                                                <div class="text-sm font-bold text-black bg-gray-200 rounded-lg p-2">
                                                     <div class="flex">
                                                         {{ $comment->user->name }}
                                                         <!-- Display the name of the comment's user -->
+
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                              fill="#7A601D"
                                                              height="15"
@@ -478,7 +524,7 @@
                                                         <button class="flex flex-row text-xs opacity-70"
                                                                 onclick="toggleReply()">Reply</button>
                                                     </div>
-                                                </div>
+                               </div>
                                             </div>
                                         @endforeach
                                     @else
@@ -491,6 +537,7 @@
                                         <div class="flex pl-10">
                                             <div class="w-7 h-7 rounded-full mr-1 flex-row">
                                                 <div class="relative group">
+
                                                     <label for="file_input"
                                                            class="cursor-pointer">
                                                         <img src="image/dog.jpg"
@@ -504,6 +551,7 @@
                                                 <input type="text"
                                                        placeholder="Reply"
                                                        class="outline-none justify-center items-center text-xs w-full py-2 px-3 bg-gray-200 rounded-2xl">
+
                                             </div>
                                         </div>
                                     </div>
@@ -537,8 +585,8 @@
                                     }
 
                                     function postComment(postId) {
+                                        event.preventDefault();
                                         let commentContent = document.getElementById('commentInput' + postId).value;
-
                                         $.ajax({
                                             url: '/posts/' + postId + '/comments',
                                             type: 'POST',
@@ -553,14 +601,13 @@
                                                         <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
                                                             <img src="image/Kersch.png" alt="Profile" class="w-full h-full object-cover">
                                                         </div>
-                                                        <div class="text-sm font-medium text-black">
+                                                        <div class="text-sm font-medium text-black bg-gray-200 rounded-md">
                                                             ${response.user}
                                                             <div>${response.content}</div>
                                                             <div class="text-xs opacity-70">Just Now</div>
                                                         </div>
                                                     </div>
                                                 `);
-
                                                 // Clear the comment input field
                                                 document.getElementById('commentInput' + postId).value = '';
                                             },
@@ -569,7 +616,6 @@
                                             }
                                         });
                                     }
-
 
                                     // Function to toggle reply input visibility
                                     function toggleReply() {
@@ -586,8 +632,10 @@
                                         fill: #FF0000;
                                     }
                                 </style>
+
                                 <div class=" flex items-center mt-2">
                                     <div class="w-10 h-10 rounded-full mr-2  ">
+
                                         <div class="relative group">
                                             <label for="file_input"
                                                    class="cursor-pointer">
@@ -598,6 +646,7 @@
                                         </div>
                                     </div>
                                     <div class="flex-grow mr-2">
+
                                         <input type="text"
                                                id="commentInput{{ $post->id }}"
                                                placeholder="Add a comment..."
@@ -606,7 +655,7 @@
                                     <x-button id="postButton"
                                               type="secondary"
                                               onclick="postComment({{ $post->id }})">
-                                        Post
+                      Post
                                     </x-button>
                                 </div>
                             </div>
@@ -617,7 +666,9 @@
                     <div class="flex flex-col w-2/5 ml-10 mr-10 z-20 animate-blink animation-delay-200">
                         <div class="sticky top-20">
                             <div
+
                                  class="w-full relative flex flex-col items-start  p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
+
                                 <div>
                                     <p class="flex-grow flex-col  ext-lg font-bold text-black"> Suggested Students
                                     </p>
@@ -626,6 +677,7 @@
                                             <div>
                                                 <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg">
                                                     <div class="relative group">
+
                                                         <label for="file_input"
                                                                class="cursor-pointer">
                                                             @if ($student->profile_image)
@@ -636,22 +688,20 @@
                                                                 <img src="{{ asset('image/default-profile.png') }}"
                                                                      alt="Profile"
                                                                      class="w-full h-full object-cover bg-gray-300">
+
                                                             @endif
                                                         </label>
                                                     </div>
                                                 </div>
+
                                             </div>
                                             <div class="flex-grow flex-col ml-2 text-sm font-bold text-black">
                                                 <div class="flex">
                                                     {{ $student->first_name }} {{ $student->last_name }}
                                                     <div class="ml-1">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                             fill="#B7B7B7"
-                                                             height="18"
-                                                             width="18"
-                                                             version="1.1"
-                                                             viewBox="0 0 296.084 296.084"
-                                                             class="shadow-xl">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" fill="#B7B7B7"
+                                                            height="18" width="18" version="1.1"
+                                                            viewBox="0 0 296.084 296.084" class="shadow-xl">
                                                             <!-- SVG content -->
                                                         </svg>
                                                     </div>
@@ -659,6 +709,99 @@
                                                 <div class="text-xs font-semibold text-black opacity-45">
                                                     Interests:
                                                     {{ $student->interests->pluck('interest_name')->join(', ') }}
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center justify-center my-auto">
+                                                @php
+                                                    $friendRequest = \App\Models\FriendRequest::where(function (
+                                                        $query,
+                                                    ) use ($student) {
+                                                        $query
+                                                            ->where('sender_id', auth()->id())
+                                                            ->where('receiver_id', $student->id);
+                                                    })
+                                                        ->orWhere(function ($query) use ($student) {
+                                                            $query
+                                                                ->where('receiver_id', auth()->id())
+                                                                ->where('sender_id', $student->id);
+                                                        })
+                                                        ->first();
+                                                @endphp
+                                                @if ($friendRequest && $friendRequest->status === 'accepted')
+                                                    <form action="{{ route('friend-request.unfriend', $student->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class=" inline-flex items-center rounded-md bg-[#006634] px-4 py-2 text-xs font-bold text-white whitespace-nowrap">
+                                                            Unfriend
+                                                        </button>
+                                                    </form>
+                                                @elseif($friendRequest && $friendRequest->status === 'pending' && $friendRequest->receiver_id === auth()->id())
+                                                    <form action="{{ route('friendRequest.accept', $friendRequest->id) }}"
+                                                        method="POST" class="inline-block">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class=" inline-flex items-center rounded-md bg-[#006634] px-4 py-2 text-xs font-bold text-white whitespace-nowrap">
+                                                            Accept
+                                                        </button>
+                                                    </form>
+                                                    <form action="{{ route('friendRequest.reject', $friendRequest->id) }}"
+                                                        method="POST" class="inline-block">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class=" inline-flex items-center rounded-md bg-[#006634] px-4 py-2 text-xs font-bold text-white whitespace-nowrap">
+                                                            Reject
+                                                        </button>
+                                                    </form>
+                                                @elseif($friendRequest && $friendRequest->status === 'pending' && $friendRequest->sender_id === auth()->id())
+                                                    <button disabled
+                                                        class=" inline-flex items-center rounded-md bg-[#006634] px-4 py-2 text-xs font-bold text-white whitespace-nowrap">
+                                                        Pending
+                                                    </button>
+                                                @else
+                                                    <form action="{{ route('friend-request.send', $student->id) }}"
+                                                        method="POST">
+                                                        @csrf
+                                                        <button type="submit"
+                                                            class=" inline-flex items-center rounded-md bg-[#006634] px-4 py-2 text-xs font-bold text-white whitespace-nowrap">
+                                                            Connect +
+                                                        </button>
+                                                    </form>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                            <div
+                                class="w-full relative flex flex-col items-start  p-6 border border-[#D4D4D4] rounded-xl shadow-lg mt-5">
+                                <div class="max-y-md max-w-lg flex">
+                                    <div class="max-y-md max-w-lg w-full font-bold text-black">
+                                        Posts by Suggested Students
+                                        <div class="flex mt-3 ">
+                                            <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg">
+                                                <div class="relative group">
+                                                    <label for="file_input" class="cursor-pointer ">
+                                                        <img src="image/Kersch.png" alt="Profile"
+                                                            class="w-full h-full object-cover">
+
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow flex-col ml-4 text-sm font-bold text-black ">
+                                                <div>Kerschtine Billones</div>
+                                                <div class="text-xs font-semibold text-black opacity-45"> Kerschtine Posted
+                                                    an
+                                                    Image!
+                                                </div>
+                                            </div>
+                                            <div class="flex items-center justify-center ml-3 ">
+                                                <div class="text-xs font-bold  ">
+                                                    <div class="w-14 h-14">
+                                                        <img src="image/art.jpg" alt=""
+                                                            class=" rounded-lg object-cover mb-2 border border-[#D4D4D4] shadow-lg ">
+                                                    </div>
+
                                                 </div>
                                             </div>
                                             <div class="flex items-center justify-center my-auto">
@@ -747,4 +890,4 @@
         </div>
     @endsection
 </section>
-</div>
+
