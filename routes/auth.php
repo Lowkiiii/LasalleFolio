@@ -13,6 +13,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\FriendRequestController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\InterestController;
+use App\Http\Controllers\QuizController;
 
 //use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
@@ -152,6 +153,13 @@ Route::middleware('auth')->group(function () {
     // Remove bio
     Route::delete('/bio/{user}', [UserController::class, 'removeBio'])->name('bio.remove');
 
+    //Quiz Game
+    // Route::get('/quiz', function () {
+    //     return view('quiz.quiz');
+    // })->name('quiz');
+    Route::get('/quiz', [QuizController::class, 'generateQuiz'])->name('quiz');
+    Route::post('/quiz/submit', [QuizController::class, 'submitQuizAnswer'])->name('quiz.submit');
+    Route::get('/quiz/results', [QuizController::class, 'getQuizResults'])->name('quiz.results');
 
 });
 

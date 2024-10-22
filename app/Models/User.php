@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Interest;
 use App\Models\PinnedProject;
+use App\Models\QuizPoints;
 
 
 class User extends Authenticatable //implements MustVerifyEmail
@@ -98,6 +99,11 @@ class User extends Authenticatable //implements MustVerifyEmail
     public function pinnedProjects()
     {
         return $this->hasMany(PinnedProject::class);
+    }
+
+    public function quizPoints()
+    {
+        return $this->hasMany(QuizPoints::class);
     }
 
 }

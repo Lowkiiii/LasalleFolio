@@ -10,6 +10,7 @@ use App\Models\Interest;
 use App\Models\Bio;
 use App\Models\PinnedProject;
 use Illuminate\Http\Request;
+use App\Models\QuizPoints;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Http\Controllers\FriendRequestController;
@@ -237,7 +238,7 @@ class UserController extends Controller
 
         // Get badge
         $totalPoints = $this->calculatePoints();
-        $badge = $this->getUserBadge($totalPoints);
+        $badge = $this->getUserBadge($points);
 
         // Get project count
         $projectCount = $this->countProjects();
@@ -252,7 +253,7 @@ class UserController extends Controller
             ->take(5) // Limit to 5 users
             ->get();
 
-        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers', 'userInterests', 'studentInterest', 'totalPoints', 'badge'));
+        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers', 'userInterests', 'studentInterest', 'badge',  'totalPoints'));
     }
 
     public function calculatePoints()
@@ -284,12 +285,55 @@ class UserController extends Controller
         // Calculate comment points (15 points for each comment made by the user)
         $commentPoints = Comment::where('user_id', $user->id)->count() * 15;
 
+        
+        // Add quiz points
+        $quizPoints = QuizPoints::where('user_id', $user->id)->sum('points');
+
         // Total points including comments
-        $totalPoints = $postPoints + $connectionPoints + $reactionPoints + $commentPoints;
+        $totalPoints = $postPoints + $connectionPoints + $reactionPoints + $commentPoints + $quizPoints;
 
         return $totalPoints;
     }
+   
 
+    private function calculatePointsForUser($user)
+    {
+        // Calculate total points for a given user
+        $postPoints = $user->userPosts->count() * 30;
+
+        // Calculate connection points
+        $connectionPoints =
+            FriendRequest::where(function ($query) use ($user) {
+                $query->where('sender_id', $user->id)->orWhere('receiver_id', $user->id);
+            })
+                ->where('status', 'accepted')
+                ->count() * 20;
+
+        // Get the user's posts
+        $userPostIds = $user->userPosts->pluck('id');
+
+        // Calculate reaction points only for user's own posts or those liked on their posts
+        $reactionPointsFromOwnPosts = Reaction::whereIn('post_id', $userPostIds)->count() * 10; // Reactions on user's own posts
+        $reactionPointsReceived =
+            Reaction::where('user_id', $user->id)
+                ->whereIn('post_id', $userPostIds)
+                ->count() * 10; // Likes received on user's posts
+
+        // Combine points for reactions
+        $reactionPoints = $reactionPointsFromOwnPosts + $reactionPointsReceived;
+
+        // Calculate comment points (15 points for each comment made by the user)
+        $commentPoints = Comment::where('user_id', $user->id)->count() * 15;
+
+        // Add quiz points
+        $quizPoints = QuizPoints::where('user_id', $user->id)->sum('points');
+
+        // Total points including comments
+        $totalPoints = $postPoints + $connectionPoints + $reactionPoints + $commentPoints + $quizPoints;
+
+        return  $totalPoints;
+    }
+    
     public function studentLeaderboard(Request $request)
     {
         $query = $request->input('query');
@@ -344,38 +388,6 @@ class UserController extends Controller
         ]);
     }
 
-    private function calculatePointsForUser($user)
-    {
-        // Calculate total points for a given user
-        $postPoints = $user->userPosts->count() * 30;
-
-        // Calculate connection points
-        $connectionPoints =
-            FriendRequest::where(function ($query) use ($user) {
-                $query->where('sender_id', $user->id)->orWhere('receiver_id', $user->id);
-            })
-                ->where('status', 'accepted')
-                ->count() * 20;
-
-        // Get the user's posts
-        $userPostIds = $user->userPosts->pluck('id');
-
-        // Calculate reaction points only for user's own posts or those liked on their posts
-        $reactionPointsFromOwnPosts = Reaction::whereIn('post_id', $userPostIds)->count() * 10; // Reactions on user's own posts
-        $reactionPointsReceived =
-            Reaction::where('user_id', $user->id)
-                ->whereIn('post_id', $userPostIds)
-                ->count() * 10; // Likes received on user's posts
-
-        // Combine points for reactions
-        $reactionPoints = $reactionPointsFromOwnPosts + $reactionPointsReceived;
-
-        // Calculate comment points (15 points for each comment made by the user)
-        $commentPoints = Comment::where('user_id', $user->id)->count() * 15;
-
-        return $postPoints + $connectionPoints + $reactionPoints + $commentPoints;
-    }
-
     public function getUserBadge($totalPoints)
     {
         // Get all users and their total points
@@ -404,23 +416,6 @@ class UserController extends Controller
         }
     }
 
-    public function kerschProf(Request $request)
-    {
-        $query = $request->input('query');
-
-        $authUser = User::where('first_name', 'LIKE', "%{$query}%")
-            ->orWhere('last_name', 'LIKE', "%{$query}%")
-            ->get();
-
-        $user = Auth::user();
-        $userProjects = $user->userProjects;
-        $userSkills = $user->userSkills;
-        $userAcademics = $user->userAcademics;
-        $userHonorsAndAwards = $user->userHonorsAndAwards;
-        $userPosts = $user->userPosts;
-
-        return view('student.kerschProf', compact('authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts'));
-    }
 
     public function searchUser(Request $request)
     {
@@ -522,10 +517,7 @@ class UserController extends Controller
         }
     }
 
-    public function quiz()
-    {
-        return view('quiz.quiz');
-    }
+   
 
     public function update(Request $request, User $user): RedirectResponse
     {
@@ -551,4 +543,11 @@ class UserController extends Controller
             return response()->json(['error' => 'Something went wrong'], 500);
         }
     }
+
+    public function quiz()
+    {
+        return view('quiz.quiz');
+    }
+
+    
 }

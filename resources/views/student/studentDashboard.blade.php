@@ -129,7 +129,8 @@
 
                                                     <div class=" items-center text-start  pt-6 w-full flex flex-row">
                                                         <div class="items-start text-start flex flex-row">
-                                                            <x-icon icon="medal" />
+                                                            {{-- <x-icon icon="medal" /> --}}
+                                                           
                                                         </div>
 
                                                         <div class="w-10 h-10 rounded-full mx-4 shadow-lg">
@@ -730,13 +731,13 @@
                                 <div class="max-y-md max-w-lg w-full flex">
                                     <div class=" w-full font-bold text-black">
                                         Test your knowldge!
-                                        <div class="flex mt-3 w-full ">
-                                            <x-button id="submitBtn"
-                                                      type="primary"
-                                                      onclick="submitForm()">
-                                                Start Quiz Game
-                                            </x-button>
-                                        </div>
+                                        <div class="flex mt-3 w-full">
+                                            <a href="{{ route('quiz') }}">
+                                                <x-button id="submitBtn" type="primary">
+                                                    Start Quiz Game
+                                                </x-button>
+                                            </a>
+                                        </div>                                        
                                     </div>
                                 </div>
                             </div>
