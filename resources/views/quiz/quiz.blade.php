@@ -57,10 +57,10 @@
                                 <button type="button" id="prevButton" class="px-4 py-2 bg-gray-200 rounded-md" style="display: none;">
                                     Previous Question
                                 </button>
-                                <button type="button" id="nextButton" class="px-4 py-2 bg-green-600 text-white rounded-md">
+                                <button type="button" id="nextButton" class="px-4 py-2 bg-[#006634] text-white rounded-md">
                                     Next Question
                                 </button>
-                                <button type="submit" id="submitButton" class="px-4 py-2 bg-blue-600 text-white rounded-md" style="display: none;">
+                                <button type="submit" id="submitButton" class="px-4 py-2 bg-[#006634] text-white rounded-md" style="display: none;">
                                     Submit Quiz
                                 </button>
                             </div>

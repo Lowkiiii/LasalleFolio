@@ -129,7 +129,7 @@
 
                                                     <div class=" items-center text-start  pt-6 w-full flex flex-row">
                                                         <div class="items-start text-start flex flex-row">
-                                                            {{-- <x-icon icon="medal" /> --}}
+                                                            <x-icon icon="medal" />
                                                            
                                                         </div>
 
@@ -284,7 +284,7 @@
                                                 <div class="p-4">
 
                                                     <button class="editButton">
-                                                        <label for="file_input"
+                                                        <label
                                                                class="cursor-pointer shadow-md rounded-full opacity-70">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                  xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -662,7 +662,7 @@
                                                     {{ $student->interests->pluck('interest_name')->join(', ') }}
                                                 </div>
                                             </div>
-                                            <div class="flex items-center justify-center my-auto">
+                                            <div class="flex items-center justify-center gap-2 my-auto">
                                                 @php
                                                     $friendRequest = \App\Models\FriendRequest::where(function (
                                                         $query,
@@ -731,7 +731,7 @@
                                 <div class="max-y-md max-w-lg w-full flex">
                                     <div class=" w-full font-bold text-black">
                                         Test your knowldge!
-                                        <div class="flex mt-3 w-full">
+                                        <div class=" w-full mt-2">
                                             <a href="{{ route('quiz') }}">
                                                 <x-button id="submitBtn" type="primary">
                                                     Start Quiz Game
