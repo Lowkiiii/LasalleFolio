@@ -39,13 +39,17 @@ class RegisterController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'sex' => ['required', 'string', 'max:50'],
             'public_url' => ['nullable', 'string', 'max:255'],
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ]);
-    
+
         try {
-            // Capitalize the first letter of each word in first and last names
             $firstName = ucwords(strtolower($request->first_name));
             $lastName = ucwords(strtolower($request->last_name));
-            
+
+            $imagePath = $request->file('image')
+                ? $request->file('image')->store('profile_images', 'public')
+                : 'default_images/default_profile.png';
+
             $user = User::create([
                 'first_name' => $firstName,
                 'last_name' => $lastName,
@@ -55,12 +59,14 @@ class RegisterController extends Controller
                 'password' => Hash::make($request->password),
                 'sex' => $request->sex,
                 'public_url' => $request->public_url,
+                'image' => $imagePath,
             ]);
-    
+
             return redirect()->back()->with('success', 'Successfully registered');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'An error occurred while registering. Please try again.');
         }
     }    
+
 
 }

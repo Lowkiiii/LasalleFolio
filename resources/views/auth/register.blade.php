@@ -49,7 +49,7 @@
                 class="  z-auto mx-auto max-y-md max-w-sm flex items-center justify-center bg-white/70 rounded-2xl shadow-md border-InputGray border p-7 ">
 
 
-                <form method="POST" action="{{ route('register.account') }}">
+                <form method="POST" action="{{ route('register.account') }}" enctype="multipart/form-data">
                     @csrf <!-- {{ csrf_field() }} -->
                     <!--Sign in section-->
                     <!--<img src='/image/logo.png' class="mx-auto size-20 mr-24"/>-->
@@ -162,6 +162,19 @@
                                     </div>
             
                                     
+                                </div>
+
+                                <div class="relative mb-4">
+                                    <label for="image" class="block text-gray-700">Profile Image</label>
+                                    <input type="file" id="image" name="image" class="block w-full text-sm text-gray-500
+                                           file:mr-4 file:py-2 file:px-4
+                                           file:rounded-md file:border-0
+                                           file:text-sm file:font-semibold
+                                           file:bg-gray-200 file:text-gray-700
+                                           hover:file:bg-gray-300">
+                                    @error('image')
+                                        <div class="text-red-500 text-sm mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                           
 

@@ -24,7 +24,7 @@
                             class="w-36 h-36 bg-white border-4 border-[#F8F8F8] rounded-full justify-center mx-auto max-w-lg flex items-center relative">
                             <div class="relative group w-full h-full">
                                 <label for="file_input" class="cursor-pointer rounded-full w-full h-full">
-                                    <img src="image/dog.jpg" alt="Profile"
+                                    <img src="{{ asset('storage/' . $user->image) }}"
                                         class="w-full h-full rounded-full object-cover transition duration-300 ease-in-out transform hover:scale-110">
                                     <div
                                         class="absolute inset-0 bg-black opacity-0 rounded-full group-hover:opacity-30 flex items-center justify-center">
@@ -181,20 +181,21 @@
                     <div class="flex items-center justify-center py-6 px-6">
                         <div class="flex">
                             <div class="flex flex-col items-center mr-32 ">
-                                <div class="font-bold text-xl text-[#006634] ">0</div>
-                                <div class="text-xs font-normal text-center truncate text-[#444444] font-medium">Points
+                                {{-- <div class="font-bold text-xl text-[#006634] ">{{ $points }}</div> --}}
+                                <div class="text-xs  text-center truncate text-[#444444] font-medium">Points
                                     Garnered</div>
                             </div>
 
-                            <div class="flex flex-col items-center mx-32 text-[#006634] ">
-                                <div class="font-bold text-xl">0</div>
-                                <div class="text-xs font-normal text-center truncate text-[#444444] font-medium">
-                                    Students Connected</div>
+                            <div class="flex flex-col items-center mx-32 text-[#006634]">
+                                {{-- <div class="font-bold text-xl">{{ $connectedStudentsCount }}</div> --}}
+                                <div class="text-xs  text-center truncate text-[#444444] font-medium">
+                                    Students Connected
+                                </div>
                             </div>
 
                             <div class="flex flex-col items-center ml-32 text-[#006634] ">
-                                <div class="font-bold text-xl">0</div>
-                                <div class="text-xs font-normal text-center truncate text-[#444444] font-medium">
+                                {{-- <div class="font-bold text-xl">{{ $projectCount }}</div> --}}
+                                <div class="text-xs  text-center truncate text-[#444444] font-medium">
                                     Projects Posted</div>
                             </div>
                         </div>
@@ -203,9 +204,8 @@
                     <div class="flex flex-col items-center text-xs font-medium text-center justify-center ">
                         <div class=" mt-4 text-black font-bold text-lg"> About Me </div>
                         <div class="flex mt-2 text-sm font-medium text-center justify-center">
-                            <div class="w-3/4 text-black">
-                                An aspiring Web Developer currently enrolled in USLS, and completing his Computer Science
-                                Degree
+                            <div class=" text-black">
+                                {{ $bio->bio ?? 'No bio available.' }}
                             </div>
                         </div>
                     </div>
@@ -238,36 +238,31 @@
                                                 <div>
                                                     <div class="flex flex-row gap-1">
                                                         <button class="hover:text-[#004423]">
-                                                            ·
-                                                            {{ $pinnedProject->project->project ?? 'Project Name Not Available' }}
+                                                                ·
+                                                                {{ $pinnedProject->project->project ?? 'Project Name Not Available' }}
                                                         </button>
                                                         <form action="{{ route('pinnedProjects.remove', $pinnedProject->id) }}"
-                                                            method="POST"
-                                                            class="inline-block">
-                                                          @csrf 
-                                                          <button type="submit">
-                                                        <svg xmlns="http://www.w3.org/2000/svg"
-                                                             x="0px"
-                                                             y="0px"
-                                                             width="14"
-                                                             height="14"
-                                                             viewBox="0 0 30 30"
-                                                             class="fill-current mx-auto my-auto text-[#909090] opacity-80 hover:text-[#ff0000]">
-                                                            <path
-                                                                  d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
-                                                            </path>
-                                                        </svg>
-                                                    </button>
-                                                    </form>
+                                                                method="POST"
+                                                                class="inline-block">
+                                                            @csrf 
+                                                        <button type="submit">
+                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                x="0px"
+                                                                y="0px"
+                                                                width="14"
+                                                                height="14"
+                                                                viewBox="0 0 30 30"
+                                                                class="fill-current mx-auto my-auto text-[#909090] opacity-80 hover:text-[#ff0000]">
+                                                                <path
+                                                                    d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
+                                                                </path>
+                                                            </svg>
+                                                        </button>
+                                                        </form>
                                                     </div>
                                                     <div class="py-3 text-sm font-medium text-black items-start w-11/12">
                                                         {{ $pinnedProject->project->description ?? 'No description available' }}
                                                     </div>
-
-                                             
-                                                 
-                                                     
-                                               
                                                 </div>
 
                                             </div>
@@ -278,7 +273,7 @@
                                     <div
                                          class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#D4D4D4] rounded-lg shadow-lg">
                                         <div class="my-auto p-4 mx-auto">
-                                            <button class="p-4 fill-current text-[#909090] hover:text-[#006634]"
+                                            {{-- <button class="p-4 fill-current text-[#909090] hover:text-[#006634]"
                                                     onclick="toggleModal('modal-idPinnedProjects')">
                                                 <!DOCTYPE svg
                                                           PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
@@ -294,7 +289,7 @@
                                                     <path
                                                           d="M256,512C114.625,512,0,397.391,0,256C0,114.609,114.625,0,256,0c141.391,0,256,114.609,256,256  C512,397.391,397.391,512,256,512z M256,64C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192  S362.047,64,256,64z M288,384h-64v-96h-96v-64h96v-96h64v96h96v64h-96V384z" />
                                                 </svg>
-                                            </button>
+                                            </button> --}}
                                         </div>
                                     </div>
                                 @endif
@@ -560,8 +555,7 @@
                                 <div class="flex flex-grow items-center mt-3">
                                     <div class="w-12 h-12 rounded-full mr-2">
                                         <div class="relative group">
-                                            <img src="{{ asset('image/dog.jpg') }}" alt="Profile"
-                                                class="w-full h-full rounded-full object-cover">
+                                            <img src="{{ asset('storage/' . $post->user->image) }}" alt="{{ $post->user->name }}'s Profile Image"  class="w-full h-full rounded-full object-cover">
                                         </div>
                                     </div>
 
@@ -628,7 +622,15 @@
                                             <div class="flex items-center">
                                                 <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
                                                     <label for="file_input" class="cursor-pointer w-full h-full">
-                                                        <img src="image/Kersch.png" alt="Profile" class="w-full h-full object-cover">
+                                                        @if ($user->image)
+                                                                <div class="mt-2">
+                                                                    <img src="{{ asset('storage/' . $comment->user->image) }}" alt="{{ $comment->user->name }}'s Profile Image"  class="w-full h-full object-cover"> 
+                                                                </div>
+                                                        @else
+                                                                    <img src="{{ asset('image/default-profile.png') }}"
+                                                                        alt="Profile"
+                                                                        class="w-full h-full object-cover">
+                                                        @endif 
                                                     </label>
                                                 </div>
                                                 <div class="text-sm font-bold text-black">

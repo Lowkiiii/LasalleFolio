@@ -161,6 +161,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/quiz/submit', [QuizController::class, 'submitQuizAnswer'])->name('quiz.submit');
     Route::get('/quiz/results', [QuizController::class, 'getQuizResults'])->name('quiz.results');
 
+
+    Route::get('/profile/other', [UserController::class, 'studentOtherProfile'])->name('profile.other');
+
 });
 
 
