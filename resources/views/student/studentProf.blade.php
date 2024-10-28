@@ -235,14 +235,8 @@
                                                     </div>
                                                     <div class="py-3 text-sm font-medium text-black items-start w-11/12">
                                                         {{ $pinnedProject->project->description ?? 'No description available' }}
-                                                    </div>
-
-                                             
-                                                 
-                                                     
-                                               
+                                                    </div>                                         
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
@@ -374,7 +368,7 @@
                                                             <form action="{{ route('projects.destroy', $projects->id) }}"
                                                                   method="POST"
                                                                   onsubmit="return confirm('Are you sure you want to delete this project?')"
-                                                                  class="inline-block">
+                                                                  class="inline-block text-center justify-center">
                                                                 @csrf
                                                                 @method('DELETE')
                                                                 <button type="submit"
@@ -385,7 +379,7 @@
                                                                          width="14"
                                                                          height="14"
                                                                          viewBox="0 0 30 30"
-                                                                         class="fill-current text-[#909090] opacity-80 hover:text-[#006634]">
+                                                                         class="fill-current text-[#909090] opacity-80 hover:text-[#ff3b3b]">
                                                                         <path
                                                                               d="M 13 3 A 1.0001 1.0001 0 0 0 11.986328 4 L 6 4 A 1.0001 1.0001 0 1 0 6 6 L 24 6 A 1.0001 1.0001 0 1 0 24 4 L 18.013672 4 A 1.0001 1.0001 0 0 0 17 3 L 13 3 z M 6 8 L 6 24 C 6 25.105 6.895 26 8 26 L 22 26 C 23.105 26 24 25.105 24 24 L 24 8 L 6 8 z">
                                                                         </path>
@@ -425,7 +419,6 @@
 
                             <div
                                  class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#D4D4D4] rounded-lg  shadow-lg ">
-
                                 <div class="absolute right-0 top-0 z-20">
                                     <button class="p-4 fill-current text-[#909090] hover:text-[#006634]"
                                             onclick="toggleModal('modal-idSkillsPanel')">
@@ -815,7 +808,7 @@
                     </div>
                 </div>
 
-                <div class="p-8">
+                <div class="p-12">
                     <div class="w-full relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg mb-4">
 
                         <div class=" flex items-center">
@@ -1014,14 +1007,16 @@
                             <div class="py-4 text-black">{{ $post->user_posts }}</div>
                             {{-- Check if the post has an image and display it --}}
                             @if ($post->image_path)
-                                <div class="mt-2">
+                                <div class=" mt-2">
+                                    <div class=" flex bg-[#f3f3f3] items-center justify-center">
                                     <img src="{{ asset('storage/' . $post->image_path) }}"
                                          alt="Post Image"
-                                         class="w-full h-auto rounded-lg">
+                                         class="w-auto h-[30rem] rounded-lg">
+                                        </div>
                                 </div>
                             @else
                             @endif
-                            <div class="flex flex-row items-start justify-start">
+                            <div class="flex py-2 flex-row items-start justify-start">
                                 <button onclick="toggleReaction({{ $post->id }}, this)"
                                         class="flex flex-row justify-center items-center text-s mr-2">
                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -1277,3 +1272,5 @@
         @include('modal.modalPanels')
         @include('modal.PinnedProjectShowcaseModal')
     @endsection
+</section>
+

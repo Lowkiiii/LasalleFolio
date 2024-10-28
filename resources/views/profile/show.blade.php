@@ -785,4 +785,5 @@
             </div>
         </div>
         @include('modal.modalPanels')
+        
     @endsection

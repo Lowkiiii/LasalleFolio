@@ -404,7 +404,7 @@
                                 @else
                                 @endif
                                 {{-- Display Post Category --}}
-                                <p class="mt-2 text-sm text-gray-600">Category: {{ $post->category }}</p>
+                                <p class="mt-2 mb-2 text-sm text-gray-600">Category: {{ $post->category }}</p>
 
                                 <div class="flex flex-row items-start justify-start">
                                     <!-- Heart Reaction Feature -->
@@ -551,7 +551,7 @@
                                                 let commentsContainer = $('#commentsContainer' + postId);
                                                 commentsContainer.prepend(`
                                                     <div class="flex items-start mt-2">
-                                                        <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
+                                                       <div class="w-10 h-10 rounded-full  overflow-hidden shadow-lg mr-2">
                                                             <img src="image/Kersch.png" alt="Profile" class="w-full h-full object-cover">
                                                         </div>
                                                         <div class="text-sm font-medium text-black">
