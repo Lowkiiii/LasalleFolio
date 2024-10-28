@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Interest;
 use App\Models\QuizPoints;
+use Carbon\Carbon;
 
 class QuizController extends Controller
 {
@@ -125,7 +126,7 @@ class QuizController extends Controller
                     'correct_answer' => 1
                 ],
             ],
-            '3D-Animation' => [
+            '3d-animation' => [
                 [
                     'question' => 'What is keyframing in animation?',
                     'options' => [
@@ -167,7 +168,7 @@ class QuizController extends Controller
                     'correct_answer' => 1
                 ],
             ],
-            'Artifical_Intelligence' => [
+            'artifical_intelligence' => [
                 [
                     'question' => 'What is the primary goal of supervised learning?',
                     'options' => [
@@ -209,7 +210,7 @@ class QuizController extends Controller
                     'correct_answer' => 1
                 ],
             ],
-            '3D-Modeling' => [
+            '3d-modeling' => [
                 [
                     'question' => 'What is a polygon in 3D modeling?',
                     'options' => [
@@ -231,7 +232,7 @@ class QuizController extends Controller
                     'correct_answer' => 2
                 ],
             ],
-            'GameDevelopment' => [
+            'gamedevelopment' => [
                 [
                     'question' => 'What is the primary purpose of a game engine?',
                     'options' => [
@@ -253,7 +254,7 @@ class QuizController extends Controller
                     'correct_answer' => 2
                 ],
             ],
-            'Ui/Ux' => [
+            'ui/ux' => [
                 [
                     'question' => 'What does UI stand for in design?',
                     'options' => [
@@ -275,7 +276,7 @@ class QuizController extends Controller
                     'correct_answer' => 1
                 ],
             ],
-            'Data_Analytics' => [
+            'aata_analytics' => [
                 [
                     'question' => 'What is the primary goal of data analytics?',
                     'options' => [
@@ -297,7 +298,7 @@ class QuizController extends Controller
                     'correct_answer' => 1
                 ],
             ],
-            'DataScience' => [
+            'datascience' => [
                 [
                     'question' => 'What is the main programming language used in data science?',
                     'options' => [
@@ -319,7 +320,7 @@ class QuizController extends Controller
                     'correct_answer' => 1
                 ],
             ],
-            'Networking' => [
+            'networking' => [
                 [
                     'question' => 'What does TCP stand for?',
                     'options' => [
@@ -363,7 +364,7 @@ class QuizController extends Controller
                     'correct_answer' => 1
                 ],
             ],
-            'Web_Design' => [
+            'web_design' => [
                 [
                     'question' => 'What does HTML stand for?',
                     'options' => [
@@ -385,7 +386,7 @@ class QuizController extends Controller
                     'correct_answer' => 2
                 ],
             ],
-            'Multimedia' => [
+            'multimedia' => [
                 [
                     'question' => 'What is the primary purpose of multimedia in presentations?',
                     'options' => [
@@ -407,7 +408,7 @@ class QuizController extends Controller
                     'correct_answer' => 1
                 ],
             ],
-            'Graphic_Design' => [
+            'graphic_design' => [
                 [
                     'question' => 'Which software is widely used for graphic design?',
                     'options' => [
@@ -429,7 +430,7 @@ class QuizController extends Controller
                     'correct_answer' => 0
                 ],
             ],
-           'Software_Development' => [
+           'software_development' => [
                 [
                     'question' => 'What is Agile software development?',
                     'options' => [
@@ -461,7 +462,7 @@ class QuizController extends Controller
                     'correct_answer' => 0
                 ],
             ],
-            'Cloud_Computing' => [
+            'cloud_computing' => [
                 [
                     'question' => 'What is cloud computing?',
                     'options' => [
@@ -664,6 +665,21 @@ class QuizController extends Controller
         return response()->json(['success' => true]);
     }
 
+    private function getUserTodayPoints()
+    {
+        $today = Carbon::today();
+        return QuizPoints::where('user_id', Auth::id())
+            ->whereDate('created_at', $today)
+            ->sum('points');
+    }
+
+    private function getRemainingPointsLimit()
+    {
+        $todayPoints = $this->getUserTodayPoints();
+        $maxDailyPoints = 50;
+        return max(0, $maxDailyPoints - $todayPoints);
+    }
+
     public function getQuizResults()
     {
         $answers = session('quiz_answers');
@@ -679,21 +695,38 @@ class QuizController extends Controller
         
         // Calculate points (5 points per correct answer)
         $points = $correctAnswers * 5;
-        
 
-        // Store the quiz points in the database
+        // Check remaining points limit for today
+        $remainingLimit = $this->getRemainingPointsLimit();
+        
+        // Adjust points based on daily limit
+        $pointsToAward = min($points, $remainingLimit);
+
+        if ($pointsToAward > 0) {
+            // Store the quiz points in the database
             QuizPoints::create([
                 'user_id' => Auth::id(),
-                'points' => $points
+                'points' => $pointsToAward
             ]);
+        }
+
+        // // Store the quiz points in the database
+        //     QuizPoints::create([
+        //         'user_id' => Auth::id(),
+        //         'points' => $points
+        //     ]);
 
         // Call the UserController to update points
         // $userController = new UserController();
         // $totalPoints = $userController->calculatePoints();
         
+
+        // Get total points earned today for display
+        $todayTotalPoints = $this->getUserTodayPoints();
+
         // Clear quiz session data after generating results
         session()->forget(['quiz_questions', 'quiz_answers']);
         
-        return view('quiz.results', compact('score', 'correctAnswers', 'totalQuestions', 'questions', 'answers', 'points'));
+        return view('quiz.results', compact('score', 'correctAnswers', 'totalQuestions', 'questions', 'answers', 'points', 'pointsToAward', 'todayTotalPoints', 'remainingLimit'));
     }
 }
