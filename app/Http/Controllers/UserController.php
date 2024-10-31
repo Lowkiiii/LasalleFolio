@@ -501,7 +501,7 @@ class UserController extends Controller
         $users = User::where('first_name', 'LIKE', "%{$query}%")
             ->orWhere('last_name', 'LIKE', "%{$query}%")
             ->limit(5)
-            ->get(['id', 'first_name', 'last_name']); // Only select the fields you need
+            ->get(['id', 'first_name', 'last_name', 'image']); // Only select the fields you need
 
         return response()->json($users);
     }

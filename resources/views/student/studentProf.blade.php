@@ -24,7 +24,7 @@
                                 <label for="file_input"
                                        class="cursor-pointer rounded-full w-full h-full">
                                        {{-- <img src="{{ asset($user->image) }}" alt="Profile" class="w-full h-full rounded-full object-cover" /> --}}
-                                       @if ($user->image)
+                                        @if ($user->image)
                                         <div class="mt-2">
                                                     <img src="{{ asset('storage/' . $user->image) }}"
                                                         alt="Profile"
@@ -1177,15 +1177,16 @@
                                             <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
                                                 <label for="file_input"
                                                        class="cursor-pointer w-full h-full">
-                                                            @if ($user->image)
-                                                                <div class="mt-2">
-                                                                    <img src="{{ asset('storage/' . $comment->user->image) }}" alt="{{ $comment->user->name }}'s Profile Image"  class="w-full h-full object-cover"> 
-                                                                </div>
-                                                            @else
-                                                                    <img src="{{ asset('image/default-profile.png') }}"
-                                                                        alt="Profile"
-                                                                        class="w-full h-full object-cover">
-                                                            @endif 
+                                                        @if ($comment->user->image)
+                                                            <img src="{{ asset('storage/' . $comment->user->image) }}"
+                                                                alt="Profile"
+                                                                class="w-full h-full rounded-full object-cover">
+                                                            
+                                                        @else
+                                                            <img src="{{ asset('image/default-profile.png') }}"
+                                                                alt="Profile"
+                                                                class="w-full h-full rounded-full object-cover">
+                                                        @endif 
                                                 </label>
                                             </div>
                                             <div class="text-sm font-bold text-black">
@@ -1279,13 +1280,14 @@
 
                                             @if ($user->image)
                                                <div class="mt-2">
-                                                   <img src="{{ asset('storage/' . $comment->user->image) }}" alt="{{ $comment->user->name }}'s Profile Image"  class="w-full h-full rounded-full object-cover">
+                                                   <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}'s Profile Image"  class="w-full h-full rounded-full object-cover">
                                                </div>
                                             @else
                                                    <img src="{{ asset('image/default-profile.png') }}"
                                                        alt="Profile"
                                                        class="w-full h-full rounded-full object-cover">
                                             @endif 
+
                                         </label>
                                     </div>
                                 </div>

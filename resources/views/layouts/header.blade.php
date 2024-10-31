@@ -77,15 +77,17 @@
                                 const userDiv = document.createElement('div');
                                 userDiv.className = 'w-full py-2 px-4 rounded-xl  cursor-pointer hover:bg-gray-200';
                                 userDiv.innerHTML = `
-                    <div class="flex">
-                        <a href="/profile/${user.id}" class="flex items-start justify-start w-full">
-                            <img src="image/kersch.png" alt="Profile" class="rounded-full object-cover w-10 h-10">
-                            <div class="flex my-auto ml-4 text-md font-bold text-black truncate">
-                                <div>${user.first_name} ${user.last_name}</div>
-                            </div>
-                        </a>
-                    </div>
-                `;
+                                        <div class="flex">
+                                            <a href="/profile/${user.id}" class="flex items-start justify-start w-full">
+                                                <img src="${user.image ? `/storage/${user.image}` : 'image/default-profile.png'}" 
+                                                    alt="Profile" 
+                                                    class="rounded-full object-cover w-10 h-10">
+                                                <div class="flex my-auto ml-4 text-md font-bold text-black truncate">
+                                                    <div>${user.first_name} ${user.last_name}</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        `;
                                 userDiv.addEventListener('click', function() {
                                     window.location.href = `/profile/${user.id}`;
                                 });
@@ -260,9 +262,17 @@
                             <div class="relative group">
                                 <label for="file_input"
                                        class="cursor-pointer">
-                                    <img src="image/dog.jpg"
-                                         alt="Profile"
-                                         class="w-full h-full rounded-full object-cover">
+                                         @if ($user->image)
+                                            <img src="{{ asset('storage/' . $user->image) }}"
+                                                alt="Profile"
+                                                class="w-full h-full rounded-full object-cover">
+                                        @else
+                                            <div class="bg-[#e1e1e1] rounded-full">
+                                                <img src="{{ asset('image/default-profile.png') }}"
+                                                    alt="Profile"
+                                                    class="w-full h-full rounded-full object-cover">
+                                            </div>
+                                        @endif
                                 </label>
 
                             </div>

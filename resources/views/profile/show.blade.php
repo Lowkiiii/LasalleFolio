@@ -24,8 +24,17 @@
                             class="w-36 h-36 bg-white border-4 border-[#F8F8F8] rounded-full justify-center mx-auto max-w-lg flex items-center relative">
                             <div class="relative group w-full h-full">
                                 <label for="file_input" class="cursor-pointer rounded-full w-full h-full">
-                                    <img src="{{ asset('storage/' . $user->image) }}"
-                                        class="w-full h-full rounded-full object-cover transition duration-300 ease-in-out transform hover:scale-110">
+                                        @if ($user->image)
+                                        <div class="mt-2">
+                                                    <img src="{{ asset('storage/' . $user->image) }}"
+                                                        alt="Profile"
+                                                        class="w-full h-full rounded-full object-cover">
+                                            </div>
+                                        @else
+                                                    <img src="{{ asset('image/default-profile.png') }}"
+                                                        alt="Profile"
+                                                        class="w-full h-full rounded-full object-cover">
+                                        @endif 
                                     <div
                                         class="absolute inset-0 bg-black opacity-0 rounded-full group-hover:opacity-30 flex items-center justify-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -555,7 +564,15 @@
                                 <div class="flex flex-grow items-center mt-3">
                                     <div class="w-12 h-12 rounded-full mr-2">
                                         <div class="relative group">
-                                            <img src="{{ asset('storage/' . $post->user->image) }}" alt="{{ $post->user->name }}'s Profile Image"  class="w-full h-full rounded-full object-cover">
+                                            @if ($user->image)
+                                                <div class="mt-2">
+                                                    <img src="{{ asset('storage/' . $post->user->image) }}" alt="{{ $post->user->name }}'s Profile Image" class="w-full h-full rounded-full object-cover"> 
+                                                </div>
+                                            @else
+                                                    <img src="{{ asset('image/default-profile.png') }}"
+                                                        alt="Profile"
+                                                        class="w-full h-full rounded-full object-cover">
+                                            @endif 
                                         </div>
                                     </div>
 
@@ -622,14 +639,15 @@
                                             <div class="flex items-center">
                                                 <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
                                                     <label for="file_input" class="cursor-pointer w-full h-full">
-                                                        @if ($user->image)
-                                                                <div class="mt-2">
-                                                                    <img src="{{ asset('storage/' . $comment->user->image) }}" alt="{{ $comment->user->name }}'s Profile Image"  class="w-full h-full object-cover"> 
-                                                                </div>
+                                                        @if ($comment->user->image)
+                                                            <img src="{{ asset('storage/' . $comment->user->image) }}"
+                                                                alt="Profile"
+                                                                class="w-full h-full rounded-full object-cover">
+                                                            
                                                         @else
-                                                                    <img src="{{ asset('image/default-profile.png') }}"
-                                                                        alt="Profile"
-                                                                        class="w-full h-full object-cover">
+                                                            <img src="{{ asset('image/default-profile.png') }}"
+                                                                alt="Profile"
+                                                                class="w-full h-full rounded-full object-cover">
                                                         @endif 
                                                     </label>
                                                 </div>
@@ -758,8 +776,16 @@
                                     <div class="w-10 h-10 rounded-full mr-2  ">
                                         <div class="relative group">
                                             <label for="file_input" class="cursor-pointer">
-                                                <img src="image/dog.jpg" alt="Profile"
-                                                    class="w-full h-full rounded-full object-cover">
+                                                
+                                                @if ($authUser->image)
+                                                    <div class="mt-2">
+                                                        <img src="{{ asset('storage/' . $authUser->image) }}" alt="{{ $authUser->name }}'s Profile Image"  class="w-full h-full rounded-full object-cover">
+                                                    </div>
+                                                @else
+                                                    <img src="{{ asset('image/default-profile.png') }}"
+                                                        alt="Profile"
+                                                        class="w-full h-full rounded-full object-cover">
+                                                @endif
                                             </label>
 
                                         </div>

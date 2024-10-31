@@ -382,7 +382,8 @@
 
                                 <div class="flex flex-grow items-center mt-3">
                                     <div class="w-12 h-12 rounded-full mr-2">
-                                        @if ($user->image)
+                                        {{-- line385 --}}
+                                        @if ($post->user->image)
                                             <div class="mt-2">
                                                 <img src="{{ asset('storage/' . $post->user->image) }}"
                                                      alt="{{ $post->user->name }}'s Profile Image"

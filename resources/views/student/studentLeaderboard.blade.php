@@ -73,8 +73,15 @@
                                                     class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
                                                     <div class="relative group">
                                                         <label for="file_input" class="cursor-pointer ">
-                                                            <img src="image/dog.jpg" alt="Profile"
-                                                                class="w-full h-full object-cover">
+
+                                                            @if ($user->image)
+                                                                <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}'s Profile Image" class="w-full h-full object-cover">
+                                                            @else
+                                                                <img src="{{ asset('image/default-profile.png') }}"
+                                                                     alt="Profile"
+                                                                     class="w-full h-full object-cover">
+                                                            @endif
+                                                                
                                                         </label>
                                                     </div>
                                                 </div>
