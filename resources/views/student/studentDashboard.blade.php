@@ -483,9 +483,17 @@
                                                 <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
                                                     <label for="file_input"
                                                            class="cursor-pointer w-full h-full">
-                                                        <img src="{{ asset('storage/' . $comment->user->image) }}"
-                                                             alt="{{ $comment->user->name }}'s Profile Image"
-                                                             class="w-10 h-10 rounded-full object-cover">
+                                                        @if ($comment->user->image)
+                                                             <img src="{{ asset('storage/' . $comment->user->image) }}"
+                                                                  alt="Profile"
+                                                                  class="w-10 h-10 rounded-full object-cover">
+                                                         @else
+                                                             <div class="bg-[#e1e1e1] rounded-full">
+                                                                 <img src="{{ asset('image/default-profile.png') }}"
+                                                                      alt="Profile"
+                                                                      class="w-10 h-10 rounded-full object-cover">
+                                                             </div>
+                                                         @endif
                                                     </label>
                                                 </div>
                                                 <div class="text-sm font-bold text-black">
@@ -674,9 +682,9 @@
                                                     <div class="relative group">
                                                         <label for="file_input"
                                                                class="cursor-pointer">
-                                                            @if ($student->profile_image)
-                                                                <img src="{{ asset('storage/' . $profile_image->user->image) }}"
-                                                                     alt="{{ $profile_image->user->name }}'s Profile Image"
+                                                            @if ($student->user && $student->user->image)
+                                                                <img src="{{ asset('storage/' . $student->user->image) }}"
+                                                                     alt="Profile"
                                                                      class="w-full h-full object-cover">
                                                             @else
                                                                 <div class="bg-[#e1e1e1] rounded-full">
