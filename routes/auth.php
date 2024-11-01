@@ -111,8 +111,12 @@ Route::middleware('auth')->group(function () {
     // search route
     Route::get('/search-user', [UserController::class, 'searchUser'])->name('search.user');
 
-    //view profile
+    // Route for viewing the authenticated user's profile
+    Route::get('/my-profile', [ProfileController::class, 'myProfile'])->name('profile.my');
+
+    // Route for viewing another user's profile
     Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
+
 
     //add friend
     Route::post('/send-request/{receiver_id}', [FriendRequestController::class, 'sendRequest'])->name('friend-request.send');
@@ -163,7 +167,6 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/profile/other', [UserController::class, 'studentOtherProfile'])->name('profile.other');
-
 });
 
 

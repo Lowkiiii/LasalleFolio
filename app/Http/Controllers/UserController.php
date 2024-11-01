@@ -113,61 +113,18 @@ class UserController extends Controller
         return view('student.studentProf', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'projectCount', 'points', 'userInterests', 'pinnedProjects', 'bio', 'totalPoints', 'badge'));
     }
 
-    public function studentOtherProfile(Request $request)
+    public function show()
     {
-        $query = $request->input('query');
-
-        $authUser = User::where('first_name', 'LIKE', "%{$query}%")
-            ->orWhere('last_name', 'LIKE', "%{$query}%")
-            ->get();
-
-        $user = Auth::user();
-        $userId = Auth::id();
-        $userProjects = $user->userProjects;
-        $userSkills = $user->userSkills;
-        $userAcademics = $user->userAcademics;
-        $userHonorsAndAwards = $user->userHonorsAndAwards;
-        $userPosts = $user->userPosts;
-        $userInterests = $user->interests;
-
-        // Fetch pinned projects for the user
-        $pinnedProjects = PinnedProject::with('project') // Eager load the project
-            ->where('user_id', $user->id)
-            ->get();
-
-        // Exclude pinned projects from the available projects list
-        $availableProjects = $userProjects->whereNotIn('id', $pinnedProjects->pluck('project_id'));
-
-        // Get the user's bio
-        $bio = Bio::where('user_id', $userId)->first();
-
-        // Add reaction count and user reaction status to each post
-        foreach ($userPosts as $post) {
-            $post->reaction_count = Reaction::where('post_id', $post->id)->count();
-            $post->user_reacted = Reaction::where('post_id', $post->id)
-                ->where('user_id', $userId)
-                ->exists();
-
-            // Get comments for each post
-            $post->comments = Comment::where('post_id', $post->id)
-                ->with('user')
-                ->get();
-        }
-
-        // Calculate points
-        $points = $this->calculatePoints();
-
-        // Get badge
-        $totalPoints = $this->calculatePoints();
-        $badge = $this->getUserBadge($totalPoints);
-
-        // Get project count
-        $projectCount = $this->countProjects();
-
+        $points = $this->calculatePoints();// calculation or retrieval of points
         $friendRequestController = new FriendRequestController();
-        $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount();
+        $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount(); // calculation or retrieval of connected students
+        $projectCount = $this->countProjects(); // calculation or retrieval of project count
 
-        return view('profile.show', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'projectCount', 'points', 'userInterests', 'pinnedProjects', 'bio', 'totalPoints', 'badge'));
+        return view('profile.show', [
+            'points' => $points,
+            'connectedStudentsCount' => $connectedStudentsCount,
+            'projectCount' => $projectCount
+        ]);
     }
 
     public function removePinnedProject($id)

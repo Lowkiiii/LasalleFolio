@@ -47,7 +47,7 @@ class UserPostController extends Controller
         public function index()
         {
             $userId = Auth::id();
-        
+            
             // Get IDs of connected users
             $connectedUserIds = FriendRequest::where(function ($query) use ($userId) {
                 $query->where('sender_id', $userId)
@@ -58,39 +58,125 @@ class UserPostController extends Controller
             ->map(function ($request) use ($userId) {
                 return $request->sender_id === $userId ? $request->receiver_id : $request->sender_id;
             });
-        
+
             // Include the authenticated user's ID
             $connectedUserIds[] = $userId;
-        
+
             // Get the current user's interests
             $userInterests = Interest::where('user_id', $userId)->pluck('interest_name')->toArray();
-    
-            // Get posts from connected users and the authenticated user
-            $userPosts = UserPosts::whereIn('user_id', $connectedUserIds)->get();
-    
-            // Separate posts into two collections: matching interests and non-matching
-            $matchingPosts = $userPosts->filter(function ($post) use ($userInterests) {
-                return in_array($post->category, $userInterests);
-            });
-            $nonMatchingPosts = $userPosts->diff($matchingPosts);
-    
-            // Shuffle both collections
-            $matchingPosts = $matchingPosts->shuffle();
-            $nonMatchingPosts = $nonMatchingPosts->shuffle();
-    
-            // Merge the collections, with matching posts first
-            $userPosts = $matchingPosts->merge($nonMatchingPosts);
-    
-            // Add reaction count and user reaction status to each post
-            foreach ($userPosts as $post) {
-                $post->reaction_count = Reaction::where('post_id', $post->id)->count();
-                $post->user_reacted = Reaction::where('post_id', $post->id)
+
+            // Collaborative Filtering: Find similar users based on interests
+            $similarUsers = UserPosts::whereIn('id', $connectedUserIds)
+                ->with('interests')
+                ->get()
+                ->map(function ($user) use ($userInterests) {
+                    // Calculate Jaccard Similarity
+                    $userInterests = $user->interests->pluck('interest_name')->toArray();
+                    $similarityScore = $this->calculateJaccardSimilarity($userInterests, $userInterests);
+                    
+                    return [
+                        'user_id' => $user->id,
+                        'similarity_score' => $similarityScore
+                    ];
+                })
+                ->sortByDesc('similarity_score')
+                ->pluck('user_id')
+                ->toArray();
+
+            // Get posts from similar users and the authenticated user
+            $userPosts = UserPosts::whereIn('user_id', $similarUsers)
+                ->orWhere('user_id', $userId)
+                ->get();
+
+            // Enhanced post filtering and ranking
+            $rankedPosts = $userPosts->map(function ($post) use ($userInterests, $userId) {
+                // Calculate interest match score
+                $interestMatchScore = in_array($post->category, $userInterests) ? 1 : 0;
+                
+                // Calculate engagement score
+                $reactionCount = Reaction::where('post_id', $post->id)->count();
+                $engagementScore = log1p($reactionCount);
+                
+                // Calculate recency score
+                $recencyScore = $this->calculateRecencyScore($post->created_at);
+                
+                // Calculate collaborative score based on user similarity
+                $collaborativeScore = $this->calculateCollaborativeScore($post->user_id, $userId);
+                
+                // Combine scores with weighted approach
+                $totalScore = (
+                    0.4 * $interestMatchScore + 
+                    0.3 * $engagementScore + 
+                    0.2 * $recencyScore + 
+                    0.1 * $collaborativeScore
+                );
+                
+                return [
+                    'post' => $post,
+                    'score' => $totalScore,
+                    'reaction_count' => $reactionCount,
+                    'user_reacted' => Reaction::where('post_id', $post->id)
                                             ->where('user_id', $userId)
-                                            ->exists();
-            }
-        
+                                            ->exists()
+                ];
+            })
+            // Sort posts by total score in descending order
+            ->sortByDesc('score')
+            ->values();
+
+            // Prepare posts for view
+            $userPosts = $rankedPosts->map(function ($postData) {
+                $post = $postData['post'];
+                $post->reaction_count = $postData['reaction_count'];
+                $post->user_reacted = $postData['user_reacted'];
+                return $post;
+            });
+
             return view('student.studentDashboard', compact('userPosts'));
         }
+
+        // Helper method to calculate Jaccard Similarity
+    private function calculateJaccardSimilarity(array $set1, array $set2)
+    {
+        $intersection = array_intersect($set1, $set2);
+        $union = array_unique(array_merge($set1, $set2));
+            
+        return count($intersection) / count($union);
+    }
+
+        // Helper method to calculate recency score
+    private function calculateRecencyScore($createdAt)
+    {
+        $now = now();
+        $daysDiff = $now->diffInDays($createdAt);
+                
+        // Exponential decay of recency
+        return exp(-0.1 * $daysDiff);
+    }
+
+        // Helper method to calculate collaborative score
+    private function calculateCollaborativeScore($postUserId, $currentUserId)
+    {
+        // Calculate similarity based on shared connections or interactions
+        $sharedConnections = FriendRequest::where(function ($query) use ($postUserId, $currentUserId) {
+            $query->where('sender_id', $postUserId)
+                ->where('receiver_id', $currentUserId)
+                ->orWhere('sender_id', $currentUserId)
+                ->where('receiver_id', $postUserId);
+        })
+        ->where('status', 'accepted')
+        ->count();
+        
+        // Calculate interaction score based on previous interactions
+        $interactionScore = Reaction::where('user_id', $postUserId)
+            ->whereHas('post', function ($query) use ($currentUserId) {
+                $query->where('user_id', $currentUserId);
+            })
+            ->count();
+            
+        // Combine shared connections and interactions
+        return log1p($sharedConnections + $interactionScore);
+    }
 
     public function userProfile()
     {

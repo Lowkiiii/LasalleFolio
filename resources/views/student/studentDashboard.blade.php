@@ -147,10 +147,10 @@
                                                             <div class="relative group">
                                                                 <label for="file_input"
                                                                        class="cursor-pointer">
-                                                                    @if ($user->image)
+                                                                    @if ($topUser->image)
                                                                         <div class="mt-2">
                                                                             <img src="{{ asset('storage/' . $topUser->image) }}"
-                                                                                 alt="{{ $topUser->name }}'s Profile Image"
+                                                                                 alt="Profile Image"
                                                                                  class="w-10 h-10 rounded-full object-cover">
                                                                         </div>
                                                                     @else

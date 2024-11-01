@@ -187,28 +187,28 @@
 
 
 
-                    <div class="flex items-center justify-center py-6 px-6">
-                        <div class="flex">
-                            <div class="flex flex-col items-center mr-32 ">
-                                {{-- <div class="font-bold text-xl text-[#006634] ">{{ $points }}</div> --}}
-                                <div class="text-xs  text-center truncate text-[#444444] font-medium">Points
-                                    Garnered</div>
-                            </div>
-
-                            <div class="flex flex-col items-center mx-32 text-[#006634]">
-                                {{-- <div class="font-bold text-xl">{{ $connectedStudentsCount }}</div> --}}
-                                <div class="text-xs  text-center truncate text-[#444444] font-medium">
-                                    Students Connected
+                        <div class="flex items-center justify-center py-6 px-6">
+                            <div class="flex">
+                                <div class="flex flex-col items-center mr-32 ">
+                                    <div class="font-bold text-xl text-[#006634] ">{{ $points }}</div>
+                                    <div class="text-xs  text-center truncate text-[#444444] font-medium">Points
+                                        Garnered</div>
+                                </div>
+    
+                                <div class="flex flex-col items-center mx-32 text-[#006634]">
+                                    <div class="font-bold text-xl">{{ $connectedStudentsCount }}</div>
+                                    <div class="text-xs  text-center truncate text-[#444444] font-medium">
+                                        Students Connected
+                                    </div>
+                                </div>
+    
+                                <div class="flex flex-col items-center ml-32 text-[#006634] ">
+                                    <div class="font-bold text-xl">{{ $projectCount }}</div>
+                                    <div class="text-xs  text-center truncate text-[#444444] font-medium">
+                                        Projects Posted</div>
                                 </div>
                             </div>
-
-                            <div class="flex flex-col items-center ml-32 text-[#006634] ">
-                                {{-- <div class="font-bold text-xl">{{ $projectCount }}</div> --}}
-                                <div class="text-xs  text-center truncate text-[#444444] font-medium">
-                                    Projects Posted</div>
-                            </div>
                         </div>
-                    </div>
 
                     <div class="flex flex-col items-center text-xs font-medium text-center justify-center ">
                         <div class=" mt-4 text-black font-bold text-lg"> About Me </div>
