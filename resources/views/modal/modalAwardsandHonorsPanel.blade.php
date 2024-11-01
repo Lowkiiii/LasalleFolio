@@ -12,7 +12,7 @@
                 <!--body-->
                 <div class="relative  flex-auto">
                     <p class=" mx-2 leading-relaxed">
-                    <div class="text-sm font-bold text-black pb-2 pt-5">Add Title</div>
+                    <div class="text-sm font-bold text-black pb-2 pt-5">Title</div>
                     <input type="text"
                         class="text-black text-xs rounded-xl  peer block min-h-[auto] w-full bg-gray-100  px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('title') border-2 border-red-500 @enderror"
                         name="title" placeholder="Enter title" value="{{ old('title') }}" />
@@ -21,7 +21,7 @@
                     @enderror
                     </p>
                     <p class=" mx-2 leading-relaxed">
-                    <div class="text-sm font-bold text-black pb-2 pt-5">Add Issuer</div>
+                    <div class="text-sm font-bold text-black pb-2 pt-5">Issuer</div>
                     <input type="text"
                         class="text-black text-xs rounded-xl  peer block min-h-[auto] w-full bg-gray-100  px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('issuer') border-2 border-red-500 @enderror"
                         name="issuer" placeholder="Enter issuer" value="{{ old('issuer') }}" />

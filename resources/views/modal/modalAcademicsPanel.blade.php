@@ -7,12 +7,12 @@
                 @csrf
                 <!--header-->
                 <div class="flex items-start w-full justify-between pt-4 rounded-t">
-                    <h3 class="text-base text-black font-bold "> Add Academics </h3>
+                    <h3 class="text-base text-black font-bold "> Academics </h3>
                 </div>
                 <!--body-->
                 <div class="relative  flex-auto">
                     <p class=" mx-2 leading-relaxed">
-                    <div class="text-sm font-bold text-black pb-2 pt-5">Add Institution</div>
+                    <div class="text-sm font-bold text-black pb-2 pt-5">Institution</div>
                     <input type="text"
                         class="text-black text-xs rounded-xl  peer block min-h-[auto] w-full bg-gray-100  px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('education_insitution') border-2 border-red-500 @enderror"
                         name="education_insitution" placeholder="Enter title" value="{{ old('education_insitution') }}" />
@@ -21,7 +21,7 @@
                     @enderror
                     </p>
                     <p class=" mx-2 leading-relaxed">
-                    <div class="text-sm font-bold text-black pb-2 pt-5">Add Course</div>
+                    <div class="text-sm font-bold text-black pb-2 pt-5">Course</div>
                     <input type="text"
                         class="text-black text-xs rounded-xl  peer block min-h-[auto] w-full bg-gray-100  px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('course') border-2 border-red-500 @enderror"
                         name="course" placeholder="Enter title" value="{{ old('course') }}" />

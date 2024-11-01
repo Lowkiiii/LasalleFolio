@@ -62,7 +62,6 @@
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
                 </div>
-                        
                 <!--footer-->
                 <div class="flex items-center justify-end p-4">
                     <button
