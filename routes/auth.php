@@ -135,12 +135,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts/{post}/comments', [CommentController::class, 'store'])->name('comments.store');
     Route::get('/posts/{post}/comments', [CommentController::class, 'index'])->name('comments.index');
 
-   // Interest routes
+    //Interest routes
     Route::get('/interests', [InterestController::class, 'showInterestsForm'])->name('interests.form');
     Route::post('/interests', [InterestController::class, 'storeInterests'])->name('interests.store');
 
     // Student profile route
-    Route::get('/profile', [UserController::class, 'studentProfile'])->name('student.profile');
+    //Route::get('/profile', [UserController::class, 'studentProfile'])->name('student.profile');
+    //Route::get('/profile/{user}', [UserController::class, 'show'])->name('profile.show');
 
     //Search in leaderboards
     Route::get('/leaderboard', [UserController::class, 'studentLeaderboard'])->name('student.leaderboard');
@@ -158,12 +159,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/bio/{user}', [UserController::class, 'removeBio'])->name('bio.remove');
 
     //Quiz Game
-    // Route::get('/quiz', function () {
-    //     return view('quiz.quiz');
-    // })->name('quiz');
     Route::get('/quiz', [QuizController::class, 'generateQuiz'])->name('quiz');
     Route::post('/quiz/submit', [QuizController::class, 'submitQuizAnswer'])->name('quiz.submit');
-    Route::get('/quiz/results', [QuizController::class, 'getQuizResults'])->name('quiz.results');
+    Route::get('/quiz/results', [QuizController::class, 'getQuizResults'])->name('quiz.results'); 
+    
 
 
     Route::get('/profile/other', [UserController::class, 'studentOtherProfile'])->name('profile.other');

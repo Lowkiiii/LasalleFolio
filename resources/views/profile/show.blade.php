@@ -815,3 +815,4 @@
         @include('modal.modalPanels')
         
     @endsection
+</section>

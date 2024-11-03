@@ -27,21 +27,51 @@ class ProfileController extends Controller
         $userHonorsAndAwards = $user->userHonorsAndAwards;
         $userPosts = $user->userPosts;
         $authUser = Auth::user();
+        $authUserId = Auth::id(); // Get the logged-in user's ID
 
-        // Calculate points (you'll need to implement this method)
+        // Add reaction data to each post
+        foreach ($userPosts as $post) {
+            $post->reaction_count = Reaction::where('post_id', $post->id)->count();
+            $post->user_reacted = Reaction::where('post_id', $post->id)
+                ->where('user_id', $authUserId)
+                ->exists();
+
+            // Get comments for each post
+            $post->comments = Comment::where('post_id', $post->id)
+                ->with('user')
+                ->get();
+        }
+
+        // Calculate points
         $points = $this->calculatePoints($user->id);
 
-         // Count projects for the specific user
+        // Count projects for the specific user
         $projectCount = $this->countProjects($user->id);
 
         // Get connected students count for the specific user
         $connectedStudentsCount = $this->getConnectedStudentsCount($user->id);
 
-        $pinnedProjects = PinnedProject::with('project') // Eager load the project
-        ->where('user_id', $user->id)
-        ->get();
+        $pinnedProjects = PinnedProject::with('project')
+            ->where('user_id', $user->id)
+            ->get();
 
-        return view('profile.show', compact('user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts','pinnedProjects', 'authUser', 'points', 'projectCount', 'connectedStudentsCount'));
+        // Get the user's bio
+        $bio = Bio::where('user_id', $user->id)->first();
+
+        return view('profile.show', compact(
+            'user',
+            'userProjects',
+            'userSkills',
+            'userAcademics',
+            'userHonorsAndAwards',
+            'userPosts',
+            'pinnedProjects',
+            'authUser',
+            'points',
+            'projectCount',
+            'connectedStudentsCount',
+            'bio'
+        ));
     }
 
     public function calculatePoints($userId)

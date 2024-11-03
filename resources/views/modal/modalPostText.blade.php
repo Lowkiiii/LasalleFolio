@@ -37,9 +37,13 @@
                 </div>
 
                  <!-- Category dropdown -->
-                <div class="text-sm text-black pb-2 pt-5">
+                 <div class="text-sm text-black pb-2 pt-5">
                     <label for="category" class="block font-bold">Select Category:</label>
-                    <select name="category" class="appearance-none bg-gray-100 rounded-xl p-4 w-full @error('category') border-2 border-red-500 @enderror">
+                    <select 
+                        name="category_select" 
+                        id="categorySelect" 
+                        onchange="toggleCustomCategory()"
+                        class="appearance-none bg-gray-100 rounded-xl p-4 w-full @error('category') border-2 border-red-500 @enderror">
                         <option value="">-- Select Category --</option>
                         <option value="3D Animation">3D Animation</option>
                         <option value="3D Modelling">3D Modelling</option>
@@ -57,11 +61,83 @@
                         <option value="Software Development">Software Development</option>
                         <option value="Cloud Computing">Cloud Computing</option>
                         <option value="Web Development">Web Development</option>
+                        <option value="other">Other</option>
                     </select>
+                
+                    <!-- Hidden input to store the final category value -->
+                    <input type="hidden" name="category" id="finalCategory">
+                    
                     @error('category')
                         <span class="text-red-500">{{ $message }}</span>
                     @enderror
+                
+                    <!-- Custom category input (hidden by default) -->
+                    <div id="customCategoryDiv" class="hidden mt-3">
+                        <label for="customCategory" class="block font-bold">Enter Custom Category:</label>
+                        <input 
+                            type="text" 
+                            id="customCategory" 
+                            class="appearance-none bg-gray-100 rounded-xl p-4 w-full mt-1 @error('custom_category') border-2 border-red-500 @enderror"
+                            placeholder="Enter your custom category"
+                        >
+                        @error('custom_category')
+                            <span class="text-red-500">{{ $message }}</span>
+                        @enderror
+                    </div>
                 </div>
+                
+                <script>
+                function toggleCustomCategory() {
+                    const categorySelect = document.getElementById('categorySelect');
+                    const customCategoryDiv = document.getElementById('customCategoryDiv');
+                    const customCategoryInput = document.getElementById('customCategory');
+                    const finalCategoryInput = document.getElementById('finalCategory');
+                    
+                    if (categorySelect.value === 'other') {
+                        customCategoryDiv.classList.remove('hidden');
+                        customCategoryInput.required = true;
+                        // Clear the final category when switching to custom input
+                        finalCategoryInput.value = '';
+                    } else {
+                        customCategoryDiv.classList.add('hidden');
+                        customCategoryInput.required = false;
+                        customCategoryInput.value = '';
+                        // Set the final category to the selected value
+                        finalCategoryInput.value = categorySelect.value;
+                    }
+                }
+                
+                // Update final category value when custom category changes
+                document.getElementById('customCategory').addEventListener('input', function(e) {
+                    document.getElementById('finalCategory').value = e.target.value;
+                });
+                
+                // Initial setup for the form
+                document.addEventListener('DOMContentLoaded', function() {
+                    const categorySelect = document.getElementById('categorySelect');
+                    // Set initial value if a category is pre-selected
+                    if (categorySelect.value && categorySelect.value !== 'other') {
+                        document.getElementById('finalCategory').value = categorySelect.value;
+                    }
+                });
+                
+                // Add form submit handler
+                document.querySelector('form').addEventListener('submit', function(e) {
+                    const categorySelect = document.getElementById('categorySelect');
+                    const customCategory = document.getElementById('customCategory');
+                    const finalCategory = document.getElementById('finalCategory');
+                    
+                    if (categorySelect.value === 'other') {
+                        if (!customCategory.value.trim()) {
+                            e.preventDefault();
+                            alert('Please enter a custom category');
+                            return;
+                        }
+                        // Ensure the custom category value is set
+                        finalCategory.value = customCategory.value.trim();
+                    }
+                });
+                </script>
                 <!--footer-->
                 <div class="flex items-center justify-end p-4">
                     <button

@@ -12,7 +12,7 @@ class QuizController extends Controller
 {
     public function generateQuiz()
     {
-        $user = Auth::user();
+        $user = Auth::user(); // Retrieve the authenticated user
         // Step 1: Get user interests
         $userInterests = Interest::where('user_id', $user->id)->pluck('interest_name')->toArray();
 
@@ -631,7 +631,8 @@ class QuizController extends Controller
         
         return view('quiz.quiz', [
             'questions' => $quizQuestions,
-            'total_questions' => count($quizQuestions)
+            'total_questions' => count($quizQuestions),
+            'user'=> $user
         ]);
     }
 
@@ -654,7 +655,7 @@ class QuizController extends Controller
             if (isset($quizQuestions[$index])) {
                 $results[$index] = [
                     'user_answer' => (int)$answer,
-                    'correct' => (int)$answer === $quizQuestions[$index]['correct_answer']
+                    'correct' => (int)$answer === $quizQuestions[$index]['correct_answer'],
                 ];
             }
         }
@@ -682,6 +683,7 @@ class QuizController extends Controller
 
     public function getQuizResults()
     {
+        $user = Auth::user(); // Add this line to get user data
         $answers = session('quiz_answers');
         $questions = session('quiz_questions');
         
@@ -710,23 +712,12 @@ class QuizController extends Controller
             ]);
         }
 
-        // // Store the quiz points in the database
-        //     QuizPoints::create([
-        //         'user_id' => Auth::id(),
-        //         'points' => $points
-        //     ]);
-
-        // Call the UserController to update points
-        // $userController = new UserController();
-        // $totalPoints = $userController->calculatePoints();
-        
-
         // Get total points earned today for display
         $todayTotalPoints = $this->getUserTodayPoints();
 
         // Clear quiz session data after generating results
         session()->forget(['quiz_questions', 'quiz_answers']);
         
-        return view('quiz.results', compact('score', 'correctAnswers', 'totalQuestions', 'questions', 'answers', 'points', 'pointsToAward', 'todayTotalPoints', 'remainingLimit'));
+        return view('quiz.results', compact('user','score', 'correctAnswers', 'totalQuestions', 'questions', 'answers', 'points', 'pointsToAward', 'todayTotalPoints', 'remainingLimit'));
     }
 }

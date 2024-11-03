@@ -332,8 +332,7 @@
                                                     </button>
 
                                                 </div>
-                                                <div
-                                                     class="editMenu hidden absolute bg-white space-x-2 py-2 px-5 border border-[#D4D4D4] rounded-lg shadow-lg w-55 transform translate-y-full bottom-5 left-1/2 -translate-x-1/2 z-10">
+                                                <div class="editMenu hidden absolute bg-white space-x-2 py-2 px-5 border border-[#D4D4D4] rounded-lg shadow-lg w-55 transform translate-y-full bottom-5 left-1/2 -translate-x-1/2 z-10">
                                                     <ul class="text-sm font-semibold text-black w-auto">
                                                         <div class="flex flex-row hover:text-[#0066FF]"
                                                              onclick="toggleModal('modal-idPostEditText-{{ $post->id }}')">
