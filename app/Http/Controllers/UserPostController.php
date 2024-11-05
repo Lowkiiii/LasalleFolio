@@ -11,39 +11,129 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\FriendRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class UserPostController extends Controller
 {
 
-        public function store(Request $request)
-        {
-            try {
-                $validatedData = $request->validate([
-                    'user_posts' => 'required|string',
-                    'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file if uploaded
-                    'category' => 'required|string',
-        
-                ]);
+    // Predefined categories list
+    private $predefinedCategories = [
+        '3D Animation',
+        '3D Modelling',
+        'AI',
+        'Game Development',
+        'UI/UX',
+        'Programming',
+        'Data Analytics',
+        'Data Science',
+        'Networking',
+        'Database',
+        'Web Design',
+        'Multimedia',
+        'Graphic Design',
+        'Software Development',
+        'Cloud Computing',
+        'Web Development'
+    ];
 
-                $userPosts = new UserPosts();
-                $userPosts->user_posts = $validatedData['user_posts'];
-                $userPosts->category = $validatedData['category'];
-                $userPosts->user_id = Auth::id();
+    private $abbreviations = [
+        'web dev' => 'Web Development',
+        'data sci' => 'Data Science',
+        'programmng' => 'Programming',
+        // Add other common abbreviations as needed
+    ];
 
-                // Check if an image is uploaded
-                if ($request->hasFile('image')) {
-                    $imagePath = $request->file('image')->store('uploads', 'public'); // Store image in the 'uploads' folder
-                    $userPosts->image_path = $imagePath; // Save the image path in the database
-                }
+    public function findSimilarCategory($inputCategory, $similarityThreshold = 75)
+    {
 
-                $userPosts->save(); 
+        // Check for abbreviation matches first
+        if (isset($this->abbreviations[Str::lower($inputCategory)])) {
+            return $this->abbreviations[Str::lower($inputCategory)];
+        }
+        // Convert input to lowercase for case-insensitive comparison
+        $inputCategory = Str::lower($inputCategory);
+        $bestMatch = null;
+        $highestSimilarity = 0;
 
-                return redirect()->route('studentDashboard')->with('flash_message', 'Post Added!');
-            } catch (\Exception $e) {
-                Log::error('Error saving post: ' . $e->getMessage());
-                return Redirect::back()->withErrors(['error' => 'An error occurred while saving the post.']);
+        foreach ($this->predefinedCategories as $category) {
+            $categoryLower = Str::lower($category);
+            
+            // Calculate similarity percentage using similar_text
+            similar_text($inputCategory, $categoryLower, $similarity);
+            
+            // Also check Levenshtein distance as a backup
+            $levenshtein = levenshtein($inputCategory, $categoryLower);
+            $levenSimilarity = (1 - ($levenshtein / max(strlen($inputCategory), strlen($categoryLower)))) * 100;
+            
+            // Use the higher of the two similarity scores
+            $finalSimilarity = max($similarity, $levenSimilarity);
+
+            if ($finalSimilarity > $highestSimilarity) {
+                $highestSimilarity = $finalSimilarity;
+                $bestMatch = $category;
             }
         }
+
+        // Uncomment the following lines to help with debugging
+        echo "Input category: $inputCategory\n";
+        echo "Best match: $bestMatch\n";
+        echo "Highest similarity: $highestSimilarity\n";
+
+        // Return the best match if it meets the threshold, otherwise return null
+        return $highestSimilarity >= $similarityThreshold ? $bestMatch : null;
+    }
+    
+    public function store(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'user_posts' => 'required|string',
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'category' => 'required|string',
+            ]);
+
+            $category = $validatedData['category'];
+
+            // If the category is "Other" and a custom category is provided
+            if ($category === 'Other' && $request->has('custom_category')) {
+                $customCategory = trim($request->input('custom_category'));
+                
+                // Try to find a similar category
+                $similarCategory = $this->findSimilarCategory($customCategory);
+                
+                if ($similarCategory) {
+                    // Use the similar predefined category
+                    $category = $similarCategory;
+                    
+                    // You might want to flash a message to inform the user
+                    session()->flash('category_suggestion', 
+                        "Your category \"$customCategory\" was matched to \"$similarCategory\".");
+                } else {
+                    // If no similar category found, use the custom category as is
+                    $category = $customCategory;
+                }
+            }
+
+            $userPosts = new UserPosts();
+            $userPosts->user_posts = $validatedData['user_posts'];
+            $userPosts->category = $category;
+            $userPosts->user_id = Auth::id();
+
+            if ($request->hasFile('image')) {
+                $imagePath = $request->file('image')->store('uploads', 'public');
+                $userPosts->image_path = $imagePath;
+            }
+
+            $userPosts->save();
+
+            return redirect()->route('studentDashboard')
+                ->with('flash_message', 'Post Added!');
+        } catch (\Exception $e) {
+            Log::error('Error saving post: ' . $e->getMessage());
+            return Redirect::back()
+                ->withErrors(['error' => 'An error occurred while saving the post.']);
+        }
+    }
 
         public function index()
         {
