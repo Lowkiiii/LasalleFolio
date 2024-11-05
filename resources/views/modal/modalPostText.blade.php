@@ -36,8 +36,8 @@
                     </div>
                 </div>
 
-                 <!-- Category dropdown -->
-                 <div class="text-sm text-black pb-2 pt-5">
+                <!-- Category dropdown -->
+                <div class="text-sm text-black pb-2 pt-5">
                     <label for="category" class="block font-bold">Select Category:</label>
                     <select 
                         name="category_select" 

@@ -73,6 +73,11 @@ class UserController extends Controller
         $userPosts = $user->userPosts;
         $userInterests = $user->interests;
 
+        // Retrieve userPosts ordered by the most recent `created_at` timestamp
+        $userPosts = UserPosts::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+
         // Fetch pinned projects for the user
         $pinnedProjects = PinnedProject::with('project') // Eager load the project
             ->where('user_id', $user->id)

@@ -29,6 +29,12 @@ class ProfileController extends Controller
         $authUser = Auth::user();
         $authUserId = Auth::id(); // Get the logged-in user's ID
 
+
+        // Retrieve userPosts ordered by the most recent `created_at` timestamp
+        $userPosts = UserPosts::where('user_id', $user->id)
+            ->orderBy('created_at', 'desc')
+            ->get();
+            
         // Add reaction data to each post
         foreach ($userPosts as $post) {
             $post->reaction_count = Reaction::where('post_id', $post->id)->count();
