@@ -118,69 +118,69 @@ class UserController extends Controller
         return view('student.studentProf', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'projectCount', 'points', 'userInterests', 'pinnedProjects', 'bio', 'totalPoints', 'badge'));
     }
 
-    // public function show(User $user)  // Add User parameter
-    // {
-    //     $authUser = Auth::user();
-    //     $userId = Auth::id();
+    public function studentOtherProfile(User $user)  // Add User parameter
+    {
+        $authUser = Auth::user();
+        $userId = Auth::id();
         
-    //     // Get user's posts with reactions
-    //     $userPosts = $user->userPosts;
+        // Get user's posts with reactions
+        $userPosts = $user->userPosts;
         
-    //     // Add reaction count and user reaction status to each post
-    //     foreach ($userPosts as $post) {
-    //         $post->reaction_count = Reaction::where('post_id', $post->id)->count();
-    //         $post->user_reacted = Reaction::where('post_id', $post->id)
-    //             ->where('user_id', $userId)
-    //             ->exists();
+        // Add reaction count and user reaction status to each post
+        foreach ($userPosts as $post) {
+            $post->reaction_count = Reaction::where('post_id', $post->id)->count();
+            $post->user_reacted = Reaction::where('post_id', $post->id)
+                ->where('user_id', $userId)
+                ->exists();
 
-    //         // Get comments for each post
-    //         $post->comments = Comment::where('post_id', $post->id)
-    //             ->with('user')
-    //             ->get();
-    //     }
+            // Get comments for each post
+            $post->comments = Comment::where('post_id', $post->id)
+                ->with('user')
+                ->get();
+        }
 
-    //     // Get user data
-    //     $userProjects = $user->userProjects;
-    //     $userSkills = $user->userSkills;
-    //     $userAcademics = $user->userAcademics;
-    //     $userHonorsAndAwards = $user->userHonorsAndAwards;
-    //     $userInterests = $user->interests;
+        // Get user data
+        $userProjects = $user->userProjects;
+        $userSkills = $user->userSkills;
+        $userAcademics = $user->userAcademics;
+        $userHonorsAndAwards = $user->userHonorsAndAwards;
+        $userInterests = $user->interests;
         
-    //     // Get bio
-    //     $bio = Bio::where('user_id', $user->id)->first();
+        // Get bio
+        $bio = Bio::where('user_id', $user->id)->first();
         
-    //     // Get pinned projects
-    //     $pinnedProjects = PinnedProject::with('project')
-    //         ->where('user_id', $user->id)
-    //         ->get();
+        // Get pinned projects
+        $pinnedProjects = PinnedProject::with('project')
+            ->where('user_id', $user->id)
+            ->get();
 
-    //     // Your existing calculations
-    //     $points = $this->calculatePoints();
-    //     $friendRequestController = new FriendRequestController();
-    //     $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount();
-    //     $projectCount = $this->countProjects();
+        // Your existing calculations
+        $points = $this->calculatePoints();
+        $friendRequestController = new FriendRequestController();
+        $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount();
+        $projectCount = $this->countProjects();
         
-    //     // Calculate total points and get badge if needed
-    //     $totalPoints = $this->calculatePoints();
-    //     $badge = $this->getUserBadge($totalPoints);
+        // Calculate total points and get badge if needed
+        $totalPoints = $this->calculatePoints();
+        $badge = $this->getUserBadge($totalPoints);
 
-    //     return view('profile.show', compact(
-    //         'user',
-    //         'userPosts',
-    //         'userProjects',
-    //         'userSkills',
-    //         'userAcademics',
-    //         'userHonorsAndAwards',
-    //         'userInterests',
-    //         'pinnedProjects',
-    //         'bio',
-    //         'points',
-    //         'connectedStudentsCount',
-    //         'projectCount',
-    //         'totalPoints',
-    //         'badge'
-    //     ));
-    // }
+        return view('profile.show', compact(
+            'user',
+            'userPosts',
+            'userProjects',
+            'userSkills',
+            'userAcademics',
+            'userHonorsAndAwards',
+            'userInterests',
+            'pinnedProjects',
+            'bio',
+            'points',
+            'connectedStudentsCount',
+            'projectCount',
+            'totalPoints',
+            'badge'
+        ));
+    }
 
     public function removePinnedProject($id)
     {

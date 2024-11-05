@@ -681,8 +681,8 @@
                                                     <div class="relative group">
                                                         <label for="file_input"
                                                                class="cursor-pointer">
-                                                            @if ($student->user && $student->user->image)
-                                                                <img src="{{ asset('storage/' . $student->user->image) }}"
+                                                            @if ($student->image)
+                                                                <img src="{{ asset('storage/' . $student->image) }}"
                                                                      alt="Profile"
                                                                      class="w-full h-full object-cover">
                                                             @else

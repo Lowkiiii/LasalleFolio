@@ -117,6 +117,9 @@ Route::middleware('auth')->group(function () {
     // Route for viewing another user's profile
     Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
+    // Student profile route
+    Route::get('/profile', [UserController::class, 'studentProfile'])->name('student.profile');
+
 
     //add friend
     Route::post('/send-request/{receiver_id}', [FriendRequestController::class, 'sendRequest'])->name('friend-request.send');
@@ -139,9 +142,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/interests', [InterestController::class, 'showInterestsForm'])->name('interests.form');
     Route::post('/interests', [InterestController::class, 'storeInterests'])->name('interests.store');
 
-    // Student profile route
-    //Route::get('/profile', [UserController::class, 'studentProfile'])->name('student.profile');
-    //Route::get('/profile/{user}', [UserController::class, 'show'])->name('profile.show');
+    
 
     //Search in leaderboards
     Route::get('/leaderboard', [UserController::class, 'studentLeaderboard'])->name('student.leaderboard');
