@@ -181,9 +181,19 @@
                                             <div class="flex">
                                                 <label for="file_input"
                                                        class="cursor-pointer flex items-center justify-center">
-                                                    <div><img src="image/Kersch.png"
-                                                             alt="Profile"
-                                                             class="rounded-full object-cover w-12 h-12"></div>
+                                                    <div>
+                                                            @if ($user->image)
+                                                                <img src="{{ asset('storage/' . $user->image) }}"
+                                                                    alt="Profile"
+                                                                    class="rounded-full object-cover w-12 h-12">
+                                                            @else
+                                                                <div class="bg-[#e1e1e1] rounded-full">
+                                                                    <img src="{{ asset('image/default-profile.png') }}"
+                                                                        alt="Profile"
+                                                                        class="rounded-full object-cover w-12 h-12">
+                                                                </div>
+                                                            @endif
+                                                    </div>
 
                                                     <div class="flex flex-col ml-4 text-md font-bold text-black">
                                                         <div>{{ $request->sender->name }}</div>
@@ -262,7 +272,7 @@
                             <div class="relative group">
                                 <label for="file_input"
                                        class="cursor-pointer">
-                                         @if ($user->image)
+                                        @if ($user->image)
                                             <img src="{{ asset('storage/' . $user->image) }}"
                                                 alt="Profile"
                                                 class="w-full h-full rounded-full object-cover">

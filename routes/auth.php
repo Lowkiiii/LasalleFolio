@@ -117,7 +117,7 @@ Route::middleware('auth')->group(function () {
     // Route for viewing another user's profile
     Route::get('/profile/{id}', [ProfileController::class, 'show'])->name('profile.show');
 
-    // Student profile route
+    // // Student profile route
     Route::get('/profile', [UserController::class, 'studentProfile'])->name('student.profile');
 
 
@@ -129,7 +129,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/friend-request/unfriend/{receiver_id}', [FriendRequestController::class, 'unfriend'])->name('friend-request.unfriend');
 
     //count accepted requests
-    Route::get('/student-profile', [FriendRequestController::class, 'showStudentProfile'])->name('student.profile');
+    Route::get('/student-profile', [FriendRequestController::class, 'getConnectedStudentsCount'])->name('friendRequest.countAccepted');
 
     //count reactions
     Route::post('/posts/{post}/react', [UserPostController::class, 'react'])->name('posts.react');
