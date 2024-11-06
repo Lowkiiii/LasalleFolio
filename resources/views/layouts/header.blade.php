@@ -182,8 +182,8 @@
                                                 <label for="file_input"
                                                        class="cursor-pointer flex items-center justify-center">
                                                     <div>
-                                                            @if ($user->image)
-                                                                <img src="{{ asset('storage/' . $user->image) }}"
+                                                            @if ($request->sender && $request->sender->image)
+                                                                <img src="{{ asset('storage/' . $request->sender->image) }}"
                                                                     alt="Profile"
                                                                     class="rounded-full object-cover w-12 h-12">
                                                             @else
