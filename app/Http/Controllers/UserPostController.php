@@ -11,59 +11,76 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\FriendRequest;
 use Illuminate\Support\Facades\DB;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class UserPostController extends Controller
 {
+
+    private $dictionaryApiUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
 
     public function store(Request $request)
     {
         try {
             $validatedData = $request->validate([
                 'user_posts' => 'required|string',
-                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image file if uploaded
+                'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'category' => 'required|string',
             ]);
-    
-            // Retrieve the existing categories from the database
+
             $existingCategories = UserPosts::distinct()->pluck('category')->toArray();
-    
-            // Get the entered category and check for a match using Levenshtein distance
             $enteredCategory = ucwords(strtolower($validatedData['category']));
             $suggestedCategory = $this->findMostSimilarCategory($enteredCategory, $existingCategories);
-    
-            // If a similar category is found (threshold > 0), use it, else use the entered one
+
             if ($suggestedCategory['similarity'] > 0.8) {
-                $category = $suggestedCategory['category']; // Corrected category based on similarity
+                $category = $suggestedCategory['category'];
             } else {
-                $category = $enteredCategory; // No match, use the entered category
+                // Split the category into individual words
+                $words = explode(' ', $enteredCategory);
+                $allWordsValid = true;
+
+                // Check each word
+                foreach ($words as $word) {
+                    if (!$this->isValidWord($word)) {
+                        $allWordsValid = false;
+                        break;
+                    }
+                }
+
+                // If all words are valid, use the entered category
+                if ($allWordsValid) {
+                    $category = $enteredCategory;
+                } else {
+                    return Redirect::back()->withErrors(['category' => 'The category you entered contains invalid words.']);
+                }
             }
-    
+
             $userPosts = new UserPosts();
             $userPosts->user_posts = $validatedData['user_posts'];
             $userPosts->category = $category;
             $userPosts->user_id = Auth::id();
-    
-            // Check if an image is uploaded
+
             if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('uploads', 'public'); // Store image in the 'uploads' folder
-                $userPosts->image_path = $imagePath; // Save the image path in the database
+                $imagePath = $request->file('image')->store('uploads', 'public');
+                $userPosts->image_path = $imagePath;
             }
-    
-            $userPosts->save(); 
-    
+
+            $userPosts->save();
+
             return redirect()->route('studentDashboard')->with('flash_message', 'Post Added!');
         } catch (\Exception $e) {
             Log::error('Error saving post: ' . $e->getMessage());
             return Redirect::back()->withErrors(['error' => 'An error occurred while saving the post.']);
         }
     }
-    
+
+
     // Method to find the most similar category based on Levenshtein distance
     private function findMostSimilarCategory($enteredCategory, $existingCategories)
     {
         $maxSimilarity = 0;
         $mostSimilarCategory = '';
-    
+
         foreach ($existingCategories as $category) {
             $similarity = 1 - (levenshtein($enteredCategory, $category) / max(strlen($enteredCategory), strlen($category)));
             
@@ -72,8 +89,25 @@ class UserPostController extends Controller
                 $mostSimilarCategory = $category;
             }
         }
-    
+
         return ['category' => $mostSimilarCategory, 'similarity' => $maxSimilarity];
+    }
+
+    // Method to check if a word is valid using the dictionaryapi.dev API
+    private function isValidWord($word)
+    {
+        $client = new Client();
+
+        try {
+            $response = $client->get($this->dictionaryApiUrl . urlencode($word));
+            $data = json_decode($response->getBody(), true);
+
+            // Check if the API response has any meanings, indicating a valid word
+            return !empty($data) && !empty($data[0]['meanings']);
+        } catch (RequestException $e) {
+            // If the API request fails, assume the word is not valid
+            return false;
+        }
     }
     
 

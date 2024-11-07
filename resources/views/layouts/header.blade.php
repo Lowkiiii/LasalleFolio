@@ -272,17 +272,22 @@
                             <div class="relative group">
                                 <label for="file_input"
                                        class="cursor-pointer">
-                                        @if ($user->image)
-                                            <img src="{{ asset('storage/' . $user->image) }}"
+                                    @php
+                                       $authUser = Auth::user(); // Get the logged-in user
+                                    @endphp
+                                    
+                                    @if ($authUser->image)
+                                        <img src="{{ asset('storage/' . $authUser->image) }}"
                                                 alt="Profile"
                                                 class="w-full h-full rounded-full object-cover">
-                                        @else
-                                            <div class="bg-[#e1e1e1] rounded-full">
-                                                <img src="{{ asset('image/default-profile.png') }}"
+                                    @else
+                                        <div class="bg-[#e1e1e1] rounded-full">
+                                            <img src="{{ asset('image/default-profile.png') }}"
                                                     alt="Profile"
                                                     class="w-full h-full rounded-full object-cover">
-                                            </div>
-                                        @endif
+                                        </div>
+                                    @endif
+                                   
                                 </label>
 
                             </div>

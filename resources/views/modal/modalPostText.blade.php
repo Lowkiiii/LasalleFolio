@@ -63,7 +63,11 @@
                         <option value="Web Development">Web Development</option>
                         <option value="other">Other</option>
                     </select>
-                
+                    
+                    @if ($errors->has('category'))
+                        <div class="alert alert-danger">{{ $errors->first('category') }}</div>
+                    @endif
+                    
                     <!-- Hidden input to store the final category value -->
                     <input type="hidden" name="category" id="finalCategory">
                     
