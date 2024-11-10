@@ -245,6 +245,9 @@ class UserController extends Controller
 
     public function studentDashboard(Request $request)
     {
+
+  
+
         $query = $request->input('query');
 
         $authUser = User::where('first_name', 'LIKE', "%{$query}%")
@@ -266,6 +269,8 @@ class UserController extends Controller
         $userSkills = $user->userSkills;
         $userAcademics = $user->userAcademics;
         $userHonorsAndAwards = $user->userHonorsAndAwards;
+
+        
 
         // Get IDs of connected users
         $connectedUserIds = FriendRequest::where(function ($query) use ($userId) {

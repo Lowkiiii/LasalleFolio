@@ -18,7 +18,6 @@
             <div class="relative w-full">
                 <form onsubmit="return false;"
                       id="searchForm">
-
                     <input id="searchBar"
                            name="query"
                            type="text"
@@ -28,8 +27,8 @@
                     <button id="searchButton"
                             type="button"
                             class="">
-                        <div>
-                            <i class="absolute left-2 top-1/2 transform -translate-y-2 opacity-60">
+                        <div class="flex">
+                            <i class="absolute left-2 top-1/2 transform -translate-y-[0.7rem] opacity-60">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      x="0px"
                                      y="0px"
@@ -182,17 +181,17 @@
                                                 <label for="file_input"
                                                        class="cursor-pointer flex items-center justify-center">
                                                     <div>
-                                                            @if ($request->sender && $request->sender->image)
-                                                                <img src="{{ asset('storage/' . $request->sender->image) }}"
-                                                                    alt="Profile"
-                                                                    class="rounded-full object-cover w-12 h-12">
-                                                            @else
-                                                                <div class="bg-[#e1e1e1] rounded-full">
-                                                                    <img src="{{ asset('image/default-profile.png') }}"
-                                                                        alt="Profile"
-                                                                        class="rounded-full object-cover w-12 h-12">
-                                                                </div>
-                                                            @endif
+                                                        @if ($request->sender && $request->sender->image)
+                                                            <img src="{{ asset('storage/' . $request->sender->image) }}"
+                                                                 alt="Profile"
+                                                                 class="rounded-full object-cover w-12 h-12">
+                                                        @else
+                                                            <div class="bg-[#e1e1e1] rounded-full">
+                                                                <img src="{{ asset('image/default-profile.png') }}"
+                                                                     alt="Profile"
+                                                                     class="rounded-full object-cover w-12 h-12">
+                                                            </div>
+                                                        @endif
                                                     </div>
 
                                                     <div class="flex flex-col ml-4 text-md font-bold text-black">
@@ -273,65 +272,63 @@
                                 <label for="file_input"
                                        class="cursor-pointer">
                                     @php
-                                       $authUser = Auth::user(); // Get the logged-in user
+                                        $authUser = Auth::user(); // Get the logged-in user
                                     @endphp
-                                    
+
                                     @if ($authUser->image)
                                         <img src="{{ asset('storage/' . $authUser->image) }}"
-                                                alt="Profile"
-                                                class="w-full h-full rounded-full object-cover">
+                                             alt="Profile"
+                                             class="w-full h-full rounded-full object-cover">
                                     @else
                                         <div class="bg-[#e1e1e1] rounded-full">
                                             <img src="{{ asset('image/default-profile.png') }}"
-                                                    alt="Profile"
-                                                    class="w-full h-full rounded-full object-cover">
+                                                 alt="Profile"
+                                                 class="w-full h-full rounded-full object-cover">
                                         </div>
                                     @endif
-                                   
+
                                 </label>
 
                             </div>
 
                         </button>
 
-                        <div id="menu"
-                             class="absolute hidden  bg-white space-x-3 p-1 border border-[#D4D4D4] rounded-lg shadow-lg w-55  transform translate-y-full  bottom-[-.5rem] left-1/2 -translate-x-1/2 z-30">
+                        <form method="POST"
+                              action="{{ route('logout') }}">
+                              @csrf
+                            <div id="menu"
+                                 class="absolute hidden  bg-white space-x-3 p-1 border border-[#D4D4D4] rounded-lg shadow-lg w-55  transform translate-y-full  bottom-[-.5rem] left-1/2 -translate-x-1/2 z-30">
 
-                            <div class="flex flex-row justify-center items-center py-1 px-3 text-blackQ hover:text-[#0066FF]"
-                                 id="">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     xmlns:xlink="http://www.w3.org/1999/xlink"
-                                     class="fill-current"
-                                     height="15"
-                                     width="15"
-                                     version="1.1"
-                                     id="Capa_1"
-                                     viewBox="0 0 384.971 384.971"
-                                     xml:space="preserve">
-                                    <path
-                                          d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03    C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03    C192.485,366.299,187.095,360.91,180.455,360.91z" />
-                                    <path
-                                          d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279    c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179    c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z" />
-                                </svg>
+                                <div class="flex flex-row justify-center items-center py-1 px-3 text-blackQ hover:text-[#0066FF]"
+                                     id="">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         class="fill-current"
+                                         height="15"
+                                         width="15"
+                                         version="1.1"
+                                         id="Capa_1"
+                                         viewBox="0 0 384.971 384.971"
+                                         xml:space="preserve">
+                                        <path
+                                              d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03    C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03    C192.485,366.299,187.095,360.91,180.455,360.91z" />
+                                        <path
+                                              d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279    c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179    c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z" />
+                                    </svg>
 
-                                <ul class="p-1 w-auto font-semibold">
-                                    <li>
-                                        <form method="POST"
-                                              action="{{ route('logout') }}">
-                                            @csrf
-                                            <button type="submit">Logout</button>
-                                        </form>
-                                    </li>
-                                </ul>
+                                    <button class=""
+                                            type="submit">Logout</button>
+                                </div>
+
                             </div>
-                        </div>
+                        </form>
                     </div>
                 </div>
-
             </div>
-
         </div>
+
     </div>
+</div>
 </div>
 </div>
 

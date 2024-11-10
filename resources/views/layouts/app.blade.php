@@ -37,6 +37,14 @@
 
 
     <script type="text/javascript">
+
+    function toggleInterests(studentId){
+        const limitedInterests = document.querySelector(`#limitedInterests-${studentId}`);
+        const fullInterests = document.querySelector(`#fullInterests-${studentId}`);
+
+        limitedInterests.classList.toggle('hidden');
+        fullInterests.classList.toggle('hidden');
+    }
         function toggleModal(modalID) {
             document.getElementById(modalID).classList.toggle("hidden");
             document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
@@ -77,6 +85,7 @@
         });
     });
 });
+
 
       
                                        

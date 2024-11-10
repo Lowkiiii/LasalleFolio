@@ -10,8 +10,8 @@
 </head>
 <body class="bg-gray-100">
     @include('layouts.header')
-    <div class="min-h-screen py-8">
-        <div class="max-w-3xl mx-auto px-4">
+    <div class="min-h-screen top-30 py-12">
+        <div class="top-20 max-w-3xl mx-auto px-4">
             <div class="bg-white rounded-lg shadow-lg p-6">
                 <h1 class="text-2xl font-bold text-[#006634] mb-6">Quiz Results</h1>
                 

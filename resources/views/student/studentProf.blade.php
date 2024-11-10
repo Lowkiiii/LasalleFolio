@@ -817,7 +817,7 @@
                     </div>
                 </div>
 
-                <div class="p-12">
+                <div class="py-12 px-40">
                     <div class="w-full relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg mb-4">
 
                         <div class=" flex items-center">
@@ -856,7 +856,7 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-row w-full  items-center text-[#006634] font-bold text-xl mt-6 ">
+                        {{-- <div class="flex flex-row w-full  items-center text-[#006634] font-bold text-xl mt-6 ">
                             <button class="mr-auto"
                                     onclick="toggleModal('')">
                                 <div class=" items-center text-center flex px-8 ">
@@ -872,8 +872,7 @@
                                         </path>
 
                                     </svg>
-                                    <div class="text-sm text-center text-[#D40000] font-bold flex px-2"
-                                         {{-- onclick="toggleModal('modal-idPostImage')" --}}>
+                                    <div class="text-sm text-center text-[#D40000] font-bold flex px-2">
                                         Image
                                     </div>
                                 </div>
@@ -891,8 +890,7 @@
                                               d="M24.707,8.793l-6.5-6.5C18.019,2.105,17.765,2,17.5,2H7C5.895,2,5,2.895,5,4v22c0,1.105,0.895,2,2,2h16c1.105,0,2-0.895,2-2 V9.5C25,9.235,24.895,8.981,24.707,8.793z M18,21h-8c-0.552,0-1-0.448-1-1c0-0.552,0.448-1,1-1h8c0.552,0,1,0.448,1,1 C19,20.552,18.552,21,18,21z M20,17H10c-0.552,0-1-0.448-1-1c0-0.552,0.448-1,1-1h10c0.552,0,1,0.448,1,1C21,16.552,20.552,17,20,17 z M18,10c-0.552,0-1-0.448-1-1V3.904L23.096,10H18z">
                                         </path>
                                     </svg>
-                                    <div class="text-sm text-center  font-bold flex px-2"
-                                         {{-- onclick="toggleModal('modal-idPostDocument')" --}}>
+                                    <div class="text-sm text-center  font-bold flex px-2">
                                         Document
                                     </div>
                                 </div>
@@ -916,7 +914,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                     @forelse ($userPosts as $post)
@@ -996,7 +994,7 @@
 
                                 <div class="flex flex-grow items-center mt-3">
                                     <div class="w-12 h-12 rounded-full mr-2">
-                                        {{-- line385 --}}
+                                     
                                         @if ($post->user->image)
                                             <div class="mt-2">
                                                 <img src="{{ asset('storage/' . $post->user->image) }}"
@@ -1045,16 +1043,16 @@
                                 </div>
 
                                 <div class="py-4 text-black">{{ $post->user_posts }}</div>
-                                {{-- Check if the post has an image and display it --}}
+                              
                                 @if ($post->image_path)
                                     <div class="mt-2">
                                         <img src="{{ asset('storage/' . $post->image_path) }}"
                                              alt="Post Image"
-                                             class="w-full h-auto rounded-lg">
+                                             class="w-auto h-64 rounded-lg">
                                     </div>
                                 @else
                                 @endif
-                                {{-- Display Post Category --}}
+                            
                                 <p class="mt-2 mb-2 text-sm text-gray-600">Category: {{ $post->category }}</p>
 
                                 <div class="flex flex-row items-start justify-start">

@@ -11,8 +11,8 @@
             <div class=" mt-24 flex mx-auto max-w-[90rem]">
 
                 <div class="flex flex-row ">
-                    <div class="flex sticky top-10 flex-col w-2/5 ml-10 mr-10 animate-blink">
-                        <div class="sticky top-20">
+                    <div class="flex sticky top-20 flex-col w-2/5 ml-10 mr-10 animate-blink">
+                        <div class=" sticky top-20">
                             <div
                                  class="w-full relative flex flex-wrap items-start space-x-3 p-6 border border-[#D4D4D4] rounded-xl shadow-lg ">
                                 <div class="justify-center items-center mx-auto max-y-md max-w-lg flex ">
@@ -42,7 +42,7 @@
                                                     Interests:
                                                     {{ Auth::user()->interests->pluck('interest_name')->join(', ') }}
                                                 </div> --}}
-                                                
+
                                             </label>
                                             <div class="w-full mt-2">
 
@@ -242,7 +242,7 @@
                                     </button>
                                 </div>
                             </div>
-
+                            {{-- 
                             <div class="flex flex-row w-full  items-center text-[#006634] font-bold text-xl mt-6 ">
                                 <button class="mr-auto"
                                         onclick="toggleModal('')">
@@ -260,7 +260,7 @@
 
                                         </svg>
                                         <div class="text-sm text-center text-[#D40000] font-bold flex px-2"
-                                             {{-- onclick="toggleModal('modal-idPostImage')" --}}>
+                                           >
                                             Image
                                         </div>
                                     </div>
@@ -279,7 +279,7 @@
                                             </path>
                                         </svg>
                                         <div class="text-sm text-center  font-bold flex px-2"
-                                             {{-- onclick="toggleModal('modal-idPostDocument')" --}}>
+                                            >
                                             Document
                                         </div>
                                     </div>
@@ -303,7 +303,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                         <hr class="my-7 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
@@ -336,7 +336,8 @@
                                                     </button>
 
                                                 </div>
-                                                <div class="editMenu hidden absolute bg-white space-x-2 py-2 px-5 border border-[#D4D4D4] rounded-lg shadow-lg w-55 transform translate-y-full bottom-5 left-1/2 -translate-x-1/2 z-10">
+                                                <div
+                                                     class="editMenu hidden absolute bg-white space-x-2 py-2 px-5 border border-[#D4D4D4] rounded-lg shadow-lg w-55 transform translate-y-full bottom-5 left-1/2 -translate-x-1/2 z-10">
                                                     <ul class="text-sm font-semibold text-black w-auto">
                                                         <div class="flex flex-row hover:text-[#0066FF]"
                                                              onclick="toggleModal('modal-idPostEditText-{{ $post->id }}')">
@@ -436,7 +437,7 @@
                                 <div class="py-4 text-black">{{ $post->user_posts }}</div>
                                 {{-- Check if the post has an image and display it --}}
                                 @if ($post->image_path)
-                                    <div class="mt-2">
+                                    <div class="mt-2 ">
                                         <img src="{{ asset('storage/' . $post->image_path) }}"
                                              alt="Post Image"
                                              class="w-full h-auto rounded-lg">
@@ -487,16 +488,16 @@
                                                     <label for="file_input"
                                                            class="cursor-pointer w-full h-full">
                                                         @if ($comment->user->image)
-                                                             <img src="{{ asset('storage/' . $comment->user->image) }}"
-                                                                  alt="Profile"
-                                                                  class="w-10 h-10 rounded-full object-cover">
-                                                         @else
-                                                             <div class="bg-[#e1e1e1] rounded-full">
-                                                                 <img src="{{ asset('image/default-profile.png') }}"
-                                                                      alt="Profile"
-                                                                      class="w-10 h-10 rounded-full object-cover">
-                                                             </div>
-                                                         @endif
+                                                            <img src="{{ asset('storage/' . $comment->user->image) }}"
+                                                                 alt="Profile"
+                                                                 class="w-10 h-10 rounded-full object-cover">
+                                                        @else
+                                                            <div class="bg-[#e1e1e1] rounded-full">
+                                                                <img src="{{ asset('image/default-profile.png') }}"
+                                                                     alt="Profile"
+                                                                     class="w-10 h-10 rounded-full object-cover">
+                                                            </div>
+                                                        @endif
                                                     </label>
                                                 </div>
                                                 <div class="text-sm font-bold text-black">
@@ -674,9 +675,9 @@
                     <div class="flex flex-col w-2/5 ml-10 mr-10 z-20 animate-blink animation-delay-200">
                         <div class="sticky top-20">
                             <div
-                                 class="w-full relative flex flex-col items-start  p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
+                                 class="w-full relative flex flex-col items-start overflow-y-auto  p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
                                 <div>
-                                    <p class="flex-grow flex-col  ext-lg font-bold text-black"> Suggested Students
+                                    <p class="flex-grow flex-col  text-lg font-bold text-black"> Suggested Students
                                     </p>
                                     @foreach ($studentInterest as $student)
                                         <div class="flex mt-3">
@@ -717,7 +718,21 @@
                                                 </div>
                                                 <div class="text-xs font-semibold text-black opacity-45">
                                                     Interests:
-                                                    {{ $student->interests->pluck('interest_name')->join(', ') }}
+                                                    <span id="limitedInterests-{{$student->id}}">
+                                                        {{ $student->interests->pluck('interest_name')->take(3)->join(', ') }}
+                                                        @if ($student->interests->count() > 3)
+                                                            <a href="javascript:void(0);"
+                                                               onclick="toggleInterests({{$student->id}})"
+                                                               class="text-[#006634]">...</a>
+                                                        @endif
+                                                                
+                                                    </span>
+                                                    <span class="hidden" id="fullInterests-{{$student->id}}"">
+                                                        {{ $student->interests->pluck('interest_name')->join(', ') }}
+                                                        <a class="text-[#006634] underline"
+                                                           href="javascript:void(0);"
+                                                           onclick="toggleInterests({{$student->id}})">See Less</a>
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div class="flex items-center justify-center gap-2 my-auto">
@@ -760,7 +775,7 @@
                                                           class="inline-block">
                                                         @csrf
                                                         <button type="submit"
-                                                                class=" inline-flex items-center rounded-md bg-[#006634] px-4 py-2 text-xs font-bold text-white whitespace-nowrap">
+                                                                class=" inline-flex items-center rounded-md bg-[#ff1919] px-4 py-2 text-xs font-bold text-white whitespace-nowrap">
                                                             Reject
                                                         </button>
                                                     </form>
