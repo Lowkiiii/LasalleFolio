@@ -27,6 +27,7 @@
                             </div>
                             <form action="{{ route('interests.store') }}" method="POST">
                                 @csrf
+
                             <div class="grid grid-cols-3 gap-4 mt-4">
                              
                                 <div class="flex">
@@ -205,7 +206,160 @@
                                         </label>
                                     </div>
                                 </div>
+                                <!-- Custom interests section -->
+                                <div class="text-sm text-black pb-2 pt-5">
+                                    <div class="mt-4">
+                                        <input type="checkbox" id="customInterestsCheckbox" onchange="toggleCustomInterestInput()">
+                                        <label for="customInterestsCheckbox" class="ml-2 cursor-pointer">Enter Own Interests</label>
+                                        
+                                        <div id="customInterestsContainer" class="hidden mt-3">
+                                            <label for="customInterestInput" class="block font-bold">Your Interests:</label>
+                                            <div class="relative">
+                                                <input 
+                                                    type="text" 
+                                                    id="customInterestInput" 
+                                                    class="appearance-none bg-gray-100 rounded-xl p-4 w-full mt-1"
+                                                    placeholder="Type interest and press Enter"
+                                                >
+                                                <!-- Tailwind spinner -->
+                                                <div id="validationSpinner" class="hidden absolute right-4 top-1/2 transform -translate-y-1/2">
+                                                    <div class="animate-spin rounded-full h-4 w-4 border-2 border-gray-900 border-t-transparent"></div>
+                                                </div>
+                                            </div>
+                                            <!-- Error message -->
+                                            <div id="validationError" class="hidden mt-2 text-red-500 text-sm"></div>
+                                            <!-- List of interests -->
+                                            <div id="customInterestsList" class="mt-2 space-y-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
 
+                                <input type="hidden" name="custom_interests" id="customInterests">
+
+                                <script>
+                                let validatedInterests = [];
+
+                                function toggleCustomInterestInput() {
+                                    const checkbox = document.getElementById('customInterestsCheckbox');
+                                    const container = document.getElementById('customInterestsContainer');
+                                    
+                                    if (checkbox.checked) {
+                                        container.classList.remove('hidden');
+                                    } else {
+                                        container.classList.add('hidden');
+                                        clearCustomInterests();
+                                    }
+                                }
+
+                                function clearCustomInterests() {
+                                    document.getElementById('customInterestInput').value = '';
+                                    document.getElementById('customInterestsList').innerHTML = '';
+                                    document.getElementById('customInterests').value = '';
+                                    validatedInterests = [];
+                                }
+
+                                async function validateWord(word) {
+                                    try {
+                                        const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${encodeURIComponent(word)}`);
+                                        return response.ok;
+                                    } catch (error) {
+                                        return false;
+                                    }
+                                }
+
+                                async function validateAndAddInterest(interest) {
+                                    const validationSpinner = document.getElementById('validationSpinner');
+                                    const validationError = document.getElementById('validationError');
+                                    const words = interest.trim().split(' ');
+                                    
+                                    // Show spinner, hide error
+                                    validationSpinner.classList.remove('hidden');
+                                    validationError.classList.add('hidden');
+                                    
+                                    try {
+                                        // Check each word
+                                        for (const word of words) {
+                                            const isValid = await validateWord(word);
+                                            if (!isValid) {
+                                                throw new Error(`"${word}" is not a valid word. Please check your spelling.`);
+                                            }
+                                        }
+                                        
+                                        // All words valid, add interest
+                                        addCustomInterest(interest);
+                                        document.getElementById('customInterestInput').value = '';
+                                        
+                                    } catch (error) {
+                                        // Show error message
+                                        validationError.textContent = error.message;
+                                        validationError.classList.remove('hidden');
+                                    } finally {
+                                        // Hide spinner
+                                        validationSpinner.classList.add('hidden');
+                                    }
+                                }
+
+                                // Event listener for Enter key
+                                document.getElementById('customInterestInput').addEventListener('keypress', async function(event) {
+                                    if (event.key === 'Enter') {
+                                        event.preventDefault();
+                                        const interest = event.target.value.trim();
+                                        if (interest) {
+                                            await validateAndAddInterest(interest);
+                                        }
+                                    }
+                                });
+
+                                function addCustomInterest(interest) {
+                                    const customInterestsList = document.getElementById('customInterestsList');
+                                    
+                                    // Create interest item
+                                    const interestItem = document.createElement('div');
+                                    interestItem.className = 'flex items-center justify-between bg-gray-200 px-3 py-2 rounded-lg';
+                                    
+                                    // Create content container with checkmark and text
+                                    const contentDiv = document.createElement('div');
+                                    contentDiv.className = 'flex items-center';
+                                    
+                                    // Add checkmark
+                                    const checkmark = document.createElement('span');
+                                    checkmark.className = 'text-green-500 mr-2';
+                                    checkmark.innerHTML = '✓';
+                                    
+                                    // Add text
+                                    const textSpan = document.createElement('span');
+                                    textSpan.className = 'text-gray-700';
+                                    textSpan.textContent = interest;
+                                    
+                                    contentDiv.appendChild(checkmark);
+                                    contentDiv.appendChild(textSpan);
+                                    
+                                    // Add remove button
+                                    const removeButton = document.createElement('button');
+                                    removeButton.textContent = '×';
+                                    removeButton.className = 'text-red-500 hover:text-red-700 font-bold text-xl ml-2';
+                                    removeButton.onclick = () => {
+                                        customInterestsList.removeChild(interestItem);
+                                        updateValidatedInterests();
+                                    };
+                                    
+                                    interestItem.appendChild(contentDiv);
+                                    interestItem.appendChild(removeButton);
+                                    customInterestsList.appendChild(interestItem);
+                                    
+                                    // Update validated interests
+                                    validatedInterests.push(interest);
+                                    updateValidatedInterests();
+                                }
+
+                                function updateValidatedInterests() {
+                                    const customInterestsInput = document.getElementById('customInterests');
+                                    // Remove the interest from the array when it's deleted
+                                    validatedInterests = Array.from(document.querySelectorAll('#customInterestsList span:not(.text-green-500)'))
+                                        .map(span => span.textContent);
+                                    customInterestsInput.value = validatedInterests.join(',');
+                                }
+                                </script>
                             </div>
                             <div class="py-6 flex justify-center items-center mx-auto">
                                 <button type="submit" class="bg-[#006634] text-white font-semibold uppercase text-xs w-1/2 px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
@@ -221,5 +375,4 @@
         </div>
     </section>
 </body>
-
 </html>

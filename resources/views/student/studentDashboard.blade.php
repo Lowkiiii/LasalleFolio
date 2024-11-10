@@ -38,7 +38,11 @@
                                                              class="rounded-full object-cover w-20 h-20  ">
                                                     </div>
                                                 @endif
-
+                                                {{-- <div class="text-xs font-semibold text-black opacity-45">
+                                                    Interests:
+                                                    {{ Auth::user()->interests->pluck('interest_name')->join(', ') }}
+                                                </div> --}}
+                                                
                                             </label>
                                             <div class="w-full mt-2">
 
