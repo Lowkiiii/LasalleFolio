@@ -15,7 +15,7 @@
                     <div class="flex flex-row justify-between items-center">
                         <div class="font-bold text-2xl text-black">Leaderboard</div>
                         <div class="text-end font-bold">
-                            Current students: {{$userCount}}
+                            Current students: {{$userCount - 1}}
                         </div>
                     </div>
 
@@ -63,7 +63,8 @@
                                                 </g>
                                                 </svg>
                                                 {{-- overall rank of users --}}
-                                                <div class="ml-2">{{ $index + 1 }}</div>
+                                                <div class="ml-2">{{ $user->rank }}</div>
+                                                {{-- {{ $badge }} --}}
                                             </div>
                                         </td>
                                         <td class="py-4 font-bold text-black w-1/3">

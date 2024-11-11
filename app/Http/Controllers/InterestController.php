@@ -34,7 +34,7 @@ class InterestController extends Controller
         foreach ($request->interests as $interest) {
             Interest::create([
                 'user_id' => $user->id,
-                'interest_name' => $interest,
+                'interest_name' => ucwords(strtolower($interest)),
             ]);
         }
 

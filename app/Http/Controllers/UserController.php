@@ -247,9 +247,6 @@ class UserController extends Controller
 
     public function studentDashboard(Request $request)
     {
-
-  
-
         $query = $request->input('query');
 
         $authUser = User::where('first_name', 'LIKE', "%{$query}%")
@@ -456,7 +453,14 @@ class UserController extends Controller
 
                 return $user;
             });
-
+        
+        // Sort users by points and assign ranks
+        $users = $users->sortByDesc('points')
+        ->values() // Reset array keys
+        ->map(function ($user, $index) {
+            $user->rank = $index + 1; // Assign sequential rank
+            return $user;
+        });
                
 
         // If the query is provided and not empty, filter the users
@@ -468,6 +472,13 @@ class UserController extends Controller
 
         // Sort users by points regardless of whether filtering was done
         $users = $users->sortByDesc('points'); // Sort after filtering
+
+        // Calculate points
+        $points = $this->calculatePoints();
+
+        // Get badge
+        $totalPoints = $this->calculatePoints();
+        $badge = $this->getUserBadge($points);
 
         // Get the authenticated user's information
         $authUser = Auth::user();
@@ -488,6 +499,10 @@ class UserController extends Controller
             'userAcademics' => $userAcademics,
             'userHonorsAndAwards' => $userHonorsAndAwards,
             'userPosts' => $userPosts,
+            'points' => $points,
+            'badge' => $badge,
+            'totalPoints' => $totalPoints
+
         ]);
     }
 
