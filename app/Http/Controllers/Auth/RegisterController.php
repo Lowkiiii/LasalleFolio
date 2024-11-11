@@ -48,7 +48,7 @@ class RegisterController extends Controller
 
             $imagePath = $request->file('image')
                 ? $request->file('image')->store('profile_images', 'public')
-                : 'default_images/default_profile.png';
+                : null;
 
             $user = User::create([
                 'first_name' => $firstName,

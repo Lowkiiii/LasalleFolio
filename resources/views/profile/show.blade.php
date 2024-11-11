@@ -47,9 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    <div>
-
-                    </div>
+                    
                     <h1
                         class="flex flex-row mx-auto max-y-md max-w-lg  items-center justify-center text-center text-lg pt-2 font-bold text-black">
 

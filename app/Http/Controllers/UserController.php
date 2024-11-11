@@ -451,6 +451,9 @@ class UserController extends Controller
                 // Calculate total number of likes (reactions) across all user posts
                 $user->totalLikes = Reaction::whereIn('post_id', $user->userPosts->pluck('id'))->count();
 
+                // Assign badge based on points for each user
+                $user->badge = $this->getUserBadge($user->points);
+
                 return $user;
             });
         
