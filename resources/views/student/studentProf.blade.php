@@ -22,36 +22,30 @@
                              class="w-36 h-36 bg-white border-4 border-[#F8F8F8] rounded-full justify-center mx-auto max-w-lg flex items-center relative">
                             <div class="relative group w-full h-full">
                                 <label for="file_input"
-                                       class="cursor-pointer rounded-full w-full h-full">
-                                       {{-- <img src="{{ asset($user->image) }}" alt="Profile" class="w-full h-full rounded-full object-cover" /> --}}
-                                        @if ($user->image)
-                                        <div class="mt-2">
-                                                    <img src="{{ asset('storage/' . $user->image) }}"
-                                                        alt="Profile"
-                                                        class="w-full h-full rounded-full object-cover">
-                                            </div>
-                                        @else
-                                                    <img src="{{ asset('image/default-profile.png') }}"
-                                                        alt="Profile"
-                                                        class="w-full h-full rounded-full object-cover">
-                                        @endif    
-                                   <div
-                                         class="absolute inset-0 bg-black opacity-0 rounded-full group-hover:opacity-30 flex items-center justify-center">
-                                        {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                       class="rounded-full w-full h-full">
+                                    @if ($user->image)
+                                        <div class="">
+                                            <img src="{{ asset('storage/' . $user->image) }}"
+                                                 alt="Profile"
+                                                 class="w-full h-full rounded-full object-cover">
+                                        </div>
+                                    @else
+                                        <img src="{{ asset('image/default-profile.png') }}"
+                                             alt="Profile"
+                                             class="w-full h-full rounded-full object-cover">
+                                    @endif
+                                    {{-- <div
+                                        class="absolute inset-0 bg-black opacity-0 rounded-full group-hover:opacity-30 flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                             viewBox="0 0 24 24" class="fill-current text-white">
                                             <path
                                                 d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
-                                        </svg> --}}
-                                        {{-- <x-fas-pen class="fill-current text-white w-10 h-10" /> --}}
-                                    </div>
+                                        </svg>
+                                    </div> --}}
                                 </label>
-                                <input id="file_input"
-                                       type="file"
-                                       class="hidden" />
+
                             </div>
                         </div>
-                    </div>
-                    <div>
                     </div>
                     <h1
                         class="flex flex-row mx-auto max-y-md max-w-lg  items-center justify-center text-center text-lg pt-2 font-bold text-black">
