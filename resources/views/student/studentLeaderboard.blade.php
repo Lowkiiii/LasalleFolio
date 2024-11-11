@@ -150,9 +150,9 @@
                                 <div class="p-4 grid grid-cols-3 gap-4">
                                     <div class="col-span-3 flex justify-between items-center">
                                         <!-- Previous Button -->
-                                        <div class="p-3 rounded-xl {{ $users->onFirstPage() ? 'pointer-events-none text-white bg-[#A3C8B8]' : 'text-white bg-[#006634]' }}">
+                                        <button id="prev" type="button" class="p-3 rounded-xl {{ $users->onFirstPage() ? 'pointer-events-none text-white bg-[#A3C8B8]' : 'text-white bg-[#006634]' }}">
                                             <a href="{{ $users->previousPageUrl() }}" class="">Previous</a>
-                                        </div>
+                                        </button>
                             
                                         <!-- Page Information -->
                                         <p class="p-2 text-center flex-grow">
@@ -160,9 +160,9 @@
                                         </p>
                             
                                         <!-- Next Button -->
-                                        <div class="p-3 rounded-xl {{ $users->hasMorePages() ? 'text-white bg-[#006634]' : 'text-white bg-[#A3C8B8] pointer-events-none' }}">
+                                        <button id="next" type="button" class="px-6 py-3 rounded-xl {{ $users->hasMorePages() ? 'text-white bg-[#006634]' : 'text-white bg-[#A3C8B8] pointer-events-none' }}">
                                             <a href="{{ $users->nextPageUrl() }}" class="">Next</a>
-                                        </div>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -176,6 +176,14 @@
 
             </div>
    
+            <script>
+                 document.getElementById("prev").addEventListener("click", function() {
+        window.location.href = "{{ $users->previousPageUrl() }}";
+    });
+    document.getElementById("next").addEventListener("click", function() {
+        window.location.href = "{{ $users->nextPageUrl() }}";
+    });
+            </script>
 
         </div>
     @endsection

@@ -5,7 +5,7 @@
                 <div class="block">
                     <button id="viewProfile"
                             class="flex space-x-2 mr-12"
-                            onclick="toggle">
+                            type="button">
                         <img src='/image/logo.png'
                              class="size-8 items-center" />
                         <div class="items-center justify-center m-auto text-sm font-bold text-[#006634]">
@@ -14,19 +14,21 @@
                     </button>
                 </div>
             </div>
-
+        
             <div class="relative w-full">
-                <form onsubmit="return false;"
-                      id="searchForm">
+         
                     <input id="searchBar"
                            name="query"
                            type="text"
                            class="outline-none text-sm w-1/2 py-2 px-3 pl-10 border border-[#D4D4D4] rounded-2xl"
                            placeholder="Search">
                     {{-- Button for search icon --}}
+               
                     <button id="searchButton"
                             type="button"
                             class="">
+                            <form class="w-full" onsubmit="return false;"
+                            id="searchForm">
                         <div class="flex">
                             <i class="absolute left-2 top-1/2 transform -translate-y-[0.7rem] opacity-60">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -41,9 +43,10 @@
                                 </svg>
                             </i>
                         </div>
+                    </form>
                     </button>
 
-                </form>
+             
 
                 <div id="searchResults"
                      class="absolute hidden left-0 transform mt-2 py-2 px-1 w-1/2 items-center justify-center bg-[#F8F8F8] border border-[#D4D4D4] rounded-lg">
@@ -328,8 +331,8 @@
         </div>
 
     </div>
-</div>
-</div>
+
+
 </div>
 
 <script>
@@ -409,7 +412,7 @@
         });
     });
     document.getElementById("viewProfile").addEventListener("click", function() {
-        window.location.href = "{{ route('student.studentProf') }}";
+        window.location.href = "{{ route('student.studentDashboard') }}";
     });
 
 

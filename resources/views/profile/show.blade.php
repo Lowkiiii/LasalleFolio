@@ -694,7 +694,7 @@
                                     <!-- (Error Comment ) -->
                                     @if ($post->comments->isNotEmpty())
                                         @foreach ($post->comments as $comment)
-                                            <div class="flex items-center">
+                                            <div class="flex items-center py-2">
                                                 <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
                                                     <label for="file_input"
                                                            class="cursor-pointer w-full h-full">
@@ -807,8 +807,8 @@
                                             success: function(response) {
                                                 let commentsContainer = $('#commentsContainer' + postId);
                                                 commentsContainer.prepend(`
-                                                    <div class="flex items-start mt-2">
-                                                        <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
+                                                     <div class="flex items-start mt-2">
+                                                       <div class="w-10 h-10 rounded-full  overflow-hidden shadow-lg mr-2">
                                                             <img src="image/Kersch.png" alt="Profile" class="w-full h-full object-cover">
                                                         </div>
                                                         <div class="text-sm font-medium text-black">
@@ -894,7 +894,7 @@
 
             </div>
         </div>
-        </div>
+     
         @include('modal.modalPanels')
 
     @endsection
