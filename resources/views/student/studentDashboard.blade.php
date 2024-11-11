@@ -723,7 +723,7 @@
                                                         @if ($student->interests->count() > 3)
                                                             <a href="javascript:void(0);"
                                                                onclick="toggleInterests({{$student->id}})"
-                                                               class="text-[#006634]">...</a>
+                                                               class="text-[#006634] underline">See More</a>
                                                         @endif
                                                                 
                                                     </span>

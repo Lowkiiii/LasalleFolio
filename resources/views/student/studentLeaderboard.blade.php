@@ -14,8 +14,8 @@
 
                     <div class="flex flex-row justify-between items-center">
                         <div class="font-bold text-2xl text-black">Leaderboard</div>
-                        <div class="text-end">
-                            Total Student: 20
+                        <div class="text-end font-bold">
+                            Current students: {{$userCount}}
                         </div>
                     </div>
 
@@ -70,16 +70,16 @@
 
                                             <div class="relative flex  justify-center items-center text-center ">
                                                 <div
-                                                    class="w-12 h-12 rounded-full mx-5 mt-auto mb-auto overflow-hidden shadow-lg">
+                                                    class="w-12 h-12 rounded-full mx-5 flex mt-auto mb-auto overflow-hidden shadow-lg">
                                                     <div class="relative group">
                                                         <label for="file_input" class="cursor-pointer ">
 
                                                             @if ($user->image)
-                                                                <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}'s Profile Image" class="w-full h-full object-cover">
+                                                                <img src="{{ asset('storage/' . $user->image) }}" alt="{{ $user->name }}'s Profile Image" class="w-full h-full object-cover block">
                                                             @else
                                                                 <img src="{{ asset('image/default-profile.png') }}"
                                                                      alt="Profile"
-                                                                     class="w-full h-full object-cover">
+                                                                     class="w-full h-full object-cover block">
                                                             @endif
                                                                 
                                                         </label>

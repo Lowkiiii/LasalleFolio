@@ -56,6 +56,8 @@ class UserController extends Controller
         return view('profile.show', compact('user'));
     }
 
+   
+
     public function studentProfile(Request $request)
     {
         $query = $request->input('query');
@@ -299,6 +301,8 @@ class UserController extends Controller
             return $post;
         });
 
+        
+
         // Sort posts by relevance score
         $sortedPosts = $scoredPosts->sortByDesc('relevanceScore');
 
@@ -432,6 +436,7 @@ class UserController extends Controller
     {
         $query = $request->input('query');
 
+        
         // Retrieve all users except the admin
         $users = User::where('user_type_id', '!=', 1) // Exclude admin by user_type_id
             ->get()
@@ -452,6 +457,8 @@ class UserController extends Controller
                 return $user;
             });
 
+               
+
         // If the query is provided and not empty, filter the users
         if (!empty($query)) {
             $users = $users->filter(function ($user) use ($query) {
@@ -470,8 +477,10 @@ class UserController extends Controller
         $userHonorsAndAwards = $authUser->userHonorsAndAwards;
         $userPosts = $authUser->userPosts;
 
+        $userCount = User::count();
         // Return the view with the sorted users
         return view('student.studentLeaderboard', [
+            'userCount' => $userCount,
             'users' => $users,
             'authUser' => $authUser,
             'userProjects' => $userProjects,
