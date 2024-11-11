@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class UserController extends Controller
 {
@@ -478,6 +479,14 @@ class UserController extends Controller
 
         // Calculate points
         $points = $this->calculatePoints();
+     
+        $perPage = 10;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $items = $users->forPage($currentPage, $perPage);
+        $userPaginate = new LengthAwarePaginator($items, $users->count(), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath(),
+        ]);
+        $lastPage = $userPaginate->lastPage();
 
         // Get badge
         $totalPoints = $this->calculatePoints();
@@ -490,12 +499,12 @@ class UserController extends Controller
         $userAcademics = $authUser->userAcademics;
         $userHonorsAndAwards = $authUser->userHonorsAndAwards;
         $userPosts = $authUser->userPosts;
-
         $userCount = User::count();
         // Return the view with the sorted users
         return view('student.studentLeaderboard', [
             'userCount' => $userCount,
-            'users' => $users,
+            'lastPage'=>$lastPage,
+            'users' => $userPaginate,
             'authUser' => $authUser,
             'userProjects' => $userProjects,
             'userSkills' => $userSkills,
