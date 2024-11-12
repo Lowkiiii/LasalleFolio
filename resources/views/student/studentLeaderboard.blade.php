@@ -51,6 +51,13 @@
                                                         </g>
                                                     </svg>
                                                     <div class="ml-2">{{ $user->rank }}</div>
+                                                    <div>
+                                                    @if ($user->badge)
+                                                    <span>{{ $user->badge }}</span>
+                                                    @else
+                                                        <span>No badge</span>
+                                                    @endif
+                                                </div>
                                                 </div>
                                             </td>
                                             <td class="py-4 font-bold text-black w-1/3">
