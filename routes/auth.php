@@ -165,6 +165,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/quiz/results', [QuizController::class, 'getQuizResults'])->name('quiz.results'); 
     
     Route::get('/profile/other', [UserController::class, 'studentOtherProfile'])->name('profile.other');
+
+                //For making all users connected
+                // Route::get('/connect-all-users', [FriendRequestController::class, 'connectAllUsers']);
 });
 
 

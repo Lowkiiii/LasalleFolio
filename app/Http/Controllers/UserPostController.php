@@ -19,6 +19,9 @@ class UserPostController extends Controller
 
     private $dictionaryApiUrl = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
 
+    // Add a list of valid acronyms
+    private $validAcronyms = ['UI', 'UX'];
+
     public function store(Request $request)
     {
         try {
@@ -96,6 +99,11 @@ class UserPostController extends Controller
     // Method to check if a word is valid using the dictionaryapi.dev API
     private function isValidWord($word)
     {
+        // Check if the word is in the list of valid acronyms
+        if (in_array(strtoupper($word), $this->validAcronyms)) {
+            return true;
+        }
+
         $client = new Client();
 
         try {

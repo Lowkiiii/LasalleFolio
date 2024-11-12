@@ -88,4 +88,54 @@ class FriendRequestController extends Controller
         return $count;
     }
 
+    // public function connectAllUsers()
+    // {
+    //     try {
+    //         DB::beginTransaction();
+
+    //         // First, accept all pending requests
+    //         FriendRequest::where('status', 'pending')
+    //             ->update(['status' => 'accepted']);
+
+    //         // Get all users except admins
+    //         $users = DB::table('users')
+    //             ->where('user_type_id', '!=', 1)
+    //             ->pluck('id');
+
+    //         // Connect users who don't have any connection yet
+    //         foreach ($users as $sender_id) {
+    //             foreach ($users as $receiver_id) {
+    //                 if ($sender_id !== $receiver_id) {
+    //                     // Check if any connection exists (pending, accepted, or rejected)
+    //                     $existingRequest = FriendRequest::where(function($query) use ($sender_id, $receiver_id) {
+    //                         $query->where('sender_id', $sender_id)
+    //                              ->where('receiver_id', $receiver_id);
+    //                     })->orWhere(function($query) use ($sender_id, $receiver_id) {
+    //                         $query->where('sender_id', $receiver_id)
+    //                              ->where('receiver_id', $sender_id);
+    //                     })->first();
+
+    //                     if (!$existingRequest) {
+    //                         // Create new connection if none exists
+    //                         FriendRequest::create([
+    //                             'sender_id' => $sender_id,
+    //                             'receiver_id' => $receiver_id,
+    //                             'status' => 'accepted',
+    //                         ]);
+    //                     }
+    //                 }
+    //             }
+    //         }
+
+    //         DB::commit();
+    //         return "All users have been connected successfully, including pending requests.";
+
+    //     } catch (\Exception $e) {
+    //         DB::rollBack();
+    //         return "Error occurred: " . $e->getMessage();
+    //     }
+    // }
+
+
+
 }

@@ -59,7 +59,7 @@
                         <option value="3D Modelling">3D Modelling</option>
                         <option value="AI">AI</option>
                         <option value="Game Development">Game Development</option>
-                        <option value="UI/UX">UI/UX</option>
+                        <option value="UI UX">UI/UX</option>
                         <option value="Programming">Programming</option>
                         <option value="Data Analytics">Data Analytics</option>
                         <option value="Data Science">Data Science</option>
