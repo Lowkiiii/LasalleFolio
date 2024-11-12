@@ -56,8 +56,8 @@ Route::middleware('auth')->group(function () {
 
     // Handle /studentDashboard route with UserController
     Route::get('/quiz', [UserController::class, 'quiz'])->name('quiz.quiz');
-    // Handle /studentProf route with UserController
-    Route::get('/quiz', [UserController::class, 'quiz'])->name('quiz.quiz');
+    // // Handle /studentProf route with UserController
+    // Route::get('/quiz', [UserController::class, 'quiz'])->name('quiz.quiz');
   
 
 });
