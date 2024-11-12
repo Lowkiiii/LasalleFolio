@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\UserPosts;
+use App\Models\User;
 use App\Models\Interest;
 use App\Models\Reaction;
 use Illuminate\Support\Facades\Log;
@@ -330,6 +331,38 @@ class UserPostController extends Controller
             'count' => $reactionCount,
             'reacted' => $reacted,
         ]);
+    }
+
+    public function getUserBadge($totalPoints)
+    {
+        // Get all users and their total points
+        $allUsers = User::all();
+        $allUserPoints = $allUsers->map(function ($user) {
+            return $this->calculatePointsForUser($user);
+        })->values();
+
+        // Sort points in descending order
+        $sortedPoints = $sortedPoints = $allUserPoints->sortDesc()->values();
+        
+        // Calculate total users
+        $totalUsers = $sortedPoints->count();
+        
+        // Find the position of the current user's points (1-based index)
+        $position = $sortedPoints->search($totalPoints) + 1;
+        
+        // Calculate percentile (percentage from top)
+        $percentile = ($position / $totalUsers) * 100;
+        
+        // Determine badge based on percentile position from top
+        if ($percentile <= 5) {
+            return 'Gold';      // Top 5% get Gold
+        } elseif ($percentile <= 10) {
+            return 'Silver';    // Next 5% (6-10%) get Silver
+        } elseif ($percentile <= 20) {
+            return 'Bronze';    // Next 10% (11-20%) get Bronze
+        } else {
+            return 'No Badge';  // Remaining 80% get no badge
+        }
     }
 
 }

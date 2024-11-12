@@ -92,6 +92,24 @@ class UserController extends Controller
         // Get the user's bio
         $bio = Bio::where('user_id', $userId)->first();
 
+        // Fetch all users and calculate their points
+        $users = User::all()->map(function ($user) {
+            // Calculate the points for the user
+            $user->points = $this->calculatePointsForUser($user);
+        
+            // Get the user's badge based on their points
+            $user->badge = $this->getUserBadge($user->points);
+        
+            return $user;
+        });
+
+        // Calculate points
+        $points = $this->calculatePoints();
+
+        // Get badge
+        $totalPoints = $this->calculatePoints();
+        $badge = $this->getUserBadge($points);
+
         // Add reaction count and user reaction status to each post
         foreach ($userPosts as $post) {
             $post->reaction_count = Reaction::where('post_id', $post->id)->count();
@@ -103,6 +121,7 @@ class UserController extends Controller
             $post->comments = Comment::where('post_id', $post->id)
                 ->with('user')
                 ->get();
+
         }
 
         // Calculate points
@@ -257,6 +276,8 @@ class UserController extends Controller
         // Fetch all users and calculate their points
         $users = User::all()->map(function ($user) {
             $user->points = $this->calculatePointsForUser($user);
+
+            $user->badge = $this->getUserBadge($user->points);
             return $user;
         });
 
@@ -458,6 +479,14 @@ class UserController extends Controller
                 return $user;
             });
         
+            // Fetch all users and calculate their points
+        $users = User::all()->map(function ($user) {
+            $user->points = $this->calculatePointsForUser($user);
+
+            $user->badge = $this->getUserBadge($user->points);
+            return $user;
+        });
+        
         // Sort users by points and assign ranks
         $users = $users->sortByDesc('points')
         ->values() // Reset array keys
@@ -480,7 +509,7 @@ class UserController extends Controller
         // Calculate points
         $points = $this->calculatePoints();
      
-        $perPage = 10;
+        $perPage = 20;
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $items = $users->forPage($currentPage, $perPage);
         $userPaginate = new LengthAwarePaginator($items, $users->count(), $perPage, $currentPage, [
@@ -524,25 +553,29 @@ class UserController extends Controller
         $allUsers = User::all();
         $allUserPoints = $allUsers->map(function ($user) {
             return $this->calculatePointsForUser($user);
-        });
+        })->values();
 
         // Sort points in descending order
-        $sortedPoints = $allUserPoints->sort()->reverse();
-
-        // Calculate percentiles
+        $sortedPoints = $sortedPoints = $allUserPoints->sortDesc()->values();
+        
+        // Calculate total users
         $totalUsers = $sortedPoints->count();
-        $userRank = $sortedPoints->search($totalPoints) + 1;
-        $percentile = ($userRank / $totalUsers) * 100;
-
-        // Determine badge
+        
+        // Find the position of the current user's points (1-based index)
+        $position = $sortedPoints->search($totalPoints) + 1;
+        
+        // Calculate percentile (percentage from top)
+        $percentile = ($position / $totalUsers) * 100;
+        
+        // Determine badge based on percentile position from top
         if ($percentile <= 5) {
-            return 'Gold';
+            return 'Gold';      // Top 5% get Gold
         } elseif ($percentile <= 10) {
-            return 'Silver';
+            return 'Silver';    // Next 5% (6-10%) get Silver
         } elseif ($percentile <= 20) {
-            return 'Bronze';
+            return 'Bronze';    // Next 10% (11-20%) get Bronze
         } else {
-            return 'No Badge';
+            return 'No Badge';  // Remaining 80% get no badge
         }
     }
 
@@ -551,13 +584,18 @@ class UserController extends Controller
     {
         $query = $request->input('query');
 
-        $users = User::where('first_name', 'LIKE', "%{$query}%")
-            ->orWhere('last_name', 'LIKE', "%{$query}%")
+        $users = User::where('id', '!=', auth()->id()) // Exclude authenticated user
+            ->where('user_type_id', '!=', 1) // Exclude admin users with user_type_id = 1
+            ->where(function($q) use ($query) {
+                $q->where('first_name', 'LIKE', "%{$query}%")
+                ->orWhere('last_name', 'LIKE', "%{$query}%");
+            })
             ->limit(5)
             ->get(['id', 'first_name', 'last_name', 'image']); // Only select the fields you need
 
         return response()->json($users);
     }
+
 
     public function adminusers()
     {

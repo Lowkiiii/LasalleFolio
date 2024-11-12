@@ -55,7 +55,7 @@
 
                         <div class="ml-1">
                             <div class="items-start text-start flex flex-row">
-                                <svg xmlns="http://www.w3.org/2000/svg"
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg"
                                      xmlns:xlink="http://www.w3.org/1999/xlink"
                                      fill="#EBC351"
                                      height="25"
@@ -75,7 +75,7 @@
                                         <path
                                               d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
                                     </g>
-                                </svg>
+                                </svg> --}}
 
                             </div>
                         </div>
@@ -617,7 +617,7 @@
                                         <div class="flex items-center">
                                             <span>{{ $post->user->name }}</span>
 
-                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                            {{-- <svg xmlns="http://www.w3.org/2000/svg"
                                                  xmlns:xlink="http://www.w3.org/1999/xlink"
                                                  fill="#EBC351"
                                                  height="15"
@@ -637,7 +637,7 @@
                                                     <path
                                                           d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
                                                 </g>
-                                            </svg>
+                                            </svg> --}}
                                         </div>
                                         <div class="text-xs font-semibold opacity-70">
                                             {{ $post->created_at->diffForHumans() }}

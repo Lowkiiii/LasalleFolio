@@ -60,7 +60,7 @@
 
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                          xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                         fill="#EBC351"
+                                                         fill="{{ $user->badge == 'Gold' ? '#FFD700' : ($user->badge == 'Silver' ? '#C0C0C0' : ($user->badge == 'Bronze' ? '#CD7F32' : '#000000')) }}"
                                                          height="25"
                                                          width="25"
                                                          version="1.1"
