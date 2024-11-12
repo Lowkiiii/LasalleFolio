@@ -509,7 +509,7 @@ class UserController extends Controller
         // Calculate points
         $points = $this->calculatePoints();
      
-        $perPage = 20;
+        $perPage = 10;
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
         $items = $users->forPage($currentPage, $perPage);
         $userPaginate = new LengthAwarePaginator($items, $users->count(), $perPage, $currentPage, [
