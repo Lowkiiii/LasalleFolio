@@ -25,9 +25,9 @@
                                        class="rounded-full w-full h-full">
                                     @if ($user->image)
                                         <div class="">
-                                            <img src="{{ asset('storage/' . $user->image) }}"
+                                            <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $user->image) }}"
                                                  alt="Profile"
-                                                 class="w-full h-full rounded-full object-cover">
+                                                 class="w-full h-full rounded-full object-cover lazyload">
                                         </div>
                                     @else
                                         <img src="{{ asset('image/default-profile.png') }}"
@@ -110,6 +110,38 @@
                          id="btn-ConnectContainer">
                         <div>
                             <script>
+
+                                        // lazyload
+                                        document.addEventListener("DOMContentLoaded", function() {
+                                        var lazyloadImages = document.querySelectorAll("img.lazyload");
+                                        var lazyloadThrottleTimeout;
+
+                                        function lazyload() {
+                                            if (lazyloadThrottleTimeout) {
+                                                clearTimeout(lazyloadThrottleTimeout);
+                                            }
+
+                                            lazyloadThrottleTimeout = setTimeout(function() {
+                                                var scrollTop = window.pageYOffset;
+                                                lazyloadImages.forEach(function(img) {
+                                                    if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                                                        img.src = img.dataset.src;
+                                                        img.classList.remove('lazyload');
+                                                    }
+                                                });
+                                                if (lazyloadImages.length == 0) {
+                                                    document.removeEventListener("scroll", lazyload);
+                                                    window.removeEventListener("resize", lazyload);
+                                                    window.removeEventListener("orientationChange", lazyload);
+                                                }
+                                            }, 20);
+                                        }
+
+                                        document.addEventListener("scroll", lazyload);
+                                        window.addEventListener("resize", lazyload);
+                                        window.addEventListener("orientationChange", lazyload);
+                                    });
+
                                 const ConnectBtn = document.querySelector('#btn-ConnectContainer button');
 
                                 ConnectBtn.addEventListener('click', (event) => {
@@ -600,10 +632,10 @@
                                     <div class="w-12 h-12 rounded-full mr-2">
                                         <div class="relative group">
                                             @if ($user->image)
-                                                <div class="">
-                                                    <img src="{{ asset('storage/' . $post->user->image) }}"
+                                                <div class="mt-2">
+                                                    <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $post->user->image) }}"
                                                          alt="{{ $post->user->name }}'s Profile Image"
-                                                         class="w-full h-full rounded-full object-cover">
+                                                         class="w-full h-full rounded-full object-cover lazyload">
                                                 </div>
                                             @else
                                                 <img src="{{ asset('image/default-profile.png') }}"
@@ -649,9 +681,9 @@
                                 {{-- Check if the post has an image and display it --}}
                                 @if ($post->image_path)
                                     <div class="mt-2">
-                                        <img src="{{ asset('storage/' . $post->image_path) }}"
+                                        <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $post->image_path) }}"
                                              alt="Post Image"
-                                             class="w-auto h-64 rounded-lg">
+                                             class="w-auto h-64 rounded-lg lazyload">
                                     </div>
                                 @else
                                 @endif
@@ -699,9 +731,9 @@
                                                     <label for="file_input"
                                                            class="cursor-pointer w-full h-full">
                                                         @if ($comment->user->image)
-                                                            <img src="{{ asset('storage/' . $comment->user->image) }}"
+                                                            <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $comment->user->image) }}"
                                                                  alt="Profile"
-                                                                 class="w-full h-full rounded-full object-cover">
+                                                                 class="w-full h-full rounded-full object-cover lazyload">
                                                         @else
                                                             <img src="{{ asset('image/default-profile.png') }}"
                                                                  alt="Profile"
@@ -855,9 +887,9 @@
 
                                                 @if ($authUser->image)
                                                     <div class="mt-2">
-                                                        <img src="{{ asset('storage/' . $authUser->image) }}"
+                                                        <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $authUser->image) }}"
                                                              alt="{{ $authUser->name }}'s Profile Image"
-                                                             class="w-full h-full rounded-full object-cover">
+                                                             class="w-full h-full rounded-full object-cover lazyload">
                                                     </div>
                                                 @else
                                                     <img src="{{ asset('image/default-profile.png') }}"

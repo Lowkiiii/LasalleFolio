@@ -509,13 +509,16 @@ class UserController extends Controller
         // Calculate points
         $points = $this->calculatePoints();
      
+         // Implement pagination
         $perPage = 10;
-        $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $items = $users->slice(($currentPage - 1)*$perPage, $perPage)->all();
-        $userPaginate = new LengthAwarePaginator($items, $users->count(), $perPage, $currentPage, [
-            'path' => LengthAwarePaginator::resolveCurrentPath(),
-        ]);
-        $lastPage = $userPaginate->lastPage();
+        $currentPage = $request->input('page', 1);
+        $paginator = new LengthAwarePaginator(
+            $users->forPage($currentPage, $perPage),
+            $users->count(),
+            $perPage,
+            $currentPage,
+            ['path' => $request->url(), 'query' => $request->query()]
+        );
 
         // Get badge
         $totalPoints = $this->calculatePoints();
@@ -532,8 +535,7 @@ class UserController extends Controller
         // Return the view with the sorted users
         return view('student.studentLeaderboard', [
             'userCount' => $userCount,
-            'lastPage'=>$lastPage,
-            'users' => $userPaginate,
+            'users' => $paginator,
             'authUser' => $authUser,
             'userProjects' => $userProjects,
             'userSkills' => $userSkills,

@@ -19,7 +19,7 @@
                                     <div class="justify-center mx-auto max-y-md max-w-lg w-auto ">
                                         <div class=" container">
                                             <img src='/image/profileBG.png'
-                                                 class="w-full h-[8rem] object-cover rounded-xl " />
+                                                 class="w-full h-[8rem] object-cover rounded-xl " loading="lazy"/>
                                         </div>
 
                                         <div
@@ -28,14 +28,14 @@
                                                    class="cursor-pointer shadow-md rounded-full">
 
                                                 @if ($user->image)
-                                                    <img src="{{ asset('storage/' . $user->image) }}"
+                                                    <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $user->image) }}"
                                                          alt="Profile"
-                                                         class="rounded-full object-cover w-20 h-20  ">
+                                                         class="rounded-full object-cover w-20 h-20  lazyload">
                                                 @else
                                                     <div class="bg-[#e1e1e1] rounded-full">
-                                                        <img src="{{ asset('image/default-profile.png') }}"
+                                                        <img src="/api/placeholder/48/48" data-src="{{ asset('image/default-profile.png') }}"
                                                              alt="Profile"
-                                                             class="rounded-full object-cover w-20 h-20  ">
+                                                             class="rounded-full object-cover w-20 h-20  lazyload" loading="lazy">
                                                     </div>
                                                 @endif
                                                 {{-- <div class="text-xs font-semibold text-black opacity-45">
@@ -77,9 +77,9 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="flex items-center justify-center text-xs font-medium">
+                                                {{-- <div class="flex items-center justify-center text-xs font-medium">
                                                     Bacolod City
-                                                </div>
+                                                </div> --}}
 
                                             </div>
                                             <div
@@ -172,15 +172,15 @@
                                                                        class="cursor-pointer">
                                                                     @if ($topUser->image)
                                                                         <div class="">
-                                                                            <img src="{{ asset('storage/' . $topUser->image) }}"
+                                                                            <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $topUser->image) }}"
                                                                                  alt="Profile Image"
-                                                                                 class="w-10 h-10 rounded-full object-cover">
+                                                                                 class="w-10 h-10 rounded-full object-cover lazyload">
                                                                         </div>
                                                                     @else
                                                                         <div class="bg-[#e1e1e1] rounded-full">
                                                                             <img src="{{ asset('image/default-profile.png') }}"
                                                                                  alt="Profile"
-                                                                                 class="w-full h-full rounded-full object-cover">
+                                                                                 class="w-full h-full rounded-full object-cover" loading="lazy">
                                                                         </div>
                                                                     @endif
 
@@ -237,7 +237,7 @@
                                             @if ($user->image)
                                                 <img src="{{ asset('storage/' . $user->image) }}"
                                                      alt="Profile"
-                                                     class="w-full h-full rounded-full object-cover">
+                                                     class="w-full h-full rounded-full object-cover " loading="lazy">
                                             @else
                                                 <div class="bg-[#e1e1e1] rounded-full">
                                                     <img src="{{ asset('image/default-profile.png') }}"
@@ -407,16 +407,16 @@
                                     <div class="w-12 h-12 rounded-full mr-2">
                                         {{-- line385 --}}
                                         @if ($post->user->image)
-                                            <div class="">
-                                                <img src="{{ asset('storage/' . $post->user->image) }}"
+                                            <div class="mt-2">
+                                                <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $post->user->image) }}"
                                                      alt="{{ $post->user->name }}'s Profile Image"
-                                                     class="w-full h-full rounded-full object-cover">
+                                                     class="w-full h-full rounded-full object-cover lazyload">
                                             </div>
                                         @else
                                             <div class="bg-[#e1e1e1] rounded-full">
                                                 <img src="{{ asset('image/default-profile.png') }}"
                                                      alt="Profile"
-                                                     class="w-full h-full rounded-full object-cover">
+                                                     class="w-full h-full rounded-full object-cover" loading="lazy">
                                             </div>
                                         @endif
                                     </div>
@@ -456,9 +456,9 @@
                                 {{-- Check if the post has an image and display it --}}
                                 @if ($post->image_path)
                                     <div class="mt-2 ">
-                                        <img src="{{ asset('storage/' . $post->image_path) }}"
+                                        <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $post->image_path) }}"
                                              alt="Post Image"
-                                             class="w-full h-auto rounded-lg">
+                                             class="w-full h-auto rounded-lg lazyload">
                                     </div>
                                 @else
                                 @endif
@@ -506,14 +506,14 @@
                                                     <label for="file_input"
                                                            class="cursor-pointer w-full h-full">
                                                         @if ($comment->user->image)
-                                                            <img src="{{ asset('storage/' . $comment->user->image) }}"
+                                                            <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $comment->user->image) }}"
                                                                  alt="Profile"
-                                                                 class="w-10 h-10 rounded-full object-cover">
+                                                                 class="w-10 h-10 rounded-full object-cover lazyload">
                                                         @else
                                                             <div class="bg-[#e1e1e1] rounded-full">
                                                                 <img src="{{ asset('image/default-profile.png') }}"
                                                                      alt="Profile"
-                                                                     class="w-10 h-10 rounded-full object-cover">
+                                                                     class="w-10 h-10 rounded-full object-cover" loading="lazy">
                                                             </div>
                                                         @endif
                                                     </label>
@@ -563,7 +563,7 @@
                                                            class="cursor-pointer">
                                                         <img src="image/dog.jpg"
                                                              alt="Profile"
-                                                             class="w-full h-full rounded-full object-cover">
+                                                             class="w-full h-full rounded-full object-cover" loading="lazy">
                                                     </label>
                                                 </div>
                                             </div>
@@ -579,6 +579,37 @@
 
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                 <script>
+
+                                    // lazyload
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                    var lazyloadImages = document.querySelectorAll("img.lazyload");
+                                    var lazyloadThrottleTimeout;
+
+                                    function lazyload() {
+                                        if (lazyloadThrottleTimeout) {
+                                            clearTimeout(lazyloadThrottleTimeout);
+                                        }
+
+                                        lazyloadThrottleTimeout = setTimeout(function() {
+                                            var scrollTop = window.pageYOffset;
+                                            lazyloadImages.forEach(function(img) {
+                                                if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                                                    img.src = img.dataset.src;
+                                                    img.classList.remove('lazyload');
+                                                }
+                                            });
+                                            if (lazyloadImages.length == 0) {
+                                                document.removeEventListener("scroll", lazyload);
+                                                window.removeEventListener("resize", lazyload);
+                                                window.removeEventListener("orientationChange", lazyload);
+                                            }
+                                        }, 20);
+                                    }
+
+                                    document.addEventListener("scroll", lazyload);
+                                    window.addEventListener("resize", lazyload);
+                                    window.addEventListener("orientationChange", lazyload);
+                                });
                                     // Function to toggle reaction
                                     function toggleReaction(postId, element) {
                                         $.ajax({
@@ -660,15 +691,15 @@
                                             <label for="file_input"
                                                    class="cursor-pointer">
                                                 @if ($user->image)
-                                                    <img src="{{ asset('storage/' . $user->image) }}"
+                                                    <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $user->image) }}"
                                                          alt="Profile"
-                                                         class="w-full h-full rounded-full object-cover">
+                                                         class="w-full h-full rounded-full object-cover lazyload" loading="lazy">
                                                 @else
                                                     <div></div>
-                                                    <div class="bg-[#e1e1e1] rounded-full"><img
-                                                             src="{{ asset('image/default-profile.png') }}"
+                                                    <div class="bg-[#e1e1e1] rounded-full">
+                                                        <img src="{{ asset('image/default-profile.png') }}"
                                                              alt="Profile"
-                                                             class="w-full h-full rounded-full object-cover"> </div>
+                                                             class="w-full h-full rounded-full object-cover" loading="lazy"> </div>
                                                 @endif
                                             </label>
                                         </div>
@@ -705,14 +736,14 @@
                                                         <label for="file_input"
                                                                class="cursor-pointer">
                                                             @if ($student->image)
-                                                                <img src="{{ asset('storage/' . $student->image) }}"
+                                                                <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $student->image) }}"
                                                                      alt="Profile"
-                                                                     class="w-full h-full object-cover">
+                                                                     class="w-full h-full object-cover lazyload">
                                                             @else
                                                                 <div class="bg-[#e1e1e1] rounded-full">
                                                                     <img src="{{ asset('image/default-profile.png') }}"
                                                                          alt="Profile"
-                                                                         class="w-full h-full object-cover bg-gray-300">
+                                                                         class="w-full h-full object-cover bg-gray-300" loading="lazy">
                                                                 </div>
                                                             @endif
                                                         </label>
