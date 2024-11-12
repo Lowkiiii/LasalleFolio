@@ -14,21 +14,22 @@
                     </button>
                 </div>
             </div>
-        
+
             <div class="relative w-full">
-         
-                    <input id="searchBar"
-                           name="query"
-                           type="text"
-                           class="outline-none text-sm w-1/2 py-2 px-3 pl-10 border border-[#D4D4D4] rounded-2xl"
-                           placeholder="Search">
-                    {{-- Button for search icon --}}
-               
-                    <button id="searchButton"
-                            type="button"
-                            class="">
-                            <form class="w-full" onsubmit="return false;"
-                            id="searchForm">
+
+                <input id="searchBar"
+                       name="query"
+                       type="text"
+                       class="outline-none text-sm w-1/2 py-2 px-3 pl-10 border border-[#D4D4D4] rounded-2xl"
+                       placeholder="Search">
+                {{-- Button for search icon --}}
+
+                <button id="searchButton"
+                        type="button"
+                        class="">
+                    <form class="w-full"
+                          onsubmit="return false;"
+                          id="searchForm">
                         <div class="flex">
                             <i class="absolute left-2 top-1/2 transform -translate-y-[0.7rem] opacity-60">
                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -44,9 +45,7 @@
                             </i>
                         </div>
                     </form>
-                    </button>
-
-             
+                </button>
 
                 <div id="searchResults"
                      class="absolute hidden left-0 transform mt-2 py-2 px-1 w-1/2 items-center justify-center bg-[#F8F8F8] border border-[#D4D4D4] rounded-lg">
@@ -298,40 +297,64 @@
 
                         <form method="POST"
                               action="{{ route('logout') }}">
-                              @csrf
+                            @csrf
                             <div id="menu"
-                                 class="absolute hidden  bg-white space-x-3 p-1 border border-[#D4D4D4] rounded-lg shadow-lg w-55  transform translate-y-full  bottom-[-.5rem] left-1/2 -translate-x-1/2 z-30">
+                                 class="absolute hidden  bg-white space-x-3 py-2 p-1 border border-[#D4D4D4] rounded-lg shadow-lg w-[11rem]  transform translate-y-full  bottom-[-.5rem] left-1/2 -translate-x-1/2 z-30">
 
-                                <div class="flex flex-row justify-center items-center py-1 px-3 text-blackQ hover:text-[#0066FF]"
+                                <div class="flex flex-col gap-4  justify-start items-start py-1 px-3 text-black"
                                      id="">
-                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                         xmlns:xlink="http://www.w3.org/1999/xlink"
-                                         class="fill-current"
-                                         height="15"
-                                         width="15"
-                                         version="1.1"
-                                         id="Capa_1"
-                                         viewBox="0 0 384.971 384.971"
-                                         xml:space="preserve">
-                                        <path
-                                              d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03    C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03    C192.485,366.299,187.095,360.91,180.455,360.91z" />
-                                        <path
-                                              d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279    c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179    c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z" />
-                                    </svg>
-
-                                    <button class=""
-                                            type="submit">Logout</button>
+                                     <div class="gap-1">
+                                    <div class="text-sm font-bold"> {{ Auth::user()->name }}</div>
+                                    <p class="text-xs">{{ Auth::user()->email }}</p>
                                 </div>
+                                    <div class="flex flex-row hover:text-[#006634]">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             fill="none"
+                                             viewBox="0 0 24 24"
+                                             stroke-width="1.5"
+                                             stroke="currentColor"
+                                             class="size-6 ">
+                                            <path stroke-linecap="round"
+                                                  stroke-linejoin="round"
+                                                  d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                                        </svg>
 
+                                        <button type="button"
+                                                id="viewUser"
+                                                class="w-full items-start justify-center hover:text-[#006634]"> View
+                                            Profile</button>
+                                    </div>
+                                    <div class="flex-row flex text-[#ff3434] mt-1 hover:text-[#cb3d3d]">
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                                             class="fill-current my-auto"
+                                             height="15"
+                                             width="15"
+                                             version="1.1"
+                                             id="Capa_1"
+                                             viewBox="0 0 384.971 384.971"
+                                             xml:space="preserve">
+                                            <path
+                                                  d="M180.455,360.91H24.061V24.061h156.394c6.641,0,12.03-5.39,12.03-12.03s-5.39-12.03-12.03-12.03H12.03    C5.39,0.001,0,5.39,0,12.031V372.94c0,6.641,5.39,12.03,12.03,12.03h168.424c6.641,0,12.03-5.39,12.03-12.03    C192.485,366.299,187.095,360.91,180.455,360.91z" />
+                                            <path
+                                                  d="M381.481,184.088l-83.009-84.2c-4.704-4.752-12.319-4.74-17.011,0c-4.704,4.74-4.704,12.439,0,17.179l62.558,63.46H96.279    c-6.641,0-12.03,5.438-12.03,12.151c0,6.713,5.39,12.151,12.03,12.151h247.74l-62.558,63.46c-4.704,4.752-4.704,12.439,0,17.179    c4.704,4.752,12.319,4.752,17.011,0l82.997-84.2C386.113,196.588,386.161,188.756,381.481,184.088z" />
+                                        </svg>
+
+                                        <button class="px-1"
+                                                type="submit">Logout</button>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
-
     </div>
+</div>
 
+</div>
 
 </div>
 
@@ -423,5 +446,9 @@
 
     document.getElementById("viewDashboard").addEventListener("click", function() {
         window.location.href = "{{ route('student.studentDashboard') }}";
+    });
+
+    document.getElementById("viewUser").addEventListener("click", function() {
+        window.location.href = "{{ route('student.studentProf') }}";
     });
 </script>

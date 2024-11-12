@@ -1051,8 +1051,8 @@
                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
                                                 fill="{{ 
                                                     $post->user->badge == 'Gold' ? '#FFD700' : 
-                                                    ($post->user->badge == 'Silver' ? '#C0C0C0' : 
-                                                    ($post->user->badge == 'Bronze' ? '#CD7F32' : '#e1e1e1')) }}"
+                                                    ($post->user->badge == 'Silver' ? '#9a9a9a' : 
+                                                    ($post->user->badge == 'Bronze' ? '#964B00' : '#e1e1e1')) }}"
                                                 height="15"
                                                 width="15"
                                                 version="1.1"
@@ -1127,7 +1127,7 @@
                                 <!-- (Error Comment ) -->
                                 @if ($post->comments->isNotEmpty())
                                     @foreach ($post->comments as $comment)
-                                        <div class="flex items-center">
+                                        <div class="flex items-center py-1">
                                             <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
                                                 <label for="file_input"
                                                        class="cursor-pointer w-full h-full">
@@ -1168,10 +1168,10 @@
                                                 </div>
                                                 <div class="text-sm font-medium text-black">{{ $comment->content }}
                                                 </div> <!-- Display comment content -->
-                                                <div class="flex flex-row py-1">
+                                                {{-- <div class="flex flex-row py-1">
                                                     <button class="flex flex-row text-xs opacity-70"
                                                             onclick="toggleReply()">Reply</button>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </div>
                                     @endforeach
@@ -1180,7 +1180,7 @@
                                 @endif
 
                                 <!-- Reply Input (Initially Hidden) -->
-                                <div class="flex flex-col mt-4 mb-4 hidden"
+                                {{-- <div class="flex flex-col mt-4 mb-4 hidden"
                                      id="replyInput">
                                     <div class="flex pl-10">
                                         <div class="w-7 h-7 rounded-full mr-1 flex-row">
@@ -1200,7 +1200,7 @@
                                                    class="outline-none justify-center items-center text-xs w-full py-2 px-3 bg-gray-200 rounded-2xl">
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
 
                             <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

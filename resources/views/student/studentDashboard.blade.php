@@ -54,7 +54,7 @@
                                                         <div class="items-start text-start">
                                                             {{-- <svg xmlns="http://www.w3.org/2000/svg"
                                                                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                 fill="{{ Auth::user()->badge == 'Gold' ? '#FFD700' : (Auth::user()->badge == 'Silver' ? '#C0C0C0' : (Auth::user()->badge == 'Bronze' ? '#CD7F32' : '#000000')) }}"
+                                                                 fill="{{ Auth::user()->badge == 'Gold' ? '#FFD700' : (Auth::user()->badge == 'Silver' ? '#9a9a9a' : (Auth::user()->badge == 'Bronze' ? '#964B00' : '#000000')) }}"
                                                                  height="22"
                                                                  width="22"
                                                                  version="1.1"
@@ -145,7 +145,7 @@
                                                         <div class="items-start text-start flex flex-row">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                fill="{{ $topUser->badge == 'Gold' ? '#FFD700' : ($topUser->badge == 'Silver' ? '#C0C0C0' : ($topUser->badge == 'Bronze' ? '#CD7F32' : '#D3D3D3')) }}"
+                                                                fill="{{ $topUser->badge == 'Gold' ? '#FFD700' : ($topUser->badge == 'Silver' ? '#9a9a9a' : ($topUser->badge == 'Bronze' ? '#964B00' : '#D3D3D3')) }}"
                                                                 height="25"
                                                                 width="25"
                                                                 version="1.1"
@@ -422,11 +422,11 @@
                                     </div>
 
                                     <div class="text-sm font-bold text-black flex flex-col">
-                                        <div class="flex items-center">
+                                        <div class="flex items-center ">
                                             <span>{{ $post->user->name }}</span>
                                             {{-- <svg xmlns="http://www.w3.org/2000/svg"
                                                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                 fill="{{ $post->badge == 'Gold' ? '#FFD700' : ($post->badge == 'Silver' ? '#C0C0C0' : ($post->badge == 'Bronze' ? '#CD7F32' : '#000000')) }}"
+                                                 fill="{{ $post->badge == 'Gold' ? '#FFD700' : ($post->badge == 'Silver' ? '#9a9a9a' : ($post->badge == 'Bronze' ? '#964B00' : '#000000')) }}"
                                                  height="15"
                                                  width="15"
                                                  version="1.1"
@@ -501,7 +501,7 @@
                                     <!-- (Error Comment ) -->
                                     @if ($post->comments->isNotEmpty())
                                         @foreach ($post->comments as $comment)
-                                            <div class="flex items-center">
+                                            <div class="flex items-center  py-2">
                                                 <div class="w-10 h-10 rounded-full overflow-hidden shadow-lg mr-2">
                                                     <label for="file_input"
                                                            class="cursor-pointer w-full h-full">
@@ -542,10 +542,10 @@
                                                     </div>
                                                     <div class="text-sm font-medium text-black">{{ $comment->content }}
                                                     </div> <!-- Display comment content -->
-                                                    <div class="flex flex-row py-1">
+                                                    {{-- <div class="flex flex-row py-1">
                                                         <button class="flex flex-row text-xs opacity-70"
                                                                 onclick="toggleReply()">Reply</button>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         @endforeach
@@ -554,7 +554,7 @@
                                     @endif
 
                                     <!-- Reply Input (Initially Hidden) -->
-                                    <div class="flex flex-col mt-4 mb-4 hidden"
+                                    {{-- <div class="flex flex-col mt-4 mb-4 hidden"
                                          id="replyInput">
                                         <div class="flex pl-10">
                                             <div class="w-7 h-7 rounded-full mr-1 flex-row">
@@ -574,7 +574,7 @@
                                                        class="outline-none justify-center items-center text-xs w-full py-2 px-3 bg-gray-200 rounded-2xl">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
 
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -765,7 +765,7 @@
                                                         </svg>
                                                     </div>
                                                 </div>
-                                                <div class="text-xs font-semibold text-black opacity-45">
+                                                <div class="text-xs font-semibold text-black opacity-80">
                                                     Interests:
                                                     <span id="limitedInterests-{{$student->id}}">
                                                         {{ $student->interests->pluck('interest_name')->take(3)->join(', ') }}

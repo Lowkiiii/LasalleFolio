@@ -19,9 +19,7 @@ class QuizController extends Controller
         // dump($userInterests); 
 
 
-        foreach ($userInterests as $interest) {
-            echo "Interest: " . $interest . "<br>";
-        }   
+    
         // Define questions for each interest category
         $questionBank = [
             'programming' => [
