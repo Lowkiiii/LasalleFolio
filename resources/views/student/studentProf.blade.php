@@ -848,8 +848,8 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="py-12 px-40">
+                <hr class="my-7 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
+                <div class="py-8 px-40">
                     <div class="w-full relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg mb-4">
 
                         <div class=" flex items-center">

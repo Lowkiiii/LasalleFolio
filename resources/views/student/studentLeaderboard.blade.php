@@ -43,7 +43,9 @@
                                 <thead>
                                     <tr class="border-b text-[#808080] border-[#D4D4D4] py-4 ">
                                         <th class="font-bold text-sm py-4">Rank</th>
-                                        <th class="font-bold text-sm py-4">Name</th>
+                                      
+                                        <th class="font-bold  jus text-sm py-4">Name</th>
+                                   
                                         <th class="font-bold text-sm py-4">Projects Posted</th>
                                         <th class="font-bold text-sm py-4">Total XP</th>
                                     </tr>
@@ -52,7 +54,7 @@
                                     @foreach ($users as $user)
                                         <tr>
                                             <td class="py-4 text-[#006634] text-xl font-bold">
-                                                <div class="items-center drop-shadow-md justify-center flex">
+                                                <div class="items-center  justify-center flex">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                          xmlns:xlink="http://www.w3.org/1999/xlink"
                                                          fill="{{ $user->badge == 'Gold' ? '#FFD700' : ($user->badge == 'Silver' ? '#9a9a9a' : ($user->badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
@@ -62,7 +64,7 @@
                                                          id="Capa_1"
                                                          viewBox="0 0 296.084 296.084"
                                                          xml:space="preserve"
-                                                         class="shadow-xl">
+                                                         class="">
                                                         <g>
                                                             <path
                                                                   d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z" />
@@ -78,7 +80,7 @@
                                                 </div>
                                             </td>
                                             <td class="py-4 font-bold text-black w-1/3">
-                                                <div class="relative flex justify-center items-center text-center ">
+                                                <div class="relative flex justify-start items-start text-start ">
                                                     <div
                                                          class="w-12 h-12 rounded-full mx-5 flex mt-auto mb-auto overflow-hidden shadow-lg">
                                                         <div class="relative group">
