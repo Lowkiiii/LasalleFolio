@@ -511,7 +511,7 @@ class UserController extends Controller
      
         $perPage = 10;
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $items = $users->forPage($currentPage, $perPage);
+        $items = $users->slice(($currentPage - 1)*$perPage, $perPage)->all();
         $userPaginate = new LengthAwarePaginator($items, $users->count(), $perPage, $currentPage, [
             'path' => LengthAwarePaginator::resolveCurrentPath(),
         ]);

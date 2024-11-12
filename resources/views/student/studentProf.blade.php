@@ -607,7 +607,7 @@
 
                                 <div class="relative">
 
-                                    <div class="relative text-xl font-bold text-[#006634]">
+                                    <div class="relative text-xl py-2 font-bold text-[#006634]">
                                         <div class="text-black">Academics</div>
                                     </div>
 
@@ -726,7 +726,7 @@
 
                                 <div class="relative">
 
-                                    <div class="relative  text-xl font-bold text-[#006634]">
+                                    <div class="relative  text-xl py-2 font-bold text-[#006634]">
                                         <div class="text-black">Honors and Awards</div>
                                     </div>
 

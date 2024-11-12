@@ -519,7 +519,7 @@
                     <hr class="my-7 h-0.5 border-t-0 rounded-full bg-gray-300 opacity-60" />
 
                     @forelse ($userPosts as $post)
-                        <div class="py-12 px-40">
+                        <div class="py-1 px-40">
                             <div class="w-full mb-4 relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
                                 @auth
                                     @if ($post->user_id === Auth::user()->id)
@@ -600,7 +600,7 @@
                                     <div class="w-12 h-12 rounded-full mr-2">
                                         <div class="relative group">
                                             @if ($user->image)
-                                                <div class="mt-2">
+                                                <div class="">
                                                     <img src="{{ asset('storage/' . $post->user->image) }}"
                                                          alt="{{ $post->user->name }}'s Profile Image"
                                                          class="w-full h-full rounded-full object-cover">

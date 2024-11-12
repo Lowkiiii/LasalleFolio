@@ -171,7 +171,7 @@
                                                                 <label for="file_input"
                                                                        class="cursor-pointer">
                                                                     @if ($topUser->image)
-                                                                        <div class="mt-2">
+                                                                        <div class="">
                                                                             <img src="{{ asset('storage/' . $topUser->image) }}"
                                                                                  alt="Profile Image"
                                                                                  class="w-10 h-10 rounded-full object-cover">
@@ -407,7 +407,7 @@
                                     <div class="w-12 h-12 rounded-full mr-2">
                                         {{-- line385 --}}
                                         @if ($post->user->image)
-                                            <div class="mt-2">
+                                            <div class="">
                                                 <img src="{{ asset('storage/' . $post->user->image) }}"
                                                      alt="{{ $post->user->name }}'s Profile Image"
                                                      class="w-full h-full rounded-full object-cover">
