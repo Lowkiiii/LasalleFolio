@@ -21,7 +21,7 @@
                             <span class="text-red-500">{{ $message }}</span>
                         @enderror
                         </p>
-                        <div class="bg-white px-2 py-24 rounded-xl">
+                        <div class="bg-white px-2 py-24 rounded-lg">
                             <div class="flex flex-col justify-center mx-auto max-y-md max-w-lg items-center">
                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="w-12 h-12 opacity-30" viewBox="0 0 30 30 " fill="#424242">
                                             <path
@@ -67,7 +67,7 @@
                         Close
                     </button>
                     <button
-                        class="bg-[#006634] text-white font-semibold uppercase text-xs px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        class="bg-[#006634] text-white font-semibold uppercase text-xs px-4 py-2 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="submit">
                         Save
                     </button>

@@ -13,19 +13,19 @@
                 <div class="relative flex-auto">
                     <p class=" mx-2 leading-relaxed">
                         <div class="text-sm font-bold text-black pb-2 pt-5">Edit Title</div>
-                        <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('project') border-2 border-red-500 @enderror" name="project" placeholder="Enter insitution" value="{{ $projects->project }}" />
+                        <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-200 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('project') border-2 border-red-500 @enderror" name="project" placeholder="Enter insitution" value="{{ $projects->project }}" />
                         @error('project') <span class="text-red-500">{{ $message }}</span> @enderror
                     </p>
                     <p class=" mx-2 leading-relaxed">
                         <div class="text-sm font-bold text-black pb-2 pt-5">Edit Description</div>
-                        <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('description') border-2 border-red-500 @enderror" name="description" placeholder="Enter course" value="{{ $projects->description }}" />
+                        <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-200 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('description') border-2 border-red-500 @enderror" name="description" placeholder="Enter course" value="{{ $projects->description }}" />
                         @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
                     </p>
 
                     <div class="flex flex-row justify-start items-start rounded-xl mt-4 py-2">
                         <div class="text-xs flex-col flex font-semibold items-start justify-start truncate text-black px-1 w-full mt-auto mb-2">
                             Start
-                            <input type="date" class="text-black font-normal text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_started') border-2 border-red-500 @enderror" id="" name="date_started" placeholder="Start Date" value="{{ old('date_started', $projects->date_started ? $projects->date_started->format('Y-m-d') : '') }}" />
+                            <input type="date" class="text-black font-normal text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-200 px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_started') border-2 border-red-500 @enderror" id="" name="date_started" placeholder="Start Date" value="{{ old('date_started', $projects->date_started ? $projects->date_started->format('Y-m-d') : '') }}" />
                             @error('date_started') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
 
@@ -37,7 +37,7 @@
 
                         <div class="text-xs truncate flex flex-col text-black font-semibold px-1 w-full mt-auto mb-2">
                             End
-                            <input type="date" class="text-black font-normal text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-100 px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_ended') border-2 border-red-500 @enderror" id="" name="date_ended" placeholder="End Date" value="{{ old('date_ended', $projects->date_ended ? $projects->date_ended->format('Y-m-d') : '') }}" />
+                            <input type="date" class="text-black font-normal text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-200 px-3 py-1 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('date_ended') border-2 border-red-500 @enderror" id="" name="date_ended" placeholder="End Date" value="{{ old('date_ended', $projects->date_ended ? $projects->date_ended->format('Y-m-d') : '') }}" />
                             @error('date_ended') <span class="text-red-500">{{ $message }}</span> @enderror
                         </div>
                     </div>

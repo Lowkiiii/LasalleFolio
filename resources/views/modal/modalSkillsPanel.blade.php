@@ -14,7 +14,7 @@
                     <p class=" mx-2 leading-relaxed">
                     <div class="text-sm font-bold text-black pb-2 pt-5">Title</div>
                     <input type="text"
-                        class="text-black text-xs rounded-xl  peer block min-h-[auto] w-full bg-gray-100  px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('project') border-2 border-red-500 @enderror"
+                        class="text-black text-xs rounded-lg  peer block min-h-[auto] w-full bg-gray-200  px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('project') border-2 border-red-500 @enderror"
                         name="skills" placeholder="Enter title" value="{{ old('skills') }}" />
                     @error('skills')
                         <span class="text-red-500">{{ $message }}</span>
@@ -23,7 +23,7 @@
                     <p class=" mx-2 leading-relaxed">
                     <div class="text-sm font-bold text-black pb-2 pt-5">Content</div>
                     <textarea
-                        class="appearance-none resize-none bg-gray-100 text-sm font-normal outline-none rounded-xl overflow-hidden px-3 py-2 leading-[2.15] w-full h-[10rem] @error('description') border-2 border-red-500 @enderror"
+                        class="appearance-none resize-none bg-gray-200 text-sm font-normal outline-none rounded-lg overflow-hidden px-3 py-2 leading-[2.15] w-full h-[10rem] @error('description') border-2 border-red-500 @enderror"
                         name="description" placeholder="Enter content">{{ old('description') }}</textarea>
                     @error('description')
                         <span class="text-red-500">{{ $message }}</span>
@@ -40,7 +40,7 @@
                         Close
                     </button>
                     <button
-                        class="bg-[#006634] text-white font-semibold uppercase text-xs px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        class="bg-[#006634] text-white font-semibold uppercase text-xs px-4 py-2 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="submit">
                         Save
                     </button>

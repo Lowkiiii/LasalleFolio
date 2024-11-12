@@ -18,7 +18,7 @@
                         Close
                     </button>
                     <button
-                        class="bg-[#FF0000] text-white font-semibold uppercase text-xs px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                        class="bg-[#FF0000] text-white font-semibold uppercase text-xs px-4 py-2 rounded-lg shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                         type="submit">
                         Delete Post
                     </button>
