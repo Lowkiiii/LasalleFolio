@@ -861,7 +861,7 @@
                                             <div class="mt-2">
                                                 <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $user->image) }}"
                                                      alt="Profile"
-                                                     class="w-full h-full rounded-full object-cover">
+                                                     class="w-full h-full rounded-full object-cover lazyload">
                                             </div>
                                         @else
                                             <img src="{{ asset('image/default-profile.png') }}"

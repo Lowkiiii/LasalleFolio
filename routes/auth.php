@@ -168,6 +168,7 @@ Route::middleware('auth')->group(function () {
 
                 //For making all users connected
                 // Route::get('/connect-all-users', [FriendRequestController::class, 'connectAllUsers']);
+                
 });
 
 
