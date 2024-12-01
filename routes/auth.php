@@ -171,7 +171,9 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/profile/image/update', [UserController::class, 'updateProfileImage'])->name('profile.image.update');
     Route::delete('/profile/image/delete', [UserController::class, 'deleteProfileImage'])->name('profile.image.delete');
-                    
+    
+    Route::get('/posts/category/{category}', [UserPostController::class, 'showCategoryPosts'])->name('category.posts');
+
 });
 
 

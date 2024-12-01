@@ -8,6 +8,7 @@ use App\Models\Reaction;
 use App\Models\Comment;
 use App\Models\Interest;
 use App\Models\Bio;
+use App\Models\Post;
 use App\Models\PinnedProject;
 use Illuminate\Http\Request;
 use App\Models\QuizPoints;
@@ -17,6 +18,7 @@ use App\Http\Controllers\FriendRequestController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
@@ -587,8 +589,9 @@ class UserController extends Controller
     {
         $query = $request->input('query');
 
+        // Search for users and categories
         $users = User::where('id', '!=', auth()->id()) // Exclude authenticated user
-            ->where('user_type_id', '!=', 1) // Exclude admin users with user_type_id = 1
+            ->where('user_type_id', '!=', 1) // Exclude admin users
             ->where(function($q) use ($query) {
                 $q->where('first_name', 'LIKE', "%{$query}%")
                 ->orWhere('last_name', 'LIKE', "%{$query}%");
@@ -596,8 +599,19 @@ class UserController extends Controller
             ->limit(5)
             ->get(['id', 'first_name', 'last_name', 'image']); // Only select the fields you need
 
-        return response()->json($users);
+        $categories = DB::table('posts')
+            ->select('category')
+            ->distinct()
+            ->where('category', 'LIKE', "%{$query}%")
+            ->pluck('category'); // Get distinct categories matching the query
+
+        return response()->json([
+            'users' => $users,
+            'categories' => $categories
+        ]);
     }
+
+    
 
 
     public function adminusers()

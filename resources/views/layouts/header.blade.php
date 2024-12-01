@@ -16,48 +16,27 @@
             </div>
 
             <div class="relative w-full">
-
-                <input id="searchBar"
-                       name="query"
-                       type="text"
-                       class="outline-none text-sm w-1/2 py-2 px-3 pl-10 border border-[#D4D4D4] rounded-2xl"
-                       placeholder="Search">
-                {{-- Button for search icon --}}
-
-                <button id="searchButton"
-                        type="button"
-                        class="">
-                    <form class="w-full"
-                          onsubmit="return false;"
-                          id="searchForm">
+                <input id="searchBar" name="query" type="text" class="outline-none text-sm w-1/2 py-2 px-3 pl-10 border border-[#D4D4D4] rounded-2xl" placeholder="Search">
+                <button id="searchButton" type="button" class="">
+                    <form class="w-full" onsubmit="return false;" id="searchForm">
                         <div class="flex">
                             <i class="absolute left-2 top-1/2 transform -translate-y-[0.7rem] opacity-60">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     x="0px"
-                                     y="0px"
-                                     width="20"
-                                     height="20"
-                                     viewBox="0 0 30 30">
-                                    <path
-                                          d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
-                                    </path>
+                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 30 30">
+                                    <path d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"></path>
                                 </svg>
                             </i>
                         </div>
                     </form>
                 </button>
-
-                <div id="searchResults"
-                     class="absolute hidden left-0 transform mt-2 py-2 px-1 w-1/2 items-center justify-center bg-[#F8F8F8] border border-[#D4D4D4] rounded-lg">
-                    <!-- Initially empty, will be populated by JavaScript -->
+                <div id="searchResults" class="absolute hidden left-0 transform mt-2 py-2 px-1 w-1/2 items-center justify-center bg-[#F8F8F8] border border-[#D4D4D4] rounded-lg">
                 </div>
             </div>
-
+            
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const searchBar = document.getElementById('searchBar');
                     const searchResults = document.getElementById('searchResults');
-
+            
                     searchBar.addEventListener('input', function() {
                         const searchTerm = this.value;
                         if (searchTerm.length > 0) {
@@ -70,36 +49,43 @@
                             searchResults.classList.add('hidden');
                         }
                     });
-
-                    function displayResults(users) {
+            
+                    function displayResults(results) {
                         searchResults.innerHTML = '';
-                        if (users.length > 0) {
-                            users.slice(0, 5).forEach(user => {
+                        if (results.users.length > 0) {
+                            results.users.slice(0, 5).forEach(user => {
                                 const userDiv = document.createElement('div');
                                 userDiv.className = 'w-full py-2 px-4 rounded-xl  cursor-pointer hover:bg-gray-200';
                                 userDiv.innerHTML = `
-                                        <div class="flex">
-                                            <a href="/profile/${user.id}" class="flex items-start justify-start w-full">
-                                                <img src="${user.image ? `/storage/${user.image}` : 'image/default-profile.png'}" 
-                                                    alt="Profile" 
-                                                    class="rounded-full object-cover w-10 h-10">
-                                                <div class="flex my-auto ml-4 text-md font-bold text-black truncate">
-                                                    <div>${user.first_name} ${user.last_name}</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        `;
-                                userDiv.addEventListener('click', function() {
-                                    window.location.href = `/profile/${user.id}`;
-                                });
+                                    <div class="flex">
+                                        <a href="/profile/${user.id}" class="flex items-start justify-start w-full">
+                                            <img src="${user.image ? '/storage/' + user.image : 'image/default-profile.png'}" alt="Profile" class="rounded-full object-cover w-10 h-10">
+                                            <div class="flex my-auto ml-4 text-md font-bold text-black truncate">
+                                                <div>${user.first_name} ${user.last_name}</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                `;
                                 searchResults.appendChild(userDiv);
                             });
                             searchResults.classList.remove('hidden');
                         } else {
                             searchResults.classList.add('hidden');
                         }
+            
+                        if (results.categories.length > 0) {
+                            results.categories.forEach(category => {
+                                const categoryDiv = document.createElement('div');
+                                categoryDiv.className = 'w-full py-2 px-4 rounded-xl cursor-pointer hover:bg-gray-200';
+                                categoryDiv.innerHTML = `
+                                    <a href="/posts/category/${category}" class="w-full text-black">${category}</a>
+                                `;
+                                searchResults.appendChild(categoryDiv);
+                            });
+                            searchResults.classList.remove('hidden');
+                        }
                     }
-
+            
                     // Hide results when clicking outside
                     document.addEventListener('click', function(event) {
                         if (!searchBar.contains(event.target) && !searchResults.contains(event.target)) {
@@ -108,6 +94,7 @@
                     });
                 });
             </script>
+            
             <div class="flex">
 
                 <div class="flex flex-row">
