@@ -19,6 +19,12 @@
                         @error('user_posts') <span class="text-red-500">{{ $message }}</span> @enderror
                     </p>
                 </div>
+                <!-- Visibility selection -->
+                <div class="text-sm font-bold text-black pb-2 pt-5">Visibility</div>
+                <select name="visibility" id="visibility" class="w-full bg-gray-100 border-2 rounded-lg px-3 py-2">
+                    <option value="public" {{ $posts->visibility == 'public' ? 'selected' : '' }}>Public</option>
+                    <option value="private" {{ $posts->visibility == 'private' ? 'selected' : '' }}>Private</option>
+                </select>
                 <!--footer-->
                 <div class="flex items-center justify-end p-4">
                     <button class="text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" type="button" onclick="toggleModal('modal-idPostEditText-{{ $posts->id }}')"> Close </button>
