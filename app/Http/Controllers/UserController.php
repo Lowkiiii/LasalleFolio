@@ -269,114 +269,114 @@ class UserController extends Controller
     }
 
     public function studentDashboard(Request $request)
-{
-    $query = $request->input('query');
+    {
+        $query = $request->input('query');
 
-    $authUser = User::where('first_name', 'LIKE', "%{$query}%")
-        ->orWhere('last_name', 'LIKE', "%{$query}%")
-        ->get();
+        $authUser = User::where('first_name', 'LIKE', "%{$query}%")
+            ->orWhere('last_name', 'LIKE', "%{$query}%")
+            ->get();
 
-    // Fetch all users and calculate their points
-    $users = User::all()->map(function ($user) {
-        $user->points = $this->calculatePointsForUser($user);
-        $user->badge = $this->getUserBadge($user->points);
-        return $user;
-    });
-
-    // Get the top 3 users based on points
-    $topUsers = $users->sortByDesc('points')->take(3);
-
-    $userId = Auth::id();
-    $user = Auth::user();
-    $userProjects = $user->userProjects;
-    $userSkills = $user->userSkills;
-    $userAcademics = $user->userAcademics;
-    $userHonorsAndAwards = $user->userHonorsAndAwards;
-
-    // Get IDs of connected users
-    $connectedUserIds = FriendRequest::where(function ($query) use ($userId) {
-        $query->where('sender_id', $userId)->orWhere('receiver_id', $userId);
-    })
-        ->where('status', 'accepted')
-        ->get()
-        ->map(function ($request) use ($userId) {
-            return $request->sender_id === $userId ? $request->receiver_id : $request->sender_id;
+        // Fetch all users and calculate their points
+        $users = User::all()->map(function ($user) {
+            $user->points = $this->calculatePointsForUser($user);
+            $user->badge = $this->getUserBadge($user->points);
+            return $user;
         });
 
-    // Include the authenticated user's ID
-    $connectedUserIds[] = $userId;
+        // Get the top 3 users based on points
+        $topUsers = $users->sortByDesc('points')->take(3);
 
-    // Get the current user's interests
-    $userInterests = Interest::where('user_id', $userId)->pluck('interest_name')->toArray();
+        $userId = Auth::id();
+        $user = Auth::user();
+        $userProjects = $user->userProjects;
+        $userSkills = $user->userSkills;
+        $userAcademics = $user->userAcademics;
+        $userHonorsAndAwards = $user->userHonorsAndAwards;
 
-    // Get posts with visibility handling
-    $allPosts = UserPosts::where(function ($query) use ($userId, $connectedUserIds) {
-        $query->where('visibility', 'public')
-              ->orWhere(function ($subQuery) use ($userId, $connectedUserIds) {
-                  // Private posts visible only to connected users and the post owner
-                  $subQuery->where('visibility', 'private')
-                           ->whereIn('user_id', $connectedUserIds);
-              });
-    })->get();
+        // Get IDs of connected users
+        $connectedUserIds = FriendRequest::where(function ($query) use ($userId) {
+            $query->where('sender_id', $userId)->orWhere('receiver_id', $userId);
+        })
+            ->where('status', 'accepted')
+            ->get()
+            ->map(function ($request) use ($userId) {
+                return $request->sender_id === $userId ? $request->receiver_id : $request->sender_id;
+            });
 
-    // Calculate relevance score for each post
-    $scoredPosts = $allPosts->map(function ($post) use ($userInterests) {
-        $interestScore = in_array($post->category, $userInterests) ? 50 : 0;
-        $timeScore = 100 - min($post->created_at->diffInHours(now()), 100);
-        $post->relevanceScore = $interestScore + $timeScore;
-        return $post;
-    });
+        // Include the authenticated user's ID
+        $connectedUserIds[] = $userId;
 
-    // Sort posts by relevance score
-    $sortedPosts = $scoredPosts->sortByDesc('relevanceScore');
+        // Get the current user's interests
+        $userInterests = Interest::where('user_id', $userId)->pluck('interest_name')->toArray();
 
-    // Separate posts into two collections: matching interests and non-matching
-    $matchingPosts = $sortedPosts->filter(function ($post) use ($userInterests) {
-        return in_array($post->category, $userInterests);
-    });
-    $nonMatchingPosts = $sortedPosts->diff($matchingPosts);
+        // Get posts with visibility handling
+        $allPosts = UserPosts::where(function ($query) use ($userId, $connectedUserIds) {
+            $query->where('visibility', 'public')
+                ->orWhere(function ($subQuery) use ($userId, $connectedUserIds) {
+                    // Private posts visible only to connected users and the post owner
+                    $subQuery->where('visibility', 'private')
+                            ->whereIn('user_id', $connectedUserIds);
+                });
+        })->get();
 
-    // Merge the collections, with matching posts first
-    $userPosts = $matchingPosts->merge($nonMatchingPosts);
+        // Calculate relevance score for each post
+        $scoredPosts = $allPosts->map(function ($post) use ($userInterests) {
+            $interestScore = in_array($post->category, $userInterests) ? 50 : 0;
+            $timeScore = 100 - min($post->created_at->diffInHours(now()), 100);
+            $post->relevanceScore = $interestScore + $timeScore;
+            return $post;
+        });
 
-    // Add reaction count, user reaction status, and comments to each post
-    foreach ($userPosts as $post) {
-        $post->reaction_count = Reaction::where('post_id', $post->id)->count();
-        $post->user_reacted = Reaction::where('post_id', $post->id)
-            ->where('user_id', $userId)
-            ->exists();
+        // Sort posts by relevance score
+        $sortedPosts = $scoredPosts->sortByDesc('relevanceScore');
 
-        // Get comments for each post
-        $post->comments = Comment::where('post_id', $post->id)
-            ->with('user')
+        // Separate posts into two collections: matching interests and non-matching
+        $matchingPosts = $sortedPosts->filter(function ($post) use ($userInterests) {
+            return in_array($post->category, $userInterests);
+        });
+        $nonMatchingPosts = $sortedPosts->diff($matchingPosts);
+
+        // Merge the collections, with matching posts first
+        $userPosts = $matchingPosts->merge($nonMatchingPosts);
+
+        // Add reaction count, user reaction status, and comments to each post
+        foreach ($userPosts as $post) {
+            $post->reaction_count = Reaction::where('post_id', $post->id)->count();
+            $post->user_reacted = Reaction::where('post_id', $post->id)
+                ->where('user_id', $userId)
+                ->exists();
+
+            // Get comments for each post
+            $post->comments = Comment::where('post_id', $post->id)
+                ->with('user')
+                ->get();
+        }
+
+        $friendRequestController = new FriendRequestController();
+        $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount();
+
+        // Calculate points
+        $points = $this->calculatePoints();
+
+        // Get badge
+        $totalPoints = $this->calculatePoints();
+        $badge = $this->getUserBadge($points);
+
+        // Get project count
+        $projectCount = $this->countProjects();
+
+        // Find other students with similar interests
+        $studentInterest = User::whereHas('interests', function ($query) use ($userInterests) {
+            $query->whereIn('interest_name', $userInterests);
+        })
+            ->where('id', '!=', $userId) // Exclude the logged-in user
+            ->whereNotIn('id', $connectedUserIds) //Exclude connected users
+            ->inRandomOrder() // Shuffle the results
+            ->take(5) // Limit to 5 users
             ->get();
+
+        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers', 'userInterests', 'studentInterest', 'badge',  'totalPoints'));
     }
-
-    $friendRequestController = new FriendRequestController();
-    $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount();
-
-    // Calculate points
-    $points = $this->calculatePoints();
-
-    // Get badge
-    $totalPoints = $this->calculatePoints();
-    $badge = $this->getUserBadge($points);
-
-    // Get project count
-    $projectCount = $this->countProjects();
-
-    // Find other students with similar interests
-    $studentInterest = User::whereHas('interests', function ($query) use ($userInterests) {
-        $query->whereIn('interest_name', $userInterests);
-    })
-        ->where('id', '!=', $userId) // Exclude the logged-in user
-        ->whereNotIn('id', $connectedUserIds) //Exclude connected users
-        ->inRandomOrder() // Shuffle the results
-        ->take(5) // Limit to 5 users
-        ->get();
-
-    return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers', 'userInterests', 'studentInterest', 'badge',  'totalPoints'));
-}
 
     public function calculatePoints()
     {
