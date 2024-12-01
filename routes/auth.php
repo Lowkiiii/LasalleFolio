@@ -168,7 +168,10 @@ Route::middleware('auth')->group(function () {
 
                 //For making all users connected
                 // Route::get('/connect-all-users', [FriendRequestController::class, 'connectAllUsers']);
-                
+
+    Route::post('/profile/image/update', [UserController::class, 'updateProfileImage'])->name('profile.image.update');
+    Route::delete('/profile/image/delete', [UserController::class, 'deleteProfileImage'])->name('profile.image.delete');
+                    
 });
 
 

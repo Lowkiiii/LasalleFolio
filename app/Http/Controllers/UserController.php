@@ -17,6 +17,7 @@ use App\Http\Controllers\FriendRequestController;
 use App\Http\Controllers\CommentController;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Hash;
@@ -718,6 +719,46 @@ class UserController extends Controller
     {
         return view('quiz.quiz');
     }
+
+    public function updateProfileImage(Request $request)
+    {
+        $request->validate([
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+        ]);
+
+        $user = User::findOrFail(auth()->id()); // Ensure it's retrieved properly
+
+        // Delete the old image if exists
+        if ($user->image) {
+            Storage::disk('public')->delete($user->image);
+        }
+
+        // Store the new image
+        $imagePath = $request->file('image')->store('profile_images', 'public');
+
+        // Update the user's image path
+        $user->update(['image' => $imagePath]); // Correct syntax here
+
+        return redirect()->back()->with('success', 'Profile image updated successfully.');
+    }
+
+
+    public function deleteProfileImage(Request $request)
+    {
+        $user = User::findOrFail(auth()->id()); // Ensure $user is properly retrieved
+
+        // Delete the existing image from storage if it exists
+        if ($user->image) {
+            Storage::disk('public')->delete($user->image);
+        }
+
+        // Set the image column to null
+        $user->update(['image' => null]); // Correct syntax here
+
+        return redirect()->back()->with('success', 'Profile image deleted successfully.');
+    }
+
+
 
     
 }
