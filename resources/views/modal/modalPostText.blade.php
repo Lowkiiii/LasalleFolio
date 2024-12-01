@@ -45,7 +45,6 @@
                         @enderror
                     </div>
                 </div>
-
                 <!-- Category dropdown -->
                 <div class="text-sm text-black pb-2 pt-1">
                     <label for="category"
@@ -101,6 +100,16 @@
                         @enderror
                     </div>
                 </div>
+
+                <!-- Visibility selection -->
+                <div class="text-sm font-bold text-black pb-2 pt-5">Visibility</div>
+                <select name="visibility" id="visibility" class="w-full bg-gray-100 border-2 rounded-lg px-3 py-2">
+                    <option value="public" {{ old('visibility', $posts->visibility ?? '') == 'public' ? 'selected' : '' }}>Public</option>
+                    <option value="private" {{ old('visibility', $posts->visibility ?? '') == 'private' ? 'selected' : '' }}>Private</option>
+                </select>
+                @error('visibility')
+                    <span class="text-red-500">{{ $message }}</span>
+                @enderror
 
                 <script>
                     function toggleCustomCategory() {
