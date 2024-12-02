@@ -40,6 +40,11 @@ class RegisterController extends Controller
             'sex' => ['required', 'string', 'max:50'],
             'public_url' => ['nullable', 'string', 'max:255'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'terms' => ['required', 'accepted'], 
+
+        ], [
+            'terms.required' => 'You must agree to the Terms and Conditions to register.',
+            'terms.accepted' => 'You must agree to the Terms and Conditions to register.'
         ]);
 
         try {
