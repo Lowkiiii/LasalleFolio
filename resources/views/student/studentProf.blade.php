@@ -49,12 +49,12 @@
                             hover:file:bg-[#004423]">
                           
                         </div>
-                       
+                    
                         <div class="mx-auto text-center justify-center gap-y-4 ">
                         <button type="submit"
                             class="mt-1 px-3 py-2 text-xs bg-[#006634] text-white rounded-md hover:bg-[#004423]">Update Image</button>
                 
-                    
+                    </form>
                     @if ($user->image)
                         <form action="{{ route('profile.image.delete') }}" method="POST" class="mt-2">
                             @csrf
@@ -64,7 +64,7 @@
                    
                     @endif
                 </div>
-                </form>
+               
                     
                     <!-- Modal for Viewing Full-Size Image -->
               

@@ -18,8 +18,12 @@
                     </p>
                     <p class=" mx-2 leading-relaxed">
                         <div class="text-sm font-bold text-black pb-2 pt-5">Edit Description</div>
-                        <input type="text" class="text-black text-xs rounded-xl peer block min-h-[auto] w-full bg-gray-200 px-3 py-2 leading-[2.15] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-dark dark:placeholder:text-dark-200 @error('description') border-2 border-red-500 @enderror" name="description" placeholder="Enter course" value="{{ $projects->description }}" />
-                        @error('description') <span class="text-red-500">{{ $message }}</span> @enderror
+                        <textarea
+                            class="appearance-none resize-none bg-gray-200 text-sm font-normal outline-none rounded-lg overflow-hidden px-3 py-2 leading-[2.15] w-full h-[10rem] @error('description') border-2 border-red-500 @enderror"
+                            name="description" placeholder="Enter content">{{ old('description', $projects->description) }}</textarea>
+                        @error('description') 
+                            <span class="text-red-500">{{ $message }}</span> 
+                        @enderror
                     </p>
 
                     <div class="flex flex-row justify-start items-start rounded-xl mt-4 py-2">

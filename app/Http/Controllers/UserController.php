@@ -404,10 +404,11 @@ class UserController extends Controller
         // Combine points for reactions
         $reactionPoints = $reactionPointsFromOwnPosts + $reactionPointsReceived;
 
-        // Calculate comment points (15 points for each comment made by the user)
-        $commentPoints = Comment::where('user_id', $user->id)->count() * 15;
+        // Calculate comment points (15 points for each comment on the user's posts)
+        $commentPoints = Comment::whereHas('post', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->count() * 15;
 
-        
         // Add quiz points
         $quizPoints = QuizPoints::where('user_id', $user->id)->sum('points');
 
@@ -444,8 +445,10 @@ class UserController extends Controller
         // Combine points for reactions
         $reactionPoints = $reactionPointsFromOwnPosts + $reactionPointsReceived;
 
-        // Calculate comment points (15 points for each comment made by the user)
-        $commentPoints = Comment::where('user_id', $user->id)->count() * 15;
+        // Calculate comment points (15 points for each comment on the user's posts)
+        $commentPoints = Comment::whereHas('post', function ($query) use ($user) {
+            $query->where('user_id', $user->id);
+        })->count() * 15;
 
         // Add quiz points
         $quizPoints = QuizPoints::where('user_id', $user->id)->sum('points');

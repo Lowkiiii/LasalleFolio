@@ -5,6 +5,12 @@
 @endsection
 
 @section('content')
+<div id="viewImageModal" tabindex="-1" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg p-4 relative">
+        <button id="closeModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+        <img id="modalImage" src="" alt="Full-Size Profile Image" class="max-w-full max-h-screen rounded-lg">
+    </div>
+</div>
     <section class="h-screen bg-[#F8F8F8]">
 
         <div class="flex row min-h-full mt-24 justify-center relative bg-[#F8F8F8]">
@@ -19,35 +25,51 @@
                 <div class="z-20  mx-auto max-w-full -translate-y-24">
                     <div class="justify-center items-center">
                         <div
-                             class="w-36 h-36 bg-white border-4 border-[#F8F8F8] rounded-full justify-center mx-auto max-w-lg flex items-center relative">
+                            class="w-36 h-36 bg-white border-4 border-[#F8F8F8] rounded-full justify-center mx-auto max-w-lg flex items-center relative">
                             <div class="relative group w-full h-full">
-                                <label for="file_input"
-                                       class="rounded-full w-full h-full">
-                                    @if ($user->image)
-                                        <div class="">
-                                            <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $user->image) }}"
-                                                 alt="Profile"
-                                                 class="w-full h-full rounded-full object-cover lazyload">
-                                        </div>
-                                    @else
-                                        <img src="{{ asset('image/default-profile.png') }}"
-                                             alt="Profile"
-                                             class="w-full h-full rounded-full object-cover">
-                                    @endif
-                                    {{-- <div
-                                        class="absolute inset-0 bg-black opacity-0 rounded-full group-hover:opacity-30 flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" class="fill-current text-white">
-                                            <path
-                                                d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
-                                        </svg>
-                                    </div> --}}
-                                </label>
-
+                                @if ($user->image)
+                                    <img id="profileImage" src="{{ asset('storage/' . $user->image) }}" alt="Profile"
+                                        class="w-full h-full rounded-full object-cover cursor-pointer">
+                                @else
+                                    <img id="profileImage" src="{{ asset('image/default-profile.png') }}" alt="Profile"
+                                        class="w-full h-full rounded-full object-cover cursor-pointer">
+                                @endif
                             </div>
                         </div>
                     </div>
-                    
+
+                    <!-- JavaScript for Modal Interaction -->
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function () {
+                            const profileImage = document.getElementById('profileImage');
+                            const modalImage = document.getElementById('modalImage');
+                            const viewImageModal = document.getElementById('viewImageModal');
+                            const closeModal = document.getElementById('closeModal');
+
+                            profileImage.addEventListener('click', (event) => {
+                                // Prevent triggering the file input
+                                event.preventDefault();
+
+                                // Set the modal image source
+                                modalImage.src = profileImage.src;
+
+                                // Show the modal
+                                viewImageModal.classList.remove('hidden');
+                            });
+
+                            closeModal.addEventListener('click', () => {
+                                // Hide the modal
+                                viewImageModal.classList.add('hidden');
+                            });
+
+                            // Close modal when clicking outside the modal content
+                            viewImageModal.addEventListener('click', (event) => {
+                                if (event.target === viewImageModal) {
+                                    viewImageModal.classList.add('hidden');
+                                }
+                            });
+                        });
+                    </script>
                     <h1
                         class="flex flex-row mx-auto max-y-md max-w-lg  items-center justify-center text-center text-lg pt-2 font-bold text-black">
 
@@ -90,14 +112,14 @@
                                         clip-rule="evenodd" />
                                 </svg> --}}
 
-                                <svg xmlns="http://www.w3.org/2000/svg"
+                                {{-- <svg xmlns="http://www.w3.org/2000/svg"
                                      viewBox="0 0 24 24"
                                      fill="currentColor"
                                      class="size-6 opacity-30">
                                     <path fill-rule="evenodd"
                                           d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.72 6.97a.75.75 0 1 0-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 1 0 1.06 1.06L12 13.06l1.72 1.72a.75.75 0 1 0 1.06-1.06L13.06 12l1.72-1.72a.75.75 0 1 0-1.06-1.06L12 10.94l-1.72-1.72Z"
                                           clip-rule="evenodd" />
-                                </svg>
+                                </svg> --}}
 
                             </div>
                         </div>

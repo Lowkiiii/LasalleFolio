@@ -19,7 +19,7 @@
                             <!-- Textarea for post content -->
                             <textarea class="appearance-none resize-none outline-none bg-gray-200 rounded-xl p-4 overflow-hidden w-full h-[10rem] @error('user_posts') border-2 border-red-500 @enderror"
                                       name="user_posts"
-                                      placeholder="Enter content">{{ old('user_posts') }}</textarea>
+                                      placeholder="Enter content">{{ $posts->user_posts ?? old('user_posts') }}</textarea>
                             @error('user_posts')
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
