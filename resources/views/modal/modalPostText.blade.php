@@ -46,13 +46,14 @@
                     </div>
                 </div>
                 <!-- Category dropdown -->
-                <div class="text-sm text-black pb-2 pt-1">
+                
+                <div class="text-sm text-black w-full pb-2 pt-1  ">
                     <label for="category"
                            class="block font-bold mb-1">Select Category:</label>
                     <select name="category_select"
                             id="categorySelect"
                             onchange="toggleCustomCategory()"
-                            class="appearance-none bg-gray-200 rounded-lg p-2 w-full @error('category') border-2 border-red-500 @enderror">
+                            class="appearance-none bg-gray-200 block rounded-lg p-2 h-12 max-h-40 overflow-auto w-full @error('category') border-2  border-red-500 @enderror">
                         <option value="">Select Category</option>
                         <option value="3D Animation">3D Animation</option>
                         <option value="3D Modelling">3D Modelling</option>
@@ -102,8 +103,8 @@
                 </div>
 
                 <!-- Visibility selection -->
-                <div class="text-sm font-bold text-black pb-2 pt-5">Visibility</div>
-                <select name="visibility" id="visibility" class="w-full bg-gray-100 border-2 rounded-lg px-3 py-2">
+                <div class="text-sm text-black font-bold w-full pb-2 pt-1">Visibility</div>
+                <select name="visibility" id="visibility" class="appearance-none bg-gray-200 block rounded-lg p-2 h-12 max-h-40 overflow-auto w-full">
                     <option value="public" {{ old('visibility', $posts->visibility ?? '') == 'public' ? 'selected' : '' }}>Public</option>
                     <option value="private" {{ old('visibility', $posts->visibility ?? '') == 'private' ? 'selected' : '' }}>Private</option>
                 </select>

@@ -5,6 +5,13 @@
 @endsection
 
 @section('content')
+
+<div id="viewImageModal" tabindex="-1" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg p-4 relative">
+        <button id="closeModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+        <img id="modalImage" src="" alt="Full-Size Profile Image" class="max-w-full max-h-screen rounded-lg">
+    </div>
+</div>
     <section class="h-screen bg-[#F8F8F8]">
 
         <div class="flex row min-h-full mt-24 justify-center relative bg-[#F8F8F8]">
@@ -35,29 +42,32 @@
                     <!-- File Input -->
                     <form action="{{ route('profile.image.update') }}" method="POST" enctype="multipart/form-data" class="mt-4">
                         @csrf
-                        <input type="file" id="file_input" name="image" class="block w-full text-sm text-gray-500
-                            file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0
-                            file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700
-                            hover:file:bg-blue-100">
+                        <div class="w-[32rem] gap-2 flex  mx-auto">
+                        <input type="file" id="file_input" name="image" class="block bg-slate-200 rounded-r-lg w-full text-sm text-gray-500
+                            file:mr-4 file:py-2 file:px-4 file:rounded-l-lg  file:border-0
+                            file:text-sm file:font-semibold file:bg-[#006634] file:text-white
+                            hover:file:bg-[#004423]">
+                          
+                        </div>
+                       
+                        <div class="mx-auto text-center justify-center gap-y-4 ">
                         <button type="submit"
-                            class="mt-2 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Update Image</button>
-                    </form>
+                            class="mt-1 px-3 py-2 text-xs bg-[#006634] text-white rounded-md hover:bg-[#004423]">Update Image</button>
+                
                     
                     @if ($user->image)
                         <form action="{{ route('profile.image.delete') }}" method="POST" class="mt-2">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700">Delete Image</button>
+                            <button type="submit" class="mt-1 px-3 py-2 text-xs bg-red-600 text-white rounded-md hover:bg-red-700">Delete Image</button>
                         </form>
+                   
                     @endif
+                </div>
+                </form>
                     
                     <!-- Modal for Viewing Full-Size Image -->
-                    <div id="viewImageModal" tabindex="-1" class="hidden fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-                        <div class="bg-white rounded-lg p-4 relative">
-                            <button id="closeModal" class="absolute top-2 right-2 text-gray-500 hover:text-gray-700 text-xl">&times;</button>
-                            <img id="modalImage" src="" alt="Full-Size Profile Image" class="max-w-full max-h-screen rounded-md">
-                        </div>
-                    </div>
+              
                     
                     
                     <!-- JavaScript for Modal Interaction -->
@@ -902,9 +912,9 @@
 
                         <div class=" flex items-center">
                             <div class="w-12 h-12 rounded-full mr-2  ">
-                                <div class="relative group">
-                                    <label for="file_input"
-                                           class="cursor-pointer">
+                                <div class="relative group ">
+                                    <button class ="file_input"
+                                           class="cursor-pointer ">
                                         @if ($user->image)
                                             <div class="mt-2">
                                                 <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $user->image) }}"
@@ -914,12 +924,12 @@
                                         @else
                                             <img src="{{ asset('image/default-profile.png') }}"
                                                  alt="Profile"
-                                                 class="w-full h-full rounded-full object-cover">
+                                                 class="w-full h-full rounded-full object-cover "">
                                         @endif
                                         {{-- <img src="image/dog.jpg"
                                              alt="Profile"
                                              class="w-full h-full rounded-full object-cover"> --}}
-                                    </label>
+                                        </button>
 
                                 </div>
 

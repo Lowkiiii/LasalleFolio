@@ -611,7 +611,13 @@ class UserController extends Controller
             'users' => $users,
             'categories' => $categories
         ]);
+ 
+
     }
+
+  
+
+  
 
     
 
