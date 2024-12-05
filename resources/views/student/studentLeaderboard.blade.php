@@ -89,7 +89,7 @@
                                                                 @if ($user->image)
                                                                     <img src="{{ asset('storage/' . $user->image) }}"
                                                                          alt="{{ $user->name }}'s Profile Image"
-                                                                         class="w-full h-full object-cover block"
+                                                                         class="w-12 h-12 object-cover block"
                                                                          loading="lazy">
                                                                 @else
                                                                     <img src="{{ asset('image/default-profile.png') }}"

@@ -52,6 +52,9 @@
                     <h2 class="items-center mt-6 text-center text-3xl font-bold text-black">Welcome Back</h2>
                     <p class="text-TextGray text-center mb-6 ">Please enter your details.</p>
 
+                    @error('email')
+                    <p class="mb-1 font-medium text-TextGray text-red-500">Email</p>
+                    @enderror
                     <p class="mb-1 font-medium text-TextGray text-black">Email</p>
                     <!-- Email input -->
                     <div class="relative mb-6">
