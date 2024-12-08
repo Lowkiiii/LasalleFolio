@@ -18,9 +18,9 @@
                      alt="Full-Size Profile Image"
                      class="w-[16rem] h-auto rounded-lg mx-auto">
             </div>
-         
+
             <div>
-                
+
             </div>
         </div>
     </div>
@@ -35,7 +35,7 @@
                              class="w-full h-[20rem] object-cover rounded-xl  " />
                     </div>
                 </div>
-                <div class="z-20  mx-auto max-w-full -translate-y-24">
+                <div class="z-20 mx-auto max-w-full -translate-y-24">
                     <div class="justify-center items-center">
                         <div
                              class="w-36 h-36 bg-white border-4 border-[#F8F8F8] rounded-full justify-center mx-auto max-w-lg flex items-center relative">
@@ -61,34 +61,39 @@
                           enctype="multipart/form-data"
                           class="mt-4">
                         @csrf
-                        <div class="w-[24rem] gap-2 flex  mx-auto">
+                        <div class="w-[24rem] gap-2 flex mx-auto">
                             <input type="file"
                                    id="file_input"
                                    name="image"
                                    class="block bg-slate-200 rounded-r-lg w-full text-xs text-gray-500
-                            file:mr-4 file:py-1 file:px-4 file:rounded-l-lg  file:border-0
-                            file:text-sm file:font-semibold file:bg-[#006634] file:text-white
-                            hover:file:bg-[#004423]">
-
+                                   file:mr-4 file:py-1 file:px-4 file:rounded-l-lg file:border-0
+                                   file:text-sm file:font-semibold file:bg-[#006634] file:text-white
+                                   hover:file:bg-[#004423]">
                         </div>
 
-                        <div class="mx-auto text-center justify-center gap-y-4 ">
-                            <button type="submit"
-                                    class="mt-1 px-2 py-1 text-xs bg-[#006634] text-white rounded-md hover:bg-[#004423]">Update Image</button>
-                                    @if ($user->image)
-                                    <form action="{{ route('profile.image.delete') }}"
-                                          method="POST"
-                                          class="mt-2">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit"
-                                                class="mt-1 px-2 py-1 text-xs bg-red-600 text-white rounded-md hover:bg-red-700">Delete
-                                            Image</button>
-                                    </form>
-                                @endif
+                        <div class="flex flex-row text-center justify-center gap-2 mt-2">
+
+                            <div>
+                                <button type="submit"
+                                        class="px-2 py-1 text-xs bg-[#006634] text-white rounded-md hover:bg-[#004423]">
+                                    Update Image
+                                </button>
+                            </div>
 
                     </form>
-                 
+
+                    @if ($user->image)
+                        <form action="{{ route('profile.image.delete') }}"
+                              method="POST"
+                              class=" ">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"
+                                    class="px-2 py-1 text-xs bg-red-600 text-white rounded-md hover:bg-red-700">
+                                Delete Image
+                            </button>
+                        </form>
+                    @endif
                 </div>
 
                 <!-- Modal for Viewing Full-Size Image -->
@@ -286,7 +291,7 @@
                               class="inline-block">
                             @csrf
                             @method('DELETE') <!-- Use DELETE method for removing -->
-                            <button class="bg-red-500 text-white font-semibold uppercase text-xs px-2 py-1 rounded-md shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
+                            <button class="bg-red-600 text-white rounded-md hover:bg-red-700  font-semibold uppercase text-xs px-2 py-1  shadow hover:shadow-lg outline-none focus:outline-none ease-linear transition-all duration-150"
                                     type="submit">
                                 Remove
                             </button>

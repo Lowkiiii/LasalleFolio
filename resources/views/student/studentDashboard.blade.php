@@ -853,6 +853,7 @@
                                 <div class="max-y-md max-w-lg w-full flex">
                                     <div class=" w-full font-bold text-black">
                                         Test your knowldge!
+                                        <p class="text-sm font-light">Want to add your point? Try and play a quiz game!</p>
                                         <div class=" w-full mt-2">
                                             <a href="{{ route('quiz') }}">
                                                 <x-button id="submitBtn"

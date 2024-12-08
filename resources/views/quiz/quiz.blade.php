@@ -18,85 +18,98 @@
     @include('layouts.header')
     <section class="w-screen bg-[#F8F8F8]">
         <div class="animate-blink flex row min-h-full justify-center relative">
-            <div class="flex h-screen flex-col justify-center relative animate-blink">
-                <h1 class="text-2xl font-bold text-[#006634]">Interest-Based Quiz</h1>
-                <div class="text-center w-full justify-center mx-auto animate-blink">
-                    <form id="quiz-form"
-                          method="POST"
-                          action="{{ route('quiz.submit') }}">
-                        @csrf
-                        <div class="mx-auto animate-blink"
-                             id="quiz-container">
-                            <div class="text-lg font-bold text-[#006634] p-8">
-                                <ul id="question-list"
-                                    class="space-y-4">
-                                    @foreach ($questions as $index => $question)
-                                        <li class="question"
-                                            data-index="{{ $index }}"
-                                            style="display: {{ $index === 0 ? 'list-item' : 'none' }}">
-                                            <div class="mb-2 text-sm text-gray-500">Category:
-                                                {{ $question['category'] }}</div>
-                                            {{ $question['question'] }}
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <div class="container ">
-                                <div class="justify-center mx-auto text-center flex py-2 flex-row gap-2">
-                                    <p id="questionNumber">Question 1</p>
-                                    <p>of</p>
-                                    <p id="totalQuestions">{{ $total_questions }}</p>
-                                </div>
-                                <div class="px-4 py-8 flex flex-col gap-2 ">
-                                    @foreach ($questions as $index => $question)
-                                        <div class="options-group "
-                                             data-question="{{ $index }}"
-                                             style="display: {{ $index === 0 ? 'block' : 'none' }}">
-                                            @foreach ($question['options'] as $optionIndex => $option)
-                                                <div class="inline-flex items-center mb-2 ">
-                                                    <label class="relative flex items-center cursor-pointer">
-                                                        <input name="answers[{{ $index }}]"
-                                                               type="radio"
-                                                               class="answer-option peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all"
-                                                               value="{{ $optionIndex }}">
-                                                        <span
-                                                              class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
-                                                    </label>
-                                                    <label
-                                                           class="ml-2 text-slate-600 cursor-pointer text-sm">{{ $option }}</label>
+
+            <div class="flex h-[45rem] flex-col justify-center relative animate-blink">
+                <div>
+                    <div class="absolute left-[53rem] top-[13rem] ">
+                        <img src="/image/Assistance.png"
+                             alt=""
+                             class=" w-auto  h-[14rem]">
+                    </div>
+                    <div class="absolute top-[13rem]"><img src="/image/self.png" alt="" class="w-auto h-[13rem] "></div>
+                    <div>
+                       
+                        <h1 class="text-2xl text-center font-bold text-[#006634]">🧠 Interest-Based Quiz 🧠</h1>
+                        <div class="text-center w-full justify-center mx-auto ">
+                            <form id="quiz-form"
+                                  method="POST"
+                                  action="{{ route('quiz.submit') }}">
+                                @csrf
+                                <div class="mx-auto animate-blink"
+                                     id="quiz-container">
+                                    <div class="text-lg font-bold text-[#006634] p-8">
+                                        <ul id="question-list"
+                                            class="space-y-4">
+                                            @foreach ($questions as $index => $question)
+                                                <li class="question"
+                                                    data-index="{{ $index }}"
+                                                    style="display: {{ $index === 0 ? 'list-item' : 'none' }}">
+                                                    <div class="mb-2 text-sm text-gray-500">Category:
+                                                        {{ $question['category'] }}</div>
+                                                    {{ $question['question'] }}
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                    <div class="container ">
+                                        <div class="justify-center mx-auto text-center flex py-2 flex-row gap-2">
+                                            <p id="questionNumber">Question 1</p>
+                                            <p>of</p>
+                                            <p id="totalQuestions">{{ $total_questions }}</p>
+                                        </div>
+                                        <div class="px-4 py-8 flex flex-col gap-2 ">
+                                            @foreach ($questions as $index => $question)
+                                                <div class="options-group rounded-xl border bg-white border-[#D4D4D4] rounded-xl shadow-lg shadow-5 "
+                                                     data-question="{{ $index }}"
+                                                     style="display: {{ $index === 0 ? 'block' : 'none' }}">
+                                                    @foreach ($question['options'] as $optionIndex => $option)
+                                                        <div
+                                                             class="inline-flex items-center mb-2 w-[16rem] h-[6rem] p-4 ">
+                                                            <label class="relative flex items-center cursor-pointer">
+                                                                <input name="answers[{{ $index }}]"
+                                                                       type="radio"
+                                                                       class="answer-option peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-black checked:border-[#006634] transition-all"
+                                                                       value="{{ $optionIndex }}">
+                                                                <span
+                                                                      class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
+                                                            </label>
+                                                            <label
+                                                                   class="ml-2 font-semibold text-black cursor-pointer text-sm">{{ $option }}</label>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
                                             @endforeach
                                         </div>
-                                    @endforeach
+                                    </div>
+                                    <div class="flex text-center justify-center gap-4">
+                                        <button type="button"
+                                                id="prevButton"
+                                                class="px-4 py-2 bg-white border-2 shadow-lg text-gray-200 rounded-md "
+                                                style="">
+                                            Previous Question
+                                        </button>
+                                        <button type="button"
+                                                id="nextButton"
+                                                class="px-4 py-2 bg-[#006634] text-white rounded-md hover:bg-[#004423]">
+                                            Next Question
+                                        </button>
+                                        <button type="submit"
+                                                id="submitButton"
+                                                class="px-4 py-2 bg-[#006634] text-white rounded-md"
+                                                style="display: none;">
+                                            Submit Quiz
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex text-center justify-center gap-4">
-                                <button type="button"
-                                        id="prevButton"
-                                        class="px-4 py-2 bg-gray-200 rounded-md"
-                                        style="display: none;">
-                                    Previous Question
-                                </button>
-                                <button type="button"
-                                        id="nextButton"
-                                        class="px-4 py-2 bg-[#006634] text-white rounded-md">
-                                    Next Question
-                                </button>
-                                <button type="submit"
-                                        id="submitButton"
-                                        class="px-4 py-2 bg-[#006634] text-white rounded-md"
-                                        style="display: none;">
-                                    Submit Quiz
-                                </button>
-                            </div>
+                            </form>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    @include('layouts.footer')
+        {{-- @include('layouts.footer') --}}
+    </section>
 </body>
 
 </html>
@@ -120,8 +133,18 @@
             optionsGroups[currentQuestion].style.display = 'block';
             document.getElementById("questionNumber").innerText = `Question ${currentQuestion + 1}`;
 
-            prevButton.style.display = currentQuestion > 0 ? 'inline-block' : 'none';
+            prevButton.disable = currentQuestion > 0 ? true : false;
+
+            if (currentQuestion > 0) {
+                prevButton.classList.add("text-black")
+                prevButton.classList.remove("text-gray-200");
+            } else {
+                prevButton.classList.remove("text-black");
+                prevButton.classList.add("text-gray-200")
+            }
+
             if (currentQuestion === totalQuestions - 1) {
+
                 nextButton.style.display = 'none';
                 submitButton.style.display = 'inline-block';
             } else {
@@ -140,6 +163,7 @@
             if (currentQuestion > 0) {
                 updateQuestion(currentQuestion - 1);
             }
+
         });
 
         quizForm.addEventListener('submit', async function(e) {
