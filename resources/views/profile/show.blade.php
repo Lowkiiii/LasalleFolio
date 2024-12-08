@@ -277,7 +277,7 @@
                     <div class="mr-10 mt-10 w-full ">
                         <div class="flex flex-row">
                             <h1 class="font-bold text-xl text-black py-2">Pinned Project Showcase</h1>
-
+                           
                         </div>
                         <div class="flex  animate-blink animation-delay-100">
                             <div class="grid gap-4 grid-cols-3 flex-col w-full ">
@@ -306,7 +306,7 @@
                                                             ·
                                                             {{ $pinnedProject->project->project ?? 'Project Name Not Available' }}
                                                         </button>
-                                                        <form action="{{ route('pinnedProjects.remove', $pinnedProject->id) }}"
+                                                        {{-- <form action="{{ route('pinnedProjects.remove', $pinnedProject->id) }}"
                                                               method="POST"
                                                               class="inline-block">
                                                             @csrf
@@ -323,7 +323,7 @@
                                                                     </path>
                                                                 </svg>
                                                             </button>
-                                                        </form>
+                                                        </form> --}}
                                                     </div>
                                                     <div class="py-3 text-sm font-medium text-black items-start w-11/12">
                                                         {{ $pinnedProject->project->description ?? 'No description available' }}
@@ -338,28 +338,21 @@
                                     <div
                                          class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#D4D4D4] rounded-lg shadow-lg">
                                         <div class="my-auto p-4 mx-auto">
-                                            {{-- <button class="p-4 fill-current text-[#909090] hover:text-[#006634]"
-                                                    onclick="toggleModal('modal-idPinnedProjects')">
-                                                <!DOCTYPE svg
-                                                          PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
-                                                <svg enable-background="new 0 0 512 512"
-                                                     height="20px"
-                                                     id="Layer_1"
-                                                     version="1.1"
-                                                     viewBox="0 0 512 512"
-                                                     width="20px"
-                                                     xml:space="preserve"
-                                                     xmlns="http://www.w3.org/2000/svg"
-                                                     xmlns:xlink="http://www.w3.org/1999/xlink">
-                                                    <path
-                                                          d="M256,512C114.625,512,0,397.391,0,256C0,114.609,114.625,0,256,0c141.391,0,256,114.609,256,256  C512,397.391,397.391,512,256,512z M256,64C149.969,64,64,149.969,64,256s85.969,192,192,192c106.047,0,192-85.969,192-192  S362.047,64,256,64z M288,384h-64v-96h-96v-64h96v-96h64v96h96v64h-96V384z" />
-                                                </svg>
-                                            </button> --}}
+                                        @if (count($pinnedProjects) == 0)
+                                        <div>No Projects</div>
+                                        @else
+                                 
+                                        @endif
                                         </div>
                                     </div>
                                 @endif
 
+                            
+
+                           
+
                             </div>
+                         
 
                             {{-- Add Button for Projects --}}
 
@@ -411,9 +404,10 @@
                                             @forelse ($userProjects as $projects)
                                                 <div class="flex flex-col">
                                                     <div class="flex items-center pb-1">
-                                                        <div class="w-12 h-12 bg-gray-300">
-                                                            <!-- LOGO HERE -->
-                                                        </div>
+                                                        <div
+                                                        class="flex items-center justify-center rounded-lg w-12 h-12 bg-gray-200">
+                                                       <x-icon icon="notebook" />
+                                                   </div>
 
                                                         <div class="ml-3 py-2 text-xs font-medium text-black w-5/6">
                                                             <div class="font-bold text-base">
@@ -455,9 +449,11 @@
                                         @forelse ($userSkills as $skills)
                                             <div class="flex flex-col">
                                                 <div class="flex items-center pb-1  ">
-                                                    <div class="w-12 h-12 bg-gray-300">
-                                                        <!-- LOGO HERE -->
-                                                    </div>
+                                                      <div
+                                                     class="flex mr-3 items-center justify-center rounded-lg w-12 h-12 bg-gray-200">
+                                                    <x-icon icon="wrench" />
+
+                                                </div>
 
                                                     <div class="ml-3 py-2 text-xs font-medium text-black w-5/6">
                                                         <div class="font-bold text-base">
@@ -487,8 +483,9 @@
                                     @forelse ($userAcademics as $academics)
                                         <div class="flex flex-col mt-2">
                                             <div class="flex items-center pb-1">
-                                                <div class="w-12 h-12 bg-gray-300">
-                                                    <!-- LOGO HERE -->
+                                                <div class="flex items-center justify-center rounded-lg w-12 h-12 bg-gray-200">
+
+                                                    <x-icon icon="acads" />
                                                 </div>
 
                                                 <div class="ml-3 py-2 text-xs font-medium text-black w-5/6">
@@ -535,8 +532,9 @@
                                     @forelse ($userHonorsAndAwards as $honorsandawards)
                                         <div class="flex flex-col mt-2">
                                             <div class="flex items-center pb-1">
-                                                <div class="w-12 h-12 bg-gray-300">
-                                                    <!-- LOGO HERE -->
+                                                <div class="flex items-center justify-center rounded-lg w-12 h-12 bg-gray-200">
+
+                                                    <x-icon icon="certs" />
                                                 </div>
 
                                                 <div class="ml-3 py-2 text-xs font-medium text-black w-5/6">
