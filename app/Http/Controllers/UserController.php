@@ -78,6 +78,8 @@ class UserController extends Controller
         $userHonorsAndAwards = $user->userHonorsAndAwards;
         $userPosts = $user->userPosts;
         $userInterests = $user->interests;
+        $userPoints = $this->calculatePointsForUser($user);
+        $badge = $this->getUserBadge($userPoints);
 
         // Retrieve userPosts ordered by the most recent `created_at` timestamp
         $userPosts = UserPosts::where('user_id', $user->id)
@@ -115,6 +117,9 @@ class UserController extends Controller
 
         // Add reaction count and user reaction status to each post
         foreach ($userPosts as $post) {
+            $post->user->points = $this->calculatePointsForUser($post->user);
+            $post->user->badge = $this->getUserBadge($post->user->points);
+
             $post->reaction_count = Reaction::where('post_id', $post->id)->count();
             $post->user_reacted = Reaction::where('post_id', $post->id)
                 ->where('user_id', $userId)
@@ -123,8 +128,12 @@ class UserController extends Controller
             // Get comments for each post
             $post->comments = Comment::where('post_id', $post->id)
                 ->with('user')
-                ->get();
-
+                ->get()
+                ->map(function ($comment) {
+                    $comment->user->points = $this->calculatePointsForUser($comment->user);
+                    $comment->user->badge = $this->getUserBadge($comment->user->points);
+                    return $comment;
+                });
         }
 
         // Calculate points
@@ -140,19 +149,24 @@ class UserController extends Controller
         $friendRequestController = new FriendRequestController();
         $connectedStudentsCount = $friendRequestController->getConnectedStudentsCount();
 
-        return view('student.studentProf', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'projectCount', 'points', 'userInterests', 'pinnedProjects', 'bio', 'totalPoints', 'badge'));
+        return view('student.studentProf', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'projectCount', 'points', 'userInterests', 'pinnedProjects', 'bio', 'totalPoints', 'badge','userPoints'));
     }
-
+    //asd
     public function studentOtherProfile(User $user)  // Add User parameter
     {
         $authUser = Auth::user();
         $userId = Auth::id();
+        $userPoints = $this->calculatePointsForUser($user);
+        $badge = $this->getUserBadge($userPoints);
         
         // Get user's posts with reactions
         $userPosts = $user->userPosts;
         
         // Add reaction count and user reaction status to each post
         foreach ($userPosts as $post) {
+            $post->user->points = $this->calculatePointsForUser($post->user);
+            $post->user->badge = $this->getUserBadge($post->user->points);
+
             $post->reaction_count = Reaction::where('post_id', $post->id)->count();
             $post->user_reacted = Reaction::where('post_id', $post->id)
                 ->where('user_id', $userId)
@@ -161,7 +175,12 @@ class UserController extends Controller
             // Get comments for each post
             $post->comments = Comment::where('post_id', $post->id)
                 ->with('user')
-                ->get();
+                ->get()
+                ->map(function ($comment) {
+                    $comment->user->points = $this->calculatePointsForUser($comment->user);
+                    $comment->user->badge = $this->getUserBadge($comment->user->points);
+                    return $comment;
+                });
         }
 
         // Get user data
@@ -189,6 +208,23 @@ class UserController extends Controller
         $totalPoints = $this->calculatePoints();
         $badge = $this->getUserBadge($totalPoints);
 
+        foreach ($userPosts as $post) {
+            $post->reaction_count = Reaction::where('post_id', $post->id)->count();
+            $post->user_reacted = Reaction::where('post_id', $post->id)
+                ->where('user_id', $userId)
+                ->exists();
+        
+            // Get comments and calculate badges for comment users
+            $post->comments = Comment::where('post_id', $post->id)
+                ->with('user')
+                ->get()
+                ->map(function ($comment) {
+                    $comment->user->points = $this->calculatePointsForUser($comment->user);
+                    $comment->user->badge = $this->getUserBadge($comment->user->points);
+                    return $comment;
+                });
+        }
+
         return view('profile.show', compact(
             'user',
             'userPosts',
@@ -203,7 +239,8 @@ class UserController extends Controller
             'connectedStudentsCount',
             'projectCount',
             'totalPoints',
-            'badge'
+            'badge',
+            'userPoints'
         ));
     }
 
@@ -268,6 +305,7 @@ class UserController extends Controller
         return $projectCount;
     }
 
+    //asd
     public function studentDashboard(Request $request)
     {
         $query = $request->input('query');
@@ -283,11 +321,14 @@ class UserController extends Controller
             return $user;
         });
 
+        
         // Get the top 3 users based on points
         $topUsers = $users->sortByDesc('points')->take(3);
 
         $userId = Auth::id();
         $user = Auth::user();
+        $userPoints = $this->calculatePointsForUser($user);
+        $badge = $this->getUserBadge($userPoints);
         $userProjects = $user->userProjects;
         $userSkills = $user->userSkills;
         $userAcademics = $user->userAcademics;
@@ -341,6 +382,9 @@ class UserController extends Controller
 
         // Add reaction count, user reaction status, and comments to each post
         foreach ($userPosts as $post) {
+            $post->user->points = $this->calculatePointsForUser($post->user);
+            $post->user->badge = $this->getUserBadge($post->user->points);
+
             $post->reaction_count = Reaction::where('post_id', $post->id)->count();
             $post->user_reacted = Reaction::where('post_id', $post->id)
                 ->where('user_id', $userId)
@@ -349,7 +393,12 @@ class UserController extends Controller
             // Get comments for each post
             $post->comments = Comment::where('post_id', $post->id)
                 ->with('user')
-                ->get();
+                ->get()
+                ->map(function ($comment) {
+                    $comment->user->points = $this->calculatePointsForUser($comment->user);
+                    $comment->user->badge = $this->getUserBadge($comment->user->points);
+                    return $comment;
+                });
         }
 
         $friendRequestController = new FriendRequestController();
@@ -375,7 +424,7 @@ class UserController extends Controller
             ->take(5) // Limit to 5 users
             ->get();
 
-        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers', 'userInterests', 'studentInterest', 'badge',  'totalPoints'));
+        return view('student.studentDashboard', compact('connectedStudentsCount', 'authUser', 'user', 'userProjects', 'userSkills', 'userAcademics', 'userHonorsAndAwards', 'userPosts', 'points', 'projectCount', 'topUsers', 'userInterests', 'studentInterest', 'badge',  'totalPoints', 'userPoints'));
     }
 
     public function calculatePoints()
@@ -617,12 +666,6 @@ class UserController extends Controller
  
 
     }
-
-  
-
-  
-
-    
 
 
     public function adminusers()
