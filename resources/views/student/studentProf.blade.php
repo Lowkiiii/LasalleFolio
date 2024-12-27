@@ -139,25 +139,29 @@
                         <div class="items-start text-start flex flex-row">
                             @props(['badge'])
                             <svg xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                fill="{{ $badge == 'Gold' ? '#FFD700' : ($badge == 'Silver' ? '#9a9a9a' : ($badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
-                                height="22"
-                                width="22"
-                                version="1.1"
-                                id="Capa_1"
-                                viewBox="0 0 296.084 296.084"
-                                xml:space="preserve"
-                                {{ $attributes->merge(['class' => 'shadow-xl']) }}>
+                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                 fill="{{ $badge == 'Gold' ? '#FFD700' : ($badge == 'Silver' ? '#9a9a9a' : ($badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
+                                 height="22"
+                                 width="22"
+                                 version="1.1"
+                                 id="Capa_1"
+                                 viewBox="0 0 296.084 296.084"
+                                 xml:space="preserve"
+                                 {{ $attributes->merge(['class' => 'shadow-xl']) }}>
                                 <g>
-                                    <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689 C168.709,77.51,180.064,80.221,191.27,84.676z" />
-                                    <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428 c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
-                                    <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334 c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627 c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
-                                    <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627 c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
+                                    <path
+                                          d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689 C168.709,77.51,180.064,80.221,191.27,84.676z" />
+                                    <path
+                                          d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428 c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
+                                    <path
+                                          d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334 c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627 c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
+                                    <path
+                                          d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627 c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
                                 </g>
-                            </svg> 
+                            </svg>
                         </div>
                     </div>
-                    
+
                     <div class="ml-1">
                         <div class="items-start text-start flex fle-row"
                              data-twe-toggle="tooltip"
@@ -187,11 +191,55 @@
                 </p>
                 <br>
 
-                {{-- PA EDIT PAU--}}
-                <p class="text-xs mx-auto max-y-md max-w-lg flex items-center justify-center">
+                {{-- PA EDIT PAU --}}
+                {{-- <p class="text-xs mx-auto max-y-md max-w-lg flex items-center justify-center">
                     Interests:
                     {{ Auth::user()->interests->pluck('interest_name')->join(', ') }}
+                </p> --}}
+                <div class="flex items-center justify-center mx-auto p-2">
+                    <div class="text-xs text-center mx-auto justify-center font-semibold text-black opacity-80">
+                        @php
+                            $interests = Auth::user()
+                                ->interests->pluck('interest_name')
+                                ->map(function ($interest) {
+                                    return str_replace('_', ' ', $interest);
+                                });
+                        @endphp
+                      
+                        <p class="text-base font-bold text-black">Interests: 
+                            <button class="opacity-70"
+                            onclick="toggleModal('modal-idInterests')">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                             width="13"
+                             height="13"
+                             viewBox="0 0 24 24"
+                             class="fill-current text-[#909090] hover:text-[#006634]">
+                            <path
+                                  d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
+                        </svg>
+                    </button>
                 </p>
+                      
+                        <div>
+                            <span class=""
+                                  id="limitedInterests">
+                                {{ $interests->take(3)->join(', ') }}
+
+                                <a href="javascript:void(0);"
+                                   id="toggleInterestMore"
+                                   class="text-[#006634] underline">See More</a>
+
+                            </span>
+                            <span class="hidden items-center justify-center  "
+                                  id="fullInterests"">
+                                {{ $interests->join(', ') }}
+                                <a class="text-[#006634] underline"
+                                   href="javascript:void(0);"
+                                   id="toggleInterestLess">See Less</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="text-sm font-d mx-auto max-y-md max-w-lg flex items-center justify-center mt-2 mb-2"
                      id="btn-ConnectContainer">
@@ -201,6 +249,22 @@
                             </button> --}}
 
                         <script>
+                            document.getElementById("toggleInterestMore")?.addEventListener("click", function() {
+                                const limitedInterests = document.getElementById("limitedInterests");
+                                const fullInterests = document.getElementById("fullInterests");
+
+                                limitedInterests.classList.add("hidden");
+                                fullInterests.classList.remove("hidden");
+                            });
+
+                            document.getElementById("toggleInterestLess")?.addEventListener("click", function() {
+                                const limitedInterests = document.getElementById("limitedInterests");
+                                const fullInterests = document.getElementById("fullInterests");
+
+                                limitedInterests.classList.remove("hidden");
+                                fullInterests.classList.add("hidden");
+                            });
+
                             const ConnectBtn = document.querySelector('#btn-ConnectContainer button');
 
                             document.addEventListener("DOMContentLoaded", function() {
@@ -312,7 +376,7 @@
                         <div class="grid gap-4 grid-cols-3 flex-col w-full ">
                             @foreach ($pinnedProjects as $pinnedProject)
                                 <div
-                                     class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#D4D4D4] rounded-lg shadow-lg">
+                                     class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.5rem] px-2 border border-[#D4D4D4] rounded-lg shadow-lg">
                                     <div class="absolute right-0 top-0 z-20">
 
                                         {{-- <button class="p-4">
@@ -1135,22 +1199,26 @@
                                 <div class="flex items-center">
                                     <span>{{ $post->user->name }}</span>
                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                                        fill="{{ $post->user->badge == 'Gold' ? '#FFD700' : ($post->user->badge == 'Silver' ? '#9a9a9a' : ($post->user->badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
-                                        height="22"
-                                        width="22"
-                                        version="1.1"
-                                        id="Capa_1"
-                                        viewBox="0 0 296.084 296.084"
-                                        xml:space="preserve"
-                                        {{ $attributes->merge(['class' => 'shadow-xl']) }}>
+                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         fill="{{ $post->user->badge == 'Gold' ? '#FFD700' : ($post->user->badge == 'Silver' ? '#9a9a9a' : ($post->user->badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
+                                         height="22"
+                                         width="22"
+                                         version="1.1"
+                                         id="Capa_1"
+                                         viewBox="0 0 296.084 296.084"
+                                         xml:space="preserve"
+                                         {{ $attributes->merge(['class' => 'shadow-xl']) }}>
                                         <g>
-                                            <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689 C168.709,77.51,180.064,80.221,191.27,84.676z" />
-                                            <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428 c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
-                                            <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334 c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627 c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
-                                            <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627 c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
+                                            <path
+                                                  d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689 C168.709,77.51,180.064,80.221,191.27,84.676z" />
+                                            <path
+                                                  d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428 c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
+                                            <path
+                                                  d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334 c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627 c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
+                                            <path
+                                                  d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627 c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
                                         </g>
-                                    </svg>  
+                                    </svg>
                                 </div>
                                 <div class="text-xs font-semibold opacity-70">
                                     {{ $post->created_at->diffForHumans() }}
@@ -1230,22 +1298,26 @@
                                                 {{ $comment->user->name }}
                                                 <!-- Display the name of the comment's user -->
                                                 <svg xmlns="http://www.w3.org/2000/svg"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                    fill="{{ $comment->user->badge == 'Gold' ? '#FFD700' : ($comment->user->badge == 'Silver' ? '#9a9a9a' : ($comment->user->badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
-                                                    height="22"
-                                                    width="22"
-                                                    version="1.1"
-                                                    id="Capa_1"
-                                                    viewBox="0 0 296.084 296.084"
-                                                    xml:space="preserve"
-                                                    {{ $attributes->merge(['class' => 'shadow-xl']) }}>
+                                                     xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                     fill="{{ $comment->user->badge == 'Gold' ? '#FFD700' : ($comment->user->badge == 'Silver' ? '#9a9a9a' : ($comment->user->badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
+                                                     height="22"
+                                                     width="22"
+                                                     version="1.1"
+                                                     id="Capa_1"
+                                                     viewBox="0 0 296.084 296.084"
+                                                     xml:space="preserve"
+                                                     {{ $attributes->merge(['class' => 'shadow-xl']) }}>
                                                     <g>
-                                                        <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689 C168.709,77.51,180.064,80.221,191.27,84.676z" />
-                                                        <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428 c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
-                                                        <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334 c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627 c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
-                                                        <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627 c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
+                                                        <path
+                                                              d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689 C168.709,77.51,180.064,80.221,191.27,84.676z" />
+                                                        <path
+                                                              d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428 c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
+                                                        <path
+                                                              d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334 c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627 c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
+                                                        <path
+                                                              d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627 c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
                                                     </g>
-                                                </svg>  
+                                                </svg>
                                             </div>
                                             <div class="text-sm font-medium text-black">{{ $comment->content }}
                                             </div> <!-- Display comment content -->

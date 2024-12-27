@@ -31,6 +31,7 @@
     @include('modal/modalEditPanel')
     @include('modal/modalPostEditText')
     @include('modal/modalAddShowcase')
+    @include('modal/modalidInterests')
     @include('layouts.header')
 
     @yield('content')

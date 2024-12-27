@@ -756,10 +756,17 @@
                                                     </div>
                                                 </div>
                                                 <div class="text-xs font-semibold text-black opacity-80">
+                                                    @php
+                                                    $studentInterests = $student->interests->pluck('interest_name')->map(function ($interest) {
+                                                        return str_replace('_', ' ', $interest);
+                                                    });
+                                                @endphp
+                                                
+                                                    
                                                     Interests:
                                                     <span id="limitedInterests-{{$student->id}}">
-                                                        {{ $student->interests->pluck('interest_name')->take(3)->join(', ') }}
-                                                        @if ($student->interests->count() > 3)
+                                                        {{ $studentInterests->take(3)->join(', ') }}
+                                                        @if ($studentInterests->count() > 3)
                                                             <a href="javascript:void(0);"
                                                                onclick="toggleInterests({{$student->id}})"
                                                                class="text-[#006634] underline">See More</a>
@@ -767,7 +774,7 @@
                                                                 
                                                     </span>
                                                     <span class="hidden" id="fullInterests-{{$student->id}}"">
-                                                        {{ $student->interests->pluck('interest_name')->join(', ') }}
+                                                        {{ $studentInterests->join(', ') }}
                                                         <a class="text-[#006634] underline"
                                                            href="javascript:void(0);"
                                                            onclick="toggleInterests({{$student->id}})">See Less</a>
