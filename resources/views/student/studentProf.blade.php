@@ -206,9 +206,11 @@
                                 });
                         @endphp
                 
-                        <p class="text-base font-bold text-black">Interests: 
+             
+                       <div class="flex  text-center mx-auto justify-center">
+                        <p class="flex  flex-row text-base font-bold text-black">Interests: 
                             <!-- Update the button to navigate to the reselectInterests page -->
-                            <a href="{{ route('reselectInterests') }}" class="opacity-70">
+                            <a href="{{ route('reselectInterests') }}" class="opacity-70 px-1 my-auto">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      width="13"
                                      height="13"
@@ -219,6 +221,7 @@
                                 </svg>
                             </a>
                         </p>
+                       </div>
                 
                         <div>
                             <span class="" id="limitedInterests">
