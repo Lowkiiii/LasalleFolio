@@ -14,8 +14,13 @@ use Illuminate\Support\Facades\Redirect;
 class InterestController extends Controller
 {
     public function showInterestsForm()
-    {
-        return view('student.selectInterests');
+    {   
+        $interests = auth()->user()->interests->pluck('interest_name')->toArray();
+        if (empty($interests)) {
+            // Log a message or use a fallback value
+            $interests = ['No interests found.'];
+        }
+        return view('student.selectInterests', compact('interests'));
     }
     public function storeInterests(Request $request)
     {
@@ -80,6 +85,20 @@ class InterestController extends Controller
 
         return redirect()->route('student.profile');
     }
+    public function showInterestsForReSelection()
+    {
+        // Get the logged-in user
+        $user = Auth::user();
+
+        // Retrieve current interests
+        $currentInterests = $user->interests->pluck('interest_name')->toArray();
+
+        $allInterests = ['Programming', 'Game Development', 'AI', '3D Animation', 'UI/UX', 'Networking', 'Data Science']; // Add all available interests here
+
+        // Pass current interests to the view for pre-selecting
+        return view('student.selectInterests', compact('currentInterests', 'allInterests'));
+    }
+
 
     // Method to find the most similar category based on Levenshtein distance
     private function findMostSimilarCategory($enteredCategory, $existingCategories)

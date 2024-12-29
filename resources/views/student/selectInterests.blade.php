@@ -22,7 +22,12 @@
                     <div class="flex flex-col justify-center items-center">
                         <div class="gap-2">
                             <div class="mx-auto flex">
-                                <div class="flex font-bold mx-auto items-center text-3xl text-black">Select at least 3 interests
+                                <div class="flex font-bold mx-auto items-center text-3xl text-black">
+                                    @if(!empty($currentInterests) && count($currentInterests) > 0)
+                                        Edit Interests
+                                    @else
+                                        Select at least 3 interests
+                                    @endif
                                 </div>
                             </div>
                             <form action="{{ route('interests.store') }}" method="POST">
@@ -244,6 +249,8 @@
                                     </div>
                                 </div>
                                 </div>
+                                <br>
+                                
                                 <input type="hidden" name="custom_interests" id="customInterests">
 
                                 <script>
@@ -376,7 +383,32 @@
                                 <button type="submit" class="bg-[#006634] text-white font-semibold uppercase text-xs w-1/2 px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150">
                                     Save
                                 </button>
+                                <button 
+                                    type="button" 
+                                    onclick="history.back()" 
+                                    class="bg-gray-500 text-white font-semibold uppercase text-xs w-1/2 px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
+                                    @if(empty($currentInterests)) disabled @endif
+                                >
+                                    Back
+                                </button>
+
                             </div>
+
+                            {{-- pau pa edit --}}
+                            <ul>
+                                <ul>
+                                    @if(isset($currentInterests) && count($currentInterests) > 0)
+                                        <p>Your current interests:</p>
+                                        @foreach($currentInterests as $interest)
+                                            <li>{{ $interest }}</li>
+                                        @endforeach
+                                    @else
+                                        <!-- If no interests, nothing will be displayed -->
+                                    @endif
+                                </ul>
+                                
+                            </ul>
+                            
                         </form>
                             
                         </div>

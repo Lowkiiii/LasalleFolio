@@ -27,6 +27,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class UserController extends Controller
 {
+    
     public function index()
     {
         $users = User::all();

@@ -141,6 +141,8 @@ Route::middleware('auth')->group(function () {
     //Interest routes
     Route::get('/interests', [InterestController::class, 'showInterestsForm'])->name('interests.form');
     Route::post('/interests', [InterestController::class, 'storeInterests'])->name('interests.store');
+    // Route::get('/select-interests', [InterestController::class, 'show'])->name('selectInterests');
+    Route::get('/reselect-interests', [InterestController::class, 'showInterestsForReSelection'])->name('reselectInterests');
 
     
 
