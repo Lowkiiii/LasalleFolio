@@ -90,13 +90,16 @@ class InterestController extends Controller
         // Get the logged-in user
         $user = Auth::user();
 
+        // Define the list of predefined interests
+        $predefinedInterests = ['Programming', '3d_animation', '3d_modeling', 'Artifical_intelligence', 'Gamedevelopment', 'Ui/ux', 'Data_analytics', 'Datascience', 'Networking', 'Database','Web_design','Multimedia','Graphic_design','Software_development','Cloud_computing','Web_development'];
+
         // Retrieve current interests
         $currentInterests = $user->interests->pluck('interest_name')->toArray();
 
         $allInterests = ['Programming', 'Game Development', 'AI', '3D Animation', 'UI/UX', 'Networking', 'Data Science']; // Add all available interests here
 
         // Pass current interests to the view for pre-selecting
-        return view('student.selectInterests', compact('currentInterests', 'allInterests'));
+        return view('student.selectInterests', compact('currentInterests', 'allInterests', 'predefinedInterests'));
     }
 
 
