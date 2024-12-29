@@ -6,12 +6,12 @@
 @section('content')
     {{-- @include('modal/Interest')  --}}
 
-    <section class="h-screen bg-[#F8F8F8]">
+    <section class="h-full bg-[#F8F8F8]">
         <div class="flex row min-h-full justify-center relative">
             <div class=" mt-24 flex mx-auto max-w-[90rem]">
 
-                <div class="flex flex-row ">
-                    <div class="flex sticky top-20 flex-col w-2/5 ml-10 mr-10 animate-blink">
+                <div class="flex flex-row h-full">
+                    <div class="flex h-full sticky top-20 flex-col w-2/5 ml-10 mr-10 animate-blink">
                         <div class=" sticky top-20">
                             <div
                                  class="w-full relative flex flex-wrap items-start space-x-3 p-6 border border-[#D4D4D4] rounded-xl shadow-lg ">
@@ -19,7 +19,8 @@
                                     <div class="justify-center mx-auto max-y-md max-w-lg w-auto ">
                                         <div class=" container">
                                             <img src='/image/profileBG.png'
-                                                 class="w-full h-[8rem] object-cover rounded-xl " loading="lazy"/>
+                                                 class="w-full h-[8rem] object-cover rounded-xl "
+                                                 loading="lazy" />
                                         </div>
 
                                         <div
@@ -28,17 +29,19 @@
                                                    class="cursor-pointer shadow-md rounded-full">
 
                                                 @if ($user->image)
-                                                    <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $user->image) }}"
+                                                    <img src="/api/placeholder/48/48"
+                                                         data-src="{{ asset('storage/' . $user->image) }}"
                                                          alt="Profile"
                                                          class="rounded-full object-cover w-20 h-20  lazyload">
                                                 @else
                                                     <div class="bg-[#e1e1e1] rounded-full">
-                                                        <img src="/api/placeholder/48/48" data-src="{{ asset('image/default-profile.png') }}"
+                                                        <img src="/api/placeholder/48/48"
+                                                             data-src="{{ asset('image/default-profile.png') }}"
                                                              alt="Profile"
-                                                             class="rounded-full object-cover w-20 h-20  lazyload" loading="lazy">
+                                                             class="rounded-full object-cover w-20 h-20  lazyload"
+                                                             loading="lazy">
                                                     </div>
                                                 @endif
-                                                
 
                                             </label>
                                             <div class="w-full mt-2">
@@ -48,25 +51,29 @@
                                                     {{ Auth::user()->name }}
 
                                                     <div class="ml-1">
-                                                        <div class="items-start text-start">                                         
+                                                        <div class="items-start text-start">
                                                             @props(['badge'])
                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                fill="{{ $badge == 'Gold' ? '#FFD700' : ($badge == 'Silver' ? '#9a9a9a' : ($badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
-                                                                height="22"
-                                                                width="22"
-                                                                version="1.1"
-                                                                id="Capa_1"
-                                                                viewBox="0 0 296.084 296.084"
-                                                                xml:space="preserve"
-                                                                {{ $attributes->merge(['class' => 'shadow-xl']) }}>
+                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 fill="{{ $badge == 'Gold' ? '#FFD700' : ($badge == 'Silver' ? '#9a9a9a' : ($badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
+                                                                 height="22"
+                                                                 width="22"
+                                                                 version="1.1"
+                                                                 id="Capa_1"
+                                                                 viewBox="0 0 296.084 296.084"
+                                                                 xml:space="preserve"
+                                                                 {{ $attributes->merge(['class' => 'shadow-xl']) }}>
                                                                 <g>
-                                                                    <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689 C168.709,77.51,180.064,80.221,191.27,84.676z" />
-                                                                    <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428 c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
-                                                                    <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334 c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627 c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
-                                                                    <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627 c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
+                                                                    <path
+                                                                          d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689 C168.709,77.51,180.064,80.221,191.27,84.676z" />
+                                                                    <path
+                                                                          d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428 c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
+                                                                    <path
+                                                                          d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334 c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627 c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
+                                                                    <path
+                                                                          d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627 c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
                                                                 </g>
-                                                            </svg>  
+                                                            </svg>
                                                         </div>
                                                     </div>
 
@@ -132,30 +139,29 @@
                                         <div class="flex flex-col w-full  items-start text-[#006634] font-bold text-xl  ">
 
                                             @foreach ($topUsers as $index => $topUser)
-                                            
                                                 <div class="flex flex-row w-full">
 
                                                     <div class=" items-center text-start  pt-6 w-full flex flex-row">
                                                         <div class="items-start text-start flex flex-row">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                                fill="{{ $topUser->badge == 'Gold' ? '#FFD700' : ($topUser->badge == 'Silver' ? '#9a9a9a' : ($topUser->badge == 'Bronze' ? '#964B00' : '#D3D3D3')) }}"
-                                                                height="25"
-                                                                width="25"
-                                                                version="1.1"
-                                                                id="Capa_1"
-                                                                viewBox="0 0 296.084 296.084"
-                                                                xml:space="preserve"
-                                                                class="shadow-xl">
+                                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                                 fill="{{ $topUser->badge == 'Gold' ? '#FFD700' : ($topUser->badge == 'Silver' ? '#9a9a9a' : ($topUser->badge == 'Bronze' ? '#964B00' : '#D3D3D3')) }}"
+                                                                 height="25"
+                                                                 width="25"
+                                                                 version="1.1"
+                                                                 id="Capa_1"
+                                                                 viewBox="0 0 296.084 296.084"
+                                                                 xml:space="preserve"
+                                                                 class="shadow-xl">
                                                                 <g>
                                                                     <path
-                                                                        d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z" />
+                                                                          d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689   C168.709,77.51,180.064,80.221,191.27,84.676z" />
                                                                     <path
-                                                                        d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
+                                                                          d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428   c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
                                                                     <path
-                                                                        d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
+                                                                          d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334   c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627   c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
                                                                     <path
-                                                                        d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
+                                                                          d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627   c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
                                                                 </g>
                                                             </svg>
                                                         </div>
@@ -166,7 +172,8 @@
                                                                        class="cursor-pointer">
                                                                     @if ($topUser->image)
                                                                         <div class="">
-                                                                            <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $topUser->image) }}"
+                                                                            <img src="/api/placeholder/48/48"
+                                                                                 data-src="{{ asset('storage/' . $topUser->image) }}"
                                                                                  alt="Profile Image"
                                                                                  class="w-10 h-10 rounded-full object-cover lazyload">
                                                                         </div>
@@ -174,7 +181,8 @@
                                                                         <div class="bg-[#e1e1e1] rounded-full">
                                                                             <img src="{{ asset('image/default-profile.png') }}"
                                                                                  alt="Profile"
-                                                                                 class="w-full h-full rounded-full object-cover" loading="lazy">
+                                                                                 class="w-full h-full rounded-full object-cover"
+                                                                                 loading="lazy">
                                                                         </div>
                                                                     @endif
 
@@ -219,6 +227,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="z-20 flex flex-col animate-blink animation-delay-100 w-6/12">
 
                         <div class="w-full relative items-start p-6 border border-[#D4D4D4] rounded-xl shadow-lg">
@@ -231,7 +240,8 @@
                                             @if ($user->image)
                                                 <img src="{{ asset('storage/' . $user->image) }}"
                                                      alt="Profile"
-                                                     class="w-full h-full rounded-full object-cover " loading="lazy">
+                                                     class="w-full h-full rounded-full object-cover "
+                                                     loading="lazy">
                                             @else
                                                 <div class="bg-[#e1e1e1] rounded-full">
                                                     <img src="{{ asset('image/default-profile.png') }}"
@@ -402,7 +412,8 @@
                                         {{-- line385 --}}
                                         @if ($post->user->image)
                                             <div class="mt-2">
-                                                <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $post->user->image) }}"
+                                                <img src="/api/placeholder/48/48"
+                                                     data-src="{{ asset('storage/' . $post->user->image) }}"
                                                      alt="{{ $post->user->name }}'s Profile Image"
                                                      class="w-full h-full rounded-full object-cover lazyload">
                                             </div>
@@ -410,7 +421,8 @@
                                             <div class="bg-[#e1e1e1] rounded-full">
                                                 <img src="{{ asset('image/default-profile.png') }}"
                                                      alt="Profile"
-                                                     class="w-full h-full rounded-full object-cover" loading="lazy">
+                                                     class="w-full h-full rounded-full object-cover"
+                                                     loading="lazy">
                                             </div>
                                         @endif
                                     </div>
@@ -419,22 +431,26 @@
                                         <div class="flex items-center ">
                                             <span>{{ $post->user->name }}</span>
                                             <svg xmlns="http://www.w3.org/2000/svg"
-                                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                fill="{{ $post->user->badge == 'Gold' ? '#FFD700' : ($post->user->badge == 'Silver' ? '#9a9a9a' : ($post->user->badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
-                                                height="22"
-                                                width="22"
-                                                version="1.1"
-                                                id="Capa_1"
-                                                viewBox="0 0 296.084 296.084"
-                                                xml:space="preserve"
-                                                {{ $attributes->merge(['class' => 'shadow-xl']) }}>
+                                                 xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                 fill="{{ $post->user->badge == 'Gold' ? '#FFD700' : ($post->user->badge == 'Silver' ? '#9a9a9a' : ($post->user->badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
+                                                 height="22"
+                                                 width="22"
+                                                 version="1.1"
+                                                 id="Capa_1"
+                                                 viewBox="0 0 296.084 296.084"
+                                                 xml:space="preserve"
+                                                 {{ $attributes->merge(['class' => 'shadow-xl']) }}>
                                                 <g>
-                                                    <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689 C168.709,77.51,180.064,80.221,191.27,84.676z" />
-                                                    <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428 c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
-                                                    <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334 c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627 c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
-                                                    <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627 c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
+                                                    <path
+                                                          d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689 C168.709,77.51,180.064,80.221,191.27,84.676z" />
+                                                    <path
+                                                          d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428 c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
+                                                    <path
+                                                          d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334 c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627 c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
+                                                    <path
+                                                          d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627 c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
                                                 </g>
-                                            </svg>  
+                                            </svg>
                                         </div>
                                         <div class="text-xs font-semibold opacity-70">
                                             {{ $post->created_at->diffForHumans() }}
@@ -446,7 +462,8 @@
                                 {{-- Check if the post has an image and display it --}}
                                 @if ($post->image_path)
                                     <div class="mt-2 ">
-                                        <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $post->image_path) }}"
+                                        <img src="/api/placeholder/48/48"
+                                             data-src="{{ asset('storage/' . $post->image_path) }}"
                                              alt="Post Image"
                                              class="w-full h-auto rounded-lg lazyload">
                                     </div>
@@ -496,14 +513,16 @@
                                                     <label for="file_input"
                                                            class="cursor-pointer w-full h-full">
                                                         @if ($comment->user->image)
-                                                            <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $comment->user->image) }}"
+                                                            <img src="/api/placeholder/48/48"
+                                                                 data-src="{{ asset('storage/' . $comment->user->image) }}"
                                                                  alt="Profile"
                                                                  class="w-10 h-10 rounded-full object-cover lazyload">
                                                         @else
                                                             <div class="bg-[#e1e1e1] rounded-full">
                                                                 <img src="{{ asset('image/default-profile.png') }}"
                                                                      alt="Profile"
-                                                                     class="w-10 h-10 rounded-full object-cover" loading="lazy">
+                                                                     class="w-10 h-10 rounded-full object-cover"
+                                                                     loading="lazy">
                                                             </div>
                                                         @endif
                                                     </label>
@@ -513,22 +532,26 @@
                                                         {{ $comment->user->name }}
                                                         <!-- Display the name of the comment's user -->
                                                         <svg xmlns="http://www.w3.org/2000/svg"
-                                                            xmlns:xlink="http://www.w3.org/1999/xlink"
-                                                            fill="{{ $comment->user->badge == 'Gold' ? '#FFD700' : ($comment->user->badge == 'Silver' ? '#9a9a9a' : ($comment->user->badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
-                                                            height="22"
-                                                            width="22"
-                                                            version="1.1"
-                                                            id="Capa_1"
-                                                            viewBox="0 0 296.084 296.084"
-                                                            xml:space="preserve"
-                                                            {{ $attributes->merge(['class' => 'shadow-xl']) }}>
+                                                             xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                             fill="{{ $comment->user->badge == 'Gold' ? '#FFD700' : ($comment->user->badge == 'Silver' ? '#9a9a9a' : ($comment->user->badge == 'Bronze' ? '#964B00' : '#f0f0f0')) }}"
+                                                             height="22"
+                                                             width="22"
+                                                             version="1.1"
+                                                             id="Capa_1"
+                                                             viewBox="0 0 296.084 296.084"
+                                                             xml:space="preserve"
+                                                             {{ $attributes->merge(['class' => 'shadow-xl']) }}>
                                                             <g>
-                                                                <path d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689 C168.709,77.51,180.064,80.221,191.27,84.676z" />
-                                                                <path d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428 c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
-                                                                <path d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334 c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627 c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
-                                                                <path d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627 c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
+                                                                <path
+                                                                      d="M191.27,84.676l24.919-21.389c4.182-3.572,7.52-11.037,7.52-16.537v-37c0-5.5-4.167-9.75-9.667-9.75h-58.333v76.689 C168.709,77.51,180.064,80.221,191.27,84.676z" />
+                                                                <path
+                                                                      d="M140.709,0H82.042c-5.5,0-10.333,4.25-10.333,9.75v37c0,5.5,3.588,12.922,7.77,16.494l24.928,21.428 c11.508-4.574,24.302-7.307,36.302-8.045V0z" />
+                                                                <path
+                                                                      d="M148.041,91.416c-56.516,0-102.332,45.816-102.332,102.334s45.816,102.334,102.332,102.334 c56.518,0,102.334-45.816,102.334-102.334S204.559,91.416,148.041,91.416z M148.041,275.377c-45.008,0-81.625-36.619-81.625-81.627 c0-45.01,36.617-81.627,81.625-81.627c45.01,0,81.627,36.617,81.627,81.627C229.668,238.758,193.051,275.377,148.041,275.377z" />
+                                                                <path
+                                                                      d="M148.041,127.123c-36.736,0-66.625,29.889-66.625,66.627s29.889,66.627,66.625,66.627 c36.738,0,66.627-29.889,66.627-66.627S184.779,127.123,148.041,127.123z" />
                                                             </g>
-                                                        </svg>  
+                                                        </svg>
                                                     </div>
                                                     <div class="text-sm font-medium text-black">{{ $comment->content }}
                                                     </div> <!-- Display comment content -->
@@ -569,37 +592,36 @@
 
                                 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
                                 <script>
-
                                     // lazyload
                                     document.addEventListener("DOMContentLoaded", function() {
-                                    var lazyloadImages = document.querySelectorAll("img.lazyload");
-                                    var lazyloadThrottleTimeout;
+                                        var lazyloadImages = document.querySelectorAll("img.lazyload");
+                                        var lazyloadThrottleTimeout;
 
-                                    function lazyload() {
-                                        if (lazyloadThrottleTimeout) {
-                                            clearTimeout(lazyloadThrottleTimeout);
+                                        function lazyload() {
+                                            if (lazyloadThrottleTimeout) {
+                                                clearTimeout(lazyloadThrottleTimeout);
+                                            }
+
+                                            lazyloadThrottleTimeout = setTimeout(function() {
+                                                var scrollTop = window.pageYOffset;
+                                                lazyloadImages.forEach(function(img) {
+                                                    if (img.offsetTop < (window.innerHeight + scrollTop)) {
+                                                        img.src = img.dataset.src;
+                                                        img.classList.remove('lazyload');
+                                                    }
+                                                });
+                                                if (lazyloadImages.length == 0) {
+                                                    document.removeEventListener("scroll", lazyload);
+                                                    window.removeEventListener("resize", lazyload);
+                                                    window.removeEventListener("orientationChange", lazyload);
+                                                }
+                                            }, 20);
                                         }
 
-                                        lazyloadThrottleTimeout = setTimeout(function() {
-                                            var scrollTop = window.pageYOffset;
-                                            lazyloadImages.forEach(function(img) {
-                                                if (img.offsetTop < (window.innerHeight + scrollTop)) {
-                                                    img.src = img.dataset.src;
-                                                    img.classList.remove('lazyload');
-                                                }
-                                            });
-                                            if (lazyloadImages.length == 0) {
-                                                document.removeEventListener("scroll", lazyload);
-                                                window.removeEventListener("resize", lazyload);
-                                                window.removeEventListener("orientationChange", lazyload);
-                                            }
-                                        }, 20);
-                                    }
-
-                                    document.addEventListener("scroll", lazyload);
-                                    window.addEventListener("resize", lazyload);
-                                    window.addEventListener("orientationChange", lazyload);
-                                });
+                                        document.addEventListener("scroll", lazyload);
+                                        window.addEventListener("resize", lazyload);
+                                        window.addEventListener("orientationChange", lazyload);
+                                    });
                                     // Function to toggle reaction
                                     function toggleReaction(postId, element) {
                                         $.ajax({
@@ -681,15 +703,19 @@
                                             <label for="file_input"
                                                    class="cursor-pointer">
                                                 @if ($user->image)
-                                                    <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $user->image) }}"
+                                                    <img src="/api/placeholder/48/48"
+                                                         data-src="{{ asset('storage/' . $user->image) }}"
                                                          alt="Profile"
-                                                         class="w-full h-full rounded-full object-cover lazyload" loading="lazy">
+                                                         class="w-full h-full rounded-full object-cover lazyload"
+                                                         loading="lazy">
                                                 @else
                                                     <div></div>
                                                     <div class="bg-[#e1e1e1] rounded-full">
                                                         <img src="{{ asset('image/default-profile.png') }}"
                                                              alt="Profile"
-                                                             class="w-full h-full rounded-full object-cover" loading="lazy"> </div>
+                                                             class="w-full h-full rounded-full object-cover"
+                                                             loading="lazy">
+                                                    </div>
                                                 @endif
                                             </label>
                                         </div>
@@ -702,7 +728,7 @@
                                     </div>
                                     <x-button id="postButton"
                                               type="secondary"
-                                              onclick="postComment({{ $post->id }})">
+                                              onclick="postComment({{ $post->id }}); location.reload()">
                                         Post
                                     </x-button>
                                 </div>
@@ -726,14 +752,16 @@
                                                         <label for="file_input"
                                                                class="cursor-pointer">
                                                             @if ($student->image)
-                                                                <img src="/api/placeholder/48/48" data-src="{{ asset('storage/' . $student->image) }}"
+                                                                <img src="/api/placeholder/48/48"
+                                                                     data-src="{{ asset('storage/' . $student->image) }}"
                                                                      alt="Profile"
                                                                      class="w-full h-full object-cover lazyload">
                                                             @else
                                                                 <div class="bg-[#e1e1e1] rounded-full">
                                                                     <img src="{{ asset('image/default-profile.png') }}"
                                                                          alt="Profile"
-                                                                         class="w-full h-full object-cover bg-gray-300" loading="lazy">
+                                                                         class="w-full h-full object-cover bg-gray-300"
+                                                                         loading="lazy">
                                                                 </div>
                                                             @endif
                                                         </label>
@@ -757,27 +785,30 @@
                                                 </div>
                                                 <div class="text-xs font-semibold text-black opacity-80">
                                                     @php
-                                                    $studentInterests = $student->interests->pluck('interest_name')->map(function ($interest) {
-                                                        return str_replace('_', ' ', $interest);
-                                                    });
-                                                @endphp
-                                                
-                                                    
+                                                        $studentInterests = $student->interests
+                                                            ->pluck('interest_name')
+                                                            ->map(function ($interest) {
+                                                                return str_replace('_', ' ', $interest);
+                                                            });
+                                                    @endphp
+
+                                                    <div></div>
                                                     Interests:
-                                                    <span id="limitedInterests-{{$student->id}}">
+                                                    <span id="limitedInterests-{{ $student->id }}">
                                                         {{ $studentInterests->take(3)->join(', ') }}
                                                         @if ($studentInterests->count() > 3)
                                                             <a href="javascript:void(0);"
-                                                               onclick="toggleInterests({{$student->id}})"
+                                                               onclick="toggleInterests({{ $student->id }})"
                                                                class="text-[#006634] underline">See More</a>
                                                         @endif
-                                                                
+
                                                     </span>
-                                                    <span class="hidden" id="fullInterests-{{$student->id}}"">
+                                                    <span class="hidden"
+                                                          id="fullInterests-{{ $student->id }}"">
                                                         {{ $studentInterests->join(', ') }}
                                                         <a class="text-[#006634] underline"
                                                            href="javascript:void(0);"
-                                                           onclick="toggleInterests({{$student->id}})">See Less</a>
+                                                           onclick="toggleInterests({{ $student->id }})">See Less</a>
                                                     </span>
                                                 </div>
                                             </div>
