@@ -36,6 +36,9 @@
                     </div>
                 @endif
             </div>
+            
+        
+
         </div>
         <script>
             setTimeout(() => {
@@ -48,7 +51,33 @@
         </script>
         <div class=" fixed inset-0 flex justify-center items-center">
             <!-- Left column container with background-->
-            <div
+                @if (session('success'))
+                <div id="successAlert"
+                    class="absolute right-0 top-0 mb-4 inline-flex items-center justify-center rounded-lg border-success border bg-success-300 px-8 py-3 text-base text-success-700 transition-opacity ease-in duration-700 opacity-100"
+                    role="alert">
+                    <span class="mr-2">
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            class="h-5 w-5">
+                            <path fill-rule="evenodd"
+                                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM11 7.75a1 1 0 112 0v4.5a1 1 0 01-2 0v-4.5zm1 8.25a1.25 1.25 0 100-2.5 1.25 1.25 0 000 2.5z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </span>
+                    {{ session('success') }}
+                </div>
+            <script>
+                setTimeout(() => {
+                    const alert = document.getElementById("successAlert");
+                    alert.classList.add('opacity-0');
+                    setTimeout(() => {
+                        alert.style.display = 'none';
+                    }, 700);
+                }, 3000);
+            </script>
+        @endif
+            <div 
                  class="  z-auto mx-auto max-y-md max-w-sm flex items-center justify-center bg-white/70 rounded-2xl shadow-md border-InputGray border p-7 ">
                 <form method="POST"
                       action="{{ route('register.account') }}"
@@ -60,6 +89,7 @@
                     <p class="text-black text-center text-sm mb-4">Be part of the community</p>
                     <!-- Name input -->
                     <div class="flex flex-row mb-3">
+
                         <div class="text-sm">
                             @error('first_name')
                                 <p class="text-red-500">First Name</p>
