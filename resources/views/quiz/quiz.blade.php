@@ -92,6 +92,23 @@
                                         </button>
                                     </div>
                                 </div>
+                                <!-- Add the audio element for SFX -->
+                                <audio id="sfx-audio" src="{{ asset('sfx/checkbox.mp3') }}" preload="auto"></audio>
+                                
+                                <!-- Add JavaScript to handle the click event and play the sound -->
+                                <script>
+                                    // Get the audio element
+                                    const audio = document.getElementById('sfx-audio');
+                                
+                                    // Add an event listener to play the sound when any answer option is clicked
+                                    const options = document.querySelectorAll('.answer-option');
+                                    options.forEach(option => {
+                                        option.addEventListener('click', function() {
+                                            audio.play();
+                                        });
+                                    });
+                                </script>
+                                
                             </form>
                             
                         </div>
