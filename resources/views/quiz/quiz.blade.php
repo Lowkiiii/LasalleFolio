@@ -29,52 +29,43 @@
                     <div class="absolute top-[13rem]"><img src="/image/self.png" alt="" class="w-auto h-[13rem] "></div>
                     <div>
                        
-                        <h1 class="text-2xl text-center font-bold text-[#006634]">🧠 Interest-Based Quiz 🧠</h1>
+                        <h1 class="text-2xl text-center font-bold text-[#006634]">🧠 Career Assessment 🧠</h1>
                         <div class="text-center w-full justify-center mx-auto ">
-                            <form id="quiz-form"
-                                  method="POST"
-                                  action="{{ route('quiz.submit') }}">
+                            <form id="quiz-form" method="POST" action="{{ route('quiz.submit') }}">
                                 @csrf
-                                <div class="mx-auto animate-blink"
-                                     id="quiz-container">
+                                <div class="mx-auto animate-blink" id="quiz-container">
                                     <div class="text-lg font-bold text-[#006634] p-8">
-                                        <ul id="question-list"
-                                            class="space-y-4">
+                                        <ul id="question-list" class="space-y-4">
                                             @foreach ($questions as $index => $question)
-                                                <li class="question"
-                                                    data-index="{{ $index }}"
+                                                <li class="question" data-index="{{ $index }}" 
                                                     style="display: {{ $index === 0 ? 'list-item' : 'none' }}">
-                                                    <div class="mb-2 text-sm text-gray-500">Category:
-                                                        {{ $question['category'] }}</div>
+                                                    <div class="mb-2 text-sm text-gray-500">Career Assessment Question</div>
                                                     {{ $question['question'] }}
                                                 </li>
                                             @endforeach
                                         </ul>
                                     </div>
-                                    <div class="container ">
+                                    <div class="container">
                                         <div class="justify-center mx-auto text-center flex py-2 flex-row gap-2">
                                             <p id="questionNumber">Question 1</p>
                                             <p>of</p>
                                             <p id="totalQuestions">{{ $total_questions }}</p>
                                         </div>
-                                        <div class="px-4 py-8 flex flex-col gap-2 ">
+                                        <div class="px-4 py-8 flex flex-col gap-2">
                                             @foreach ($questions as $index => $question)
-                                                <div class="options-group rounded-xl border bg-white border-[#D4D4D4] rounded-xl shadow-lg shadow-5 "
+                                                <div class="options-group rounded-xl border bg-white border-[#D4D4D4] rounded-xl shadow-lg shadow-5"
                                                      data-question="{{ $index }}"
                                                      style="display: {{ $index === 0 ? 'block' : 'none' }}">
                                                     @foreach ($question['options'] as $optionIndex => $option)
-                                                        <div
-                                                             class="inline-flex items-center mb-2 w-[16rem] h-[6rem] p-4 ">
+                                                        <div class="inline-flex items-center mb-2 w-[16rem] h-[6rem] p-4">
                                                             <label class="relative flex items-center cursor-pointer">
                                                                 <input name="answers[{{ $index }}]"
                                                                        type="radio"
                                                                        class="answer-option peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-black checked:border-[#006634] transition-all"
                                                                        value="{{ $optionIndex }}">
-                                                                <span
-                                                                      class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
+                                                                <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                                                             </label>
-                                                            <label
-                                                                   class="ml-2 font-semibold text-black cursor-pointer text-sm">{{ $option }}</label>
+                                                            <label class="ml-2 font-semibold text-black cursor-pointer text-sm">{{ $option }}</label>
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -84,8 +75,8 @@
                                     <div class="flex text-center justify-center gap-4">
                                         <button type="button"
                                                 id="prevButton"
-                                                class="px-4 py-2 bg-white border-2 shadow-lg text-gray-200 rounded-md "
-                                                style="">
+                                                class="px-4 py-2 bg-white border-2 shadow-lg text-gray-200 rounded-md"
+                                                style="display: none;">
                                             Previous Question
                                         </button>
                                         <button type="button"
@@ -97,11 +88,12 @@
                                                 id="submitButton"
                                                 class="px-4 py-2 bg-[#006634] text-white rounded-md"
                                                 style="display: none;">
-                                            Submit Quiz
+                                            Submit Assessment
                                         </button>
                                     </div>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
