@@ -12,10 +12,14 @@
 
                     <!-- Retrieve pinned project IDs -->
                     @php
-                        $pinnedProjectIds = $pinnedProjects->pluck('project_id')->toArray(); // Assuming the pivot table has 'project_id'
+
+                        $pinnedProjectIds = $pinnedProjects->pluck('project_id')->toArray(); //
                         // echo count($userProjects);
                     @endphp
-
+                    {{-- 
+                    @if (empty($projects))
+                        <div>No Projects Available</div>
+                    @else --}}
                     @forelse ($userProjects as $projects)
                         @if (!in_array($projects->id, $pinnedProjectIds))
                             <!-- Check if the project is not already pinned -->
@@ -48,16 +52,30 @@
                         @endif
 
                     @empty
-                    @endforelse
-
-                    @if (in_array($projects->id, $pinnedProjectIds) > 0)
                         <div>
-                            <p class="text-black">No projects available.</p>
+                            No Projects Available
                         </div>
+                    @endforelse
+                    @if (empty($projects))
+                        <div>
+
+                        </div>
+                    @else
+                        @if (count($pinnedProjectIds) == count($userProjects))
+                            <div>
+                                All Projects Pinned
+                            </div>
+                        @endif
                     @endif
 
+                    {{-- @endif --}}
+
                     <!--footer-->
-                    <div class="flex items-between justify-end mt-2">
+                    <div
+                         class="flex
+                                         items-between
+                                         justify-end
+                                         mt-2">
                         <button class="text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                 type="button"
                                 onclick="toggleModal('modal-idPinnedProjects')">
