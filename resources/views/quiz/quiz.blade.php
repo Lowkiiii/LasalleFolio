@@ -26,20 +26,28 @@
                              alt=""
                              class=" w-auto  h-[14rem]">
                     </div>
-                    <div class="absolute top-[13rem]"><img src="/image/self.png" alt="" class="w-auto h-[13rem] "></div>
+                    <div class="absolute top-[13rem]"><img src="/image/self.png"
+                             alt=""
+                             class="w-auto h-[13rem] "></div>
                     <div>
-                       
+
                         <h1 class="text-2xl text-center font-bold text-[#006634]">🧠 Career Assessment 🧠</h1>
                         <div class="text-center w-full justify-center mx-auto ">
-                            <form id="quiz-form" method="POST" action="{{ route('quiz.submit') }}">
+                            <form id="quiz-form"
+                                  method="POST"
+                                  action="{{ route('quiz.submit') }}">
                                 @csrf
-                                <div class="mx-auto animate-blink" id="quiz-container">
+                                <div class="mx-auto animate-blink"
+                                     id="quiz-container">
                                     <div class="text-lg font-bold text-[#006634] p-8">
-                                        <ul id="question-list" class="space-y-4">
+                                        <ul id="question-list"
+                                            class="space-y-4">
                                             @foreach ($questions as $index => $question)
-                                                <li class="question" data-index="{{ $index }}" 
+                                                <li class="question"
+                                                    data-index="{{ $index }}"
                                                     style="display: {{ $index === 0 ? 'list-item' : 'none' }}">
-                                                    <div class="mb-2 text-sm text-gray-500">Career Assessment Question</div>
+                                                    <div class="mb-2 text-sm text-gray-500">Career Assessment Question
+                                                    </div>
                                                     {{ $question['question'] }}
                                                 </li>
                                             @endforeach
@@ -57,15 +65,18 @@
                                                      data-question="{{ $index }}"
                                                      style="display: {{ $index === 0 ? 'block' : 'none' }}">
                                                     @foreach ($question['options'] as $optionIndex => $option)
-                                                        <div class="inline-flex items-center mb-2 w-[16rem] h-[6rem] p-4">
+                                                        <div
+                                                             class="inline-flex items-center mb-2 w-[16rem] h-[6rem] p-4">
                                                             <label class="relative flex items-center cursor-pointer">
                                                                 <input name="answers[{{ $index }}]"
                                                                        type="radio"
                                                                        class="answer-option peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-black checked:border-[#006634] transition-all"
                                                                        value="{{ $optionIndex }}">
-                                                                <span class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
+                                                                <span
+                                                                      class="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
                                                             </label>
-                                                            <label class="ml-2 font-semibold text-black cursor-pointer text-sm">{{ $option }}</label>
+                                                            <label
+                                                                   class="ml-2 font-semibold text-black cursor-pointer text-sm">{{ $option }}</label>
                                                         </div>
                                                     @endforeach
                                                 </div>
@@ -76,12 +87,12 @@
                                         <button type="button"
                                                 id="prevButton"
                                                 class="px-4 py-2 bg-white border-2 shadow-lg text-gray-200 rounded-md"
-                                                style="display: none;">
+                                                style="">
                                             Previous Question
                                         </button>
                                         <button type="button"
                                                 id="nextButton"
-                                                class="px-4 py-2 bg-[#006634] text-white rounded-md hover:bg-[#004423]">
+                                                class=".playButtonPress px-4 py-2 bg-[#006634] text-white rounded-md hover:bg-[#004423]">
                                             Next Question
                                         </button>
                                         <button type="submit"
@@ -90,16 +101,39 @@
                                                 style="display: none;">
                                             Submit Assessment
                                         </button>
+                                        {{-- <button type="button"
+                                                onclick="launchConfetti()">
+                                            Launch Confetti
+                                        </button> --}} {{-- debug for launching confetti --}}
                                     </div>
                                 </div>
                                 <!-- Add the audio element for SFX -->
-                                <audio id="sfx-audio" src="{{ asset('sfx/checkbox.mp3') }}" preload="auto"></audio>
-                                
+                                <audio id="sfx-audio"
+                                       src="{{ asset('sfx/checkbox.mp3') }}"
+                                       preload="auto"></audio>
+
+                                <audio id="buttonPress"
+                                       src="{{ asset('sfx/ButtonPress.mp3') }}"
+                                       preload="auto"></audio>
+
                                 <!-- Add JavaScript to handle the click event and play the sound -->
                                 <script>
                                     // Get the audio element
                                     const audio = document.getElementById('sfx-audio');
-                                
+                                    const buttonPress = document.getElementById('buttonPress');
+
+
+
+                                    nextButton.addEventListener('click', function() {
+                                        console.log('Button pressed');
+                                        buttonPress.play();
+                                    });
+
+                                    prevButton.addEventListener('click', function() {
+                                        console.log('Button pressed');
+                                        buttonPress.play();
+                                    });
+
                                     // Add an event listener to play the sound when any answer option is clicked
                                     const options = document.querySelectorAll('.answer-option');
                                     options.forEach(option => {
@@ -108,9 +142,21 @@
                                         });
                                     });
                                 </script>
-                                
+                                <script>
+                                    function launchConfetti() {
+                                        console.log('Launching confetti...');
+                                        confetti({
+                                            particleCount: 100,
+                                            spread: 70,
+                                            origin: {
+                                                y: 0.6
+                                            }
+                                        });
+                                    }
+                                </script>
+
                             </form>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -231,3 +277,4 @@
         });
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>

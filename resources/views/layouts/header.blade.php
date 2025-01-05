@@ -16,27 +16,43 @@
             </div>
 
             <div class="relative w-full">
-                <input id="searchBar" name="query" type="text" class="outline-none text-sm w-1/2 py-2 px-3 pl-10 border border-[#D4D4D4] rounded-2xl" placeholder="Search">
-                <button id="searchButton" type="button" class="">
-                    <form class="w-full" onsubmit="return false;" id="searchForm">
+                <input id="searchBar"
+                       name="query"
+                       type="text"
+                       class="outline-none text-sm w-1/2 py-2 px-3 pl-10 border border-[#D4D4D4] rounded-2xl"
+                       placeholder="Search">
+                <button id="searchButton"
+                        type="button"
+                        class="">
+                    <form class="w-full"
+                          onsubmit="return false;"
+                          id="searchForm">
                         <div class="flex">
                             <i class="absolute left-2 top-1/2 transform -translate-y-[0.7rem] opacity-60">
-                                <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 30 30">
-                                    <path d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z"></path>
+                                <svg xmlns="http://www.w3.org/2000/svg"
+                                     x="0px"
+                                     y="0px"
+                                     width="20"
+                                     height="20"
+                                     viewBox="0 0 30 30">
+                                    <path
+                                          d="M 13 3 C 7.4889971 3 3 7.4889971 3 13 C 3 18.511003 7.4889971 23 13 23 C 15.396508 23 17.597385 22.148986 19.322266 20.736328 L 25.292969 26.707031 A 1.0001 1.0001 0 1 0 26.707031 25.292969 L 20.736328 19.322266 C 22.148986 17.597385 23 15.396508 23 13 C 23 7.4889971 18.511003 3 13 3 z M 13 5 C 17.430123 5 21 8.5698774 21 13 C 21 17.430123 17.430123 21 13 21 C 8.5698774 21 5 17.430123 5 13 C 5 8.5698774 8.5698774 5 13 5 z">
+                                    </path>
                                 </svg>
                             </i>
                         </div>
                     </form>
                 </button>
-                <div id="searchResults" class="absolute hidden left-0 transform mt-2 py-2 px-1 w-1/2 items-center justify-center bg-[#F8F8F8] border border-[#D4D4D4] rounded-lg">
+                <div id="searchResults"
+                     class="absolute hidden left-0 transform mt-2 py-2 px-1 w-1/2 items-center justify-center bg-[#F8F8F8] border border-[#D4D4D4] rounded-lg">
                 </div>
             </div>
-            
+
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const searchBar = document.getElementById('searchBar');
                     const searchResults = document.getElementById('searchResults');
-            
+
                     searchBar.addEventListener('input', function() {
                         const searchTerm = this.value;
                         if (searchTerm.length > 0) {
@@ -49,7 +65,7 @@
                             searchResults.classList.add('hidden');
                         }
                     });
-            
+
                     function displayResults(results) {
                         searchResults.innerHTML = '';
                         if (results.users.length > 0) {
@@ -72,11 +88,12 @@
                         } else {
                             searchResults.classList.add('hidden');
                         }
-            
+
                         if (results.categories.length > 0) {
                             results.categories.forEach(category => {
                                 const categoryDiv = document.createElement('div');
-                                categoryDiv.className = 'w-full py-2 px-4 rounded-xl cursor-pointer hover:bg-gray-200';
+                                categoryDiv.className =
+                                    'w-full py-2 px-4 rounded-xl cursor-pointer hover:bg-gray-200';
                                 categoryDiv.innerHTML = `
                                     <a href="/posts/category/${category}" class="w-full text-black">${category}</a>
                                 `;
@@ -85,7 +102,7 @@
                             searchResults.classList.remove('hidden');
                         }
                     }
-            
+
                     // Hide results when clicking outside
                     document.addEventListener('click', function(event) {
                         if (!searchBar.contains(event.target) && !searchResults.contains(event.target)) {
@@ -94,7 +111,7 @@
                     });
                 });
             </script>
-            
+
             <div class="flex">
 
                 <div class="flex flex-row">
@@ -119,7 +136,8 @@
                     </div>
 
                     <div class="relative flex">
-                        <button id="ReqButton"
+                        <button type="button"
+                                id="ReqButton"
                                 class="flex flex-col items-center mx-auto mr-8 ">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  viewBox="0 0 24 24"
@@ -290,10 +308,10 @@
 
                                 <div class="flex flex-col gap-4  justify-start items-start py-1 px-3 text-black"
                                      id="">
-                                     <div class="gap-1">
-                                    <div class="text-sm font-bold"> {{ Auth::user()->name }}</div>
-                                    <p class="text-xs">{{ Auth::user()->email }}</p>
-                                </div>
+                                    <div class="gap-1">
+                                        <div class="text-sm font-bold"> {{ Auth::user()->name }}</div>
+                                        <p class="text-xs">{{ Auth::user()->email }}</p>
+                                    </div>
                                     <div class="flex flex-row hover:text-[#006634]">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              fill="none"
@@ -345,7 +363,12 @@
 
 </div>
 
+<audio id="buttonSound"
+       src="{{ asset('sfx/headerButton.mp3') }}"
+       preload="auto"></audio>
+
 <script>
+    const audioHeader = document.getElementById('buttonSound');
     const ReqButton = document.getElementById('ReqButton');
     const ReqMenu = document.getElementById('ReqMenu');
     const ReqIcon = ReqButton.querySelector('.ReqIcon');
@@ -417,25 +440,30 @@
 
         document.addEventListener('click', function(event) {
             if (!searchBar.contains(event.target) && !searchResults.contains(event.target)) {
+
                 searchResults.classList.add('hidden');
             }
         });
     });
     document.getElementById("viewProfile").addEventListener("click", function() {
+        audioHeader.play();
         window.location.href = "{{ route('student.studentDashboard') }}";
     });
 
 
     document.getElementById("viewLeaderBoard").addEventListener("click", function() {
+        audioHeader.play();
         window.location.href = "{{ route('student.studentLeaderboard') }}";
     });
 
 
     document.getElementById("viewDashboard").addEventListener("click", function() {
+        audioHeader.play();
         window.location.href = "{{ route('student.studentDashboard') }}";
     });
 
     document.getElementById("viewUser").addEventListener("click", function() {
+        audioHeader.play();
         window.location.href = "{{ route('student.studentProf') }}";
     });
 </script>

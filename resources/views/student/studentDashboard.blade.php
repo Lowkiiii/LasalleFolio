@@ -113,13 +113,15 @@
                                         </div>
                                         <x-button id="viewProfileBtn"
                                                   type="primary"
-                                                  onclick="submitForm()">
+                                                  onclick="submitForm();  ">
                                             View Profile
                                         </x-button>
 
                                         <script>
                                             document.getElementById("viewProfileBtn").addEventListener("click", function() {
+
                                                 window.location.href = "{{ route('student.studentProf') }}";
+                                                buttonPress.play();
                                             });
                                         </script>
                                     </div>
@@ -220,6 +222,7 @@
                                         <script>
                                             document.getElementById("viewLeaderboardBtn").addEventListener("click", function() {
                                                 window.location.href = "{{ route('student.studentLeaderboard') }}";
+                                                buttonPress.play();
                                             });
                                         </script>
                                     </div>
@@ -375,7 +378,8 @@
                                                                 </svg>
                                                             </button>
                                                             <div class="ml-2 mr-2">
-                                                                <button type="submit"
+                                                                <button id="buttonSFX"
+                                                                        type="submit"
                                                                         class="py-2">Edit</button>
                                                             </div>
                                                         </div>
@@ -474,7 +478,7 @@
 
                                 <div class="flex flex-row items-start justify-start">
                                     <!-- Heart Reaction Feature -->
-                                    <button onclick="toggleReaction({{ $post->id }}, this)"
+                                    <button onclick="toggleReaction({{ $post->id }}, this); heartPress.play();"
                                             class="flex flex-row justify-center items-center text-s mr-2">
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                              width="23"
@@ -728,9 +732,10 @@
                                     </div>
                                     <x-button id="postButton"
                                               type="secondary"
-                                              onclick="postComment({{ $post->id }}); location.reload()">
+                                              onclick="postComment({{ $post->id }}); location.reload();  buttonPress.play();">
                                         Post
                                     </x-button>
+
                                 </div>
                             </div>
                         @empty
@@ -866,6 +871,7 @@
                                                           method="POST">
                                                         @csrf
                                                         <button type="submit"
+                                                                onclick="buttonPress.play();"
                                                                 class=" inline-flex items-center rounded-md bg-[#006634] px-4 py-2 text-xs font-bold text-white whitespace-nowrap">
                                                             Connect +
                                                         </button>
@@ -884,11 +890,14 @@
                                         <p class="text-sm font-light">Want to add your point? Try and play a quiz game!</p>
                                         <div class=" w-full mt-2">
                                             <a href="{{ route('quiz') }}">
-                                                <x-button id="submitBtn"
-                                                          type="primary">
+                                                <x-button id="quizButton"
+                                                          type="primary"
+                                                          onclick="buttonPress.play();">
+
                                                     Start Quiz Game
                                                 </x-button>
                                             </a>
+
                                         </div>
                                     </div>
                                 </div>

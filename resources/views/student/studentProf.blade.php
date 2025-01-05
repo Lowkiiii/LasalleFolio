@@ -5,6 +5,9 @@
 @endsection
 
 @section('content')
+    <audio id="buttonPress"
+           src="{{ asset('sfx/ButtonPress.mp3') }}"
+           preload="auto"></audio>
 
     <div id="viewImageModal"
          tabindex="-1"
@@ -205,33 +208,35 @@
                                     return str_replace('_', ' ', $interest);
                                 });
                         @endphp
-                
-             
-                       <div class="flex  text-center mx-auto justify-center">
-                        <p class="flex  flex-row text-base font-bold text-black">Interests: 
-                            <!-- Update the button to navigate to the reselectInterests page -->
-                            <a href="{{ route('reselectInterests') }}" class="opacity-70 px-1 my-auto">
-                                <svg xmlns="http://www.w3.org/2000/svg"
-                                     width="13"
-                                     height="13"
-                                     viewBox="0 0 24 24"
-                                     class="fill-current text-[#909090] hover:text-[#006634]">
-                                    <path
-                                          d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
-                                </svg>
-                            </a>
-                        </p>
-                       </div>
-                
+
+                        <div class="flex  text-center mx-auto justify-center">
+                            <p class="flex  flex-row text-base font-bold text-black">Interests:
+                                <!-- Update the button to navigate to the reselectInterests page -->
+                                <a href="{{ route('reselectInterests') }}"
+                                   class="opacity-70 px-1 my-auto">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                         width="13"
+                                         height="13"
+                                         viewBox="0 0 24 24"
+                                         class="fill-current text-[#909090] hover:text-[#006634]">
+                                        <path
+                                              d="M7.127 22.562l-7.127 1.438 1.438-7.128 5.689 5.69zm1.414-1.414l11.228-11.225-5.69-5.692-11.227 11.227 5.689 5.69zm9.768-21.148l-2.816 2.817 5.691 5.691 2.816-2.819-5.691-5.689z" />
+                                    </svg>
+                                </a>
+                            </p>
+                        </div>
+
                         <div>
-                            <span class="" id="limitedInterests">
+                            <span class=""
+                                  id="limitedInterests">
                                 {{ $interests->take(3)->join(', ') }}
-                
+
                                 <a href="javascript:void(0);"
                                    id="toggleInterestMore"
                                    class="text-[#006634] underline">See More</a>
                             </span>
-                            <span class="hidden items-center justify-center" id="fullInterests">
+                            <span class="hidden items-center justify-center"
+                                  id="fullInterests">
                                 {{ $interests->join(', ') }}
                                 <a class="text-[#006634] underline"
                                    href="javascript:void(0);"
@@ -240,8 +245,6 @@
                         </div>
                     </div>
                 </div>
-                
-                
 
                 <div class="text-sm font-d mx-auto max-y-md max-w-lg flex items-center justify-center mt-2 mb-2"
                      id="btn-ConnectContainer">
@@ -340,7 +343,7 @@
 
                 <div class="flex flex-col items-center text-xs font-medium text-center justify-center ">
                     <div class=" mt-4 text-black font-bold text-lg"> About Me <button class="opacity-70"
-                                onclick="toggleModal('modal-idAboutMe')">
+                                onclick="toggleModal('modal-idAboutMe'); buttonPress.play();">
                             <svg xmlns="http://www.w3.org/2000/svg"
                                  width="13"
                                  height="13"
@@ -434,7 +437,7 @@
                                      class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#D4D4D4] rounded-lg shadow-lg">
                                     <div class="my-auto p-4 mx-auto">
                                         <button class="p-4 fill-current text-[#909090] hover:text-[#006634]"
-                                                onclick="toggleModal('modal-idPinnedProjects')">
+                                                onclick="toggleModal('modal-idPinnedProjects'); buttonPress.play();">
                                             <!DOCTYPE svg
                                                       PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
                                             <svg enable-background="new 0 0 512 512"
@@ -488,7 +491,7 @@
                 </div>
 
                 <div class="flex justify-end">
-                    <button onclick="toggleModal('modal-idAddShowcase')"
+                    <button onclick="toggleModal('modal-idAddShowcase'); buttonPress.play();"
                             class="text-sm font-medium text-black py-4 mb-4 hover:text-[#006634] ">Customize
                         Showcase</button>
                 </div>
@@ -504,7 +507,7 @@
                                     {{-- Add Project Button --}}
 
                                     <button class="p-4 fill-current text-[#909090] hover:text-[#006634]"
-                                            onclick="toggleModal('modal-idPanels')">
+                                            onclick="toggleModal('modal-idPanels'); buttonPress.play();">
                                         <!DOCTYPE svg
                                                   PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
                                         <svg enable-background="new 0 0 512 512"
@@ -542,7 +545,7 @@
                                                         {{ $projects->project }}
 
                                                         <button class="ml-1"
-                                                                onclick="toggleModal('modal-idEditPanels-{{ $projects->id }}')">
+                                                                onclick="toggleModal('modal-idEditPanels-{{ $projects->id }}'); buttonPress.play();">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                  width="14"
                                                                  height="14"
@@ -610,7 +613,7 @@
                                  class="w-full relative flex flex-wrap items-start space-x-3 mr-10 py-[1.8rem] px-2 border border-[#D4D4D4] rounded-lg mb-2  shadow-lg ">
                                 <div class="absolute right-0 top-0 z-20">
                                     <button class="p-4 fill-current text-[#909090] hover:text-[#006634]"
-                                            onclick="toggleModal('modal-idSkillsPanel')">
+                                            onclick="toggleModal('modal-idSkillsPanel'); buttonPress.play();">
                                         <!DOCTYPE svg
                                                   PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
                                         <svg enable-background="new 0 0 512 512"
@@ -698,7 +701,7 @@
                                                                         <div class="flex items-center justify-end p-4">
                                                                             <button class="text-black background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                                                                     type="button"
-                                                                                    onclick="toggleModal('modal-idSkillsEditPanel-{{ $skills->id }}')">
+                                                                                    onclick="toggleModal('modal-idSkillsEditPanel-{{ $skills->id }}'); buttonPress.play();">
                                                                                 Close </button>
                                                                             <button class="bg-[#006634] text-white font-semibold uppercase text-xs px-4 py-2 rounded-xl shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                                                                     type="submit"> Save </button>
@@ -712,7 +715,7 @@
                                                         </div>
 
                                                         <button class="ml-1"
-                                                                onclick="toggleModal('modal-idSkillsEditPanel-{{ $skills->id }}')">
+                                                                onclick="toggleModal('modal-idSkillsEditPanel-{{ $skills->id }}'); buttonPress.play();">
                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                  width="14"
                                                                  height="14"
@@ -770,7 +773,7 @@
 
                             <div class="absolute right-0 top-0 z-20">
                                 <button class="p-4 fill-current text-[#909090] hover:text-[#006634]"
-                                        onclick="toggleModal('modal-idAcademics')">
+                                        onclick="toggleModal('modal-idAcademics'); buttonPress.play();">
                                     <!DOCTYPE svg
                                               PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
                                     <svg enable-background="new 0 0 512 512"
@@ -814,7 +817,7 @@
                                                     <!-- Edit Modal -->
 
                                                     <button class="ml-1"
-                                                            onclick="toggleModal('modal-idEditAcademicPanel-{{ $academics->id }}')">
+                                                            onclick="toggleModal('modal-idEditAcademicPanel-{{ $academics->id }}'); buttonPress.play();">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                              width="14"
                                                              height="14"
@@ -888,7 +891,7 @@
 
                             <div class="absolute right-0 top-0 z-20">
                                 <button class="p-4 fill-current text-[#909090] hover:text-[#006634]"
-                                        onclick="toggleModal('modal-idAwardsHonorsPanel')">
+                                        onclick="toggleModal('modal-idAwardsHonorsPanel'); buttonPress.play();">
                                     <!DOCTYPE svg
                                               PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'>
                                     <svg enable-background="new 0 0 512 512"
@@ -931,7 +934,7 @@
                                                     {{ $honorsandawards->title }}
 
                                                     <button class="ml-1"
-                                                            onclick="toggleModal('modal-idEditAwardsHonorsPanel-{{ $honorsandawards->id }}')">
+                                                            onclick="toggleModal('modal-idEditAwardsHonorsPanel-{{ $honorsandawards->id }}'); buttonPress.play();">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                              width="14"
                                                              height="14"
@@ -1032,7 +1035,7 @@
                         <div class="flex-grow">
                             <button type=""
                                     class=" text-sm w-full py-2 px-3 bg-gray-200 rounded-2xl "
-                                    onclick="toggleModal('modal-idPostText')"
+                                    onclick="toggleModal('modal-idPostText'); buttonPress.play();"
                                     placeholder="Share something...">
                                 <div class="text-start opacity-60">
                                     Share your thoughts...
@@ -1134,7 +1137,7 @@
                                              class="editMenu hidden absolute bg-white space-x-2 py-2 px-5 border border-[#D4D4D4] rounded-lg shadow-lg w-55 transform translate-y-full bottom-5 left-1/2 -translate-x-1/2 z-10">
                                             <ul class="text-sm font-semibold text-black w-auto">
                                                 <div class="flex flex-row hover:text-[#0066FF]"
-                                                     onclick="toggleModal('modal-idPostEditText-{{ $post->id }}')">
+                                                     onclick="toggleModal('modal-idPostEditText-{{ $post->id }}'); buttonPress.play();">
                                                     <button class="py-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
                                                              width="14"
@@ -1151,7 +1154,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex flex-row hover:text-[#FF0000]"
-                                                     onclick="toggleModal('modal-idPostDelete-{{ $post->id }}')">
+                                                     onclick="toggleModal('modal-idPostDelete-{{ $post->id }}');buttonPress.play();">
                                                     <button type="submit"
                                                             class="py-2">
                                                         <svg xmlns="http://www.w3.org/2000/svg"
@@ -1244,7 +1247,7 @@
 
                         <div class="flex flex-row items-start justify-start">
                             <!-- Heart Reaction Feature -->
-                            <button onclick="toggleReaction({{ $post->id }}, this)"
+                            <button onclick="toggleReaction({{ $post->id }}, this); heartPress.play();"
                                     class="flex flex-row justify-center items-center text-s mr-2">
                                 <svg xmlns="http://www.w3.org/2000/svg"
                                      width="23"
@@ -1463,7 +1466,7 @@
                             </div>
                             <x-button id="postButton"
                                       type="secondary"
-                                      onclick="postComment({{ $post->id }})">
+                                      onclick="postComment({{ $post->id }}); buttonPress.play();">
                                 Post
                             </x-button>
                         </div>
