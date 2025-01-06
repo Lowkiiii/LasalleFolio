@@ -21,10 +21,10 @@
 
             <div class="flex h-[45rem] flex-col justify-center relative animate-blink">
                 <div>
-                    <div class="absolute left-[53rem] top-[13rem] ">
+                    <div class="absolute left-[39rem] top-[11rem] ">
                         <img src="/image/Assistance.png"
                              alt=""
-                             class=" w-auto  h-[14rem]">
+                             class=" w-auto  h-[16rem]">
                     </div>
                     <div class="absolute top-[13rem]"><img src="/image/self.png"
                              alt=""

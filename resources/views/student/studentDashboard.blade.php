@@ -886,15 +886,15 @@
                                  class="w-full relative flex flex-col items-start  p-6 border border-[#D4D4D4] rounded-xl shadow-lg mt-5">
                                 <div class="max-y-md max-w-lg w-full flex">
                                     <div class=" w-full font-bold text-black">
-                                        Test your knowldge!
-                                        <p class="text-sm font-light">Want to add your point? Try and play a quiz game!</p>
+                                        Career Assessment
+                                        <p class="text-sm font-light">Take the Career Assessment Test and earn points while discovering which career path you're excelling in!</p>
                                         <div class=" w-full mt-2">
                                             <a href="{{ route('quiz') }}">
                                                 <x-button id="quizButton"
                                                           type="primary"
                                                           onclick="buttonPress.play();">
 
-                                                    Start Quiz Game
+                                                    Take Career Assessment Test
                                                 </x-button>
                                             </a>
 
