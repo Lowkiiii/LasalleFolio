@@ -11,9 +11,11 @@ class CareerAssessment extends Model
 
     protected $fillable = [
         'user_id',             // Add this line
-        'data_engineering_score',
-        'data_science_score',
-        'ai_engineering_score'
+        'junior_programmer_score',
+        'junior_technical_artist_score',
+        'junior_game_designer_score',
+        'ui_ux_designer_score',
+        'qa_tester_score'
     ];
 
     public function user()

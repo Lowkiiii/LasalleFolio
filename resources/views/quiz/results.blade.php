@@ -33,41 +33,66 @@
                         <div class="border rounded-lg p-6 bg-white">
                             <h3 class="text-xl font-semibold mb-4">Career Path Matches</h3>
 
-                            <!-- Data Engineering -->
+                            <!-- Junior Programmer -->
                             <div class="mb-4">
                                 <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Data Engineering</span>
-                                    <span>{{ $careerPercentages['data_engineering'] }}%</span>
+                                    <span class="font-medium">Junior Programmer</span>
+                                    <span>{{ $careerPercentages['junior_programmer'] }}%</span>
                                 </div>
                                 <div class="w-full bg-gray-200 rounded-full h-2">
                                     <div class="bg-[#006634] h-2 rounded-full"
-                                         style="width: {{ $careerPercentages['data_engineering'] }}%"></div>
+                                        style="width: {{ $careerPercentages['junior_programmer'] }}%"></div>
                                 </div>
                             </div>
 
-                            <!-- Data Science -->
+                            <!-- Junior Programmer -->
                             <div class="mb-4">
                                 <div class="flex justify-between mb-1">
-                                    <span class="font-medium">Data Science</span>
-                                    <span>{{ $careerPercentages['data_science'] }}%</span>
+                                    <span class="font-medium">Junior Technical Artist</span>
+                                    <span>{{ $careerPercentages['junior_technical_artist'] }}%</span>
                                 </div>
                                 <div class="w-full bg-gray-200 rounded-full h-2">
                                     <div class="bg-[#006634] h-2 rounded-full"
-                                         style="width: {{ $careerPercentages['data_science'] }}%"></div>
+                                        style="width: {{ $careerPercentages['junior_technical_artist'] }}%"></div>
                                 </div>
                             </div>
 
-                            <!-- AI Engineering -->
+                            <!-- Junior Programmer -->
                             <div class="mb-4">
                                 <div class="flex justify-between mb-1">
-                                    <span class="font-medium">AI Engineering</span>
-                                    <span>{{ $careerPercentages['ai_engineering'] }}%</span>
+                                    <span class="font-medium">Junior Game Designer</span>
+                                    <span>{{ $careerPercentages['junior_game_designer'] }}%</span>
                                 </div>
                                 <div class="w-full bg-gray-200 rounded-full h-2">
                                     <div class="bg-[#006634] h-2 rounded-full"
-                                         style="width: {{ $careerPercentages['ai_engineering'] }}%"></div>
+                                        style="width: {{ $careerPercentages['junior_game_designer'] }}%"></div>
                                 </div>
                             </div>
+
+                            <!-- Junior Programmer -->
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">UI/UX Designer</span>
+                                    <span>{{ $careerPercentages['ui_ux_designer'] }}%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-[#006634] h-2 rounded-full"
+                                        style="width: {{ $careerPercentages['ui_ux_designer'] }}%"></div>
+                                </div>
+                            </div>
+
+                            <!-- Junior Programmer -->
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="font-medium">QA Tester</span>
+                                    <span>{{ $careerPercentages['qa_tester'] }}%</span>
+                                </div>
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-[#006634] h-2 rounded-full"
+                                        style="width: {{ $careerPercentages['qa_tester'] }}%"></div>
+                                </div>
+                            </div>
+                            
                         </div>
 
                         <!-- Career Path Insights -->
@@ -76,12 +101,16 @@
                             @php
                                 $topCareer = array_search(max($careerPercentages), $careerPercentages);
                                 $descriptions = [
-                                    'data_engineering' =>
-                                        'You excel in roles that involve building and maintaining robust data systems. Data Engineers focus on creating scalable data pipelines, managing databases, and ensuring efficient data processing. They play a crucial role in enabling businesses to access and utilize data effectively.',
-                                    'data_science' =>
-                                        'Your analytical mindset and problem-solving skills align well with Data Scientist roles. Data Scientists analyze large datasets, uncover patterns, and build predictive models to drive data-driven decisions. They bridge the gap between business needs and technical solutions.',
-                                    'ai_engineering' =>
-                                        'Your interest in artificial intelligence and machine learning highlights a strong fit for AI Engineer roles. AI Engineers design and deploy intelligent systems, develop machine learning algorithms, and work on cutting-edge AI technologies to solve complex challenges and innovate processes.',
+                                    'junior_programmer' =>
+                                        'You excel in game programming and coding. Junior Programmers develop game logic, create efficient code for gameplay, user interfaces, and AI, and troubleshoot technical issues to ensure smooth performance.',
+                                    'junior_technical_artist' =>
+                                        'Your blend of technical and artistic skills makes you ideal for the Technical Artist role. Junior Technical Artists optimize production workflows, develop tools for artists, and enhance game asset performance.',
+                                    'junior_game_designer' =>
+                                        'Your creativity and problem-solving abilities align strongly with Game Design. Junior Game Designers conceptualize engaging gameplay mechanics, design immersive experiences, and refine game features based on feedback.',
+                                    'ui_ux_designer' =>
+                                        'You have a talent for designing intuitive and visually appealing user interfaces. UI/UX Designers create seamless experiences through wireframes, mockups, and user feedback analysis.',
+                                    'qa_tester' =>
+                                        'Your keen eye for detail and structured approach are perfect for Quality Assurance. QA Testers ensure games meet high standards by executing thorough testing, identifying issues, and driving quality improvements.'
                                 ];
                             @endphp
                             
@@ -97,7 +126,7 @@
                             <h3 class="text-xl font-semibold mb-6">Career Map</h3>
                             <div class="flex min-w-max">
                                 <!-- Level Labels Column -->
-                                <div class="w-48 flex-shrink-0 pr-4">
+                                {{-- <div class="w-48 flex-shrink-0 pr-4">
                                     <br><br><br>
                                     <div class="h-16 mb-3 flex items-center justify-center pr-2 text-sm font-medium rounded-l-lg bg-gray-600 text-white">
                                         C-Level
@@ -106,12 +135,12 @@
                                         <span>Senior Director</span>
                                         <hr class="w-3/4 border-gray-400 my-2">
                                         <span>Director</span>
-                                    </div>                                                                      
+                                    </div>
                                     <div class="h-32 mb-3 flex flex-col items-center justify-center text-sm font-medium rounded-l-lg bg-gray-600 text-white">
                                         <span>Senior Manager</span>
                                         <hr class="w-3/4 border-gray-400 my-2">
                                         <span>Manager</span>
-                                    </div> 
+                                    </div>
                                     <div class="h-16 mb-3 flex items-center justify-center pr-2 text-sm font-medium rounded-l-lg bg-gray-600 text-white">
                                         Senior Professional / <br> Supervisor
                                     </div>
@@ -124,102 +153,126 @@
                                     <div class="h-16 mb-3 flex items-center justify-center pr-2 text-sm font-medium rounded-l-lg bg-gray-600 text-white">
                                         Associate
                                     </div>
-                                </div>
+                                </div> --}}
 
                                 <!-- Career Paths Grid -->
                                 <div class="flex gap-6">
-                                    <!-- Data Engineering Column -->
+                                    <!-- Junior Programmer Path -->
                                     <div class="w-80">
                                         <div class="bg-[#006634] text-white p-3 rounded-t-lg mb-3">
-                                            <h4 class="font-semibold text-center">Data Engineering</h4>
-                                        </div>
-                                        <div class="space-y-3">
-                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Chief Information Officer
-                                            </div>
-                                            {{-- <div class="h-16 bg-gray-50 p-3 rounded border border-dashed border-gray-300 text-sm font-medium text-gray-700 flex items-center justify-center"></div> --}}
-                                            <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Chief Data Architect
-                                            </div>
-                                            {{-- <div class="h-16 bg-gray-50 p-3 rounded border border-dashed border-gray-300 text-sm font-medium text-gray-700 flex items-center justify-center"></div> --}}
-                                            <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Data Architect
-                                            </div>
-                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Senior Data Engineer
-                                            </div>
-                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Data Engineer
-                                            </div>
-                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Associate Data Engineer
-                                            </div>
-                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Associate Data Analyst
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Data Science Column -->
-                                    <div class="w-80">
-                                        <div class="bg-[#006634] text-white p-3 rounded-t-lg mb-3">
-                                            <h4 class="font-semibold text-center">Data Science</h4>
-                                        </div>
-                                        <div class="space-y-3">
-                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Chief Analytics Officer
-                                            </div>
-                                            {{-- <div class="h-16 bg-gray-50 p-3 rounded border border-dashed border-gray-300 text-sm font-medium text-gray-700 flex items-center justify-center"></div> --}}
-                                            <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Chief Data Scientist
-                                            </div>
-                                            {{-- <div class="h-16 bg-gray-50 p-3 rounded border border-dashed border-gray-300 text-sm font-medium text-gray-700 flex items-center justify-center"></div> --}}
-                                            <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Senior Data Scientist
-                                            </div>
-                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Data Scientist
-                                            </div>
-                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Machine Learning Engineer
-                                            </div>
-                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Associate Data Engineer
-                                            </div>
-                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Associate Data Analyst
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- AI Engineering Column -->
-                                    <div class="w-80">
-                                        <div class="bg-[#006634] text-white p-3 rounded-t-lg mb-3">
-                                            <h4 class="font-semibold text-center">AI Engineering</h4>
+                                            <h4 class="font-semibold text-center">Game Programmer</h4>
                                         </div>
                                         <div class="space-y-3">
                                             <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
                                                 Chief Technology Officer
                                             </div>
-                                            {{-- <div class="h-16 bg-gray-50 p-3 rounded border border-dashed border-gray-300 text-sm font-medium text-gray-700 flex items-center justify-center"></div> --}}
                                             <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Chief AI Engineer
+                                                Technical Director
                                             </div>
-                                            {{-- <div class="h-16 bg-gray-50 p-3 rounded border border-dashed border-gray-300 text-sm font-medium text-gray-700 flex items-center justify-center"></div> --}}
                                             <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Senior AI Engineer
+                                                Lead Programmer
                                             </div>
                                             <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                AI Engineer
+                                                Senior Programmer
                                             </div>
                                             <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Machine Learning Engineer
+                                                Programmer
                                             </div>
                                             <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Associate Data Engineer
+                                                Junior Programmer
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Junior Technical Artist Path -->
+                                    <div class="w-80">
+                                        <div class="bg-[#006634] text-white p-3 rounded-t-lg mb-3">
+                                            <h4 class="font-semibold text-center">Game Technical Artist</h4>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Chief Creative Officer
+                                            </div>
+                                            <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Technical Art Director
+                                            </div>
+                                            <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Senior Technical Artist
                                             </div>
                                             <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
-                                                Associate Data Analyst
+                                                Technical Artist
+                                            </div>
+                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Junior Technical Artist
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Junior Game Designer Path -->
+                                    <div class="w-80">
+                                        <div class="bg-[#006634] text-white p-3 rounded-t-lg mb-3">
+                                            <h4 class="font-semibold text-center">Game Designer</h4>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Chief Game Designer
+                                            </div>
+                                            <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Creative Director
+                                            </div>
+                                            <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Lead Game Designer
+                                            </div>
+                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Senior Game Designer
+                                            </div>
+                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Game Designer
+                                            </div>
+                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Junior Game Designer
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- UI/UX Designer Path -->
+                                    <div class="w-80">
+                                        <div class="bg-[#006634] text-white p-3 rounded-t-lg mb-3">
+                                            <h4 class="font-semibold text-center">UI/UX Designer</h4>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Lead UI/UX Designer
+                                            </div>
+                                            <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Senior UI/UX Designer
+                                            </div>
+                                            <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                UI/UX Designer
+                                            </div>
+                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Associate UI/UX Designer
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- QA Tester Path -->
+                                    <div class="w-80">
+                                        <div class="bg-[#006634] text-white p-3 rounded-t-lg mb-3">
+                                            <h4 class="font-semibold text-center">QA Tester</h4>
+                                        </div>
+                                        <div class="space-y-3">
+                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Lead QA Tester
+                                            </div>
+                                            <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Senior QA Tester
+                                            </div>
+                                            <div class="h-32 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                QA Tester
+                                            </div>
+                                            <div class="h-16 bg-white p-3 rounded border border-gray-200 text-sm font-medium text-gray-700 flex items-center justify-center">
+                                                Associate QA Tester
                                             </div>
                                         </div>
                                     </div>

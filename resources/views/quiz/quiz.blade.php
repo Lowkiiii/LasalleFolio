@@ -21,15 +21,15 @@
 
             <div class="flex h-[45rem] flex-col justify-center relative animate-blink">
                 <div>
-                    <div class="absolute left-[39rem] top-[11rem] ">
+                    <div class="absolute left-[53rem] top-[11rem] ">
                         <img src="/image/Assistance.png"
                              alt=""
                              class=" w-auto  h-[16rem]">
                     </div>
-                    <div class="absolute top-[13rem]"><img src="/image/self.png"
-                             alt=""
-                             class="w-auto h-[13rem] "></div>
-                    <div>
+                    <div class="absolute top-[13rem] left-[18rem]"><img src="/image/self.png"
+                        alt=""
+                        class="w-auto h-[13rem] ">
+                    </div>
 
                         <h1 class="text-2xl text-center font-bold text-[#006634]">🧠 Career Assessment 🧠</h1>
                         <div class="text-center w-full justify-center mx-auto ">
